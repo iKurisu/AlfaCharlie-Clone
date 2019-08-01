@@ -1,4 +1,6 @@
+import React, { useState } from "react";
 import Logo from "components/Logo";
+import Header from "components/Header";
 import "./styles.scss";
 
 const App = (): JSX.Element => {
@@ -9,6 +11,7 @@ const App = (): JSX.Element => {
         <div className="scroll-content-wrapper">
           <div className="scroll-content">
             <Logo />
+            <Header />
   </div>
         </div>
       </main>
