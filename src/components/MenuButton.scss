@@ -8,18 +8,24 @@
   cursor: pointer;
 }
 
-.menu-button .menu-hamburger {
-  opacity: 1;
+.menu-button line {
+  stroke-dasharray: 68;
 }
 
-.menu-button .menu-cross {
-  opacity: 0;
-}
+@for $i from 1 through 3 {
+  .menu-button .menu-hamburger line:nth-child(#{$i}) {
+    transition: 0.4s calc(0.95s + #{$i - 1} * 0.1s);
+  }
 
-.menu-button.open .menu-hamburger {
-  opacity: 0;
-}
+  .menu-button.open .menu-hamburger line:nth-child(#{$i}) {
+    transition: 0.4s #{0.1s * $i};
+  }
 
-.menu-button.open .menu-cross {
-  opacity: 1;
+  .menu-button .menu-cross line:nth-child(#{$i}) {
+    transition: 0.4s #{0.1s * $i};
+  }
+
+  .menu-button.open .menu-cross line:nth-child(#{$i}) {
+    transition: 0.4s calc(0.85s + #{$i - 1} * 0.1s);
+  }
 }
