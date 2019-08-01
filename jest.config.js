@@ -9,5 +9,9 @@ module.exports = {
   },
   transform: {
     "^.+\\.[t|j]sx?$": "babel-jest"
-  }
+  },
+  setupFilesAfterEnv: [
+    "<rootDir>/src/setupTests.ts",
+    "<rootDir>/src/setupDom.ts"
+  ]
 };
