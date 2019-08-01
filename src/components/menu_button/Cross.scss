@@ -1,0 +1,11 @@
+.menu-cross {
+  width: 20px;
+  position: absolute;
+  left: calc(50% - 10px);
+}
+
+.menu-cross line {
+  fill: none;
+  stroke: #3a3c48;
+  stroke-width: 5;
+}
