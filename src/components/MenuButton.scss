@@ -7,3 +7,19 @@
   right: 33px;
   cursor: pointer;
 }
+
+.menu-button .menu-hamburger {
+  opacity: 1;
+}
+
+.menu-button .menu-cross {
+  opacity: 0;
+}
+
+.menu-button.open .menu-hamburger {
+  opacity: 0;
+}
+
+.menu-button.open .menu-cross {
+  opacity: 1;
+}
