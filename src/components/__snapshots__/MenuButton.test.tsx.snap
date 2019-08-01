@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`menu button renders correctly 1`] = `
+<div
+  className="menu-button"
+  onClick={[MockFunction]}
+>
+  <svg
+    className="menu-hamburger"
+    viewBox="0 0 72 72"
+    x="0"
+    y="0"
+  >
+    <line
+      x1="2"
+      x2="69"
+      y1="9"
+      y2="9"
+    />
+    <line
+      x1="2"
+      x2="69"
+      y1="35"
+      y2="35"
+    />
+    <line
+      x1="2"
+      x2="69"
+      y1="61"
+      y2="61"
+    />
+  </svg>
+  <svg
+    className="menu-cross"
+  />
+</div>
+`;
+
+exports[`menu button renders correctly 2`] = `
+<div
+  className="menu-button open"
+  onClick={[MockFunction]}
+>
+  <svg
+    className="menu-hamburger"
+    viewBox="0 0 72 72"
+    x="0"
+    y="0"
+  >
+    <line
+      x1="2"
+      x2="69"
+      y1="9"
+      y2="9"
+    />
+    <line
+      x1="2"
+      x2="69"
+      y1="35"
+      y2="35"
+    />
+    <line
+      x1="2"
+      x2="69"
+      y1="61"
+      y2="61"
+    />
+  </svg>
+  <svg
+    className="menu-cross"
+  />
+</div>
+`;
