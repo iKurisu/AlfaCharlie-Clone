@@ -8,4 +8,9 @@
   fill: none;
   stroke: #3a3c48;
   stroke-width: 5;
+  stroke-dashoffset: 68;
+}
+
+.menu-button.open .menu-cross line {
+  stroke-dashoffset: 0;
 }
