@@ -3,6 +3,56 @@
 exports[`renders correctly 1`] = `
 Array [
   <main>
+    <nav
+      className="nav"
+    >
+      <ul>
+        <li>
+          <span
+            className="link-wrapper active"
+          >
+            <span
+              className="link-name"
+            >
+              All
+            </span>
+          </span>
+        </li>
+        <li>
+          <span
+            className="link-wrapper"
+          >
+            <span
+              className="link-name"
+            >
+              Agency
+            </span>
+          </span>
+        </li>
+        <li>
+          <span
+            className="link-wrapper"
+          >
+            <span
+              className="link-name"
+            >
+              Design
+            </span>
+          </span>
+        </li>
+        <li>
+          <span
+            className="link-wrapper"
+          >
+            <span
+              className="link-name"
+            >
+              Wellness
+            </span>
+          </span>
+        </li>
+      </ul>
+    </nav>
     <div
       className="scroll-content-wrapper"
     >
@@ -101,7 +151,23 @@ Array [
     </svg>
     <svg
       className="menu-cross"
-    />
+      viewBox="0 0 59 59"
+      x="0px"
+      y="0px"
+    >
+      <line
+        x1="6.7"
+        x2="53"
+        y1="6.5"
+        y2="53"
+      />
+      <line
+        x1="6.7"
+        x2="53"
+        y1="53"
+        y2="6.5"
+      />
+    </svg>
   </div>,
 ]
 `;
