@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Logo from "components/Logo";
 import Header from "components/Header";
 import MenuButton from "components/MenuButton";
+import Navigation from "components/Navigation";
 import "./styles.scss";
 
 const App = (): JSX.Element => {
@@ -12,6 +13,14 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <main>
+        <Navigation
+          links={[
+            ["All", true],
+            ["Agency", false],
+            ["Design", false],
+            ["Wellness", false]
+          ]}
+        />
         <div className="scroll-content-wrapper">
           <div className="scroll-content">
             <Logo />
