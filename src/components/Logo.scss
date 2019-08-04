@@ -1,5 +1,11 @@
+@import 'sass/_variables.scss';
+
 .logo-wrapper {
   position: absolute;
+
+.logo-wrapper svg {
+  fill: $black;
+}
   top: 30px;
   left: 75px;
   width: 220px;
