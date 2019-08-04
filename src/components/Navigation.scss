@@ -49,4 +49,8 @@
   color: $red;
 }
 
+@media (max-width: $l) {
+  .nav {
+    display: none;
+  }
 }

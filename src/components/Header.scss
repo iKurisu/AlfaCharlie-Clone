@@ -12,5 +12,9 @@
   letter-spacing: 6px;
   color: $grey;
 }
-}
+
+@media (max-width: $l) {
+  .header {
+    display: none;
+  }
 }
