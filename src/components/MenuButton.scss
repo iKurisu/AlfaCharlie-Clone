@@ -1,10 +1,12 @@
+@import 'sass/_variables.scss';
+
 .menu-button {
   width: 60px;
   height: 60px;
   padding: 20px;
   position: fixed;
   top: 20px;
-  right: 33px;
+  right: 12px;
   cursor: pointer;
 }
 
@@ -27,5 +29,19 @@
 
   .menu-button.open .menu-cross line:nth-child(#{$i}) {
     transition: 0.4s calc(0.85s + #{$i - 1} * 0.1s);
+  }
+}
+
+@media (min-width: $m) {
+  .menu-button {
+    top: 20px;
+    right: 33px;
+  }
+}
+
+@media (min-width: $xxl) {
+  .menu-button {
+    top: 43px;
+    right: 44px;
   }
 }
