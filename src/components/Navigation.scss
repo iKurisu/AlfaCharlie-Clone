@@ -54,3 +54,14 @@
     display: none;
   }
 }
+
+@media (min-width: $xxl) {
+  .nav {
+    right: 57px;
+  }
+
+  .nav .link-name {
+    font-size: 12px;
+    letter-spacing: 7.05px;
+  }
+}
