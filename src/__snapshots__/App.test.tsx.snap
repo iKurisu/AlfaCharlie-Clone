@@ -169,5 +169,15 @@ Array [
       />
     </svg>
   </div>,
+  <div
+    className="menu hide"
+  >
+    <div
+      className="menu-white"
+    />
+    <div
+      className="menu-gray"
+    />
+  </div>,
 ]
 `;
