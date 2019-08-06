@@ -1,3 +1,5 @@
+@import 'sass/_variables.scss';
+
 .nav {
   width: 30px;
   height: 80vh;
@@ -31,7 +33,7 @@
 .nav .link-name {
   display: block;
   margin: 0 1vh;
-  color: #79726e;
+  color: $grey;
   text-transform: uppercase;
   font-size: 10px;
   letter-spacing: 6px;
@@ -40,9 +42,26 @@
 }
 
 .nav li:hover .link-name {
-  color: #d43246;
+  color: $red;
 }
 
 .nav .active .link-name {
-  color: #d43246;
+  color: $red;
+}
+
+@media (max-width: $l) {
+  .nav {
+    display: none;
+  }
+}
+
+@media (min-width: $xxl) {
+  .nav {
+    right: 57px;
+  }
+
+  .nav .link-name {
+    font-size: 12px;
+    letter-spacing: 7.05px;
+  }
 }

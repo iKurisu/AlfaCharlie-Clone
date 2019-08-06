@@ -1,3 +1,5 @@
+@import 'sass/_variables.scss';
+
 @font-face {
   font-family: 'benton-sans';
   src: url('https://use.typekit.net/af/f7a7fa/00000000000000003b9b2cf4/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3')
@@ -25,7 +27,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: #efecea;
+  background-color: $background;
 }
 
 .main-content {
