@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="menu hide"
+>
+  <div
+    className="menu-white"
+  />
+  <div
+    className="menu-gray"
+  />
+</div>
+`;

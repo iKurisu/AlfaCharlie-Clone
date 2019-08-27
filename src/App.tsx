@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Logo from "components/Logo";
 import Header from "components/Header";
-import MenuButton from "components/MenuButton";
 import Navigation from "components/Navigation";
+import MenuButton from "components/MenuButton";
+import Menu from "components/Menu";
 import "./styles.scss";
 
 const App = (): JSX.Element => {
@@ -30,6 +31,7 @@ const App = (): JSX.Element => {
         </div>
       </main>
       <MenuButton menuIsOpen={menuIsOpen} toggle={toggleMenu} />
+      <Menu isOpen={menuIsOpen} />
     </React.Fragment>
   );
 };
