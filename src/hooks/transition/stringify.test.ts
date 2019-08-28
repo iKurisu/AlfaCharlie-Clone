@@ -1,7 +1,8 @@
 import stringifyProperties from "./stringify";
+import { Properties, MappedProperties } from "./types";
 
 it("turns an object into a string property", (): void => {
-  const properties = {
+    const properties: MappedProperties = {
     transform: {
       function: "translateX",
       initialValue: 0,
@@ -14,12 +15,12 @@ it("turns an object into a string property", (): void => {
     }
   };
 
-  const stringifiedProperties = {
+    const stringifiedProperties: Properties = {
     transform: "translateX(0%)",
     opacity: 1
   };
 
-  const stringifiedProperties2 = {
+    const stringifiedProperties2: Properties = {
     transform: "translateX(100%)",
     opacity: 0
   };
