@@ -1,6 +1,7 @@
 import stringifyProperties from "./stringify";
 import { Properties, MappedProperties } from "./types";
 
+describe("stringifyProperties", (): void => {
 it("turns an object into a string property", (): void => {
     const properties: MappedProperties = {
     transform: {
@@ -31,4 +32,6 @@ it("turns an object into a string property", (): void => {
   expect(stringifyProperties(properties, 1)).toMatchObject(
     stringifiedProperties2
   );
+});
+
 });
