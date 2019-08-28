@@ -20,18 +20,20 @@ const stringifyProperties = (
         unit
       } = mappedProperties[property];
 
+      if (initialValue === null && !at("end", ease)) {
+        return properties;
+      }
+
       const value =
         initialValue === null && at("end", ease)
-        ? targetValue
+          ? targetValue
           : targetValue === null
-        ? initialValue
-        : getCurrentValue({ initialValue, targetValue }, ease);
+          ? initialValue
+          : getCurrentValue({ initialValue, targetValue }, ease);
 
-      if (!bothAreNull(initialValue, targetValue)) {
-        Object.assign(properties, {
-          [property]: stringify(fn, value, unit)
-        });
-      }
+      Object.assign(properties, {
+        [property]: stringify(fn, value, unit)
+      });
 
       return properties;
     },
