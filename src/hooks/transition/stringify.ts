@@ -4,12 +4,8 @@ import { getCurrentValue } from "utils/transition";
 const stringify = (fn: string, value: number, unit: string): string | number =>
   fn ? `${fn}(${value}${unit || ""})` : unit ? `${value}${unit}` : value;
 
-const isNullAt = (
-  moment: "end" | "start",
-  { value, ease }: { [value: string]: number; ease: number }
-): boolean => value === null && ease === (moment === "end" ? 1 : 0);
-
-const bothAreNull = (x: number, y: number): boolean => x === null && y === null;
+const at = (moment: "end" | "start", ease: number): boolean =>
+  ease === (moment === "end" ? 1 : 0);
 
 const stringifyProperties = (
   mappedProperties: MappedProperties,
@@ -24,17 +20,20 @@ const stringifyProperties = (
         unit
       } = mappedProperties[property];
 
-      const value = isNullAt("end", { initialValue, ease })
-        ? targetValue
-        : isNullAt("start", { targetValue, ease })
-        ? initialValue
-        : getCurrentValue({ initialValue, targetValue }, ease);
-
-      if (!bothAreNull(initialValue, targetValue)) {
-        Object.assign(properties, {
-          [property]: stringify(fn, value, unit)
-        });
+      if (initialValue === null && !at("end", ease)) {
+        return properties;
       }
+
+      const value =
+        initialValue === null && at("end", ease)
+          ? targetValue
+          : targetValue === null
+          ? initialValue
+          : getCurrentValue({ initialValue, targetValue }, ease);
+
+      Object.assign(properties, {
+        [property]: stringify(fn, value, unit)
+      });
 
       return properties;
     },
