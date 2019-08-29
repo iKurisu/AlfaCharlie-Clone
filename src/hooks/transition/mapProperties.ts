@@ -28,7 +28,7 @@ const mapProperties = (from: Properties, to: Properties): MappedProperties => {
               ? getValue(from[curr])
               : null,
             targetValue: to.hasOwnProperty(curr) ? getValue(to[curr]) : null,
-            unit: getUnit(from.hasOwnProperty(curr) ? from[curr] : to[curr])
+            unit: getUnit(from[curr]) || getUnit(to[curr])
           }
         }
       };

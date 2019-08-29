@@ -14,8 +14,11 @@ export const getPropFunction = (prop: string | number): string => {
 export const getValue = (prop: string | number): number =>
   typeof prop === "string" ? +prop.match(/-?\d+/g)[0] : prop;
 
-export const getUnit = (prop: string | number): string =>
-  typeof prop === "string" ? prop.match(/px|%|vw|vh/g)[0] : null;
+export const getUnit = (prop: string | number): string => {
+  const match = typeof prop === "string" ? prop.match(/px|%|vw|vh/g) : null;
+
+  return match ? match[0] : null;
+};
 
 const framesInMs = 60 / 1000;
 const frameDuration = 1 / framesInMs;
