@@ -21,9 +21,7 @@ const mapProperties = (from: Properties, to: Properties): MappedProperties => {
         ...prev,
         ...{
           [curr]: {
-            function: getPropFunction(
-              from.hasOwnProperty(curr) ? from[curr] : to[curr]
-            ),
+            function: getPropFunction(from[curr] || to[curr]),
             initialValue: from.hasOwnProperty(curr)
               ? getValue(from[curr])
               : null,
