@@ -17,18 +17,21 @@ const mapProperties = (from: Properties, to: Properties): MappedProperties => {
 
   return properties.reduce(
     (prev: MappedProperties, curr: keyof Properties): MappedProperties => {
-      Object.assign<MappedProperties, MappedProperties>(prev, {
-        [curr]: {
-          function: getPropFunction(
-            from.hasOwnProperty(curr) ? from[curr] : to[curr]
-          ),
-          initialValue: from.hasOwnProperty(curr) ? getValue(from[curr]) : null,
-          targetValue: to.hasOwnProperty(curr) ? getValue(to[curr]) : null,
-          unit: getUnit(from.hasOwnProperty(curr) ? from[curr] : to[curr])
+      return {
+        ...prev,
+        ...{
+          [curr]: {
+            function: getPropFunction(
+              from.hasOwnProperty(curr) ? from[curr] : to[curr]
+            ),
+            initialValue: from.hasOwnProperty(curr)
+              ? getValue(from[curr])
+              : null,
+            targetValue: to.hasOwnProperty(curr) ? getValue(to[curr]) : null,
+            unit: getUnit(from.hasOwnProperty(curr) ? from[curr] : to[curr])
+          }
         }
-      });
-
-      return prev;
+      };
     },
     {}
   );

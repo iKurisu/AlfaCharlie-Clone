@@ -31,11 +31,7 @@ const stringifyProperties = (
           ? initialValue
           : getCurrentValue({ initialValue, targetValue }, ease);
 
-      Object.assign(properties, {
-        [property]: stringify(fn, value, unit)
-      });
-
-      return properties;
+      return { ...properties, ...{ [property]: stringify(fn, value, unit) } };
     },
     {}
   );
