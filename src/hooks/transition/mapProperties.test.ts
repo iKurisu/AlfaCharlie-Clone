@@ -66,3 +66,39 @@ it("handles missing initial value correctly", (): void => {
 
   expect(mapProperties(from, to)).toMatchObject(mappedProps);
 });
+
+it("handles negative numbers", (): void => {
+  const { from, to } = {
+    from: { transform: "translateX(-100%)" },
+    to: { transform: "translateX(0)" }
+  };
+
+  const mappedProps: MappedProperties = {
+    transform: {
+      function: "translateX",
+      initialValue: -100,
+      targetValue: 0,
+      unit: "%"
+    }
+  };
+
+  expect(mapProperties(from, to)).toMatchObject(mappedProps);
+});
+
+it("handles initial value without unit", (): void => {
+  const { from, to } = {
+    from: { transform: "translateX(0)" },
+    to: { transform: "translateX(50%)" }
+  };
+
+  const mappedProps: MappedProperties = {
+    transform: {
+      function: "translateX",
+      initialValue: 0,
+      targetValue: 50,
+      unit: "%"
+    }
+  };
+
+  expect(mapProperties(from, to)).toMatchObject(mappedProps);
+});
