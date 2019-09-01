@@ -102,3 +102,28 @@ it("handles initial value without unit", (): void => {
 
   expect(mapProperties(from, to)).toMatchObject(mappedProps);
 });
+
+it("handles properties with multiple values", (): void => {
+  const { from, to } = {
+    from: { transform: "translateX(0) scaleX(1)" },
+    to: { transform: "translateX(100%) scaleX(2)" }
+  };
+
+  const mappedProps: MappedProperties = {
+    transform: [
+      {
+        function: "translateX",
+        initialValue: 0,
+        targetValue: 100,
+        unit: "%"
+      },
+      {
+        function: "scaleX",
+        initialValue: 1,
+        targetValue: 2
+      }
+    ]
+  };
+
+  expect(mapProperties(from, to)).toMatchObject(mappedProps);
+});
