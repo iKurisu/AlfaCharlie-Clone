@@ -1,12 +1,59 @@
 import { getPropFunction, getValue, getUnit } from "utils/transition";
-import { Properties, MappedProperties } from "./types";
+const getIndexOfFunc = (fn: string, properties: string[]): number =>
+  properties.findIndex((property: string): boolean => {
+    const regex = new RegExp(fn, "g");
+    return property.match(regex) !== null;
+  });
 
-const mergeWithoutDupicates = <T>(arr1: T[], arr2: T[]): T[] => {
-  const mergedArray: T[] = [...arr1, ...arr2];
+const getProperty = <T>(
+  cb: (prop: string | number) => T
+): ((fn: string, properties: string[]) => T) => (fn, properties): T => {
+  const indexofFunc = getIndexOfFunc(fn, properties);
+  return indexofFunc !== -1 ? cb(properties[indexofFunc]) : null;
+};
 
-  return mergedArray.filter(
-    (value: T, index: number): boolean => mergedArray.indexOf(value) === index
+const getPropertyValue = getProperty(getValue);
+const getPropertyUnit = getProperty(getUnit);
+
+const getMappedTransformProperty = (
+  fn: string,
+  {
+    initialProperties,
+    targetProperties
+  }: { initialProperties: string[]; targetProperties: string[] }
+): MappedProperty => ({
+  function: fn,
+  initialValue: getPropertyValue(fn, initialProperties),
+  targetValue: getPropertyValue(fn, targetProperties),
+  unit:
+    getPropertyUnit(fn, initialProperties) ||
+    getPropertyUnit(fn, targetProperties)
+});
+
+const getTransformProperties = (
+  { from, to }: { from: Properties; to: Properties },
+  key: "transform"
+): MappedProperty | MappedProperty[] => {
+  const functions = mergeWithoutDupicates(
+    (getPropFunction(from[key], true) as string[]) || [],
+    (getPropFunction(to[key], true) as string[]) || []
   );
+
+  if (functions.length === 0) {
+    throw Error("Invalid 'transform' value.");
+  }
+
+  const properties = {
+    initialProperties: from.hasOwnProperty(key) ? from[key].split(" ") : [],
+    targetProperties: to.hasOwnProperty(key) ? to[key].split(" ") : []
+  };
+
+  return functions.length > 1
+    ? functions.map(
+        (fn: string): MappedProperty =>
+          getMappedTransformProperty(fn, properties)
+      )
+    : getMappedTransformProperty(functions[0], properties);
 };
 
 const mapProperties = (from: Properties, to: Properties): MappedProperties => {
