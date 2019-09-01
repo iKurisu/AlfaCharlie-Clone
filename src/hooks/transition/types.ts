@@ -11,5 +11,5 @@ export interface MappedProperty {
 }
 
 export type MappedProperties = {
-  [P in keyof Properties]?: MappedProperty;
+  [P in keyof Properties]?: MappedProperty | MappedProperty[];
 };
