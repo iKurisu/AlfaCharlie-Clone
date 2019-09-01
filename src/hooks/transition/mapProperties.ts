@@ -1,4 +1,16 @@
 import { getPropFunction, getValue, getUnit } from "utils/transition";
+import { Properties, MappedProperty, MappedProperties } from "./types";
+
+const getOpacityProperties = (
+  { from, to }: { from: Properties; to: Properties },
+  key: keyof Properties
+): MappedProperty => ({
+  function: getPropFunction(from[key] || to[key]) as string,
+  initialValue: from.hasOwnProperty(key) ? getValue(from[key]) : null,
+  targetValue: to.hasOwnProperty(key) ? getValue(to[key]) : null,
+  unit: getUnit(from[key]) || getUnit(to[key])
+});
+
 const getIndexOfFunc = (fn: string, properties: string[]): number =>
   properties.findIndex((property: string): boolean => {
     const regex = new RegExp(fn, "g");
@@ -64,19 +76,12 @@ const mapProperties = (from: Properties, to: Properties): MappedProperties => {
 
   return properties.reduce(
     (prev: MappedProperties, curr: keyof Properties): MappedProperties => {
-      return {
-        ...prev,
-        ...{
-          [curr]: {
-            function: getPropFunction(from[curr] || to[curr]),
-            initialValue: from.hasOwnProperty(curr)
-              ? getValue(from[curr])
-              : null,
-            targetValue: to.hasOwnProperty(curr) ? getValue(to[curr]) : null,
-            unit: getUnit(from[curr]) || getUnit(to[curr])
-          }
-        }
-      };
+      const properties =
+        curr === "transform"
+          ? getTransformProperties({ from, to }, curr)
+          : getOpacityProperties({ from, to }, curr);
+
+      return { ...prev, ...{ [curr]: properties } };
     },
     {}
   );
