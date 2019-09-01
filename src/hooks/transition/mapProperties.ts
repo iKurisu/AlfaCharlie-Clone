@@ -1,4 +1,5 @@
 import { getPropFunction, getValue, getUnit } from "utils/transition";
+import { mergeWithoutDupicates } from "utils/array";
 import { Properties, MappedProperty, MappedProperties } from "./types";
 
 const getOpacityProperties = (
