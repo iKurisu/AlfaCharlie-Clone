@@ -1,6 +1,9 @@
 import { MappedProperty } from "hooks/transition/types";
 
-export const getPropFunction = (prop: string | number): string => {
+export const getPropFunction = (
+  prop: string | number,
+  array: boolean = false
+): string | string[] => {
   const propFunction =
     typeof prop === "string"
       ? prop.match(
@@ -8,7 +11,7 @@ export const getPropFunction = (prop: string | number): string => {
         )
       : null;
 
-  return propFunction ? propFunction[0] : null;
+  return propFunction ? (array ? propFunction : propFunction[0]) : null;
 };
 
 export const getValue = (prop: string | number): number =>
