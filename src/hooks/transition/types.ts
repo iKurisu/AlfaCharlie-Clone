@@ -10,6 +10,7 @@ export interface MappedProperty {
   unit?: string;
 }
 
-export type MappedProperties = {
-  [P in keyof Properties]?: MappedProperty;
-};
+export interface MappedProperties {
+  opacity?: MappedProperty;
+  transform?: MappedProperty | MappedProperty[];
+}

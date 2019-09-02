@@ -1,12 +1,72 @@
 import { getPropFunction, getValue, getUnit } from "utils/transition";
-import { Properties, MappedProperties } from "./types";
+import { mergeWithoutDupicates } from "utils/array";
+import { Properties, MappedProperty, MappedProperties } from "./types";
 
-const mergeWithoutDupicates = <T>(arr1: T[], arr2: T[]): T[] => {
-  const mergedArray: T[] = [...arr1, ...arr2];
+const getOpacityProperties = (
+  { from, to }: { from: Properties; to: Properties },
+  key: keyof Properties
+): MappedProperty => ({
+  function: getPropFunction(from[key] || to[key]) as string,
+  initialValue: from.hasOwnProperty(key) ? getValue(from[key]) : null,
+  targetValue: to.hasOwnProperty(key) ? getValue(to[key]) : null,
+  unit: getUnit(from[key]) || getUnit(to[key])
+});
 
-  return mergedArray.filter(
-    (value: T, index: number): boolean => mergedArray.indexOf(value) === index
+const getIndexOfFunc = (fn: string, properties: string[]): number =>
+  properties.findIndex((property: string): boolean => {
+    const regex = new RegExp(fn, "g");
+    return property.match(regex) !== null;
+  });
+
+const getProperty = <T>(
+  cb: (prop: string | number) => T
+): ((fn: string, properties: string[]) => T) => (fn, properties): T => {
+  const indexofFunc = getIndexOfFunc(fn, properties);
+  return indexofFunc !== -1 ? cb(properties[indexofFunc]) : null;
+};
+
+const getPropertyValue = getProperty(getValue);
+const getPropertyUnit = getProperty(getUnit);
+
+const getMappedTransformProperty = (
+  fn: string,
+  {
+    initialProperties,
+    targetProperties
+  }: { initialProperties: string[]; targetProperties: string[] }
+): MappedProperty => ({
+  function: fn,
+  initialValue: getPropertyValue(fn, initialProperties),
+  targetValue: getPropertyValue(fn, targetProperties),
+  unit:
+    getPropertyUnit(fn, initialProperties) ||
+    getPropertyUnit(fn, targetProperties)
+});
+
+const getTransformProperties = (
+  { from, to }: { from: Properties; to: Properties },
+  key: "transform"
+): MappedProperty | MappedProperty[] => {
+  const functions = mergeWithoutDupicates(
+    (getPropFunction(from[key], true) as string[]) || [],
+    (getPropFunction(to[key], true) as string[]) || []
   );
+
+  if (functions.length === 0) {
+    throw Error("Invalid 'transform' value.");
+  }
+
+  const properties = {
+    initialProperties: from.hasOwnProperty(key) ? from[key].split(" ") : [],
+    targetProperties: to.hasOwnProperty(key) ? to[key].split(" ") : []
+  };
+
+  return functions.length > 1
+    ? functions.map(
+        (fn: string): MappedProperty =>
+          getMappedTransformProperty(fn, properties)
+      )
+    : getMappedTransformProperty(functions[0], properties);
 };
 
 const mapProperties = (from: Properties, to: Properties): MappedProperties => {
@@ -17,18 +77,12 @@ const mapProperties = (from: Properties, to: Properties): MappedProperties => {
 
   return properties.reduce(
     (prev: MappedProperties, curr: keyof Properties): MappedProperties => {
-      Object.assign<MappedProperties, MappedProperties>(prev, {
-        [curr]: {
-          function: getPropFunction(
-            from.hasOwnProperty(curr) ? from[curr] : to[curr]
-          ),
-          initialValue: from.hasOwnProperty(curr) ? getValue(from[curr]) : null,
-          targetValue: to.hasOwnProperty(curr) ? getValue(to[curr]) : null,
-          unit: getUnit(from.hasOwnProperty(curr) ? from[curr] : to[curr])
-        }
-      });
+      const properties =
+        curr === "transform"
+          ? getTransformProperties({ from, to }, curr)
+          : getOpacityProperties({ from, to }, curr);
 
-      return prev;
+      return { ...prev, ...{ [curr]: properties } };
     },
     {}
   );

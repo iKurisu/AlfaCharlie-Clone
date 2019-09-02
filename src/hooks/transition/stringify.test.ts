@@ -67,4 +67,39 @@ describe("stringifyProperties", (): void => {
       stringifiedProperties2
     );
   });
+
+  it("handles multiple values", (): void => {
+    const properties: MappedProperties = {
+      transform: [
+        {
+          function: "translateX",
+          initialValue: 0,
+          targetValue: 100,
+          unit: "%"
+        },
+        {
+          function: "scaleX",
+          initialValue: 1,
+          targetValue: 2,
+          unit: null
+        }
+      ]
+    };
+
+    const stringifiedProperties: Properties = {
+      transform: "translateX(0%) scaleX(1)"
+    };
+
+    const stringifiedProperties2: Properties = {
+      transform: "translateX(100%) scaleX(2)"
+    };
+
+    expect(stringifyProperties(properties, 0)).toMatchObject(
+      stringifiedProperties
+    );
+
+    expect(stringifyProperties(properties, 1)).toMatchObject(
+      stringifiedProperties2
+    );
+  });
 });
