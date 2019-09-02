@@ -7,7 +7,7 @@ export const getPropFunction = (
   const propFunction =
     typeof prop === "string"
       ? prop.match(
-          /((translate|scale|rotate)([XYZ]|3d)?|skew[XYZ]?|matrix(3d)?)(?=\()/g
+          /((translate|scale|rotate)([XYZ]|3d)?|skew[XY]?|matrix(3d)?)(?=\()/g
         )
       : null;
 
