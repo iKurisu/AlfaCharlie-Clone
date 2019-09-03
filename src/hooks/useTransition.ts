@@ -20,7 +20,7 @@ interface Props {
 const useTransition = (
   element: RefObject<HTMLElement>,
   props: Props
-): (() => void) => {
+): (() => Promise<void>) => {
   const animationId = useRef<number>(null);
   const frame = useRef<number>(0);
 
@@ -35,39 +35,41 @@ const useTransition = (
     animationId.current = id;
   };
 
-  const transition = (): void => {
-    const { from, to, config } = props;
-    const { duration, timing = [0, 0, 1, 1], delay = 0 }: Config = config;
+  const transition = (): Promise<void> =>
+    new Promise((resolve): void => {
+      const { from, to, config } = props;
+      const { duration, timing = [0, 0, 1, 1], delay = 0 }: Config = config;
 
-    const easing = BezierEasing(...timing);
-    const mappedProperties = mapProperties(from, to);
-    const totalFrames = getTotalFrames(duration);
+      const easing = BezierEasing(...timing);
+      const mappedProperties = mapProperties(from, to);
+      const totalFrames = getTotalFrames(duration);
 
-    const animation = (): void => {
-      const { current: currentFrame } = frame;
+      const animation = (): void => {
+        const { current: currentFrame } = frame;
 
-      const ease = easing(getEasingTime(currentFrame, duration));
-      const maxEase = easing(getEasingTime(Math.ceil(totalFrames), duration));
+        const ease = easing(getEasingTime(currentFrame, duration));
+        const maxEase = easing(getEasingTime(Math.ceil(totalFrames), duration));
 
-      Object.assign(
-        element.current.style,
-        stringifyProperties(
-          mappedProperties,
-          maxEase > 1 ? ease / maxEase : ease
-        )
-      );
+        Object.assign(
+          element.current.style,
+          stringifyProperties(
+            mappedProperties,
+            maxEase > 1 ? ease / maxEase : ease
+          )
+        );
 
-      if (currentFrame >= totalFrames) {
-        resetFrame();
-        cancelAnimationFrame(animationId.current);
-      } else {
-        increaseFrame();
-        setAnimationId(requestAnimationFrame(animation));
-      }
-    };
+        if (currentFrame >= totalFrames) {
+          resetFrame();
+          cancelAnimationFrame(animationId.current);
+          resolve();
+        } else {
+          increaseFrame();
+          setAnimationId(requestAnimationFrame(animation));
+        }
+      };
 
-    setTimeout(animation, delay);
-  };
+      setTimeout(animation, delay);
+    });
 
   return transition;
 };
