@@ -34,7 +34,7 @@ export const getEasingTime = (
   duration: number
 ): number => {
   const transcurredTime = currentFrame * frameDuration;
-  return transcurredTime / duration;
+  return duration === 0 ? 1 : transcurredTime / duration;
 };
 
 export const getCurrentValue = (
