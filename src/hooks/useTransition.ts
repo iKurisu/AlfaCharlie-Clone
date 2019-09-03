@@ -47,13 +47,17 @@ const useTransition = (
       const { current: currentFrame } = frame;
 
       const ease = easing(getEasingTime(currentFrame, duration));
+      const maxEase = easing(getEasingTime(Math.ceil(totalFrames), duration));
 
       Object.assign(
         element.current.style,
-        stringifyProperties(mappedProperties, ease)
+        stringifyProperties(
+          mappedProperties,
+          maxEase > 1 ? ease / maxEase : ease
+        )
       );
 
-      if (currentFrame === totalFrames) {
+      if (currentFrame >= totalFrames) {
         resetFrame();
         cancelAnimationFrame(animationId.current);
       } else {
