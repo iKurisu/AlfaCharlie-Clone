@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import useTransition from "hooks/useTransition";
+import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import "./Gray.scss";
 
 interface Props {
@@ -8,7 +9,6 @@ interface Props {
 
 const Gray = ({ isOpen }: Props): JSX.Element => {
   const element = useRef<HTMLDivElement>(null);
-  const didMount = useRef(false);
 
   const fadeIn = useTransition(element, {
     from: { transform: `translateX(-100%)` },
@@ -42,12 +42,7 @@ const Gray = ({ isOpen }: Props): JSX.Element => {
     config: { duration: 0 }
   });
 
-  useEffect((): void => {
-    if (!didMount.current) {
-      didMount.current = true;
-      return;
-    }
-
+  useDidUpdateEffect((): void => {
     if (isOpen) {
       fadeIn();
     } else {
