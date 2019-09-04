@@ -5,10 +5,28 @@ exports[`renders correctly 1`] = `
   className="menu hide"
 >
   <div
+    className="menu-nav-wrapper"
+  >
+    <nav
+      className="menu-nav-links"
+    />
+  </div>
+  <div
     className="menu-white"
+    style={
+      Object {
+        "opacity": 1,
+        "transform": "translateX(100%)",
+      }
+    }
   />
   <div
     className="menu-gray"
+    style={
+      Object {
+        "transform": "translateX(-100%)",
+      }
+    }
   />
 </div>
 `;
