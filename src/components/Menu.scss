@@ -15,34 +15,5 @@
 
 .menu.hide {
   visibility: hidden;
-}
-
-.menu-white {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: white;
-}
-
-.menu.hide .menu-white {
-  transform: translateX(100%);
-}
-
-.menu.show .menu-white {
-  transform: translateX(0);
-}
-
-.menu-gray {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  background: $background;
-}
-
-.menu.hide .menu-gray {
-  transform: translateX(-100%);
-}
-
-.menu.show .menu-gray {
-  transform: translateX(0);
+  transition: visibility 0s 3s; // 1s
 }
