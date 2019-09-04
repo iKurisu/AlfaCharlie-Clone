@@ -1,4 +1,5 @@
 import React from "react";
+import Gray from "./menu/Gray";
 import "./Menu.scss";
 
 interface Props {
@@ -7,8 +8,7 @@ interface Props {
 
 const Menu = ({ isOpen }: Props): JSX.Element => (
   <div className={`menu ${isOpen ? "show" : "hide"}`}>
-    <div className="menu-white" />
-    <div className="menu-gray" />
+    <Gray isOpen={isOpen} />
   </div>
 );
 
