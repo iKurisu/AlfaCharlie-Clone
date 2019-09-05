@@ -1,0 +1,13 @@
+.menu-nav-wrapper {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  width: 50%;
+}
+
+.-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
