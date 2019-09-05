@@ -12,6 +12,19 @@
   font-weight: 400;
 }
 
+@font-face {
+  font-family: 'benton-modern-display';
+  src: url('https://use.typekit.net/af/a06a81/00000000000000003b9af2cd/27/l?subset_id=2&fvd=n4&v=3')
+      format('woff2'),
+    url('https://use.typekit.net/af/a06a81/00000000000000003b9af2cd/27/d?subset_id=2&fvd=n4&v=3')
+      format('woff'),
+    url('https://use.typekit.net/af/a06a81/00000000000000003b9af2cd/27/a?subset_id=2&fvd=n4&v=3')
+      format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+}
+
 * {
   margin: 0;
   padding: 0;
