@@ -5,3 +5,8 @@
   line-height: 1.1;
   color: #fff;
 }
+
+.menu-nav-links:hover .menu-nav-link:not(:hover) {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
