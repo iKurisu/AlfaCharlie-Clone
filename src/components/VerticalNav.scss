@@ -1,6 +1,6 @@
 @import 'sass/_variables.scss';
 
-.nav {
+.vertical-nav {
   width: 30px;
   height: 80vh;
   position: fixed;
@@ -12,25 +12,24 @@
   justify-content: center;
 }
 
-.nav ul {
+.vertical-nav-links {
   transform: rotate(90deg);
-  list-style: none;
   white-space: nowrap;
   line-height: 15px;
 }
 
-.nav li {
+.vertical-nav-links li {
   display: inline-block;
   cursor: pointer;
 }
 
-.nav .link-wrapper {
+.vertical-nav-links .link-wrapper {
   margin: 0 2vh;
   display: inline-block;
   position: relative;
 }
 
-.nav .link-name {
+.vertical-nav-links .link-name {
   display: block;
   margin: 0 1vh;
   color: $grey;
@@ -41,26 +40,26 @@
   line-height: 10px;
 }
 
-.nav li:hover .link-name {
+.vertical-nav li:hover .link-name {
   color: $red;
 }
 
-.nav .active .link-name {
+.vertical-nav .active .link-name {
   color: $red;
 }
 
 @media (max-width: $l) {
-  .nav {
+  .vertical-nav {
     display: none;
   }
 }
 
 @media (min-width: $xxl) {
-  .nav {
+  .vertical-nav {
     right: 57px;
   }
 
-  .nav .link-name {
+  .vertical-nav .link-name {
     font-size: 12px;
     letter-spacing: 7.05px;
   }

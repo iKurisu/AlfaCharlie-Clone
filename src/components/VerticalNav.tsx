@@ -1,13 +1,14 @@
 import React from "react";
-import "./Navigation.scss";
+import "./VerticalNav.scss";
 
 interface NavProps {
   links: [string, boolean][];
+  location?: string;
 }
 
-const Navigation = ({ links }: NavProps): JSX.Element => (
-  <nav className="nav">
-    <ul>
+const VerticalNav = ({ links }: NavProps): JSX.Element => (
+  <nav className="vertical-nav">
+    <ul className="vertical-nav-links">
       {links.map(
         ([link, active], id): JSX.Element => (
           <li key={id}>
@@ -21,4 +22,4 @@ const Navigation = ({ links }: NavProps): JSX.Element => (
   </nav>
 );
 
-export default Navigation;
+export default VerticalNav;
