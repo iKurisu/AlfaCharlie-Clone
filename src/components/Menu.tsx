@@ -2,6 +2,7 @@ import React from "react";
 import White from "./menu/White";
 import Gray from "./menu/Gray";
 import Navigation from "./menu/Navigation";
+import VerticalNav from "./VerticalNav";
 import "./Menu.scss";
 
 interface Props {
@@ -14,6 +15,7 @@ const Menu = ({ isOpen }: Props): JSX.Element => (
       <nav className="menu-nav-links"></nav>
     </div> */}
     <Navigation />
+    <VerticalNav links={[["Instagram", false], ["Privacy", false]]} />
     <White isOpen={isOpen} />
     <Gray isOpen={isOpen} />
   </div>
