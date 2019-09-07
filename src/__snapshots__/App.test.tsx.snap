@@ -4,9 +4,11 @@ exports[`renders correctly 1`] = `
 Array [
   <main>
     <nav
-      className="nav"
+      className="vertical-nav"
     >
-      <ul>
+      <ul
+        className="vertical-nav-links"
+      >
         <li>
           <span
             className="link-wrapper active"
@@ -371,6 +373,36 @@ Array [
         </a>
       </nav>
     </div>
+    <nav
+      className="vertical-nav"
+    >
+      <ul
+        className="vertical-nav-links"
+      >
+        <li>
+          <span
+            className="link-wrapper"
+          >
+            <span
+              className="link-name"
+            >
+              Instagram
+            </span>
+          </span>
+        </li>
+        <li>
+          <span
+            className="link-wrapper"
+          >
+            <span
+              className="link-name"
+            >
+              Privacy
+            </span>
+          </span>
+        </li>
+      </ul>
+    </nav>
     <div
       className="menu-white"
       style={
