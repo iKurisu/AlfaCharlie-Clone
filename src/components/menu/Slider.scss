@@ -1,0 +1,42 @@
+.menu-images {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.menu-slider {
+  width: 27.2vw;
+  height: 70vh;
+  clip-path: inset(1px 0 0 1px);
+}
+
+.slider-wrapper,
+.slide {
+  width: 100%;
+  height: 100%;
+}
+
+.slider-wrapper {
+  display: flex;
+  overflow: hidden;
+}
+
+.slide {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 399px;
+}
+
+.slide-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
