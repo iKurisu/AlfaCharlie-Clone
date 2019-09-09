@@ -20,17 +20,17 @@ const Menu = ({ isOpen }: Props): JSX.Element => {
   };
 
   return (
-  <div className={`menu ${isOpen ? "show" : "hide"}`}>
+    <div className={`menu ${isOpen ? "show" : "hide"}`}>
       <Navigation updateHoveringElementId={updateHoveringElementId} />
       <Slider
         hoveringElementId={hoveringElementId}
         previousElementId={previousElementId}
       />
-    <VerticalNav links={[["Instagram", false], ["Privacy", false]]} />
-    <White isOpen={isOpen} />
-    <Gray isOpen={isOpen} />
-  </div>
-);
+      <VerticalNav links={[["Instagram", false], ["Privacy", false]]} />
+      <White isOpen={isOpen} />
+      <Gray isOpen={isOpen} />
+    </div>
+  );
 };
 
 export default Menu;
