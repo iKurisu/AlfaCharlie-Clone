@@ -3,8 +3,13 @@ import renderer from "react-test-renderer";
 import Navigation from "./Navigation";
 
 it("renders correctly", (): void => {
-  const links: string[] = ["Expertise", "Team", "Clients"];
-  const component = renderer.create(<Navigation links={links} />);
+  const fn = jest.fn((id: number): (() => void) => (): void => {
+    id;
+  });
+
+  const component = renderer.create(
+    <Navigation updateHoveringElementId={fn} />
+  );
 
   expect(component).toMatchSnapshot();
 });

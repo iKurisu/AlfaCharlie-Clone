@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<a
+  className="menu-nav-link"
+>
+  <span
+    className="link-characters"
+  >
+    <span
+      className="link-character"
+    >
+      A
+    </span>
+    <span
+      className="link-character"
+    >
+      g
+    </span>
+    <span
+      className="link-character"
+    >
+      e
+    </span>
+    <span
+      className="link-character"
+    >
+      n
+    </span>
+    <span
+      className="link-character"
+    >
+      c
+    </span>
+    <span
+      className="link-character"
+    >
+      y
+    </span>
+  </span>
+</a>
+`;

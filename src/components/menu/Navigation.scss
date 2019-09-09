@@ -1,0 +1,21 @@
+.menu-nav-wrapper {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  width: 50%;
+}
+
+.-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-home-link {
+  position: absolute;
+  width: 65px;
+  top: 20px;
+  left: 33px;
+  cursor: pointer;
+}

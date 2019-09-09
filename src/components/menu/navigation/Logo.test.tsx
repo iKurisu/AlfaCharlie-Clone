@@ -1,8 +1,9 @@
 import React from "react";
-import App from "./App";
 import renderer from "react-test-renderer";
+import Logo from "./Logo";
 
 it("renders correctly", (): void => {
-  const component: renderer.ReactTestRenderer = renderer.create(<App />);
+  const component = renderer.create(<Logo />);
+
   expect(component).toMatchSnapshot();
 });

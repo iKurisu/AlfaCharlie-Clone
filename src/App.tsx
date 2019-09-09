@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Logo from "components/Logo";
 import Header from "components/Header";
-import Navigation from "components/Navigation";
+import VerticalNav from "components/VerticalNav";
 import MenuButton from "components/MenuButton";
 import Menu from "components/Menu";
 import "./styles.scss";
@@ -14,7 +14,7 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <main>
-        <Navigation
+        <VerticalNav
           links={[
             ["All", true],
             ["Agency", false],

@@ -2,9 +2,11 @@
 
 exports[`renders correctly 1`] = `
 <nav
-  className="nav"
+  className="vertical-nav"
 >
-  <ul>
+  <ul
+    className="vertical-nav-links"
+  >
     <li>
       <span
         className="link-wrapper active"
