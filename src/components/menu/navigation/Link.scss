@@ -2,6 +2,7 @@
   width: 100%;
   text-align: center;
   cursor: pointer;
+  transition: opacity 0.2s;
 }
 
 .link-characters {
@@ -14,5 +15,4 @@
 
 .menu-nav-links:hover .menu-nav-link:not(:hover) {
   opacity: 0.5;
-  transition: opacity 0.2s;
 }
