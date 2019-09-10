@@ -9,6 +9,12 @@ interface Props {
 
 const Navigation = ({ updateHoveringElementId }: Props): JSX.Element => {
   const links = ["agency", "work", "journal", "contact"];
+  const fadeInOrder = [
+    [1, 4, 2, 2, 1, 3],
+    [2, 3, 3, 3],
+    [4, 1, 3, 4, 3, 4, 2],
+    [2, 2, 4, 4, 4, 2, 2]
+  ];
 
   return (
     <div className="menu-nav-wrapper -flex">
@@ -24,6 +30,7 @@ const Navigation = ({ updateHoveringElementId }: Props): JSX.Element => {
             <Link
               link={link}
               key={id}
+              fadeInOrder={fadeInOrder[id]}
               updateHoveringElementId={updateHoveringElementId(id + 1)}
             />
           )

@@ -3,10 +3,15 @@ import "./Link.scss";
 
 interface Props {
   link: string;
+  fadeInOrder: number[];
   updateHoveringElementId(): void;
 }
 
-const Link = ({ link, updateHoveringElementId }: Props): JSX.Element => {
+const Link = ({
+  link,
+  fadeInOrder,
+  updateHoveringElementId
+}: Props): JSX.Element => {
   return (
     <a className="menu-nav-link" onMouseEnter={updateHoveringElementId}>
       <span className="link-characters">
