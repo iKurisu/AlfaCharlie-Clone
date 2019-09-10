@@ -1,4 +1,5 @@
 import React from "react";
+import Character from "./link/Character";
 import "./Link.scss";
 
 interface Props {
@@ -17,9 +18,7 @@ const Link = ({
       <span className="link-characters">
         {link.split("").map(
           (character: string, id: number): JSX.Element => (
-            <span className="link-character" key={id}>
-              {character}
-            </span>
+            <Character char={character} order={fadeInOrder[id]} key={id} />
           )
         )}
       </span>
