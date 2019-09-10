@@ -11,7 +11,7 @@ const White = ({ isOpen }: Props): JSX.Element => {
   const element = useRef<HTMLDivElement>(null);
 
   const fadeIn = useTransition(element, {
-    from: { transform: `translateX(100%)`, opacity: 1 },
+    from: { transform: `translateX(100%)` },
     to: { transform: `translateX(0)` },
     config: {
       duration: 400,
@@ -36,7 +36,7 @@ const White = ({ isOpen }: Props): JSX.Element => {
   return (
     <div
       className="menu-white"
-      style={{ transform: `translateX(100%)`, opacity: 1 }}
+      style={{ transform: `translateX(100%)` }}
       ref={element}
     />
   );
