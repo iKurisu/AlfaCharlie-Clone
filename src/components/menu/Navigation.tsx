@@ -4,10 +4,14 @@ import Link from "./navigation/Link";
 import "./Navigation.scss";
 
 interface Props {
+  isOpen: boolean;
   updateHoveringElementId(id: number): () => void;
 }
 
-const Navigation = ({ updateHoveringElementId }: Props): JSX.Element => {
+const Navigation = ({
+  isOpen,
+  updateHoveringElementId
+}: Props): JSX.Element => {
   const links = ["agency", "work", "journal", "contact"];
   const fadeInOrder = [
     [1, 4, 2, 2, 1, 3],
@@ -31,7 +35,9 @@ const Navigation = ({ updateHoveringElementId }: Props): JSX.Element => {
               link={link}
               key={id}
               fadeInOrder={fadeInOrder[id]}
+              isOpen={isOpen}
               updateHoveringElementId={updateHoveringElementId(id + 1)}
+              key={id}
             />
           )
         )}

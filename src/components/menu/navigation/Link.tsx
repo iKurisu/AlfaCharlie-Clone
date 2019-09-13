@@ -5,12 +5,14 @@ import "./Link.scss";
 interface Props {
   link: string;
   fadeInOrder: number[];
+  isOpen: boolean;
   updateHoveringElementId(): void;
 }
 
 const Link = ({
   link,
   fadeInOrder,
+  isOpen,
   updateHoveringElementId
 }: Props): JSX.Element => {
   return (
@@ -18,7 +20,12 @@ const Link = ({
       <span className="link-characters">
         {link.split("").map(
           (character: string, id: number): JSX.Element => (
-            <Character char={character} order={fadeInOrder[id]} key={id} />
+            <Character
+              char={character}
+              order={fadeInOrder[id]}
+              isOpen={isOpen}
+              key={id}
+            />
           )
         )}
       </span>

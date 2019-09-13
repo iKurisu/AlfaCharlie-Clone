@@ -21,7 +21,10 @@ const Menu = ({ isOpen }: Props): JSX.Element => {
 
   return (
     <div className={`menu ${isOpen ? "show" : "hide"}`}>
-      <Navigation updateHoveringElementId={updateHoveringElementId} />
+      <Navigation
+        isOpen={isOpen}
+        updateHoveringElementId={updateHoveringElementId}
+      />
       <Slider
         hoveringElementId={hoveringElementId}
         previousElementId={previousElementId}
