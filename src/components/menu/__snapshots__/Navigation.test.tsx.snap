@@ -46,6 +46,11 @@ exports[`renders correctly 1`] = `
   <nav
     className="menu-nav-links -flex"
     onMouseLeave={[Function]}
+    style={
+      Object {
+        "opacity": 0,
+      }
+    }
   >
     <a
       className="menu-nav-link"
@@ -56,31 +61,61 @@ exports[`renders correctly 1`] = `
       >
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           a
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           g
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           e
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           n
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           c
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           y
         </span>
@@ -95,21 +130,41 @@ exports[`renders correctly 1`] = `
       >
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           w
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           o
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           r
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           k
         </span>
@@ -124,36 +179,71 @@ exports[`renders correctly 1`] = `
       >
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           j
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           o
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           u
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           r
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           n
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           a
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           l
         </span>
@@ -168,36 +258,71 @@ exports[`renders correctly 1`] = `
       >
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           c
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           o
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           n
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           t
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           a
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           c
         </span>
         <span
           className="link-character"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           t
         </span>
