@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import Logo from "./navigation/Logo";
 import Link from "./navigation/Link";
-import "./Navigation.scss";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
+import "./Navigation.scss";
 
 interface Props {
   isOpen: boolean;
