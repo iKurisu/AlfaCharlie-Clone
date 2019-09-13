@@ -5,7 +5,6 @@ exports[`renders correctly 1`] = `
   className="menu-white"
   style={
     Object {
-      "opacity": 1,
       "transform": "translateX(100%)",
     }
   }
