@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import Logo from "./navigation/Logo";
+import Home from "./navigation/Home";
 import Link from "./navigation/Link";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
@@ -53,9 +53,7 @@ const Navigation = ({
 
   return (
     <div className="menu-nav-wrapper -flex">
-      <a className="menu-home-link">
-        <Logo />
-      </a>
+      <Home isOpen={isOpen} />
       <nav
         className="menu-nav-links -flex"
         onMouseLeave={updateHoveringElementId(0)}

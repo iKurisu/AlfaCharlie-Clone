@@ -179,6 +179,12 @@ Array [
     >
       <a
         className="menu-home-link"
+        style={
+          Object {
+            "opacity": 0,
+            "transform": "rotate(45deg)",
+          }
+        }
       >
         <svg
           className="menu-logo"
