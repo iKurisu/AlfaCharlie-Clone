@@ -18,7 +18,7 @@ export const getValue = (prop: string | number): number =>
   typeof prop === "string" ? +prop.match(/-?\d+/g)[0] : prop;
 
 export const getUnit = (prop: string | number): string => {
-  const match = typeof prop === "string" ? prop.match(/px|%|vw|vh/g) : null;
+  const match = typeof prop === "string" ? prop.match(/px|%|vw|vh|deg/g) : null;
 
   return match ? match[0] : null;
 };
