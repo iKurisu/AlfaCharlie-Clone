@@ -8,7 +8,7 @@ it("renders correctly", (): void => {
   });
 
   const component = renderer.create(
-    <Navigation updateHoveringElementId={fn} />
+    <Navigation isOpen={false} updateHoveringElementId={fn} />
   );
 
   expect(component).toMatchSnapshot();
