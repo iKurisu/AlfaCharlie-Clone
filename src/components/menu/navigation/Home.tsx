@@ -15,8 +15,8 @@ const Home = ({ isOpen }: Props): JSX.Element => {
     to: { opacity: 1, transform: "rotate(0)" },
     config: {
       delay: 850,
-      duration: 400,
-      timing: [0.28, 1, 0.5, 1]
+      duration: 800,
+      timing: [0.1, 0.8, 0.35, 0.95]
     }
   });
 
@@ -24,8 +24,8 @@ const Home = ({ isOpen }: Props): JSX.Element => {
     from: { opacity: 1, transform: "rotate(0)" },
     to: { opacity: 0, transform: "rotate(-45deg)" },
     config: {
-      duration: 400,
-      timing: [0.28, 1, 0.5, 1]
+      duration: 800,
+      timing: [0.1, 0.8, 0.35, 0.95]
     }
   });
 
