@@ -73,7 +73,7 @@ const Slider = ({
       hideSlider();
       fadeOut();
     }
-  });
+  }, [isOpen]);
 
   return (
     <div className="menu-images -flex" ref={wrapper} style={{ opacity: 0 }}>
