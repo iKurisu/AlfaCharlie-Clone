@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./Slider.scss";
 
 const urlSite = "https://alfacharlie.b-cdn.net/wp-content/uploads/";
@@ -21,9 +21,13 @@ const Slider = ({
 }: Props): JSX.Element => {
   const transitionLength =
     Math.abs(previousElementId - hoveringElementId) === 1 ? "1s" : "2s";
+
+  const mask = useRef(null);
+
   return (
     <div className="menu-images -flex">
       <div className="menu-slider">
+        <div className="slider-mask" ref={mask} />
         <div
           className="slider-wrapper"
           style={{

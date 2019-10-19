@@ -11,6 +11,15 @@
   width: 27.2vw;
   height: 70vh;
   clip-path: inset(1px 0 0 1px);
+  position: relative;
+}
+
+.slider-mask {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  position: absolute;
+  z-index: 10; 
 }
 
 .slider-wrapper,
