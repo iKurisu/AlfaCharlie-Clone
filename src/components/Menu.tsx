@@ -26,6 +26,7 @@ const Menu = ({ isOpen }: Props): JSX.Element => {
         updateHoveringElementId={updateHoveringElementId}
       />
       <Slider
+        isOpen={isOpen}
         hoveringElementId={hoveringElementId}
         previousElementId={previousElementId}
       />
