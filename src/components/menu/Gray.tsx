@@ -14,7 +14,7 @@ const Gray = ({ isOpen }: Props): JSX.Element => {
     from: { transform: `translateX(-100%)` },
     to: { transform: `translateX(0)` },
     config: {
-      duration: 850,
+      duration: 1000,
       timing: [0.28, 1, 0.5, 1],
       delay: 400
     }
