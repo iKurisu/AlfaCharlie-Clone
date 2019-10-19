@@ -26,7 +26,26 @@ const Slider = ({
   const transitionLength =
     Math.abs(previousElementId - hoveringElementId) === 1 ? "1s" : "2s";
 
+  const wrapper = useRef(null);
   const mask = useRef(null);
+
+  const fadeIn = useTransition(wrapper, {
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: {
+      delay: 800,
+      duration: 400
+    }
+  });
+
+  const fadeOut = useTransition(wrapper, {
+    from: { opacity: 1 },
+    to: { opacity: 0 },
+    config: {
+      delay: 650,
+      duration: 0
+    }
+  });
 
   const revealSlider = useTransition(mask, {
     from: { transform: "translateX(0)" },
@@ -48,14 +67,16 @@ const Slider = ({
 
   useDidUpdateEffect((): void => {
     if (isOpen) {
+      fadeIn();
       revealSlider();
     } else {
       hideSlider();
+      fadeOut();
     }
   });
 
   return (
-    <div className="menu-images -flex">
+    <div className="menu-images -flex" ref={wrapper} style={{ opacity: 0 }}>
       <div className="menu-slider">
         <div className="slider-mask" ref={mask} />
         <div
