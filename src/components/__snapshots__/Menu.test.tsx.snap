@@ -341,10 +341,18 @@ exports[`renders correctly 1`] = `
   </div>
   <div
     className="menu-images -flex"
+    style={
+      Object {
+        "opacity": 0,
+      }
+    }
   >
     <div
       className="menu-slider"
     >
+      <div
+        className="slider-mask"
+      />
       <div
         className="slider-wrapper"
         style={
@@ -439,9 +447,22 @@ exports[`renders correctly 1`] = `
         >
           <span
             className="link-name"
+            style={
+              Object {
+                "opacity": 0,
+              }
+            }
           >
             Instagram
           </span>
+          <span
+            className="link-mask"
+            style={
+              Object {
+                "transform": "translateX(-101%)",
+              }
+            }
+          />
         </span>
       </li>
       <li>
@@ -450,9 +471,22 @@ exports[`renders correctly 1`] = `
         >
           <span
             className="link-name"
+            style={
+              Object {
+                "opacity": 0,
+              }
+            }
           >
             Privacy
           </span>
+          <span
+            className="link-mask"
+            style={
+              Object {
+                "transform": "translateX(-101%)",
+              }
+            }
+          />
         </span>
       </li>
     </ul>

@@ -26,10 +26,14 @@ const Menu = ({ isOpen }: Props): JSX.Element => {
         updateHoveringElementId={updateHoveringElementId}
       />
       <Slider
+        isOpen={isOpen}
         hoveringElementId={hoveringElementId}
         previousElementId={previousElementId}
       />
-      <VerticalNav links={[["Instagram", false], ["Privacy", false]]} />
+      <VerticalNav
+        links={[["Instagram", false], ["Privacy", false]]}
+        reveal={isOpen}
+      />
       <White isOpen={isOpen} />
       <Gray isOpen={isOpen} />
     </div>

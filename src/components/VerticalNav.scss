@@ -21,36 +21,6 @@ main > .vertical-nav {
   line-height: 15px;
 }
 
-.vertical-nav-links li {
-  display: inline-block;
-  cursor: pointer;
-}
-
-.vertical-nav-links .link-wrapper {
-  margin: 0 2vh;
-  display: inline-block;
-  position: relative;
-}
-
-.vertical-nav-links .link-name {
-  display: block;
-  margin: 0 1vh;
-  color: $grey;
-  text-transform: uppercase;
-  font-size: 10px;
-  letter-spacing: 6px;
-  transition: color 0.3s;
-  line-height: 10px;
-}
-
-.vertical-nav li:hover .link-name {
-  color: $red;
-}
-
-.vertical-nav .active .link-name {
-  color: $red;
-}
-
 @media (max-width: $l) {
   .vertical-nav {
     display: none;
@@ -60,10 +30,5 @@ main > .vertical-nav {
 @media (min-width: $xxl) {
   .vertical-nav {
     right: 57px;
-  }
-
-  .vertical-nav .link-name {
-    font-size: 12px;
-    letter-spacing: 7.05px;
   }
 }
