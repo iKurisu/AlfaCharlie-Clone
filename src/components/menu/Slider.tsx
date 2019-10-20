@@ -61,7 +61,8 @@ const Slider = ({
     from: { transform: "translateX(-100%)" },
     to: { transform: "translateX(0)" },
     config: {
-      duration: 100
+      duration: 1000,
+      timing: [0.17, 0.5, 0.48, 1]
     }
   });
 
