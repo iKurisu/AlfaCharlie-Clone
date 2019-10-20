@@ -13,9 +13,22 @@ exports[`renders correctly 1`] = `
       >
         <span
           className="link-name"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           E
         </span>
+        <span
+          className="link-mask"
+          style={
+            Object {
+              "transform": "translateX(-101%)",
+            }
+          }
+        />
       </span>
     </li>
     <li>
@@ -24,9 +37,22 @@ exports[`renders correctly 1`] = `
       >
         <span
           className="link-name"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           T
         </span>
+        <span
+          className="link-mask"
+          style={
+            Object {
+              "transform": "translateX(-101%)",
+            }
+          }
+        />
       </span>
     </li>
     <li>
@@ -35,9 +61,22 @@ exports[`renders correctly 1`] = `
       >
         <span
           className="link-name"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
         >
           C
         </span>
+        <span
+          className="link-mask"
+          style={
+            Object {
+              "transform": "translateX(-101%)",
+            }
+          }
+        />
       </span>
     </li>
   </ul>

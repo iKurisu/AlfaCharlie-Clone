@@ -447,9 +447,22 @@ exports[`renders correctly 1`] = `
         >
           <span
             className="link-name"
+            style={
+              Object {
+                "opacity": 0,
+              }
+            }
           >
             Instagram
           </span>
+          <span
+            className="link-mask"
+            style={
+              Object {
+                "transform": "translateX(-101%)",
+              }
+            }
+          />
         </span>
       </li>
       <li>
@@ -458,9 +471,22 @@ exports[`renders correctly 1`] = `
         >
           <span
             className="link-name"
+            style={
+              Object {
+                "opacity": 0,
+              }
+            }
           >
             Privacy
           </span>
+          <span
+            className="link-mask"
+            style={
+              Object {
+                "transform": "translateX(-101%)",
+              }
+            }
+          />
         </span>
       </li>
     </ul>
