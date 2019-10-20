@@ -1,21 +1,24 @@
 import React from "react";
+import Link from "./vertical_nav/Link";
 import "./VerticalNav.scss";
 
 interface NavProps {
   links: [string, boolean][];
-  location?: string;
+  reveal?: boolean;
 }
 
-const VerticalNav = ({ links }: NavProps): JSX.Element => (
+const VerticalNav = ({ links, reveal }: NavProps): JSX.Element => (
   <nav className="vertical-nav">
     <ul className="vertical-nav-links">
       {links.map(
         ([link, active], id): JSX.Element => (
-          <li key={id}>
-            <span className={`link-wrapper${active ? " active" : ""}`}>
-              <span className="link-name">{link}</span>
-            </span>
-          </li>
+          <Link
+            key={id}
+            link={link}
+            active={active}
+            order={id}
+            reveal={reveal}
+          />
         )
       )}
     </ul>

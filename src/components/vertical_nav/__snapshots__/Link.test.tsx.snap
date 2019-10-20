@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<li>
+  <span
+    className="link-wrapper"
+  >
+    <span
+      className="link-name"
+      style={
+        Object {
+          "opacity": 0,
+        }
+      }
+    >
+      Instagram
+    </span>
+    <span
+      className="link-mask"
+      style={
+        Object {
+          "transform": "translateX(-101%)",
+        }
+      }
+    />
+  </span>
+</li>
+`;
