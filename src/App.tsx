@@ -17,10 +17,11 @@ const App = (): JSX.Element => {
         <VerticalNav
           links={[
             ["All", true],
-            ["Agency", false],
             ["Design", false],
-            ["Wellness", false]
+            ["Wellness", false],
+            ["Agency", false]
           ]}
+          reveal={true}
         />
         <div className="scroll-content-wrapper">
           <div className="scroll-content">
