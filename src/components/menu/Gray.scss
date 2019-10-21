@@ -1,3 +1,5 @@
+@import "sass/_variables.scss";
+
 .menu-gray {
   position: absolute;
   width: 50%;
@@ -5,4 +7,10 @@
   background: #e2ded9;
   top: 0;
   z-index: 11;
+}
+
+@media (max-width: $l) {
+  .menu-gray {
+    width: 100%;
+  }
 }

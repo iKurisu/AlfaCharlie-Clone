@@ -1,3 +1,5 @@
+@import "sass/_variables.scss";
+
 .menu-images {
   width: 50%;
   height: 100%;
@@ -50,4 +52,11 @@
   background-size: cover;
   background-position: center;
   // transition: transform 1s;
+}
+
+
+@media (max-width: $l) {
+  .menu-images {
+    display: none;
+  }
 }
