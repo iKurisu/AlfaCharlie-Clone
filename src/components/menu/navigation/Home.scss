@@ -1,0 +1,16 @@
+@import "sass/_variables.scss";
+
+.menu-home-link {
+  position: absolute;
+  width: 55px;
+  top: 25px;
+  left: 33px;
+  cursor: pointer;
+}
+
+@media (min-width: $m) {
+  .menu-home-link {
+    width: 65px;
+    top: 20px;
+  }
+}
