@@ -15,10 +15,32 @@ main > .vertical-nav {
   justify-content: center;
 }
 
+.menu .vertical-nav {
+  width: 58px;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 33px;
+  display: block;
+}
+
 .vertical-nav-links {
   transform: rotate(90deg);
   white-space: nowrap;
   line-height: 15px;
+}
+
+.menu .vertical-nav-links {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 30px 50%;
+}
+
+.menu .vertical-nav-links li:last-child {
+  position: absolute;
+  right: 20px;
 }
 
 @media (max-width: $l) {
