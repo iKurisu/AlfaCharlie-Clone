@@ -5,3 +5,9 @@
     padding-left: 8px;
   }
 }
+
+@media (max-width: $m) and (orientation: landscape) {
+  .menu-nav-link:nth-child(3) .link-character:nth-child(1) {
+    padding-left: 0;
+  }
+}

@@ -33,6 +33,12 @@
   }
 }
 
+@media (max-width: $m) and (orientation: landscape) {
+  .menu-button {
+    right: 33px;
+  }
+}
+
 @media (min-width: $m) {
   .menu-button {
     top: 20px;

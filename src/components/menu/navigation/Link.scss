@@ -25,3 +25,10 @@
     letter-spacing: 4px;
   }
 }
+
+@media (max-width: $m) and (orientation: landscape) {
+  .link-characters {
+    font-size: 49.5px;
+    letter-spacing: 3px;
+  }
+}
