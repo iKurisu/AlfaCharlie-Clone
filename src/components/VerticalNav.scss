@@ -48,7 +48,7 @@ main > .vertical-nav {
   }
 }
 
-@media (max-width: $m) {
+@media (max-width: 768px) {
   .menu .vertical-nav {
     width: 100%;
     height: auto;
@@ -76,6 +76,12 @@ main > .vertical-nav {
 @media (max-width: $m) and (orientation: landscape) {
   .menu .vertical-nav {
     bottom: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .menu .vertical-nav {
+    z-index: 12;
   }
 }
 
