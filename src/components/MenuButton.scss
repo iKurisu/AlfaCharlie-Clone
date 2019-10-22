@@ -6,7 +6,7 @@
   padding: 20px;
   position: fixed;
   top: 20px;
-  right: 12px;
+  right: 33px;
   z-index: 100;
   cursor: pointer;
 }
@@ -33,15 +33,14 @@
   }
 }
 
-@media (max-width: $m) and (orientation: landscape) {
+@media (max-width: 480px) {
   .menu-button {
-    right: 33px;
+    right: 12px;
   }
 }
 
-@media (min-width: $m) {
+@media (max-width: $m) and (orientation: landscape) {
   .menu-button {
-    top: 20px;
     right: 33px;
   }
 }
