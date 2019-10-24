@@ -1,12 +1,10 @@
-@import "sass/_variables.scss";
-
-@media (max-width: $m) {
+@media (max-width: 480px) {
   .menu-nav-link:nth-child(3) .link-character:nth-child(1) {
     padding-left: 8px;
   }
 }
 
-@media (max-width: $m) and (orientation: landscape) {
+@media (max-width: 823px) and (orientation: landscape) {
   .menu-nav-link:nth-child(3) .link-character:nth-child(1) {
     padding-left: 0;
   }
