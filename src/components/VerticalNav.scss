@@ -2,28 +2,86 @@
 
 .vertical-nav {
   width: 30px;
-  height: 80vh;
   position: fixed;
-  right: 46px;
-  top: 10vh;
   z-index: 10;
 }
 
 main > .vertical-nav {
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.menu .vertical-nav {
+  width: 58px;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 33px;
+  display: block;
+}
+
 .vertical-nav-links {
+  width: 100vh;
   transform: rotate(90deg);
   white-space: nowrap;
   line-height: 15px;
 }
 
-@media (max-width: $l) {
-  .vertical-nav {
+.menu .vertical-nav-links {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 30px 50%;
+}
+
+.menu .vertical-nav-links li:last-child {
+  position: absolute;
+  right: 20px;
+}
+
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  .menu .vertical-nav {
+    width: 100%;
+    height: auto;
+    top: auto;
+    right: auto;
+    left: 0;
+    bottom: 4vh;
+    z-index: 12;
+  }
+  
+  .vertical-nav-links {
+    width: 100%;
+    transform: none;
+  }
+
+  main > .vertical-nav {
     display: none;
+  }
+
+  .menu .vertical-nav-links li:last-child {
+    position: relative;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu .vertical-nav {
+    bottom: 30px;
+  }
+}
+
+@media (max-width: 823px) and (orientation: landscape) {
+  .menu .vertical-nav {
+    bottom: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .menu .vertical-nav {
+    z-index: 12;
   }
 }
 

@@ -1,3 +1,5 @@
+@import "sass/_variables.scss";
+
 .menu-nav-link {
   width: 100%;
   text-align: center;
@@ -15,4 +17,18 @@
 
 .menu-nav-links:hover .menu-nav-link:not(:hover) {
   opacity: 0.5;
+}
+
+@media (max-width: 480px) {
+  .link-characters {
+    font-size: 68px;
+    letter-spacing: 4px;
+  }
+}
+
+@media (max-width: 823px) and (orientation: landscape) {
+  .link-characters {
+    font-size: 49.5px;
+    letter-spacing: 3px;
+  }
 }

@@ -17,26 +17,3 @@
   visibility: hidden;
   transition: visibility 0s 1.85s;
 }
-
-.menu .vertical-nav {
-  width: 58px;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  right: 33px;
-  display: block;
-}
-
-.menu .vertical-nav-links {
-  width: 100vh;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform-origin: 30px 50%;
-}
-
-.menu .vertical-nav-links li:last-child {
-  position: absolute;
-  right: 20px;
-}

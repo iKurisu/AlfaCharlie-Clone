@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import Logo from "./home/Logo";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
+import "./Home.scss";
 
 interface Props {
   isOpen: boolean;

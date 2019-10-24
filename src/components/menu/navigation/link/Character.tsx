@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
+import "./Character.scss";
 
 interface Props {
   char: string;

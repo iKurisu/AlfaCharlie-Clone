@@ -12,10 +12,20 @@
   align-items: center;
 }
 
-.menu-home-link {
-  position: absolute;
-  width: 65px;
-  top: 20px;
-  left: 33px;
-  cursor: pointer;
+@media (max-width: 480px) {
+  .menu-nav-links {
+    margin-top: -30px;
+  }
+}
+
+@media (max-width: 823px) and (orientation: landscape) {
+  .menu-nav-links {
+    margin-top: -30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .menu-nav-wrapper {
+    width: 100%;
+  }
 }

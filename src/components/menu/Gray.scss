@@ -6,3 +6,9 @@
   top: 0;
   z-index: 11;
 }
+
+@media (max-width: 1024px) {
+  .menu-gray {
+    width: 100%;
+  }
+}

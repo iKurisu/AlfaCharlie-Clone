@@ -51,3 +51,10 @@
   background-position: center;
   // transition: transform 1s;
 }
+
+
+@media (max-width: 1024px) {
+  .menu-images {
+    display: none;
+  }
+}
