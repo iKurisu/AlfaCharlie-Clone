@@ -1,9 +1,10 @@
-import { type, breakpoint, orientation, value } from "./regex";
+import { type, breakpoint, orientation, value, unit } from "./regex";
 
 describe("regular expressions", (): void => {
   const examples = {
     min: "(minWidth: 768px) and (orientation: landscape) => 1000px",
-    max: "(maxWidth: 1366px) => 20vw"
+    max: "(maxWidth: 1366px) => 20vw",
+    decimal: "(maxWidth: 556px) => 15.79vw"
   };
 
   it("matches query type", (): void => {
@@ -22,7 +23,14 @@ describe("regular expressions", (): void => {
   });
 
   it("matches return value", (): void => {
-    expect(examples.min.match(value)).toContain("1000px");
-    expect(examples.max.match(value)).toContain("20vw");
+    expect(examples.min.match(value)).toContain("1000");
+    expect(examples.max.match(value)).toContain("20");
+    expect(examples.decimal.match(value)).toContain("15.79");
+  });
+
+  it("matches return type", (): void => {
+    expect(examples.min.match(unit)).toContain("px");
+    expect(examples.max.match(unit)).toContain("vw");
+    expect(examples.decimal.match(unit)).toContain("vw");
   });
 });
