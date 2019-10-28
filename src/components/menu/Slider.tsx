@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
+import useMediaQuery from "hooks/useMediaQuery";
 import "./Slider.scss";
 
 const urlSite = "https://alfacharlie.b-cdn.net/wp-content/uploads/";
@@ -25,6 +26,13 @@ const Slider = ({
 }: Props): JSX.Element => {
   const transitionLength =
     Math.abs(previousElementId - hoveringElementId) === 1 ? "1s" : "2s";
+
+  const wrapperX = useMediaQuery([
+    "(maxWidth: 1600px) => 27.2vw",
+    "(minWidth: 1601px) => 399px"
+  ]);
+
+  const imageX = useMediaQuery(["(maxWidth: 1600px) => 23.15vw"]);
 
   const wrapper = useRef(null);
   const mask = useRef(null);
@@ -83,7 +91,7 @@ const Slider = ({
         <div
           className="slider-wrapper"
           style={{
-            transform: `translateX(${hoveringElementId * -399}px)`,
+            transform: `translateX(${hoveringElementId * -wrapperX}px)`,
             transition: `transform ${transitionLength}`
           }}
         >
@@ -95,7 +103,7 @@ const Slider = ({
                   style={{
                     backgroundImage: `url(${urlSite}${url})`,
                     transform: `translateX(${1 -
-                      339 * (id - hoveringElementId)}px)`,
+                      imageX * (id - hoveringElementId)}px)`,
                     transition: `transform ${transitionLength}`
                   }}
                 />
