@@ -52,9 +52,14 @@
   // transition: transform 1s;
 }
 
-
 @media (max-width: 1024px) {
   .menu-images {
     display: none;
+  }
+}
+
+@media (max-width: 1600px) {
+  .slide {
+    width: 100%;
   }
 }
