@@ -1,5 +1,5 @@
-import { type, breakpoint, orientation, value } from "./regex";
-import { MappedQuery } from "./types";
+import { type, breakpoint, orientation, value, unit } from "./regex";
+import { MappedQuery, MappedReturn } from "./types";
 
 const matchRegex = <T>(
   regex: RegExp,
@@ -34,14 +34,22 @@ const getOrientation = matchRegex(orientation, null, (match): "landscape" =>
 const getValue = matchRegex(
   value,
   "Invalid return value.",
-  (match): string => match[1]
+  (match): number => +match[1]
 );
 
-const mapQuery = (query: string): MappedQuery => ({
+const getUnit = matchRegex(
+  unit,
+  "Invalid return unit.",
+  (match): "px" | "vw" => match[1] as MappedReturn["unit"]
+);
+
+export const mapQuery = (query: string): MappedQuery => ({
   type: getType(query),
   breakpoint: getBreakpoint(query),
-  orientation: getOrientation(query),
-  value: getValue(query)
+  orientation: getOrientation(query)
 });
 
-export default mapQuery;
+export const mapReturn = (query: string): MappedReturn => ({
+  value: getValue(query),
+  unit: getUnit(query)
+});
