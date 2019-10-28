@@ -1,5 +1,3 @@
-@import "sass/_variables.scss";
-
 .menu-nav-link {
   width: 100%;
   text-align: center;
@@ -30,5 +28,19 @@
   .link-characters {
     font-size: 49.5px;
     letter-spacing: 3px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .link-characters {
+    font-size: 102px;
+    letter-spacing: 6.3px;
+  }
+}
+
+@media (max-width: 1600px) {
+  .link-characters {
+    font-size: 95px;
+    letter-spacing: 6px;
   }
 }
