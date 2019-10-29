@@ -30,15 +30,12 @@
 
 .slider-wrapper {
   display: flex;
-  // overflow: hidden;
-  // transition: transform 1s;
 }
 
 .slide {
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
-  width: 399px;
 }
 
 .slide-img {
@@ -49,17 +46,10 @@
   height: 100%;
   background-size: cover;
   background-position: center;
-  // transition: transform 1s;
 }
 
 @media (max-width: 1024px) {
   .menu-images {
     display: none;
-  }
-}
-
-@media (max-width: 1600px) {
-  .slide {
-    width: 100%;
   }
 }
