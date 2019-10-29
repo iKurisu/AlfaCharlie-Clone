@@ -29,7 +29,7 @@ const Slider = ({
 
   const wrapperX = useMediaQuery([
     "(maxWidth: 1600px) => 27.2vw",
-    "(minWidth: 1601px) => 399px"
+    "(minWidth: 1601px) => 27.2vw"
   ]);
 
   const imageX = useMediaQuery(["(maxWidth: 1600px) => 23.15vw"]);
