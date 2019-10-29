@@ -39,10 +39,11 @@ const useMediaQuery = (queries: string[]): number => {
 
   useEffect((): (() => void) => {
     updateValue();
-    window.addEventListener("resize", updateValue);
+    window.addEventListener("orientationchange", updateValue);
 
-    return (): void => window.removeEventListener("resize", updateValue);
-  }, []);
+    return (): void =>
+      window.removeEventListener("orientationchange", updateValue);
+  }, [matchedQueryValue]);
 
   return matchedQueryValue;
 };

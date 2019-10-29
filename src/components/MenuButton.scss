@@ -1,12 +1,10 @@
-@import 'sass/_variables.scss';
-
 .menu-button {
   width: 60px;
   height: 60px;
   padding: 20px;
   position: fixed;
-  top: 20px;
-  right: 33px;
+  top: 43px;
+  right: 44px;
   z-index: 100;
   cursor: pointer;
 }
@@ -33,15 +31,15 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1600px) {
   .menu-button {
-    right: 12px;
+    top: 20px;
+    right: 33px;
   }
 }
 
-@media (min-width: $xxl) {
+@media (max-width: 480px) {
   .menu-button {
-    top: 43px;
-    right: 44px;
+    right: 12px;
   }
 }
