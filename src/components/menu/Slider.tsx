@@ -111,7 +111,7 @@ const Slider = ({
                   style={{
                     backgroundImage: `url(${urlSite}${url})`,
                     transform: `translateX(${1 -
-                      wrapperTranslate * (id - hoveringElementId)}px)`,
+                      imageTranslate * (id - hoveringElementId)}px)`,
                     transition: `transform ${transitionLength}`
                   }}
                 />
