@@ -33,10 +33,10 @@ const Slider = ({
   };
 
   useEffect((): (() => void) => {
-    window.addEventListener("resize", updateTranslateValues);
+    window.addEventListener("orientationchange", updateTranslateValues);
 
     return (): void =>
-      window.removeEventListener("resize", updateTranslateValues);
+      window.removeEventListener("orientationchange", updateTranslateValues);
   }, [imageTranslate]);
 
   const wrapper = useRef(null);
