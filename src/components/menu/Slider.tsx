@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
-import useMediaQuery from "hooks/useMediaQuery";
+import { vwToPx } from "utils/responsive";
 import "./Slider.scss";
 
 const urlSite = "https://alfacharlie.b-cdn.net/wp-content/uploads/";
@@ -24,18 +24,20 @@ const Slider = ({
   hoveringElementId,
   previousElementId
 }: Props): JSX.Element => {
-  const transitionLength =
-    Math.abs(previousElementId - hoveringElementId) === 1 ? "1s" : "2s";
+  const [wrapperTranslate, setWrapperTranslate] = useState(vwToPx(27.2));
+  const [imageTranslate, setImageTranslate] = useState(vwToPx(23.15));
 
-  const wrapperX = useMediaQuery([
-    "(maxWidth: 1600px) => 27.2vw",
-    "(minWidth: 1601px) => 27.2vw"
-  ]);
+  const updateTranslateValues = (): void => {
+    setWrapperTranslate(vwToPx(27.2));
+    setImageTranslate(vwToPx(23.15));
+  };
 
-  const imageX = useMediaQuery([
-    "(maxWidth: 1600px) => 23.15vw",
-    "(minWidth: 1601px) => 23.15vw"
-  ]);
+  useEffect((): (() => void) => {
+    window.addEventListener("resize", updateTranslateValues);
+
+    return (): void =>
+      window.removeEventListener("resize", updateTranslateValues);
+  }, [imageTranslate]);
 
   const wrapper = useRef(null);
   const mask = useRef(null);
@@ -87,6 +89,9 @@ const Slider = ({
     }
   }, [isOpen]);
 
+  const transitionLength =
+    Math.abs(previousElementId - hoveringElementId) === 1 ? "1s" : "2s";
+
   return (
     <div className="menu-images -flex" ref={wrapper} style={{ opacity: 0 }}>
       <div className="menu-slider">
@@ -94,7 +99,7 @@ const Slider = ({
         <div
           className="slider-wrapper"
           style={{
-            transform: `translateX(${hoveringElementId * -wrapperX}px)`,
+            transform: `translateX(${hoveringElementId * -wrapperTranslate}px)`,
             transition: `transform ${transitionLength}`
           }}
         >
@@ -106,7 +111,7 @@ const Slider = ({
                   style={{
                     backgroundImage: `url(${urlSite}${url})`,
                     transform: `translateX(${1 -
-                      imageX * (id - hoveringElementId)}px)`,
+                      wrapperTranslate * (id - hoveringElementId)}px)`,
                     transition: `transform ${transitionLength}`
                   }}
                 />
