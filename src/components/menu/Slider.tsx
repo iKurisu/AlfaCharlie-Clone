@@ -32,7 +32,10 @@ const Slider = ({
     "(minWidth: 1601px) => 27.2vw"
   ]);
 
-  const imageX = useMediaQuery(["(maxWidth: 1600px) => 23.15vw"]);
+  const imageX = useMediaQuery([
+    "(maxWidth: 1600px) => 23.15vw",
+    "(minWidth: 1601px) => 23.15vw"
+  ]);
 
   const wrapper = useRef(null);
   const mask = useRef(null);
