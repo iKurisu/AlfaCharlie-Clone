@@ -17,17 +17,16 @@
   opacity: 0.5;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1600px) {
   .link-characters {
-    font-size: 68px;
-    letter-spacing: 4px;
+    font-size: 102px;
   }
 }
 
-@media (max-width: 823px) and (orientation: landscape) {
+@media (max-width: 1366px) {
   .link-characters {
-    font-size: 49.5px;
-    letter-spacing: 3px;
+    font-size: 95px;
+    letter-spacing: 6px;
   }
 }
 
@@ -38,9 +37,16 @@
   }
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 823px) and (orientation: landscape) {
   .link-characters {
-    font-size: 95px;
-    letter-spacing: 6px;
+    font-size: 49.5px;
+    letter-spacing: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .link-characters {
+    font-size: 68px;
+    letter-spacing: 4px;
   }
 }
