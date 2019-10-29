@@ -630,7 +630,7 @@ Array [
               style={
                 Object {
                   "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/05/Alfa-Charlie-Creative-Agency-about-5.jpg)",
-                  "transform": "translateX(1px)",
+                  "transform": "translateX(-236.05599999999998px)",
                   "transition": "transform 2s",
                 }
               }
@@ -644,7 +644,7 @@ Array [
               style={
                 Object {
                   "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Alfa-Charlie-Creative-Agency-work.jpg)",
-                  "transform": "translateX(1px)",
+                  "transform": "translateX(-473.11199999999997px)",
                   "transition": "transform 2s",
                 }
               }
@@ -658,7 +658,7 @@ Array [
               style={
                 Object {
                   "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/05/Alfa-Charlie-Creative-Agency-home-2.jpg)",
-                  "transform": "translateX(1px)",
+                  "transform": "translateX(-710.1679999999999px)",
                   "transition": "transform 2s",
                 }
               }
@@ -672,7 +672,7 @@ Array [
               style={
                 Object {
                   "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/05/Alfa-Charlie-Creative-Agency-contact-2.jpg)",
-                  "transform": "translateX(1px)",
+                  "transform": "translateX(-947.2239999999999px)",
                   "transition": "transform 2s",
                 }
               }
