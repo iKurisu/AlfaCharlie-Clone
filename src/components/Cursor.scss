@@ -1,0 +1,13 @@
+.cursor {
+  width: 48px;
+  height: 48px;
+  position: fixed;
+  top: -24px;
+  left: -24px;
+  pointer-events: none;
+  transition: 150ms transform ease;
+}
+
+.scroll-cursor {
+  position: absolute;
+}
