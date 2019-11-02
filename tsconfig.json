@@ -10,14 +10,7 @@
     "allowSyntheticDefaultImports": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "baseUrl": "./",
-    "paths": {
-      "components": ["src/components"],
-      "modules": ["src/modules"],
-      "pages": ["src/pages"],
-      "hooks": ["src/hooks"],
-      "utils": ["src/utils"]
-    }
+    "baseUrl": "./src/",
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
