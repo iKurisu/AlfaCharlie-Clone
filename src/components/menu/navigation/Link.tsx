@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import Character from "./link/Character";
 import "./Link.scss";
 
@@ -6,16 +6,16 @@ interface Props {
   link: string;
   fadeInOrder: number[];
   isOpen: boolean;
-  updateHoveringElementId(): void;
+  hoverElement: MouseEventHandler;
 }
 
 const Link = ({
   link,
   fadeInOrder,
   isOpen,
-  updateHoveringElementId
+  hoverElement
 }: Props): JSX.Element => (
-  <a className="menu-nav-link" onMouseEnter={updateHoveringElementId}>
+  <a className="menu-nav-link" onMouseEnter={hoverElement}>
     <span className="link-characters">
       {link.split("").map(
         (character: string, id: number): JSX.Element => (

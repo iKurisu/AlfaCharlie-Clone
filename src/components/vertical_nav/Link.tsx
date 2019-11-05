@@ -1,16 +1,15 @@
 import React, { useRef, useEffect } from "react";
 import useTransition from "hooks/useTransition";
-import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import "./Link.scss";
 
 interface Props {
   link: string;
   active: boolean;
   order: number;
-  reveal: boolean;
+  show: boolean;
 }
 
-const Link = ({ link, active, order, reveal }: Props): JSX.Element => {
+const Link = ({ link, active, order, show }: Props): JSX.Element => {
   const mask = useRef(null);
   const name = useRef(null);
 
@@ -45,13 +44,13 @@ const Link = ({ link, active, order, reveal }: Props): JSX.Element => {
   });
 
   useEffect((): void => {
-    if (reveal) {
+    if (show) {
       unmask();
       fadeIn();
     } else {
       fadeOut();
     }
-  }, [reveal]);
+  }, [show]);
 
   return (
     <li>

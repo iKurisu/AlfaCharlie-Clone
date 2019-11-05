@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, MouseEventHandler } from "react";
 import Home from "./navigation/Home";
 import Link from "./navigation/Link";
 import useTransition from "hooks/useTransition";
@@ -7,13 +7,10 @@ import "./Navigation.scss";
 
 interface Props {
   isOpen: boolean;
-  updateHoveringElementId(id: number): () => void;
+  hoverElement: (elementID: number) => MouseEventHandler;
 }
 
-const Navigation = ({
-  isOpen,
-  updateHoveringElementId
-}: Props): JSX.Element => {
+const Navigation = ({ isOpen, hoverElement }: Props): JSX.Element => {
   const links = ["agency", "work", "journal", "contact"];
   const fadeInOrder = [
     [1, 4, 2, 2, 1, 3],
@@ -56,7 +53,7 @@ const Navigation = ({
       <Home isOpen={isOpen} />
       <nav
         className="menu-nav-links -flex"
-        onMouseLeave={updateHoveringElementId(0)}
+        onMouseLeave={hoverElement(0)}
         style={{ opacity: 0 }}
         ref={nav}
       >
@@ -66,7 +63,7 @@ const Navigation = ({
               link={link}
               fadeInOrder={fadeInOrder[id]}
               isOpen={isOpen}
-              updateHoveringElementId={updateHoveringElementId(id + 1)}
+              hoverElement={hoverElement(id + 1)}
               key={id}
             />
           )
