@@ -15,14 +15,14 @@ const imageUrls = [
 
 interface Props {
   isOpen: boolean;
-  hoveringElementId: number;
-  previousElementId: number;
+  hoveringElementID: number;
+  previousElementID: number;
 }
 
 const Slider = ({
   isOpen,
-  hoveringElementId,
-  previousElementId
+  hoveringElementID,
+  previousElementID
 }: Props): JSX.Element => {
   const [wrapperTranslate, setWrapperTranslate] = useState(vwToPx(27.2));
   const [imageTranslate, setImageTranslate] = useState(vwToPx(23.15));
@@ -90,7 +90,7 @@ const Slider = ({
   }, [isOpen]);
 
   const transitionLength =
-    Math.abs(previousElementId - hoveringElementId) === 1 ? "1s" : "2s";
+    Math.abs(previousElementID - hoveringElementID) === 1 ? "1s" : "2s";
 
   return (
     <div className="menu-images -flex" ref={wrapper} style={{ opacity: 0 }}>
@@ -99,7 +99,7 @@ const Slider = ({
         <div
           className="slider-wrapper"
           style={{
-            transform: `translateX(${hoveringElementId * -wrapperTranslate}px)`,
+            transform: `translateX(${hoveringElementID * -wrapperTranslate}px)`,
             transition: `transform ${transitionLength}`
           }}
         >
@@ -111,7 +111,7 @@ const Slider = ({
                   style={{
                     backgroundImage: `url(${urlSite}${url})`,
                     transform: `translateX(${1 -
-                      imageTranslate * (id - hoveringElementId)}px)`,
+                      imageTranslate * (id - hoveringElementID)}px)`,
                     transition: `transform ${transitionLength}`
                   }}
                 />

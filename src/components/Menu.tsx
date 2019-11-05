@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { MouseEventHandler } from "react";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
+import { AppState } from "store";
+import { menuActions } from "modules/menu";
 import White from "./menu/White";
 import Gray from "./menu/Gray";
 import Navigation from "./menu/Navigation";
@@ -6,33 +10,35 @@ import VerticalNav from "./VerticalNav";
 import Slider from "./menu/Slider";
 import "./Menu.scss";
 
-interface Props {
+interface MappedState {
   isOpen: boolean;
+  hoveringElementID: number;
+  previousElementID: number;
 }
 
-const Menu = ({ isOpen }: Props): JSX.Element => {
-  const [hoveringElementId, setHoveringElementId] = useState(0);
-  const [previousElementId, setPreviousElementId] = useState(0);
+interface MappedActions {
+  hoverElement: (elementID: number) => MouseEventHandler;
+}
 
-  const updateHoveringElementId = (id: number): (() => void) => (): void => {
-    setHoveringElementId(id);
-    setPreviousElementId(hoveringElementId);
-  };
+type Props = MappedState & MappedActions;
 
+export const Menu = ({
+  isOpen,
+  hoveringElementID,
+  previousElementID,
+  hoverElement
+}: Props): JSX.Element => {
   return (
     <div className={`menu ${isOpen ? "show" : "hide"}`}>
-      <Navigation
-        isOpen={isOpen}
-        updateHoveringElementId={updateHoveringElementId}
-      />
+      <Navigation isOpen={isOpen} hoverElement={hoverElement} />
       <Slider
         isOpen={isOpen}
-        hoveringElementId={hoveringElementId}
-        previousElementId={previousElementId}
+        hoveringElementID={hoveringElementID}
+        previousElementID={previousElementID}
       />
       <VerticalNav
         links={[["Instagram", false], ["Privacy", false]]}
-        reveal={isOpen}
+        show={isOpen}
       />
       <White isOpen={isOpen} />
       <Gray isOpen={isOpen} />
@@ -40,4 +46,19 @@ const Menu = ({ isOpen }: Props): JSX.Element => {
   );
 };
 
-export default Menu;
+const mapState = ({ menu }: AppState): MappedState => ({
+  isOpen: menu.toggled,
+  hoveringElementID: menu.hoveringElementID,
+  previousElementID: menu.previousElementID
+});
+
+const mapDispatch = (dispatch: Dispatch): MappedActions => ({
+  hoverElement: (elementID: number): React.MouseEventHandler => (): void => {
+    dispatch(menuActions.hoverElement(elementID));
+  }
+});
+
+export default connect(
+  mapState,
+  mapDispatch
+)(Menu);

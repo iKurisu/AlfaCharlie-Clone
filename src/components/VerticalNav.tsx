@@ -4,21 +4,15 @@ import "./VerticalNav.scss";
 
 interface NavProps {
   links: [string, boolean][];
-  reveal?: boolean;
+  show?: boolean;
 }
 
-const VerticalNav = ({ links, reveal }: NavProps): JSX.Element => (
+const VerticalNav = ({ links, show }: NavProps): JSX.Element => (
   <nav className="vertical-nav">
     <ul className="vertical-nav-links">
       {links.map(
         ([link, active], id): JSX.Element => (
-          <Link
-            key={id}
-            link={link}
-            active={active}
-            order={id}
-            reveal={reveal}
-          />
+          <Link key={id} link={link} active={active} order={id} show={show} />
         )
       )}
     </ul>
