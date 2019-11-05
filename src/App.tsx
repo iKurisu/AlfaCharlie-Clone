@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "components/Logo";
 import Header from "components/Header";
 import VerticalNav from "components/VerticalNav";
@@ -7,36 +7,30 @@ import Menu from "components/Menu";
 import Cursor from "components/Cursor";
 import "./styles.scss";
 
-const App = (): JSX.Element => {
-  const [menuIsOpen, openMenu] = useState<boolean>(false);
-
-  const toggleMenu = (): void => openMenu(!menuIsOpen);
-
-  return (
-    <React.Fragment>
-      <main>
-        <VerticalNav
-          links={[
-            ["All", true],
-            ["Design", false],
-            ["Wellness", false],
-            ["Agency", false]
-          ]}
-          reveal={true}
-        />
-        <div className="scroll-content-wrapper">
-          <div className="scroll-content">
-            <Logo />
-            <Header />
-            <div className="main-content"></div>
-          </div>
+const App = (): JSX.Element => (
+  <React.Fragment>
+    <main>
+      <VerticalNav
+        links={[
+          ["All", true],
+          ["Design", false],
+          ["Wellness", false],
+          ["Agency", false]
+        ]}
+        show={true}
+      />
+      <div className="scroll-content-wrapper">
+        <div className="scroll-content">
+          <Logo />
+          <Header />
+          <div className="main-content"></div>
         </div>
-      </main>
-      <Cursor />
-      <MenuButton menuIsOpen={menuIsOpen} toggle={toggleMenu} />
-      <Menu isOpen={menuIsOpen} />
-    </React.Fragment>
-  );
-};
+      </div>
+    </main>
+    <Cursor />
+    <MenuButton />
+    <Menu />
+  </React.Fragment>
+);
 
 export default App;
