@@ -1,18 +1,27 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { shallow } from "enzyme";
-import Menu from "./Menu";
+import { Menu } from "./Menu";
 
-it("renders correctly", (): void => {
-  const menu = renderer.create(<Menu isOpen={false} />);
+describe("menu", (): void => {
+  const props = {
+    isOpen: false,
+    hoveringElementID: 0,
+    previousElementID: 0,
+    hoverElement: jest.fn()
+  };
 
-  expect(menu).toMatchSnapshot();
-});
+  it("renders correctly", (): void => {
+    const menu = renderer.create(<Menu {...props} />);
 
-it("has correct class", (): void => {
-  const hiddenMenu = shallow(<Menu isOpen={false} />);
-  const visibleMenu = shallow(<Menu isOpen={true} />);
+    expect(menu).toMatchSnapshot();
+  });
 
-  expect(hiddenMenu.find(".menu").hasClass("hide")).toBe(true);
-  expect(visibleMenu.find(".menu").hasClass("show")).toBe(true);
+  it("has correct class", (): void => {
+    const hiddenMenu = shallow(<Menu {...props} />);
+    const visibleMenu = shallow(<Menu {...{ ...props, isOpen: true }} />);
+
+    expect(hiddenMenu.find(".menu").hasClass("hide")).toBe(true);
+    expect(visibleMenu.find(".menu").hasClass("show")).toBe(true);
+  });
 });

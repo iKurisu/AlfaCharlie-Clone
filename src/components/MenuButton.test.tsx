@@ -1,48 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import renderer from "react-test-renderer";
-import Enzyme, { shallow, mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import MenuButton from "./MenuButton";
-
-Enzyme.configure({ adapter: new Adapter() });
+import { shallow } from "enzyme";
+import { MenuButton } from "./MenuButton";
 
 describe("menu button", (): void => {
   it("renders correctly", (): void => {
     const toggle = jest.fn();
     const button = renderer.create(
-      <MenuButton menuIsOpen={false} toggle={toggle} />
+      <MenuButton toggled={false} toggle={toggle} />
     );
 
     expect(button).toMatchSnapshot();
-
-    const button2 = renderer.create(
-      <MenuButton menuIsOpen={true} toggle={toggle} />
-    );
-
-    expect(button2).toMatchSnapshot();
   });
 
   it("calls the event handler", (): void => {
     const toggle = jest.fn();
-    const button = shallow(<MenuButton menuIsOpen={false} toggle={toggle} />);
+    const button = shallow(<MenuButton toggled={false} toggle={toggle} />);
 
     button.find("div").simulate("click");
 
     expect(toggle.mock.calls.length).toBe(1);
   });
 
-  it("updates the class", (): void => {
-    const Wrapper = (): JSX.Element => {
-      const [menuIsOpen, openMenu] = useState<boolean>(false);
+  it("has correct class", (): void => {
+    const toggle = jest.fn();
+    const button = shallow(<MenuButton toggled={false} toggle={toggle} />);
 
-      const toggleMenu = (): void => openMenu(!menuIsOpen);
+    expect(button.find(".menu-button").hasClass("open")).toBe(false);
 
-      return <MenuButton menuIsOpen={menuIsOpen} toggle={toggleMenu} />;
-    };
+    button.setProps({ toggled: true });
 
-    const wrapper = mount(<Wrapper />);
-    wrapper.find(".menu-button").simulate("click");
-
-    expect(wrapper.find(".menu-button open")).toBeTruthy();
+    expect(button.find(".menu-button").hasClass("open")).toBe(true);
   });
 });

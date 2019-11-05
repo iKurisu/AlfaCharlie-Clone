@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`menu renders correctly 1`] = `
 <div
   className="menu hide"
 >
@@ -78,7 +78,6 @@ exports[`renders correctly 1`] = `
     </a>
     <nav
       className="menu-nav-links -flex"
-      onMouseLeave={[Function]}
       style={
         Object {
           "opacity": 0,
@@ -87,7 +86,6 @@ exports[`renders correctly 1`] = `
     >
       <a
         className="menu-nav-link"
-        onMouseEnter={[Function]}
       >
         <span
           className="link-characters"
@@ -156,7 +154,6 @@ exports[`renders correctly 1`] = `
       </a>
       <a
         className="menu-nav-link"
-        onMouseEnter={[Function]}
       >
         <span
           className="link-characters"
@@ -205,7 +202,6 @@ exports[`renders correctly 1`] = `
       </a>
       <a
         className="menu-nav-link"
-        onMouseEnter={[Function]}
       >
         <span
           className="link-characters"
@@ -284,7 +280,6 @@ exports[`renders correctly 1`] = `
       </a>
       <a
         className="menu-nav-link"
-        onMouseEnter={[Function]}
       >
         <span
           className="link-characters"
