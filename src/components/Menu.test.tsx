@@ -18,10 +18,12 @@ describe("menu", (): void => {
   });
 
   it("has correct class", (): void => {
-    const hiddenMenu = shallow(<Menu {...props} />);
-    const visibleMenu = shallow(<Menu {...{ ...props, isOpen: true }} />);
+    const menu = shallow(<Menu {...props} />);
 
-    expect(hiddenMenu.find(".menu").hasClass("hide")).toBe(true);
-    expect(visibleMenu.find(".menu").hasClass("show")).toBe(true);
+    expect(menu.find(".menu").hasClass("hide")).toBe(true);
+
+    menu.setProps({ isOpen: true });
+
+    expect(menu.find(".menu").hasClass("show")).toBe(true);
   });
 });
