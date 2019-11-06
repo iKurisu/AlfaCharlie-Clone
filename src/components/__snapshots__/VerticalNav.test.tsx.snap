@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`vertical nav renders correctly 1`] = `
 <nav
   className="vertical-nav"
 >
@@ -9,7 +9,7 @@ exports[`renders correctly 1`] = `
   >
     <li>
       <span
-        className="link-wrapper active"
+        className="link-wrapper"
       >
         <span
           className="link-name"
@@ -19,7 +19,7 @@ exports[`renders correctly 1`] = `
             }
           }
         >
-          E
+          Expertise
         </span>
         <span
           className="link-mask"
@@ -43,7 +43,7 @@ exports[`renders correctly 1`] = `
             }
           }
         >
-          T
+          Team
         </span>
         <span
           className="link-mask"
@@ -57,7 +57,7 @@ exports[`renders correctly 1`] = `
     </li>
     <li>
       <span
-        className="link-wrapper active"
+        className="link-wrapper"
       >
         <span
           className="link-name"
@@ -67,7 +67,7 @@ exports[`renders correctly 1`] = `
             }
           }
         >
-          C
+          Clients
         </span>
         <span
           className="link-mask"
