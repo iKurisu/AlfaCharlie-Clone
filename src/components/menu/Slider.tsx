@@ -92,6 +92,13 @@ const Slider = ({
   const transitionLength =
     Math.abs(previousElementID - hoveringElementID) === 1 ? "1s" : "2s";
 
+  const wrapperDistance = (hoveringElementID * -wrapperTranslate).toFixed(3);
+
+  const getImageDistance = (id: number): string => {
+    const distance = 1 - imageTranslate * (id - hoveringElementID);
+    return distance.toFixed(3);
+  };
+
   return (
     <div className="menu-images -flex" ref={wrapper} style={{ opacity: 0 }}>
       <div className="menu-slider">
@@ -99,7 +106,7 @@ const Slider = ({
         <div
           className="slider-wrapper"
           style={{
-            transform: `translateX(${hoveringElementID * -wrapperTranslate}px)`,
+            transform: `translateX(${wrapperDistance}px)`,
             transition: `transform ${transitionLength}`
           }}
         >
@@ -110,8 +117,7 @@ const Slider = ({
                   className="slide-img"
                   style={{
                     backgroundImage: `url(${urlSite}${url})`,
-                    transform: `translateX(${1 -
-                      imageTranslate * (id - hoveringElementID)}px)`,
+                    transform: `translateX(${getImageDistance(id)}px)`,
                     transition: `transform ${transitionLength}`
                   }}
                 />
