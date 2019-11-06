@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`vertical nav link renders correctly 1`] = `
 <li>
   <span
     className="link-wrapper"

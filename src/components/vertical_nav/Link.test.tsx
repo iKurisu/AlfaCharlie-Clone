@@ -1,11 +1,27 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Link from "./Link";
+import { shallow } from "enzyme";
 
-it("renders correctly", (): void => {
-  const link = renderer.create(
-    <Link link="Instagram" active={false} order={0} reveal={false} />
-  );
+describe("vertical nav link", (): void => {
+  const props = {
+    link: "Instagram",
+    active: false,
+    order: 0,
+    show: false
+  };
 
-  expect(link).toMatchSnapshot();
+  it("renders correctly", (): void => {
+    const link = renderer.create(<Link {...props} />);
+
+    expect(link).toMatchSnapshot();
+  });
+
+  it("has correct class", (): void => {
+    const link = shallow(<Link {...props} />);
+
+    expect(link.find(".link-wrapper").hasClass("active")).toBe(false);
+    link.setProps({ active: true });
+    expect(link.find(".link-wrapper").hasClass("active")).toBe(true);
+  });
 });
