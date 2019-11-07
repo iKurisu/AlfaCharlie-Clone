@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`scroll cursor renders correcty 1`] = `
+<div
+  className="scroll-cursor"
+>
+  <div
+    className="cursor-outline"
+  >
+    <svg
+      viewBox="0 0 72 72"
+      x="0"
+      y="0"
+    >
+      <circle
+        cx="36"
+        cy="36"
+        r="30"
+      />
+    </svg>
+  </div>
+  <div
+    className="cursor-progress"
+  >
+    <svg
+      viewBox="0 0 72 72"
+      x="0"
+      y="0"
+    >
+      <circle
+        cx="36"
+        cy="36"
+        r="30"
+        style={
+          Object {
+            "strokeDashoffset": 200,
+          }
+        }
+      />
+    </svg>
+  </div>
+</div>
+`;
