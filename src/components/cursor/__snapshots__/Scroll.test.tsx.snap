@@ -3,6 +3,11 @@
 exports[`scroll cursor renders correcty 1`] = `
 <div
   className="scroll-cursor"
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
 >
   <div
     className="cursor-outline"
