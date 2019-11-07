@@ -4,7 +4,7 @@ import { Scroll } from "./Scroll";
 
 describe("scroll cursor", (): void => {
   it("renders correcty", (): void => {
-    const cursor = renderer.create(<Scroll />);
+    const cursor = renderer.create(<Scroll menuToggled={true} />);
 
     expect(cursor).toMatchSnapshot();
   });
