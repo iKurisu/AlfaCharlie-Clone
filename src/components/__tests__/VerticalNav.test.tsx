@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import VerticalNav from "./VerticalNav";
+import VerticalNav from "../VerticalNav";
 
 describe("vertical nav", (): void => {
   it("renders correctly", (): void => {

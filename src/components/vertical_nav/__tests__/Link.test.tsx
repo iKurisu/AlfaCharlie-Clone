@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Link from "./Link";
+import Link from "../Link";
 import { shallow } from "enzyme";
 
 describe("vertical nav link", (): void => {

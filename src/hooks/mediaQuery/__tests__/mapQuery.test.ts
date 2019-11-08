@@ -1,5 +1,5 @@
-import { mapQuery, mapReturn } from "./mapQuery";
-import { MappedQuery, MappedReturn } from "./types";
+import { mapQuery, mapReturn } from "../mapQuery";
+import { MappedQuery, MappedReturn } from "../types";
 
 type MappedExamples<K, T> = {
   [A in keyof K]: T;

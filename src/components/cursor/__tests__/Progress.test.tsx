@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Progress from "./Progress";
+import Progress from "../Progress";
 
 describe("cursor progress", (): void => {
   it("displays correct progress", (): void => {

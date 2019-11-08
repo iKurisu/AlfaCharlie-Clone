@@ -1,5 +1,5 @@
-import stringifyProperties from "./stringify";
-import { Properties, MappedProperties } from "./types";
+import stringifyProperties from "../stringify";
+import { Properties, MappedProperties } from "../types";
 
 describe("stringifyProperties", (): void => {
   it("turns an object into a string property", (): void => {

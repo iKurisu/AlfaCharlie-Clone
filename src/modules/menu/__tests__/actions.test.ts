@@ -1,5 +1,5 @@
-import actions from "./actions";
-import { Types } from "./types";
+import actions from "../actions";
+import { Types } from "../types";
 
 describe("menu actions", (): void => {
   it("creates an action to toggle the menu", (): void => {

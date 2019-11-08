@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { Scroll } from "./Scroll";
+import { Scroll } from "../Scroll";
 
 describe("scroll cursor", (): void => {
   it("renders correcty", (): void => {

@@ -1,5 +1,5 @@
-import mapProperties from "./mapProperties";
-import { MappedProperties } from "./types";
+import mapProperties from "../mapProperties";
+import { MappedProperties } from "../types";
 
 it("maps properties into an object", (): void => {
   const { from, to } = {

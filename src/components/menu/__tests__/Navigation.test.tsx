@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { shallow } from "enzyme";
-import Navigation from "./Navigation";
+import Navigation from "../Navigation";
 
 describe("menu navigation", (): void => {
   it("renders correctly", (): void => {

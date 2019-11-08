@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Cursor from "./Cursor";
+import Cursor from "../Cursor";
 
 describe("cursor", (): void => {
   it("renders correctly", (): void => {

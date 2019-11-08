@@ -1,5 +1,5 @@
-import reducer from "./reducer";
-import { Types, MenuActionTypes } from "./types";
+import reducer from "../reducer";
+import { Types, MenuActionTypes } from "../types";
 
 describe("menu reducer", (): void => {
   it("returns the initial state", (): void => {

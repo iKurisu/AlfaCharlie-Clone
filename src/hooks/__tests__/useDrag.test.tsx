@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import useDrag from "./useDrag";
+import useDrag from "../useDrag";
 
 describe("useDrag", (): void => {
   const onClick = jest.fn();

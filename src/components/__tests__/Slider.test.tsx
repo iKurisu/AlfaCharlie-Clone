@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { shallow } from "enzyme";
-import Slider from "./Slider";
+import Slider from "../Slider";
 
 const imageUrls = [
   "2019/05/Alfa-Charlie-Creative-Agency-home-e1558112927714.jpg",

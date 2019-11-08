@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { shallow } from "enzyme";
-import { MenuButton } from "./MenuButton";
+import { MenuButton } from "../MenuButton";
 
 describe("menu button", (): void => {
   it("renders correctly", (): void => {

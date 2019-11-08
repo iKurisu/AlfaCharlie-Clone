@@ -1,4 +1,4 @@
-import { type, breakpoint, orientation, value, unit } from "./regex";
+import { type, breakpoint, orientation, value, unit } from "../regex";
 
 describe("regular expressions", (): void => {
   const examples = {
