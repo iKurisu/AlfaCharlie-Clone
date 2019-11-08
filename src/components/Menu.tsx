@@ -7,7 +7,7 @@ import White from "./menu/White";
 import Gray from "./menu/Gray";
 import Navigation from "./menu/Navigation";
 import VerticalNav from "./VerticalNav";
-import Slider from "./menu/Slider";
+import Images from "./menu/Images";
 import "./Menu.scss";
 
 interface MappedState {
@@ -31,7 +31,7 @@ export const Menu = ({
   return (
     <div className={`menu ${isOpen ? "show" : "hide"}`}>
       <Navigation isOpen={isOpen} hoverElement={hoverElement} />
-      <Slider
+      <Images
         isOpen={isOpen}
         hoveringElementID={hoveringElementID}
         previousElementID={previousElementID}
