@@ -5,21 +5,16 @@ import { vwToPx } from "utils/responsive";
 import "./Slider.scss";
 
 const urlSite = "https://alfacharlie.b-cdn.net/wp-content/uploads/";
-const imageUrls = [
-  "2019/05/Alfa-Charlie-Creative-Agency-home-e1558112927714.jpg",
-  "2019/05/Alfa-Charlie-Creative-Agency-about-5.jpg",
-  "2019/04/Alfa-Charlie-Creative-Agency-work.jpg",
-  "2019/05/Alfa-Charlie-Creative-Agency-home-2.jpg",
-  "2019/05/Alfa-Charlie-Creative-Agency-contact-2.jpg"
-];
 
 interface Props {
+  imageUrls: string[];
   isOpen: boolean;
   hoveringElementID: number;
   previousElementID: number;
 }
 
 const Slider = ({
+  imageUrls,
   isOpen,
   hoveringElementID,
   previousElementID
@@ -41,26 +36,7 @@ const Slider = ({
       window.removeEventListener("orientationchange", updateResponsiveValues);
   }, [responsiveValues]);
 
-  const wrapper = useRef(null);
   const mask = useRef(null);
-
-  const fadeIn = useTransition(wrapper, {
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    config: {
-      delay: 800,
-      duration: 400
-    }
-  });
-
-  const fadeOut = useTransition(wrapper, {
-    from: { opacity: 1 },
-    to: { opacity: 0 },
-    config: {
-      delay: 650,
-      duration: 0
-    }
-  });
 
   const revealSlider = useTransition(mask, {
     from: { transform: "translateX(0)" },
@@ -83,11 +59,9 @@ const Slider = ({
 
   useDidUpdateEffect((): void => {
     if (isOpen) {
-      fadeIn();
       revealSlider();
     } else {
       hideSlider();
-      fadeOut();
     }
   }, [isOpen]);
 
@@ -104,9 +78,9 @@ const Slider = ({
   };
 
   return (
-    <div className="menu-images -flex" ref={wrapper} style={{ opacity: 0 }}>
-      <div className="menu-slider">
-        <div className="slider-mask" ref={mask} />
+    <React.Fragment>
+      <div className="slider-mask" ref={mask} />
+      <div className="slider-swiper">
         <div
           className="slider-wrapper"
           style={{
@@ -130,7 +104,7 @@ const Slider = ({
           )}
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 
