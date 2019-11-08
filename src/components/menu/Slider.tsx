@@ -24,20 +24,22 @@ const Slider = ({
   hoveringElementID,
   previousElementID
 }: Props): JSX.Element => {
-  const [wrapperTranslate, setWrapperTranslate] = useState(vwToPx(27.2));
-  const [imageTranslate, setImageTranslate] = useState(vwToPx(23.15));
+  const [responsiveValues, setResponsiveValues] = useState({
+    wrapper: vwToPx(27.2),
+    image: vwToPx(23.15)
+  });
 
-  const updateTranslateValues = (): void => {
-    setWrapperTranslate(vwToPx(27.2));
-    setImageTranslate(vwToPx(23.15));
-  };
+  const updateResponsiveValues = (): void =>
+    setResponsiveValues({
+      wrapper: vwToPx(27.2),
+      image: vwToPx(23.15)
+    });
 
   useEffect((): (() => void) => {
-    window.addEventListener("orientationchange", updateTranslateValues);
-
+    window.addEventListener("orientationchange", updateResponsiveValues);
     return (): void =>
-      window.removeEventListener("orientationchange", updateTranslateValues);
-  }, [imageTranslate]);
+      window.removeEventListener("orientationchange", updateResponsiveValues);
+  }, [responsiveValues]);
 
   const wrapper = useRef(null);
   const mask = useRef(null);
@@ -92,10 +94,12 @@ const Slider = ({
   const transitionLength =
     Math.abs(previousElementID - hoveringElementID) === 1 ? "1s" : "2s";
 
-  const wrapperDistance = (hoveringElementID * -wrapperTranslate).toFixed(3);
+  const wrapperDistance = (
+    hoveringElementID * -responsiveValues.wrapper
+  ).toFixed(3);
 
   const getImageDistance = (id: number): string => {
-    const distance = 1 - imageTranslate * (id - hoveringElementID);
+    const distance = 1 - responsiveValues.image * (id - hoveringElementID);
     return distance.toFixed(3);
   };
 
