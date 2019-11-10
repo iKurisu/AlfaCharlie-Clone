@@ -1,6 +1,7 @@
 import React, { MouseEventHandler } from "react";
-import { Dispatch } from "redux";
 import { connect } from "react-redux";
+import { AnyAction } from "redux";
+import { ThunkDispatch } from "redux-thunk";
 import { AppState } from "store";
 import { menuActions } from "modules/menu";
 import White from "./menu/White";
@@ -52,9 +53,11 @@ const mapState = ({ menu }: AppState): MappedState => ({
   previousElementID: menu.previousElementID
 });
 
-const mapDispatch = (dispatch: Dispatch): MappedActions => ({
+const mapDispatch = (
+  dispatch: ThunkDispatch<AppState, void, AnyAction>
+): MappedActions => ({
   hoverElement: (elementID: number): React.MouseEventHandler => (): void => {
-    dispatch(menuActions.hoverElement(elementID));
+    dispatch(menuActions.hoverElement(elementID, 2000));
   }
 });
 
