@@ -1,6 +1,7 @@
 export enum Types {
   TOGGLE_MENU = "menu/TOGGLE",
-  HOVER_ELEMENT = "menu/HOVER_ELEMENT"
+  SET_HOVERING_ELEMENT = "menu/SET_HOVERING_ELEMENT",
+  UPDATE_PREVIOUS_ELEMENT = "menu/UPDATE_PREVIOUS_ELEMENT"
 }
 
 export interface MenuState {
@@ -13,9 +14,16 @@ interface ToggleMenuAction {
   type: Types.TOGGLE_MENU;
 }
 
-interface HoverElementAction {
-  type: Types.HOVER_ELEMENT;
+interface SetHoveringElementAction {
+  type: Types.SET_HOVERING_ELEMENT;
   elementID: number;
 }
 
-export type MenuActionTypes = ToggleMenuAction | HoverElementAction;
+interface UpdatePreviousElementAction {
+  type: Types.UPDATE_PREVIOUS_ELEMENT;
+}
+
+export type MenuActionTypes =
+  | ToggleMenuAction
+  | SetHoveringElementAction
+  | UpdatePreviousElementAction;
