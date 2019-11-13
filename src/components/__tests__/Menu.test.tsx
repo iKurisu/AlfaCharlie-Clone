@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { shallow } from "enzyme";
 import { Menu } from "../Menu";
 
@@ -10,12 +9,6 @@ describe("menu", (): void => {
     previousElementID: 0,
     hoverElement: jest.fn()
   };
-
-  it("renders correctly", (): void => {
-    const menu = renderer.create(<Menu {...props} />);
-
-    expect(menu).toMatchSnapshot();
-  });
 
   it("has correct class", (): void => {
     const menu = shallow(<Menu {...props} />);
