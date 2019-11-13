@@ -23,9 +23,9 @@ describe("menu reducer", (): void => {
     });
   });
 
-  it("handles HOVER_ELEMENT", (): void => {
+  it("handles SET_HOVER_ELEMENT", (): void => {
     const action: MenuActionTypes = {
-      type: Types.HOVER_ELEMENT,
+      type: Types.SET_HOVERING_ELEMENT,
       elementID: 1
     };
 
@@ -38,7 +38,7 @@ describe("menu reducer", (): void => {
     expect(reducer(undefined, action)).toEqual(newState);
 
     const secondAction: MenuActionTypes = {
-      type: Types.HOVER_ELEMENT,
+      type: Types.SET_HOVERING_ELEMENT,
       elementID: 2
     };
 
@@ -47,5 +47,25 @@ describe("menu reducer", (): void => {
       hoveringElementID: 2,
       previousElementID: 1
     });
+  });
+
+  it("handles UPDATE_PREVIOUS_ELEMENT", (): void => {
+    const action: MenuActionTypes = {
+      type: Types.UPDATE_PREVIOUS_ELEMENT
+    };
+
+    const initialState = {
+      toggled: false,
+      hoveringElementID: 2,
+      previousElementID: 0
+    };
+
+    const newState = {
+      toggled: false,
+      hoveringElementID: 2,
+      previousElementID: 2
+    };
+
+    expect(reducer(initialState, action)).toEqual(newState);
   });
 });
