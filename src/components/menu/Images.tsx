@@ -1,4 +1,4 @@
-import React, { useRef, MouseEventHandler } from "react";
+import React, { useRef } from "react";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import { MenuSlider } from "components/Slider";
@@ -14,9 +14,6 @@ const imageUrls = [
 
 interface Props {
   isOpen: boolean;
-  hoveringElementID: number;
-  previousElementID: number;
-  hoverElement: (elementID: number) => MouseEventHandler;
 }
 
 const Images = ({ isOpen }: Props): JSX.Element => {
