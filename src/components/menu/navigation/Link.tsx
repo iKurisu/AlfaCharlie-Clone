@@ -6,16 +6,16 @@ interface Props {
   link: string;
   fadeInOrder: number[];
   isOpen: boolean;
-  hoverElement: MouseEventHandler;
+  swipeSlide: MouseEventHandler;
 }
 
 const Link = ({
   link,
   fadeInOrder,
   isOpen,
-  hoverElement
+  swipeSlide
 }: Props): JSX.Element => (
-  <a className="menu-nav-link" onMouseEnter={hoverElement}>
+  <a className="menu-nav-link" onMouseEnter={swipeSlide}>
     <span className="link-characters">
       {link.split("").map(
         (character: string, id: number): JSX.Element => (
