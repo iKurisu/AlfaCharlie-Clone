@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import Slider from "components/Slider";
+import "./Images.scss";
 
 const imageUrls = [
   "2019/05/Alfa-Charlie-Creative-Agency-home-e1558112927714.jpg",

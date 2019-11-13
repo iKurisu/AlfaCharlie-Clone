@@ -1,0 +1,22 @@
+.menu-images {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.menu-slider {
+  width: 27.2vw;
+  height: 70vh;
+  clip-path: inset(1px 0 0 1px);
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .menu-images {
+    display: none;
+  }
+}
