@@ -36,6 +36,7 @@ export const Menu = ({
         isOpen={isOpen}
         hoveringElementID={hoveringElementID}
         previousElementID={previousElementID}
+        hoverElement={hoverElement}
       />
       <VerticalNav
         links={[["Instagram", false], ["Privacy", false]]}
