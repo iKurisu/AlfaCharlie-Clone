@@ -5,7 +5,7 @@ exports[`scroll cursor renders correcty 1`] = `
   className="scroll-cursor"
   style={
     Object {
-      "opacity": 1,
+      "opacity": 0,
     }
   }
 >
