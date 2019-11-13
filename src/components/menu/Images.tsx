@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, MouseEventHandler } from "react";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import Slider from "components/Slider";
+import { getDuration } from "utils/slider";
 import "./Images.scss";
 
 const imageUrls = [
@@ -16,9 +17,20 @@ interface Props {
   isOpen: boolean;
   hoveringElementID: number;
   previousElementID: number;
+  hoverElement: (elementID: number) => MouseEventHandler;
 }
 
-const Images = ({ isOpen, ...hoverProps }: Props): JSX.Element => {
+const Images = ({
+  isOpen,
+  hoveringElementID,
+  previousElementID,
+  hoverElement
+}: Props): JSX.Element => {
+  const transitionDuration = getDuration(
+    { current: hoveringElementID, previous: previousElementID },
+    2000
+  );
+
   const images = useRef(null);
 
   const fadeIn = useTransition(images, {
@@ -50,7 +62,13 @@ const Images = ({ isOpen, ...hoverProps }: Props): JSX.Element => {
   return (
     <div className="menu-images -flex" ref={images} style={{ opacity: 0 }}>
       <div className="menu-slider">
-        <Slider imageUrls={imageUrls} isOpen={isOpen} {...hoverProps} />
+        <Slider
+          imageUrls={imageUrls}
+          isOpen={isOpen}
+          currentSlideID={hoveringElementID}
+          duration={transitionDuration}
+          hoverElement={hoverElement}
+        />
       </div>
     </div>
   );
