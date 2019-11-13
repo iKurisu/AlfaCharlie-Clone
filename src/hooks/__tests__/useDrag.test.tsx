@@ -29,8 +29,5 @@ describe("useDrag", (): void => {
 
     div.simulate("mouseup");
     expect(onDrop.mock.calls.length).toBe(1);
-
-    div.simulate("mouseleave");
-    expect(onDrop.mock.calls.length).toBe(2);
   });
 });
