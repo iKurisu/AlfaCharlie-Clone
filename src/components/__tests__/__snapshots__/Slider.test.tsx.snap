@@ -1,26 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`slider renders correctly 1`] = `
-<div
-  className="menu-images -flex"
-  style={
-    Object {
-      "opacity": 0,
-    }
-  }
->
+Array [
   <div
-    className="menu-slider"
+    className="slider-mask"
+  />,
+  <div
+    className="slider-swiper"
+    onMouseDown={[Function]}
+    onMouseMove={[Function]}
+    onMouseUp={[Function]}
   >
-    <div
-      className="slider-mask"
-    />
     <div
       className="slider-wrapper"
       style={
         Object {
           "transform": "translateX(0.000px)",
-          "transition": "transform 2s",
+          "transition": "transform 0ms",
         }
       }
     >
@@ -33,7 +29,7 @@ exports[`slider renders correctly 1`] = `
             Object {
               "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/05/Alfa-Charlie-Creative-Agency-home-e1558112927714.jpg)",
               "transform": "translateX(1.000px)",
-              "transition": "transform 2s",
+              "transition": "transform 0ms",
             }
           }
         />
@@ -47,7 +43,7 @@ exports[`slider renders correctly 1`] = `
             Object {
               "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/05/Alfa-Charlie-Creative-Agency-about-5.jpg)",
               "transform": "translateX(-236.056px)",
-              "transition": "transform 2s",
+              "transition": "transform 0ms",
             }
           }
         />
@@ -61,7 +57,7 @@ exports[`slider renders correctly 1`] = `
             Object {
               "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Alfa-Charlie-Creative-Agency-work.jpg)",
               "transform": "translateX(-473.112px)",
-              "transition": "transform 2s",
+              "transition": "transform 0ms",
             }
           }
         />
@@ -75,7 +71,7 @@ exports[`slider renders correctly 1`] = `
             Object {
               "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/05/Alfa-Charlie-Creative-Agency-home-2.jpg)",
               "transform": "translateX(-710.168px)",
-              "transition": "transform 2s",
+              "transition": "transform 0ms",
             }
           }
         />
@@ -89,12 +85,12 @@ exports[`slider renders correctly 1`] = `
             Object {
               "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/05/Alfa-Charlie-Creative-Agency-contact-2.jpg)",
               "transform": "translateX(-947.224px)",
-              "transition": "transform 2s",
+              "transition": "transform 0ms",
             }
           }
         />
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+]
 `;

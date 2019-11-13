@@ -12,10 +12,13 @@ const imageUrls = [
 ];
 
 describe("slider", (): void => {
+  const hoverElement = jest.fn();
+
   const props = {
     isOpen: true,
-    hoveringElementID: 0,
-    previousElementID: 0
+    currentSlideID: 0,
+    duration: 0,
+    hoverElement
   };
 
   const { innerWidth: width } = window;
@@ -31,16 +34,16 @@ describe("slider", (): void => {
     const slider = shallow(<Slider imageUrls={[]} {...props} />);
     const distance = (-width * 27.2) / 100;
 
-    slider.setProps({ hoveringElementID: 1 });
+    slider.setProps({ currentSlideID: 1, duration: 1000 });
     expect(slider.find(".slider-wrapper").props().style).toEqual({
       transform: `translateX(${distance.toFixed(3)}px)`,
-      transition: "transform 1s"
+      transition: "transform 1000ms"
     });
 
-    slider.setProps({ hoveringElementID: 3, previousElementID: 1 });
+    slider.setProps({ currentSlideID: 3, duration: 2000 });
     expect(slider.find(".slider-wrapper").props().style).toEqual({
       transform: `translateX(${(distance * 3).toFixed(3)}px)`,
-      transition: "transform 2s"
+      transition: "transform 2000ms"
     });
   });
 });
