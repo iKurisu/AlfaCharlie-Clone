@@ -1,16 +1,17 @@
-import { useState, MouseEventHandler, MouseEvent } from "react";
+import { useState, useRef, MouseEventHandler, MouseEvent } from "react";
+
+export type Handler = (event: MouseEvent, clickPosition?: number) => void;
 
 interface Handlers {
-  onClick?: MouseEventHandler;
-  onDrag: MouseEventHandler;
-  onDrop?: MouseEventHandler;
+  onClick?: Handler;
+  onDrag: Handler;
+  onDrop?: Handler;
 }
 
 interface DragProps {
   onMouseDown: MouseEventHandler;
   onMouseMove: MouseEventHandler;
   onMouseUp: MouseEventHandler;
-  onMouseLeave: MouseEventHandler;
 }
 
 enum Mouse {
@@ -23,35 +24,36 @@ type MouseState = keyof typeof Mouse;
 
 const useDrag = ({ onClick, onDrag, onDrop }: Handlers): DragProps => {
   const [mouseState, setMouseState] = useState<MouseState>(Mouse.NONE);
+  const clickPosition = useRef(0);
 
-  const click = (event: MouseEvent): void => {
-    setMouseState(Mouse.CLICKING);
-    onClick(event);
-  };
-  const drop = (event: MouseEvent): void => {
-    setMouseState(Mouse.NONE);
-    if (onDrop) onDrop(event);
-  };
-
-  const isMouse = (state: MouseState) => () => mouseState === state;
+  const isMouse = (state: MouseState) => (): boolean => mouseState === state;
 
   const isClicking = isMouse(Mouse.CLICKING);
   const isDragging = isMouse(Mouse.DRAGGING);
 
+  const click = (event: MouseEvent): void => {
+    setMouseState(Mouse.CLICKING);
+    clickPosition.current = event.clientX;
+    if (onClick) onClick(event, clickPosition.current);
+  };
+  const drop = (event: MouseEvent): void => {
+    setMouseState(Mouse.NONE);
+    if (onDrop && isDragging()) onDrop(event, clickPosition.current);
+  };
+
   const drag = (event: MouseEvent): void => {
     if (isClicking()) {
       setMouseState(Mouse.DRAGGING);
-      onDrag(event);
+      onDrag(event, clickPosition.current);
     }
 
-    if (isDragging()) onDrag(event);
+    if (isDragging()) onDrag(event, clickPosition.current);
   };
 
   return {
     onMouseDown: click,
     onMouseMove: drag,
-    onMouseUp: drop,
-    onMouseLeave: drop
+    onMouseUp: drop
   };
 };
 
