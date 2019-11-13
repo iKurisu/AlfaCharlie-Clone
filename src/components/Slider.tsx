@@ -1,19 +1,32 @@
 import React, { useRef, MouseEventHandler, RefObject } from "react";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
+import { AppState } from "store";
+import { menuActions } from "modules/menu";
 import Mask from "./slider/Mask";
 import Slide from "./slider/Slide";
 import useResponsiveWidth from "hooks/useResponsiveWidth";
 import useDrag, { Handler } from "hooks/useDrag";
-import "./Slider.scss";
-import { getDistance } from "utils/slider";
+import { getDistance, getDuration } from "utils/slider";
 import { setTransform, setTransition } from "utils/refs";
+import "./Slider.scss";
+import { heroActions } from "modules/hero";
 
-interface Props {
-  imageUrls: string[];
+interface MappedState {
   isOpen: boolean;
   currentSlideID: number;
   duration: number;
-  hoverElement: (elementID: number) => MouseEventHandler;
 }
+
+interface MappedActions {
+  swipeSlide: (elementID: number, duration: number) => MouseEventHandler;
+}
+
+interface OwnProps {
+  imageUrls: string[];
+}
+
+type Props = MappedState & MappedActions & OwnProps;
 
 interface Properties {
   transform?: (id: number) => string;
@@ -25,12 +38,12 @@ enum MouseDirection {
   RIGHT = -1
 }
 
-const Slider = ({
+export const Slider = ({
   imageUrls,
   isOpen,
   currentSlideID,
   duration,
-  hoverElement
+  swipeSlide
 }: Props): JSX.Element => {
   const wrapperWidth = useResponsiveWidth(27.2);
   const imageWidth = useResponsiveWidth(23.15);
@@ -120,7 +133,7 @@ const Slider = ({
           : MouseDirection.RIGHT;
 
       toggleTransition();
-      hoverElement(currentSlideID + direction)(event);
+      swipeSlide(currentSlideID + direction, duration)(event);
     }
   };
 
@@ -155,4 +168,50 @@ const Slider = ({
   );
 };
 
-export default Slider;
+const mapMenuState = ({ menu }: AppState): MappedState => ({
+  isOpen: menu.toggled,
+  currentSlideID: menu.hoveringElementID,
+  duration: getDuration(
+    { current: menu.hoveringElementID, previous: menu.previousElementID },
+    2000
+  )
+});
+
+const mapMenuDispatch = (dispatch: Dispatch): MappedActions => ({
+  swipeSlide: (
+    elementID: number,
+    duration: number
+  ): React.MouseEventHandler => (): void => {
+    dispatch(menuActions.setHoveringElement(elementID));
+    setTimeout(() => dispatch(menuActions.updatePreviousElement()), duration);
+  }
+});
+
+export const MenuSlider = connect(
+  mapMenuState,
+  mapMenuDispatch
+)(Slider);
+
+const mapHeroState = ({ hero }: AppState): MappedState => ({
+  isOpen: true, // Update when intro is done
+  currentSlideID: hero.currentSlideID,
+  duration: getDuration(
+    { current: hero.currentSlideID, previous: hero.previousSlideID },
+    3000
+  )
+});
+
+const mapHeroDispatch = (dispatch: Dispatch): MappedActions => ({
+  swipeSlide: (
+    elementID: number,
+    duration: number
+  ): React.MouseEventHandler => (): void => {
+    dispatch(heroActions.setSlide(elementID));
+    setTimeout(() => dispatch(heroActions.updatePreviousSlide()), duration);
+  }
+});
+
+export const HeroSlider = connect(
+  mapHeroState,
+  mapHeroDispatch
+)(Slider);
