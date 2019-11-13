@@ -37,5 +37,7 @@ const hoverElement = (
 
 export default {
   toggleMenu,
+  setHoveringElement,
+  updatePreviousElement,
   hoverElement
 };
