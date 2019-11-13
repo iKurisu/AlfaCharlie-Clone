@@ -1,16 +1,30 @@
 import React, { useRef, MouseEventHandler } from "react";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
+import { AppState } from "store";
+import { menuActions } from "modules/menu";
 import Home from "./navigation/Home";
 import Link from "./navigation/Link";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
+import { getDuration } from "utils/slider";
 import "./Navigation.scss";
 
-interface Props {
-  isOpen: boolean;
-  hoverElement: (elementID: number) => MouseEventHandler;
+interface MappedState {
+  duration: number;
 }
 
-const Navigation = ({ isOpen, hoverElement }: Props): JSX.Element => {
+interface MappedActions {
+  swipeSlide: (elementID: number, duration: number) => MouseEventHandler;
+}
+
+interface OwnProps {
+  isOpen: boolean;
+}
+
+type Props = MappedState & MappedActions & OwnProps;
+
+const Navigation = ({ isOpen, duration, swipeSlide }: Props): JSX.Element => {
   const links = ["agency", "work", "journal", "contact"];
   const fadeInOrder = [
     [1, 4, 2, 2, 1, 3],
@@ -53,7 +67,7 @@ const Navigation = ({ isOpen, hoverElement }: Props): JSX.Element => {
       <Home isOpen={isOpen} />
       <nav
         className="menu-nav-links -flex"
-        onMouseLeave={hoverElement(0)}
+        onMouseLeave={swipeSlide(0, duration)}
         style={{ opacity: 0 }}
         ref={nav}
       >
@@ -63,7 +77,7 @@ const Navigation = ({ isOpen, hoverElement }: Props): JSX.Element => {
               link={link}
               fadeInOrder={fadeInOrder[id]}
               isOpen={isOpen}
-              hoverElement={hoverElement(id + 1)}
+              swipeSlide={swipeSlide(id + 1, duration)}
               key={id}
             />
           )
@@ -73,4 +87,25 @@ const Navigation = ({ isOpen, hoverElement }: Props): JSX.Element => {
   );
 };
 
-export default Navigation;
+const mapState = ({ menu }: AppState): MappedState => ({
+  duration: getDuration(
+    { current: menu.hoveringElementID, previous: menu.previousElementID },
+    2000
+  )
+});
+
+const mapDispatch = (dispatch: Dispatch): MappedActions => ({
+  swipeSlide: (
+    elementID: number,
+    duration: number
+  ): MouseEventHandler => (): void => {
+    dispatch(menuActions.setHoveringElement(elementID));
+
+    setTimeout(() => dispatch(menuActions.updatePreviousElement()), duration);
+  }
+});
+
+export default connect(
+  mapState,
+  mapDispatch
+)(Navigation);
