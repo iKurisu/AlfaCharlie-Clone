@@ -1,105 +1,152 @@
-import React, { useState, useRef, useEffect } from "react";
-import useTransition from "hooks/useTransition";
-import useDidUpdateEffect from "hooks/useDidUpdateEffect";
-import { vwToPx } from "utils/responsive";
+import React, { useRef, MouseEventHandler, RefObject } from "react";
+import Mask from "./slider/Mask";
+import Slide from "./slider/Slide";
+import useResponsiveWidth from "hooks/useResponsiveWidth";
+import useDrag, { Handler } from "hooks/useDrag";
 import "./Slider.scss";
-
-const urlSite = "https://alfacharlie.b-cdn.net/wp-content/uploads/";
+import { getDistance } from "utils/slider";
+import { setTransform, setTransition } from "utils/refs";
 
 interface Props {
   imageUrls: string[];
   isOpen: boolean;
-  hoveringElementID: number;
-  previousElementID: number;
+  currentSlideID: number;
+  duration: number;
+  hoverElement: (elementID: number) => MouseEventHandler;
+}
+
+interface Properties {
+  transform?: (id: number) => string;
+  transition?: string;
+}
+
+enum MouseDirection {
+  LEFT = 1,
+  RIGHT = -1
 }
 
 const Slider = ({
   imageUrls,
   isOpen,
-  hoveringElementID,
-  previousElementID
+  currentSlideID,
+  duration,
+  hoverElement
 }: Props): JSX.Element => {
-  const [responsiveValues, setResponsiveValues] = useState({
-    wrapper: vwToPx(27.2),
-    image: vwToPx(23.15)
-  });
+  const wrapperWidth = useResponsiveWidth(27.2);
+  const imageWidth = useResponsiveWidth(23.15);
 
-  const updateResponsiveValues = (): void =>
-    setResponsiveValues({
-      wrapper: vwToPx(27.2),
-      image: vwToPx(23.15)
-    });
+  const wrapper = useRef(null);
+  const images = imageUrls.map(() => useRef(null));
 
-  useEffect((): (() => void) => {
-    window.addEventListener("orientationchange", updateResponsiveValues);
-    return (): void =>
-      window.removeEventListener("orientationchange", updateResponsiveValues);
-  }, [responsiveValues]);
+  const wrapperDistance = currentSlideID * -wrapperWidth;
+  const getSlideDistance = (id: number): number =>
+    1 - imageWidth * (id - currentSlideID);
 
-  const mask = useRef(null);
+  const setWrapperTransform = setTransform(wrapper);
+  const setWrapperTransition = setTransition(wrapper);
 
-  const revealSlider = useTransition(mask, {
-    from: { transform: "translateX(0)" },
-    to: { transform: "translateX(100%)" },
-    config: {
-      duration: 850,
-      delay: 800,
-      timing: [0.17, 0.5, 0.48, 1]
-    }
-  });
-
-  const hideSlider = useTransition(mask, {
-    from: { transform: "translateX(-100%)" },
-    to: { transform: "translateX(0)" },
-    config: {
-      duration: 1000,
-      timing: [0.17, 0.5, 0.48, 1]
-    }
-  });
-
-  useDidUpdateEffect((): void => {
-    if (isOpen) {
-      revealSlider();
-    } else {
-      hideSlider();
-    }
-  }, [isOpen]);
-
-  const transitionLength =
-    Math.abs(previousElementID - hoveringElementID) === 1 ? "1s" : "2s";
-
-  const wrapperDistance = (
-    hoveringElementID * -responsiveValues.wrapper
-  ).toFixed(3);
-
-  const getImageDistance = (id: number): string => {
-    const distance = 1 - responsiveValues.image * (id - hoveringElementID);
-    return distance.toFixed(3);
+  const updateProperties = ({ transform, transition }: Properties) => (
+    image: RefObject<HTMLDivElement>,
+    id: number
+  ) => {
+    if (transform) setTransform(image)(transform(id));
+    if (transition) setTransition(image)(transition);
   };
+
+  const onTransition = useRef(false);
+
+  const toggleTransition = (): void => {
+    onTransition.current = true;
+    setTimeout(() => (onTransition.current = false), 1000);
+  };
+
+  const isOnTransition = (): boolean => onTransition.current;
+
+  const isFirstSlide = (mouseX: number, clickPosition: number): boolean =>
+    currentSlideID === 0 && mouseX > clickPosition;
+  const isLastSlide = (mouseX: number, clickPosition: number): boolean =>
+    currentSlideID === 4 && mouseX < clickPosition;
+
+  const isAtExtreme: typeof isFirstSlide = (...args) =>
+    isFirstSlide(...args) || isLastSlide(...args);
+
+  const canSwipe: typeof isFirstSlide = (...args) =>
+    !isAtExtreme(...args) && !isOnTransition();
+
+  const onDrag: Handler = (event, clickPosition) => {
+    if (!canSwipe(event.clientX, clickPosition)) return;
+
+    setWrapperTransform(
+      `translateX(${wrapperDistance + event.clientX - clickPosition}px)`
+    );
+
+    images.forEach(
+      updateProperties({
+        transform: (id: number): string => {
+          return `translateX(${1 -
+            imageWidth * (id - (clickPosition - event.clientX) / wrapperWidth) +
+            imageWidth * currentSlideID}px)`;
+        }
+      })
+    );
+  };
+
+  const onDrop: Handler = (event, clickPosition) => {
+    if (!canSwipe(event.clientX, clickPosition)) return;
+
+    if (getDistance(event.clientX, clickPosition) < wrapperWidth * 0.2) {
+      toggleTransition();
+
+      setWrapperTransform(`translateX(${wrapperDistance}px)`);
+      setWrapperTransition("transform 1s");
+
+      images.forEach(
+        updateProperties({
+          transform: (id: number): string =>
+            `translateX(${getSlideDistance(id)}px)`,
+          transition: "transform 1s"
+        })
+      );
+
+      setTimeout(() => {
+        setWrapperTransition("transform 0s");
+
+        images.forEach(updateProperties({ transition: "transform 0s" }));
+      }, 1000);
+    } else {
+      const direction =
+        event.clientX < clickPosition
+          ? MouseDirection.LEFT
+          : MouseDirection.RIGHT;
+
+      toggleTransition();
+      hoverElement(currentSlideID + direction)(event);
+    }
+  };
+
+  const dragProps = useDrag({ onDrag, onDrop });
 
   return (
     <React.Fragment>
-      <div className="slider-mask" ref={mask} />
-      <div className="slider-swiper">
+      <Mask isOpen={isOpen} />
+      <div className="slider-swiper" {...dragProps}>
         <div
           className="slider-wrapper"
+          ref={wrapper}
           style={{
-            transform: `translateX(${wrapperDistance}px)`,
-            transition: `transform ${transitionLength}`
+            transform: `translateX(${wrapperDistance.toFixed(3)}px)`,
+            transition: `transform ${duration}ms`
           }}
         >
           {imageUrls.map(
             (url, id): JSX.Element => (
-              <div className="slide" key={id}>
-                <div
-                  className="slide-img"
-                  style={{
-                    backgroundImage: `url(${urlSite}${url})`,
-                    transform: `translateX(${getImageDistance(id)}px)`,
-                    transition: `transform ${transitionLength}`
-                  }}
-                />
-              </div>
+              <Slide
+                url={url}
+                distance={getSlideDistance(id)}
+                duration={duration}
+                imageRef={images[id]}
+                key={id}
+              />
             )
           )}
         </div>
