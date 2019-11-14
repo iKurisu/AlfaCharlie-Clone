@@ -1,5 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import thunk, { ThunkMiddleware } from "redux-thunk";
+import { createStore, combineReducers } from "redux";
 import menu from "modules/menu";
 import hero from "modules/hero";
 
@@ -8,10 +7,7 @@ const rootReducer = combineReducers({
   hero
 });
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk as ThunkMiddleware)
-);
+const store = createStore(rootReducer);
 
 export type AppState = ReturnType<typeof rootReducer>;
 
