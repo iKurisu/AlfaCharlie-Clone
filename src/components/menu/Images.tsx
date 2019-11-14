@@ -48,7 +48,7 @@ const Images = ({ isOpen }: Props): JSX.Element => {
   return (
     <div className="menu-images -flex" ref={images} style={{ opacity: 0 }}>
       <div className="menu-slider">
-        <MenuSlider imageUrls={imageUrls} />
+        <MenuSlider imageUrls={imageUrls} maskFadeDirection={"right"} />
       </div>
     </div>
   );

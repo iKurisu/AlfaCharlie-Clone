@@ -24,6 +24,7 @@ interface MappedActions {
 
 interface OwnProps {
   imageUrls: string[];
+  maskFadeDirection: "left" | "right";
 }
 
 type Props = MappedState & MappedActions & OwnProps;
@@ -40,6 +41,7 @@ enum MouseDirection {
 
 export const Slider = ({
   imageUrls,
+  maskFadeDirection,
   isOpen,
   currentSlideID,
   duration,
@@ -141,7 +143,7 @@ export const Slider = ({
 
   return (
     <React.Fragment>
-      <Mask isOpen={isOpen} />
+      <Mask isOpen={isOpen} fadeDirection={maskFadeDirection} />
       <div className="slider-swiper" {...dragProps}>
         <div
           className="slider-wrapper"

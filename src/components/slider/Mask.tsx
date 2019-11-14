@@ -4,14 +4,15 @@ import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 
 interface Props {
   isOpen: boolean;
+  fadeDirection: "left" | "right";
 }
 
-const Mask = ({ isOpen }: Props): JSX.Element => {
+const Mask = ({ isOpen, fadeDirection }: Props): JSX.Element => {
   const mask = useRef(null);
 
   const revealSlider = useTransition(mask, {
     from: { transform: "translateX(0)" },
-    to: { transform: "translateX(100%)" },
+    to: { transform: `translateX(${fadeDirection === "right" ? 100 : -100}%)` },
     config: {
       duration: 850,
       delay: 800,
@@ -20,7 +21,9 @@ const Mask = ({ isOpen }: Props): JSX.Element => {
   });
 
   const hideSlider = useTransition(mask, {
-    from: { transform: "translateX(-100%)" },
+    from: {
+      transform: `translateX(${fadeDirection === "right" ? -100 : 100}%)`
+    },
     to: { transform: "translateX(0)" },
     config: {
       duration: 1000,
