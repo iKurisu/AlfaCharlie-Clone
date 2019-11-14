@@ -3,6 +3,7 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import { menuActions } from "modules/menu";
+import { heroActions } from "modules/hero";
 import Mask from "./slider/Mask";
 import Slide from "./slider/Slide";
 import useResponsiveWidth from "hooks/useResponsiveWidth";
@@ -10,7 +11,6 @@ import useDrag, { Handler } from "hooks/useDrag";
 import { getDistance, getDuration } from "utils/slider";
 import { setTransform, setTransition } from "utils/refs";
 import "./Slider.scss";
-import { heroActions } from "modules/hero";
 
 interface MappedState {
   isOpen: boolean;
