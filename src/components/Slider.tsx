@@ -192,8 +192,8 @@ export const MenuSlider = connect(
   mapMenuDispatch
 )(Slider);
 
-const mapHeroState = ({ hero }: AppState): MappedState => ({
-  isOpen: true, // Update when intro is done
+const mapHeroState = ({ hero, intro }: AppState): MappedState => ({
+  isOpen: !intro.toggled,
   currentSlideID: hero.currentSlideID,
   duration: getDuration(
     { current: hero.currentSlideID, previous: hero.previousSlideID },
