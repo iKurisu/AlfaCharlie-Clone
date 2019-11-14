@@ -1,10 +1,12 @@
 import { createStore, combineReducers } from "redux";
-import menu from "modules/menu";
 import hero from "modules/hero";
+import intro from "modules/intro";
+import menu from "modules/menu";
 
 const rootReducer = combineReducers({
-  menu,
-  hero
+  hero,
+  intro,
+  menu
 });
 
 const store = createStore(rootReducer);
