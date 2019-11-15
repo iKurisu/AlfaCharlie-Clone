@@ -1,5 +1,7 @@
 @import "sass/_variables.scss";
 
+$timing: cubic-bezier(.645,.045,.355,1);
+
 .row {
   padding: 0 10.5%;  
 }
@@ -53,6 +55,8 @@
   display: inline-block;
   position: absolute;
   top: calc(50% - 1px);
+  transform-origin: 0% 50%;
+  transition: transform .35s $timing .33s;
 }
 
 .hero-link svg {
@@ -67,6 +71,18 @@
   stroke-width: 4;
 }
 
+.hero-link polyline {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  transition: stroke-dashoffset .3s;
+}
+
+.hero-link line {
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
+  transition: stroke-dashoffset .4s;
+}
+
 .hero-link .link-text-wrapper {
   display: inline-block;
   padding: 0 10px;
@@ -79,6 +95,28 @@
   letter-spacing: 0.16em;
   line-height: 1.1;
   text-transform: uppercase;
+  transition: transform 1s cubic-bezier(0, 0, 0, 1) .15s;
+}
+
+.hero-link:hover .link-line {
+  transform: scaleX(0);
+  transform-origin: 100% 50%;
+  transition: transform .35s cubic-bezier(.645,.045,.355,1);
+}
+
+.hero-link:hover polyline {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset .3s .4s;
+}
+
+.hero-link:hover line {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset .3s .3s;
+}
+
+.hero-link:hover .link-text {
+  transform: translateX(5px);
+  transition: transform 1s cubic-bezier(0, 0, 0, 1) .5s;
 }
 
 .hero-slider {
