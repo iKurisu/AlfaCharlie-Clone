@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { AppState } from "store";
 import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
+import { classList } from "utils/class";
 import "./Home.scss";
 
 const imageUrls = [
@@ -13,11 +15,17 @@ const imageUrls = [
   "2019/05/Crypto-Capital-Catlyst-Logo-Design.jpg"
 ];
 
-interface Props {
+interface MappedState {
+  currentSlideID: number;
+}
+
+interface MappedActions {
   toggleIntro: () => IntroActionTypes;
 }
 
-const Home = ({ toggleIntro }: Props): JSX.Element => {
+type Props = MappedState & MappedActions;
+
+const Home = ({ currentSlideID, toggleIntro }: Props): JSX.Element => {
   useEffect((): void => {
     toggleIntro();
   }, []);
@@ -61,6 +69,31 @@ const Home = ({ toggleIntro }: Props): JSX.Element => {
           </div>
           <div className="hero-slider">
             <HeroSlider imageUrls={imageUrls} maskFadeDirection={"left"} />
+            <div className="hero-slider-nav">
+              <span className="hero-slider-progress">
+                <span className="hero-slider-prefix">
+                  N<span>o</span>
+                </span>
+                <span className="hero-slider-current">
+                  {imageUrls.map((_, id) => (
+                    <span style={{ top: `${id * 100}%` }} key={id}>
+                      {id + 1}
+                    </span>
+                  ))}
+                </span>
+              </span>
+              <div className="hero-slider-dots">
+                {imageUrls.map((_, id) => (
+                  <span
+                    className={classList({
+                      ["hero-slider-dot"]: true,
+                      active: id === currentSlideID
+                    })}
+                    key={id}
+                  ></span>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -68,11 +101,15 @@ const Home = ({ toggleIntro }: Props): JSX.Element => {
   );
 };
 
-const mapDispatch = {
+const mapState = ({ hero }: AppState): MappedState => ({
+  currentSlideID: hero.currentSlideID
+});
+
+const mapDispatch: MappedActions = {
   toggleIntro: introActions.toggleIntro
 };
 
 export default connect(
-  null,
+  mapState,
   mapDispatch
 )(Home);

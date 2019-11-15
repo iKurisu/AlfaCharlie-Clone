@@ -1,9 +1,9 @@
 @import "sass/_variables.scss";
 
-$timing: cubic-bezier(.645,.045,.355,1);
+$timing: cubic-bezier(0.645, 0.045, 0.355, 1);
 
 .row {
-  padding: 0 10.5%;  
+  padding: 0 10.5%;
 }
 
 .hero {
@@ -22,7 +22,7 @@ $timing: cubic-bezier(.645,.045,.355,1);
 
 .hero-title {
   color: $black;
-  font-family: 'benton-modern-display';
+  font-family: "benton-modern-display";
   font-size: 51px;
   font-weight: 400;
   letter-spacing: 0.06em;
@@ -48,7 +48,7 @@ $timing: cubic-bezier(.645,.045,.355,1);
 }
 
 .link-line {
-  content: '';
+  content: "";
   width: 23px;
   height: 1px;
   background: #d43246;
@@ -56,7 +56,7 @@ $timing: cubic-bezier(.645,.045,.355,1);
   position: absolute;
   top: calc(50% - 1px);
   transform-origin: 0% 50%;
-  transition: transform .35s $timing .33s;
+  transition: transform 0.35s $timing 0.33s;
 }
 
 .hero-link svg {
@@ -65,7 +65,8 @@ $timing: cubic-bezier(.645,.045,.355,1);
   margin-top: -1px;
 }
 
-.hero-link polyline, .hero-link line {
+.hero-link polyline,
+.hero-link line {
   fill: none;
   stroke: #d43246;
   stroke-width: 4;
@@ -74,13 +75,13 @@ $timing: cubic-bezier(.645,.045,.355,1);
 .hero-link polyline {
   stroke-dasharray: 60;
   stroke-dashoffset: 60;
-  transition: stroke-dashoffset .3s;
+  transition: stroke-dashoffset 0.3s;
 }
 
 .hero-link line {
   stroke-dasharray: 140;
   stroke-dashoffset: 140;
-  transition: stroke-dashoffset .4s;
+  transition: stroke-dashoffset 0.4s;
 }
 
 .hero-link .link-text-wrapper {
@@ -95,36 +96,113 @@ $timing: cubic-bezier(.645,.045,.355,1);
   letter-spacing: 0.16em;
   line-height: 1.1;
   text-transform: uppercase;
-  transition: transform 1s cubic-bezier(0, 0, 0, 1) .15s;
+  transition: transform 1s cubic-bezier(0, 0, 0, 1) 0.15s;
 }
 
 .hero-link:hover .link-line {
   transform: scaleX(0);
   transform-origin: 100% 50%;
-  transition: transform .35s cubic-bezier(.645,.045,.355,1);
+  transition: transform 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .hero-link:hover polyline {
   stroke-dashoffset: 0;
-  transition: stroke-dashoffset .3s .4s;
+  transition: stroke-dashoffset 0.3s 0.4s;
 }
 
 .hero-link:hover line {
   stroke-dashoffset: 0;
-  transition: stroke-dashoffset .3s .3s;
+  transition: stroke-dashoffset 0.3s 0.3s;
 }
 
 .hero-link:hover .link-text {
   transform: translateX(5px);
-  transition: transform 1s cubic-bezier(0, 0, 0, 1) .5s;
+  transition: transform 1s cubic-bezier(0, 0, 0, 1) 0.5s;
 }
 
 .hero-slider {
-   width: 65%;
-   height: 70vh;
-   margin-left: -8%;
+  width: 65%;
+  height: 70vh;
+  margin-left: -8%;
+  position: relative;
 }
 
 .hero .slider-mask {
   background: $background;
+}
+
+.hero-slider-nav {
+  display: flex;
+  position: absolute;
+  top: 13%;
+  right: -67px;
+}
+
+.hero-slider-progress {
+  color: $grey;
+  font-family: "benton-modern-display";
+  font-size: 20px;
+  margin-right: 30px;
+  line-height: 1;
+}
+
+.hero-slider-prefix {
+  line-height: 1;
+}
+
+.hero-slider-prefix span {
+  font-size: 12px;
+  position: absolute;
+  top: 1px;
+  left: 17px;
+}
+
+.hero-slider-current {
+  position: absolute;
+  left: 30px;
+  width: 16px;
+  height: 100%;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.hero-slider-current span {
+  position: absolute;
+}
+
+.hero-slider-dots {
+  display: flex;
+  align-items: center;
+}
+
+.hero-slider-dot {
+  position: relative;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+}
+
+.hero-slider-dot::after {
+  content: "";
+  width: 2px;
+  height: 2px;
+  background: $grey;
+  position: absolute;
+  top: 5px;
+  left: 4px;
+}
+
+.hero-slider-dot.active {
+  width: 96px;
+  pointer-events: none;
+}
+
+.hero-slider-dot.active::after {
+  width: calc(100% - 10px);
+  height: 1px;
+}
+
+.hero-slider-dot:not(.active)::after {
+  border-radius: 50%;
 }
