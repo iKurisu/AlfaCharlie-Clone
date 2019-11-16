@@ -168,6 +168,7 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
 
 .hero-slider-current span {
   position: absolute;
+  transition: all 0.3s cubic-bezier(0.215, 0.31, 0.655, 1);
 }
 
 .hero-slider-dots {

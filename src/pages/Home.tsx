@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, MouseEventHandler } from "react";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import { heroActions } from "modules/hero";
@@ -33,6 +33,11 @@ const Home = ({
   toggleIntro,
   setSlide
 }: Props): JSX.Element => {
+  const [dot, setDot] = useState(currentSlideID);
+
+  const updateDot = (dot: number): MouseEventHandler => () => setDot(dot);
+  const resetDot = (): void => setDot(currentSlideID);
+
   useEffect((): void => {
     toggleIntro();
   }, []);
@@ -83,7 +88,14 @@ const Home = ({
                 </span>
                 <span className="hero-slider-current">
                   {imageUrls.map((_, id) => (
-                    <span style={{ top: `${id * 100}%` }} key={id}>
+                    <span
+                      style={{
+                        top: `${100 * id}%`,
+                        transform: `translateY(${-100 * dot}%)`,
+                        opacity: Number(dot === id)
+                      }}
+                      key={id}
+                    >
                       {id + 1}
                     </span>
                   ))}
@@ -97,6 +109,8 @@ const Home = ({
                       active: id === currentSlideID
                     })}
                     onClick={() => setSlide(id)}
+                    onMouseOver={updateDot(id)}
+                    onMouseLeave={resetDot}
                     key={id}
                   ></span>
                 ))}
