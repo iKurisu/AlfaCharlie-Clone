@@ -181,6 +181,7 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
   width: 10px;
   height: 10px;
   cursor: pointer;
+  transition: width 0.45s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .hero-slider-dot::after {

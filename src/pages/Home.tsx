@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { AppState } from "store";
+import { heroActions } from "modules/hero";
+import { HeroActionTypes } from "modules/hero/types";
 import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
@@ -21,11 +23,16 @@ interface MappedState {
 
 interface MappedActions {
   toggleIntro: () => IntroActionTypes;
+  setSlide: (slideID: number) => HeroActionTypes;
 }
 
 type Props = MappedState & MappedActions;
 
-const Home = ({ currentSlideID, toggleIntro }: Props): JSX.Element => {
+const Home = ({
+  currentSlideID,
+  toggleIntro,
+  setSlide
+}: Props): JSX.Element => {
   useEffect((): void => {
     toggleIntro();
   }, []);
@@ -89,6 +96,7 @@ const Home = ({ currentSlideID, toggleIntro }: Props): JSX.Element => {
                       ["hero-slider-dot"]: true,
                       active: id === currentSlideID
                     })}
+                    onClick={() => setSlide(id)}
                     key={id}
                   ></span>
                 ))}
@@ -106,7 +114,8 @@ const mapState = ({ hero }: AppState): MappedState => ({
 });
 
 const mapDispatch: MappedActions = {
-  toggleIntro: introActions.toggleIntro
+  toggleIntro: introActions.toggleIntro,
+  setSlide: heroActions.setSlide
 };
 
 export default connect(
