@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import Logo from "./home/Logo";
+import Symbol from "components/Symbol";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import "./Home.scss";
@@ -44,7 +44,7 @@ const Home = ({ isOpen }: Props): JSX.Element => {
       ref={home}
       style={{ opacity: 0, transform: "rotate(45deg)" }}
     >
-      <Logo />
+      <Symbol />
     </a>
   );
 };

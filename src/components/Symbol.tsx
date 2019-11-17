@@ -1,8 +1,8 @@
 import React from "react";
-import "./Logo.scss";
+import "./Symbol.scss";
 
-const Logo = (): JSX.Element => (
-  <svg className="menu-logo" x="0px" y="0px" viewBox="0 0 156.23 156.23">
+const Symbol = (): JSX.Element => (
+  <svg className="symbol" x="0px" y="0px" viewBox="0 0 156.23 156.23">
     <path
       d="M34.8,82.75c0.25,0.53,0.44,1.08,0.58,1.66c0.66,2.87-0.18,5.48-2.53,7.83c-0.77,0.77-1.57,1.38-2.4,1.82  
         c-2.84,1.47-5.5,0.97-7.96-1.49c-3.59-3.65-1.91-9.09,5.06-16.33l-2.69-2.69c-0.8-0.8-1.55-1.44-2.24-1.91  
@@ -39,11 +39,11 @@ const Logo = (): JSX.Element => (
         l-1.37,0.79c-0.44-0.99-0.7-2.06-0.79-3.19c-0.19-3.29,1.15-6.37,4.02-9.24c1.85-1.85,3.84-3.15,5.97-3.9  
         c4.59-1.55,8.89-0.3,12.93,3.73C88.08,123.44,89.48,126.46,89.56,129.8z"
     />
-    <g className="menu-logo-lines">
+    <g className="symbol-lines">
       <line x1="28.39" y1="28.39" x2="127.84" y2="127.84" />
       <line x1="28.39" y1="127.84" x2="127.84" y2="28.39" />
     </g>
   </svg>
 );
 
-export default Logo;
+export default Symbol;
