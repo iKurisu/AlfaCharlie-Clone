@@ -6,6 +6,7 @@ import { HeroActionTypes } from "modules/hero/types";
 import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
+import Symbol from "components/Symbol";
 import { classList } from "utils/class";
 import "./Home.scss";
 
@@ -19,6 +20,8 @@ const imageUrls = [
 
 interface MappedState {
   currentSlideID: number;
+  previousSlideID: number;
+  swipeLength: number;
 }
 
 interface MappedActions {
@@ -30,13 +33,23 @@ type Props = MappedState & MappedActions;
 
 const Home = ({
   currentSlideID,
+  previousSlideID,
+  swipeLength,
   toggleIntro,
   setSlide
 }: Props): JSX.Element => {
   const [dot, setDot] = useState(currentSlideID);
+  const [symbolRotation, rotateSymbol] = useState(0);
 
   const updateDot = (dot: number): MouseEventHandler => () => setDot(dot);
   const resetDot = (): void => setDot(currentSlideID);
+
+  useEffect((): void => {
+    rotateSymbol(
+      prevRotation =>
+        prevRotation + (currentSlideID > previousSlideID ? -90 : 90)
+    );
+  }, [currentSlideID]);
 
   useEffect((): void => {
     toggleIntro();
@@ -116,6 +129,15 @@ const Home = ({
                 ))}
               </div>
             </div>
+            <div
+              className="hero-symbol"
+              style={{
+                transform: `rotate(${symbolRotation}deg)`,
+                transition: `transform ${swipeLength}ms`
+              }}
+            >
+              <Symbol />
+            </div>
           </div>
         </section>
       </div>
@@ -124,7 +146,7 @@ const Home = ({
 };
 
 const mapState = ({ hero }: AppState): MappedState => ({
-  currentSlideID: hero.currentSlideID
+  ...hero
 });
 
 const mapDispatch: MappedActions = {

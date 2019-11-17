@@ -208,3 +208,11 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
 .hero-slider-dot:not(.active)::after {
   border-radius: 50%;
 }
+
+.hero-symbol {
+  position: absolute;
+  top: 66%;
+  right: -66px;
+  width: 132px;
+  height: 132px;
+}
