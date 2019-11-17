@@ -1,4 +1,5 @@
 import React, { useState, useEffect, MouseEventHandler } from "react";
+import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import { heroActions } from "modules/hero";
@@ -7,6 +8,7 @@ import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
 import Symbol from "components/Symbol";
+import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import { classList } from "utils/class";
 import "./Home.scss";
 
@@ -26,7 +28,7 @@ interface MappedState {
 
 interface MappedActions {
   toggleIntro: () => IntroActionTypes;
-  setSlide: (slideID: number) => HeroActionTypes;
+  swipeSlide: (slideID: number, delay: number) => MouseEventHandler;
 }
 
 type Props = MappedState & MappedActions;
@@ -36,7 +38,7 @@ const Home = ({
   previousSlideID,
   swipeLength,
   toggleIntro,
-  setSlide
+  swipeSlide
 }: Props): JSX.Element => {
   const [dot, setDot] = useState(currentSlideID);
   const [symbolRotation, rotateSymbol] = useState(0);
@@ -44,7 +46,7 @@ const Home = ({
   const updateDot = (dot: number): MouseEventHandler => () => setDot(dot);
   const resetDot = (): void => setDot(currentSlideID);
 
-  useEffect((): void => {
+  useDidUpdateEffect((): void => {
     rotateSymbol(
       prevRotation =>
         prevRotation + (currentSlideID > previousSlideID ? -90 : 90)
@@ -121,7 +123,7 @@ const Home = ({
                       ["hero-slider-dot"]: true,
                       active: id === currentSlideID
                     })}
-                    onClick={() => setSlide(id)}
+                    onClick={swipeSlide(id, swipeLength)}
                     onMouseOver={updateDot(id)}
                     onMouseLeave={resetDot}
                     key={id}
@@ -145,14 +147,15 @@ const Home = ({
   );
 };
 
-const mapState = ({ hero }: AppState): MappedState => ({
-  ...hero
-});
+const mapState = ({ hero }: AppState): MappedState => ({ ...hero });
 
-const mapDispatch: MappedActions = {
-  toggleIntro: introActions.toggleIntro,
-  setSlide: heroActions.setSlide
-};
+const mapDispatch = (dispatch: Dispatch): MappedActions => ({
+  toggleIntro: () => dispatch(introActions.toggleIntro()),
+  swipeSlide: (slideID: number, delay: number): MouseEventHandler => () => {
+    dispatch(heroActions.setSlide(slideID));
+    setTimeout(heroActions.updatePreviousSlide, delay);
+  }
+});
 
 export default connect(
   mapState,
