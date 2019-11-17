@@ -6,6 +6,7 @@ export enum Types {
 export interface HeroState {
   currentSlideID: number;
   previousSlideID: number;
+  swipeLength: number;
 }
 
 interface SetSlideAction {
