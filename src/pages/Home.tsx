@@ -156,7 +156,7 @@ const mapDispatch = (dispatch: Dispatch): MappedActions => ({
   toggleIntro: () => dispatch(introActions.toggleIntro()),
   swipeSlide: (slideID: number, delay: number): MouseEventHandler => () => {
     dispatch(heroActions.setSlide(slideID));
-    setTimeout(heroActions.updatePreviousSlide, delay);
+    setTimeout(() => dispatch(heroActions.updatePreviousSlide()), delay);
   }
 });
 
