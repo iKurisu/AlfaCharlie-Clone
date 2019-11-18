@@ -178,10 +178,11 @@ export const Slider = ({
 const mapMenuState = ({ menu }: AppState): MappedState => ({
   isOpen: menu.toggled,
   currentSlideID: menu.hoveringElementID,
-  duration: getDuration(
-    { current: menu.hoveringElementID, previous: menu.previousElementID },
-    2000
-  )
+  duration: getDuration({
+    from: menu.hoveringElementID,
+    to: menu.previousElementID,
+    max: 2000
+  })
 });
 
 const mapMenuDispatch = (dispatch: Dispatch): MappedActions => ({
@@ -202,10 +203,11 @@ export const MenuSlider = connect(
 const mapHeroState = ({ hero, intro }: AppState): MappedState => ({
   isOpen: !intro.toggled,
   currentSlideID: hero.currentSlideID,
-  duration: getDuration(
-    { current: hero.currentSlideID, previous: hero.previousSlideID },
-    3000
-  )
+  duration: getDuration({
+    from: hero.currentSlideID,
+    to: hero.previousSlideID,
+    max: 3000
+  })
 });
 
 const mapHeroDispatch = (dispatch: Dispatch): MappedActions => ({
