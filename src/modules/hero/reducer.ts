@@ -14,10 +14,11 @@ const reducer = (state = initialState, action: HeroActionTypes): HeroState => {
         ...state,
         currentSlideID: action.slideID,
         previousSlideID: state.currentSlideID,
-        swipeLength: getDuration(
-          { current: action.slideID, previous: state.currentSlideID },
-          3000
-        )
+        swipeLength: getDuration({
+          from: action.slideID,
+          to: state.currentSlideID,
+          max: 3000
+        })
       };
     case Types.UPDATE_PREVIOUS_SLIDE:
       return {
