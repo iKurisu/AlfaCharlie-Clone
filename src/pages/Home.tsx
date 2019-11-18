@@ -3,7 +3,6 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import { heroActions } from "modules/hero";
-import { HeroActionTypes } from "modules/hero/types";
 import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
@@ -95,7 +94,11 @@ const Home = ({
             </div>
           </div>
           <div className="hero-slider">
-            <HeroSlider imageUrls={imageUrls} maskFadeDirection={"left"} />
+            <HeroSlider
+              imageUrls={imageUrls}
+              vw={{ wrapper: 51.35, image: 46.99 }}
+              maskFadeDirection={"left"}
+            />
             <div className="hero-slider-nav">
               <span className="hero-slider-progress">
                 <span className="hero-slider-prefix">
