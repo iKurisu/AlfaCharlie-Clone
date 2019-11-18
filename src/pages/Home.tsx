@@ -9,6 +9,7 @@ import { HeroSlider } from "components/Slider";
 import Symbol from "components/Symbol";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import { classList } from "utils/class";
+import { getDuration } from "utils/slider";
 import "./Home.scss";
 
 const imageUrls = [
@@ -22,7 +23,6 @@ const imageUrls = [
 interface MappedState {
   currentSlideID: number;
   previousSlideID: number;
-  swipeLength: number;
 }
 
 interface MappedActions {
@@ -35,7 +35,6 @@ type Props = MappedState & MappedActions;
 const Home = ({
   currentSlideID,
   previousSlideID,
-  swipeLength,
   toggleIntro,
   swipeSlide
 }: Props): JSX.Element => {
@@ -126,7 +125,10 @@ const Home = ({
                       ["hero-slider-dot"]: true,
                       active: id === currentSlideID
                     })}
-                    onClick={swipeSlide(id, swipeLength)}
+                    onClick={swipeSlide(
+                      id,
+                      getDuration({ from: currentSlideID, to: id })
+                    )}
                     onMouseOver={updateDot(id)}
                     onMouseLeave={resetDot}
                     key={id}
@@ -138,7 +140,10 @@ const Home = ({
               className="hero-symbol"
               style={{
                 transform: `rotate(${symbolRotation}deg)`,
-                transition: `transform ${swipeLength}ms`
+                transition: `transform ${getDuration({
+                  from: previousSlideID,
+                  to: currentSlideID
+                })}ms`
               }}
             >
               <Symbol />
