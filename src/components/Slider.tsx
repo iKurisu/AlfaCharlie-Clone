@@ -15,7 +15,7 @@ import "./Slider.scss";
 interface MappedState {
   isOpen: boolean;
   currentSlideID: number;
-  duration: number;
+  previousSlideID: number;
 }
 
 interface MappedActions {
@@ -28,6 +28,7 @@ interface OwnProps {
     wrapper: number;
     image: number;
   };
+  maxLength?: number;
   maskFadeDirection: "left" | "right";
 }
 
@@ -46,10 +47,11 @@ enum MouseDirection {
 export const Slider = ({
   imageUrls,
   vw,
+  maxLength = 3000,
   maskFadeDirection,
   isOpen,
   currentSlideID,
-  duration,
+  previousSlideID,
   swipeSlide
 }: Props): JSX.Element => {
   const wrapperWidth = useResponsiveWidth(vw.wrapper);
@@ -139,12 +141,24 @@ export const Slider = ({
           ? MouseDirection.LEFT
           : MouseDirection.RIGHT;
 
+      const duration = getDuration({
+        from: currentSlideID,
+        to: currentSlideID + direction,
+        max: maxLength
+      });
+
       toggleTransition();
       swipeSlide(currentSlideID + direction, duration)(event);
     }
   };
 
   const dragProps = useDrag({ onDrag, onDrop });
+
+  const transitionDuration = getDuration({
+    from: previousSlideID,
+    to: currentSlideID,
+    max: maxLength
+  });
 
   return (
     <React.Fragment>
@@ -155,7 +169,7 @@ export const Slider = ({
           ref={wrapper}
           style={{
             transform: `translateX(${wrapperDistance.toFixed(3)}px)`,
-            transition: `transform ${duration}ms`
+            transition: `transform ${transitionDuration}ms`
           }}
         >
           {imageUrls.map(
@@ -163,7 +177,7 @@ export const Slider = ({
               <Slide
                 url={url}
                 distance={getSlideDistance(id)}
-                duration={duration}
+                duration={transitionDuration}
                 imageRef={images[id]}
                 key={id}
               />
@@ -178,11 +192,7 @@ export const Slider = ({
 const mapMenuState = ({ menu }: AppState): MappedState => ({
   isOpen: menu.toggled,
   currentSlideID: menu.hoveringElementID,
-  duration: getDuration({
-    from: menu.hoveringElementID,
-    to: menu.previousElementID,
-    max: 2000
-  })
+  previousSlideID: menu.previousElementID
 });
 
 const mapMenuDispatch = (dispatch: Dispatch): MappedActions => ({
@@ -203,11 +213,7 @@ export const MenuSlider = connect(
 const mapHeroState = ({ hero, intro }: AppState): MappedState => ({
   isOpen: !intro.toggled,
   currentSlideID: hero.currentSlideID,
-  duration: getDuration({
-    from: hero.currentSlideID,
-    to: hero.previousSlideID,
-    max: 3000
-  })
+  previousSlideID: hero.previousSlideID
 });
 
 const mapHeroDispatch = (dispatch: Dispatch): MappedActions => ({
