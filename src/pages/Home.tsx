@@ -45,6 +45,7 @@ const Home = ({
   const resetDot = (): void => setDot(currentSlideID);
 
   useDidUpdateEffect((): void => {
+    resetDot();
     rotateSymbol(
       prevRotation =>
         prevRotation + (currentSlideID > previousSlideID ? -90 : 90)
