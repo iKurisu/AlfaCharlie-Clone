@@ -24,6 +24,10 @@ interface MappedActions {
 
 interface OwnProps {
   imageUrls: string[];
+  vw: {
+    wrapper: number;
+    image: number;
+  };
   maskFadeDirection: "left" | "right";
 }
 
@@ -41,14 +45,15 @@ enum MouseDirection {
 
 export const Slider = ({
   imageUrls,
+  vw,
   maskFadeDirection,
   isOpen,
   currentSlideID,
   duration,
   swipeSlide
 }: Props): JSX.Element => {
-  const wrapperWidth = useResponsiveWidth(27.2);
-  const imageWidth = useResponsiveWidth(23.15);
+  const wrapperWidth = useResponsiveWidth(vw.wrapper);
+  const imageWidth = useResponsiveWidth(vw.image);
 
   const wrapper = useRef(null);
   const images = imageUrls.map(() => useRef(null));
