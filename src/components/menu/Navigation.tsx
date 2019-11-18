@@ -1,7 +1,6 @@
 import React, { useRef, MouseEventHandler } from "react";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { AppState } from "store";
 import { menuActions } from "modules/menu";
 import Home from "./navigation/Home";
 import Link from "./navigation/Link";
@@ -9,9 +8,10 @@ import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import { getDuration } from "utils/slider";
 import "./Navigation.scss";
+import { AppState } from "store";
 
 interface MappedState {
-  duration: number;
+  currentSlideID: number;
 }
 
 interface MappedActions {
@@ -24,7 +24,11 @@ interface OwnProps {
 
 type Props = MappedState & MappedActions & OwnProps;
 
-const Navigation = ({ isOpen, duration, swipeSlide }: Props): JSX.Element => {
+const Navigation = ({
+  isOpen,
+  currentSlideID,
+  swipeSlide
+}: Props): JSX.Element => {
   const links = ["agency", "work", "journal", "contact"];
   const fadeInOrder = [
     [1, 4, 2, 2, 1, 3],
@@ -67,7 +71,10 @@ const Navigation = ({ isOpen, duration, swipeSlide }: Props): JSX.Element => {
       <Home isOpen={isOpen} />
       <nav
         className="menu-nav-links -flex"
-        onMouseLeave={swipeSlide(0, duration)}
+        onMouseLeave={swipeSlide(
+          0,
+          getDuration({ from: currentSlideID, to: 0, max: 2000 })
+        )}
         style={{ opacity: 0 }}
         ref={nav}
       >
@@ -77,7 +84,10 @@ const Navigation = ({ isOpen, duration, swipeSlide }: Props): JSX.Element => {
               link={link}
               fadeInOrder={fadeInOrder[id]}
               isOpen={isOpen}
-              swipeSlide={swipeSlide(id + 1, duration)}
+              swipeSlide={swipeSlide(
+                id + 1,
+                getDuration({ from: currentSlideID, to: id + 1, max: 2000 })
+              )}
               key={id}
             />
           )
@@ -88,10 +98,7 @@ const Navigation = ({ isOpen, duration, swipeSlide }: Props): JSX.Element => {
 };
 
 const mapState = ({ menu }: AppState): MappedState => ({
-  duration: getDuration(
-    { current: menu.hoveringElementID, previous: menu.previousElementID },
-    2000
-  )
+  currentSlideID: menu.hoveringElementID
 });
 
 const mapDispatch = (dispatch: Dispatch): MappedActions => ({

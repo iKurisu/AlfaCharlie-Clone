@@ -51,6 +51,7 @@ const Images = ({ isOpen }: Props): JSX.Element => {
         <MenuSlider
           imageUrls={imageUrls}
           vw={{ wrapper: 27.2, image: 23.15 }}
+          maxLength={2000}
           maskFadeDirection={"right"}
         />
       </div>
