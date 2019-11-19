@@ -22,14 +22,19 @@ interface MappedActions {
   swipeSlide: (elementID: number, duration: number) => MouseEventHandler;
 }
 
+interface SliderOptions {
+  fadeDirection: "left" | "right";
+  vw: {
+    image: number;
+    wrapper: number;
+  };
+  delay?: number;
+  maxLength?: number;
+}
+
 interface OwnProps {
   imageUrls: string[];
-  vw: {
-    wrapper: number;
-    image: number;
-  };
-  maxLength?: number;
-  maskFadeDirection: "left" | "right";
+  options: SliderOptions;
 }
 
 type Props = MappedState & MappedActions & OwnProps;
@@ -46,9 +51,7 @@ enum MouseDirection {
 
 export const Slider = ({
   imageUrls,
-  vw,
-  maxLength = 3000,
-  maskFadeDirection,
+  options: { fadeDirection, delay = 0, vw, maxLength = 3000 },
   isOpen,
   currentSlideID,
   previousSlideID,
@@ -162,7 +165,7 @@ export const Slider = ({
 
   return (
     <React.Fragment>
-      <Mask isOpen={isOpen} fadeDirection={maskFadeDirection} />
+      <Mask isOpen={isOpen} options={{ fadeDirection, delay }} />
       <div className="slider-swiper" {...dragProps}>
         <div
           className="slider-wrapper"

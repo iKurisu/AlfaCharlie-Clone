@@ -139,8 +139,10 @@ const Home = ({
           <div className="hero-slider">
             <HeroSlider
               imageUrls={imageUrls}
-              vw={{ wrapper: 51.35, image: 46.99 }}
-              maskFadeDirection={"left"}
+              options={{
+                fadeDirection: "left",
+                vw: { wrapper: 51.35, image: 46.99 }
+              }}
             />
             <div className="hero-slider-nav">
               <span className="hero-slider-progress">
