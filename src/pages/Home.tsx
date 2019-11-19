@@ -65,15 +65,15 @@ const Home = ({
       from: { transform: `translateX(40px)`, opacity: 0 },
       to: { transform: `translateX(0)`, opacity: 1 },
       config: {
-        duration: 400,
-        timing: [0.35, 0.6, 0.45, 1],
+        duration: 450,
+        timing: [0.17, 0.5, 0.48, 1],
         delay
       }
     });
 
   const fadeInTitle = fadeIn(title);
   const fadeInText = fadeIn(text, 250);
-  const fadeInLink = fadeIn(link, 450);
+  const fadeInLink = fadeIn(link, 400);
 
   const fadeInContent = (): void => {
     fadeInTitle();
