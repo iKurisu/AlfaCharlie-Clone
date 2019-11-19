@@ -21,6 +21,7 @@ export const Menu = ({ isOpen }: Props): JSX.Element => (
     <VerticalNav
       links={[["Instagram", false], ["Privacy", false]]}
       show={isOpen}
+      delay={1400}
     />
     <White isOpen={isOpen} />
     <Gray isOpen={isOpen} />
