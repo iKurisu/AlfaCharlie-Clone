@@ -1,4 +1,4 @@
-import React, { useState, useEffect, MouseEventHandler } from "react";
+import React, { useState, useEffect, useRef, MouseEventHandler } from "react";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
@@ -8,6 +8,7 @@ import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
 import Symbol from "components/Symbol";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
+import useTransition from "hooks/useTransition";
 import { classList } from "utils/class";
 import { getDuration } from "utils/slider";
 import "./Home.scss";
@@ -52,8 +53,38 @@ const Home = ({
     );
   }, [currentSlideID]);
 
+  const title = useRef(null);
+  const text = useRef(null);
+  const link = useRef(null);
+
+  const fadeIn = (
+    ref: React.RefObject<HTMLDivElement>,
+    delay: number = 0
+  ): (() => Promise<void>) =>
+    useTransition(ref, {
+      from: { transform: `translateX(40px)`, opacity: 0 },
+      to: { transform: `translateX(0)`, opacity: 1 },
+      config: {
+        duration: 400,
+        timing: [0.35, 0.6, 0.45, 1],
+        delay
+      }
+    });
+
+  const fadeInTitle = fadeIn(title);
+  const fadeInText = fadeIn(text, 250);
+  const fadeInLink = fadeIn(link, 450);
+
+  const fadeInContent = (): void => {
+    fadeInTitle();
+    fadeInText();
+    fadeInLink();
+  };
+
   useEffect((): void => {
     toggleIntro();
+
+    fadeInContent();
   }, []);
 
   return (
@@ -61,18 +92,30 @@ const Home = ({
       <div className="row">
         <section className="hero">
           <div className="hero-content">
-            <div className="hero-animation">
+            <div
+              className="hero-animation"
+              ref={title}
+              style={{ transform: "translateX(40px)", opacity: 0 }}
+            >
               <h3 className="hero-title">
                 We transform brands from the inside out.
               </h3>
             </div>
-            <div className="hero-animation">
+            <div
+              className="hero-animation"
+              ref={text}
+              style={{ transform: "translateX(40px)", opacity: 0 }}
+            >
               <p className="hero-text">
                 Anchored in simplicity, our strategic design clarifies purpose,
                 inspires loyalty, and helps you stand out in the crowd.
               </p>
             </div>
-            <div className="hero-animation">
+            <div
+              className="hero-animation"
+              ref={link}
+              style={{ transform: "translateX(40px)", opacity: 0 }}
+            >
               <a className="hero-link">
                 <span className="link-line"></span>
                 <svg
