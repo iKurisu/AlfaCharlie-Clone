@@ -90,12 +90,16 @@ const Home = ({
 
   const wrapperWidth = useMediaQuery([
     "(maxWidth: 480px) => 86.53vw",
-    "(minWidth: 481px) => 51.35vw"
+    "(maxWidth: 823px) and (orientation: landscape) => 79.06vw",
+    "(maxWidth: 768px) => 79.06vw",
+    "(minWidth: 769px) => 51.35vw"
   ]);
 
   const imageWidth = useMediaQuery([
     "(maxWidth: 480px) => 73.5vw",
-    "(minWidth: 481px) => 46.99vw"
+    "(maxWidth: 823px) and (orientation: landscape) => 67.15vw",
+    "(maxWidth: 768px) => 67.17vw",
+    "(minWidth: 769px) => 46.99vw"
   ]);
 
   return (
