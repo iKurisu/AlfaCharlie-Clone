@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
+import useResponsiveWidth from "hooks/useResponsiveWidth";
 import { MenuSlider } from "components/Slider";
 import "./Images.scss";
 
@@ -52,7 +53,10 @@ const Images = ({ isOpen }: Props): JSX.Element => {
           imageUrls={imageUrls}
           options={{
             fadeDirection: "right",
-            vw: { wrapper: 27.2, image: 23.15 },
+            width: {
+              wrapper: useResponsiveWidth(27.2),
+              image: useResponsiveWidth(23.15)
+            },
             delay: 800,
             maxLength: 2000
           }}

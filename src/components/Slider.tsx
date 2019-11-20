@@ -6,7 +6,6 @@ import { menuActions } from "modules/menu";
 import { heroActions } from "modules/hero";
 import Mask from "./slider/Mask";
 import Slide from "./slider/Slide";
-import useResponsiveWidth from "hooks/useResponsiveWidth";
 import useDrag, { Handler } from "hooks/useDrag";
 import { getDistance, getDuration } from "utils/slider";
 import { setTransform, setTransition } from "utils/refs";
@@ -24,7 +23,7 @@ interface MappedActions {
 
 interface SliderOptions {
   fadeDirection: "left" | "right";
-  vw: {
+  width: {
     image: number;
     wrapper: number;
   };
@@ -51,21 +50,18 @@ enum MouseDirection {
 
 export const Slider = ({
   imageUrls,
-  options: { fadeDirection, delay = 0, vw, maxLength = 3000 },
+  options: { fadeDirection, delay = 0, width, maxLength = 3000 },
   isOpen,
   currentSlideID,
   previousSlideID,
   swipeSlide
 }: Props): JSX.Element => {
-  const wrapperWidth = useResponsiveWidth(vw.wrapper);
-  const imageWidth = useResponsiveWidth(vw.image);
-
   const wrapper = useRef(null);
   const images = imageUrls.map(() => useRef(null));
 
-  const wrapperDistance = currentSlideID * -wrapperWidth;
+  const wrapperDistance = currentSlideID * -width.wrapper;
   const getSlideDistance = (id: number): number =>
-    1 - imageWidth * (id - currentSlideID);
+    1 - width.image * (id - currentSlideID);
 
   const setWrapperTransform = setTransform(wrapper);
   const setWrapperTransition = setTransition(wrapper);
@@ -109,8 +105,9 @@ export const Slider = ({
       updateProperties({
         transform: (id: number): string => {
           return `translateX(${1 -
-            imageWidth * (id - (clickPosition - event.clientX) / wrapperWidth) +
-            imageWidth * currentSlideID}px)`;
+            width.image *
+              (id - (clickPosition - event.clientX) / width.wrapper) +
+            width.image * currentSlideID}px)`;
         }
       })
     );
@@ -119,7 +116,7 @@ export const Slider = ({
   const onDrop: Handler = (event, clickPosition) => {
     if (!canSwipe(event.clientX, clickPosition)) return;
 
-    if (getDistance(event.clientX, clickPosition) < wrapperWidth * 0.2) {
+    if (getDistance(event.clientX, clickPosition) < width.wrapper * 0.2) {
       toggleTransition();
 
       setWrapperTransform(`translateX(${wrapperDistance}px)`);
