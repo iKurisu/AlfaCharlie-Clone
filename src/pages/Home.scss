@@ -225,13 +225,17 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
   margin-top: 14px;
 }
 
+.hero-arrows .disabled {
+  pointer-events: none;
+  opacity: 0.25;
+}
+
 .arrow-prev,
 .arrow-next {
   padding: 0 6px;
 }
 
 .arrow-prev {
-  opacity: 0.25;
   transform: rotate(-180deg);
 }
 

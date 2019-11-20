@@ -9,6 +9,7 @@ import { HeroSlider } from "components/Slider";
 import Symbol from "components/Symbol";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import useTransition from "hooks/useTransition";
+import useMediaQuery from "hooks/useMediaQuery";
 import { classList } from "utils/class";
 import { getDuration } from "utils/slider";
 import "./Home.scss";
@@ -87,6 +88,16 @@ const Home = ({
     fadeInContent();
   }, []);
 
+  const wrapperWidth = useMediaQuery([
+    "(maxWidth: 480px) => 86.53vw",
+    "(minWidth: 481px) => 51.35vw"
+  ]);
+
+  const imageWidth = useMediaQuery([
+    "(maxWidth: 480px) => 73.5vw",
+    "(minWidth: 481px) => 46.99vw"
+  ]);
+
   return (
     <React.Fragment>
       <div className="row">
@@ -141,7 +152,7 @@ const Home = ({
               imageUrls={imageUrls}
               options={{
                 fadeDirection: "left",
-                vw: { wrapper: 51.35, image: 46.99 }
+                width: { wrapper: wrapperWidth, image: imageWidth }
               }}
             />
             <div className="hero-slider-nav">
@@ -183,7 +194,16 @@ const Home = ({
               </div>
             </div>
             <div className="hero-arrows">
-              <div className="arrow-prev">
+              <div
+                className={classList({
+                  ["arrow-prev"]: true,
+                  disabled: currentSlideID === 0
+                })}
+                onClick={swipeSlide(
+                  currentSlideID - 1,
+                  getDuration({ from: currentSlideID, to: currentSlideID - 1 })
+                )}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -197,7 +217,16 @@ const Home = ({
                   <line x1="8.46" y1="25.91" x2="147.73" y2="25.91" />
                 </svg>
               </div>
-              <div className="arrow-next">
+              <div
+                className={classList({
+                  ["arrow-next"]: true,
+                  disabled: currentSlideID === imageUrls.length - 1
+                })}
+                onClick={swipeSlide(
+                  currentSlideID + 1,
+                  getDuration({ from: currentSlideID, to: currentSlideID + 1 })
+                )}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   xmlnsXlink="http://www.w3.org/1999/xlink"
