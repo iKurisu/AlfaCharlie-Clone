@@ -92,14 +92,16 @@ const Home = ({
     "(maxWidth: 480px) => 86.53vw",
     "(maxWidth: 823px) and (orientation: landscape) => 79.06vw",
     "(maxWidth: 768px) => 79.06vw",
-    "(minWidth: 769px) => 51.35vw"
+    "(maxWidth: 1024px) => 55.33vw",
+    "(minWidth: 1025px) => 51.35vw"
   ]);
 
   const imageWidth = useMediaQuery([
     "(maxWidth: 480px) => 73.5vw",
     "(maxWidth: 823px) and (orientation: landscape) => 67.15vw",
     "(maxWidth: 768px) => 67.17vw",
-    "(minWidth: 769px) => 46.99vw"
+    "(maxWidth: 1024px) => 47.02vw",
+    "(minWidth: 1025px) => 46.99vw"
   ]);
 
   return (
