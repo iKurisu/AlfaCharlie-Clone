@@ -217,7 +217,7 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
 .hero-arrows {
   width: 95px;
   height: 26px;
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   position: absolute;
@@ -254,6 +254,39 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
   height: 132px;
 }
 
+@media (max-width: 1366px) {
+  .hero-content {
+    flex: 0 0 40%;
+  }
+
+  .hero-title {
+    font-size: 42px;
+    margin-bottom: 25px;
+  }
+
+  .hero-text {
+    font-size: 13.5px;
+    letter-spacing: 0.037em;
+    line-height: 1.58;
+    margin-bottom: 24.5px;
+  }
+
+  .hero-link .link-text {
+    font-size: 12px;
+  }
+
+  .hero-slider {
+    margin-left: -16%;
+    width: 70%;
+  }
+
+  .hero-symbol {
+    width: 120px;
+    height: 120px;
+    right: -60px;
+  }
+}
+
 @media (max-width: 1024px) {
   .hero-content {
     flex: 0 0 40%;
@@ -282,6 +315,10 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
   .hero-slider-nav,
   .hero-symbol {
     display: none;
+  }
+
+  .hero-arrows {
+    display: flex;
   }
 }
 
