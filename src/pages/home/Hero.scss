@@ -17,11 +17,6 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .hero-title {
-  color: $black;
-  font-family: "benton-modern-display";
-  font-size: 51px;
-  font-weight: 400;
-  letter-spacing: 0.06em;
   line-height: 1;
   margin-bottom: 29.9px;
 }
@@ -29,9 +24,6 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
 .hero-text {
   color: $grey;
   width: 70%;
-  font-size: 16.5px;
-  letter-spacing: 0.033em;
-  line-height: 1.56;
   margin-bottom: 29.9px;
 }
 
@@ -256,14 +248,10 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
   .hero-title {
-    font-size: 45px;
     margin-bottom: 26.5px;
   }
 
   .hero-text {
-    font-size: 14.5px;
-    letter-spacing: 0.035em;
-    line-height: 1.58;
     margin-bottom: 26.5px;
   }
 
@@ -285,14 +273,10 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
 
 @media (max-width: 1366px) {
   .hero-title {
-    font-size: 42px;
     margin-bottom: 25px;
   }
 
   .hero-text {
-    font-size: 13.5px;
-    letter-spacing: 0.037em;
-    line-height: 1.58;
     margin-bottom: 24.5px;
   }
 }
@@ -304,12 +288,10 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
   .hero-title {
-    font-size: 45px;
     margin-bottom: 27px;
   }
 
   .hero-text {
-    font-size: 14.5px;
     margin-bottom: 27px;
   }
 
@@ -350,7 +332,6 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
   .hero-text {
-    font-size: 14.6px;
     margin-bottom: 27.5px;
   }
 
@@ -367,7 +348,7 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
 
 @media (max-width: 480px) {
   .hero {
-    padding-top: 105px;
+    padding-top: 107px;
   }
 
   .hero-content {
@@ -376,14 +357,12 @@ $timing: cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
   .hero-title {
-    font-size: 35px;
-    letter-spacing: 0.054em;
     margin-bottom: 20px;
   }
 
   .hero-text {
     width: 95%;
-    margin-bottom: 10px;
+    margin-bottom: 10.5px;
   }
 
   .hero-link .link-text {
