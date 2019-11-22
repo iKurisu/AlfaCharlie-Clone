@@ -24,7 +24,7 @@ interface OwnProps {
 
 type Props = MappedState & MappedActions & OwnProps;
 
-const Navigation = ({
+export const Navigation = ({
   isOpen,
   currentSlideID,
   swipeSlide

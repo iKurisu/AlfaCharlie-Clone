@@ -36,7 +36,7 @@ interface OwnProps {
   options: SliderOptions;
 }
 
-type Props = MappedState & MappedActions & OwnProps;
+export type Props = MappedState & MappedActions & OwnProps;
 
 interface Properties {
   transform?: (id: number) => string;

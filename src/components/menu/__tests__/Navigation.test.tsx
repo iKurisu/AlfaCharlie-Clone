@@ -1,12 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { shallow } from "enzyme";
-import Navigation from "../Navigation";
+import { Navigation } from "../Navigation";
 
 describe("menu navigation", (): void => {
   it("renders correctly", (): void => {
     const component = renderer.create(
-      <Navigation isOpen={false} hoverElement={jest.fn()} />
+      <Navigation isOpen={false} currentSlideID={0} swipeSlide={jest.fn()} />
     );
 
     expect(component).toMatchSnapshot();
@@ -17,7 +17,7 @@ describe("menu navigation", (): void => {
     const hoverElement = (id: number) => () => mockFn(id);
 
     const component = shallow(
-      <Navigation isOpen={false} hoverElement={hoverElement} />
+      <Navigation isOpen={false} currentSlideID={0} swipeSlide={hoverElement} />
     );
 
     expect(mockFn.mock.calls.length).toBe(0);
