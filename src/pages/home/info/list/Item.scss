@@ -1,0 +1,14 @@
+.info-list-item {
+  color: #635a55;
+  font-family: "benton-modern-display";
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  padding: 6px 0;
+}
+
+.info-list-item span::before {
+  content: "+";
+  font-weight: 400;
+  margin-right: 10px;
+}

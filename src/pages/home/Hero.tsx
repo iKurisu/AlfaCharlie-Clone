@@ -7,6 +7,7 @@ import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
 import Symbol from "components/Symbol";
+import Link from "./shared/Link";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import useTransition from "hooks/useTransition";
 import useMediaQuery from "hooks/useMediaQuery";
@@ -134,24 +135,7 @@ export const Hero = ({
           ref={link}
           style={{ transform: "translateX(40px)", opacity: 0 }}
         >
-          <a className="hero-link">
-            <span className="link-line"></span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              version="1.1"
-              x="0px"
-              y="0px"
-              viewBox="0 0 157.34 51.71"
-              xmlSpace="preserve"
-            >
-              <polyline points="128.65,45.62 148.36,25.91 128.47,6.02 " />
-              <line x1="8.46" y1="25.91" x2="147.73" y2="25.91" />
-            </svg>
-            <span className="link-text-wrapper">
-              <span className="link-text">View our work</span>
-            </span>
-          </a>
+          <Link text="View our work" />
         </div>
       </div>
       <div className="hero-slider">
