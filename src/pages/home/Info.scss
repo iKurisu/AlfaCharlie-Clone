@@ -28,6 +28,7 @@
   position: absolute;
   top: 0;
   text-align: center;
+  overflow: hidden;
 }
 
 .info-image {
@@ -58,18 +59,31 @@
   margin-bottom: 41px;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1600px) {
   .info-header-wrapper {
-    margin-bottom: 55px;
+    margin-bottom: 58px;
   }
 
   .info-header {
-    font-size: 86.5px;
-    letter-spacing: 0.061em;
+    font-size: 102px;
+    letter-spacing: 0.06em;
   }
 
-  .info-image-wrapper {
-    overflow: hidden;
+  .info-title {
+    margin-bottom: 25px;
+  }
+
+  .info-text {
+    width: 85%;
+    letter-spacing: 0.037em;
+    margin-bottom: 36px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .info-header {
+    font-size: 86.5px;
+    letter-spacing: 0.061em;
   }
 
   .info-title {
@@ -79,7 +93,6 @@
   }
 
   .info-text {
-    width: 85%;
     font-size: 14px;
     letter-spacing: 0.02em;
     line-height: 1.53;

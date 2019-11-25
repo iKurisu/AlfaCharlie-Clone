@@ -13,6 +13,14 @@
   margin-right: 10px;
 }
 
+@media (max-width: 1600px) {
+  .info-list-item {
+    font-size: 17px;
+    letter-spacing: 0.12em;
+    padding: 6.3px 0;
+  }
+}
+
 @media (max-width: 1366px) {
   .info-list-item {
     font-size: 16px;
