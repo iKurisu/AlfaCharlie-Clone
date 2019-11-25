@@ -18,8 +18,8 @@ const useMediaQuery = (queries: string[]): number => {
       const { type, breakpoint, orientation } = mapQuery(query);
 
       return type === "min"
-        ? breakpoint < innerWidth && orientationMatches(orientation)
-        : breakpoint > innerWidth && orientationMatches(orientation);
+        ? breakpoint <= innerWidth && orientationMatches(orientation)
+        : breakpoint >= innerWidth && orientationMatches(orientation);
     });
   };
 

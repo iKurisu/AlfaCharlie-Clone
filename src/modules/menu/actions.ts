@@ -4,12 +4,17 @@ const toggleMenu = (): MenuActionTypes => ({
   type: Types.TOGGLE_MENU
 });
 
-const hoverElement = (elementID: number): MenuActionTypes => ({
-  type: Types.HOVER_ELEMENT,
+const setHoveringElement = (elementID: number): MenuActionTypes => ({
+  type: Types.SET_HOVERING_ELEMENT,
   elementID
+});
+
+const updatePreviousElement = (): MenuActionTypes => ({
+  type: Types.UPDATE_PREVIOUS_ELEMENT
 });
 
 export default {
   toggleMenu,
-  hoverElement
+  setHoveringElement,
+  updatePreviousElement
 };

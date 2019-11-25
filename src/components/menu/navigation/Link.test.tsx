@@ -4,13 +4,13 @@ import { shallow } from "enzyme";
 import Link from "./Link";
 
 describe("navigation link", (): void => {
-  const hoverElement = jest.fn();
+  const swipeSlide = jest.fn();
 
   const props = {
     link: "Agency",
     fadeInOrder: [1, 3, 4, 2],
     isOpen: false,
-    hoverElement
+    swipeSlide
   };
 
   it("renders correctly", (): void => {
@@ -24,6 +24,6 @@ describe("navigation link", (): void => {
 
     link.find(".menu-nav-link").simulate("mouseenter");
 
-    expect(hoverElement.mock.calls.length).toBe(1);
+    expect(swipeSlide.mock.calls.length).toBe(1);
   });
 });

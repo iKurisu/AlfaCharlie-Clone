@@ -1,0 +1,47 @@
+.info-list-item {
+  color: #635a55;
+  font-family: "benton-modern-display";
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  padding: 6px 0;
+}
+
+.info-list-item span::before {
+  content: "+";
+  font-weight: 400;
+  margin-right: 10px;
+}
+
+@media (max-width: 1600px) {
+  .info-list-item {
+    font-size: 17px;
+    letter-spacing: 0.12em;
+    padding: 6.3px 0;
+  }
+}
+
+@media (max-width: 1366px) {
+  .info-list-item {
+    font-size: 16px;
+    letter-spacing: 0.115em;
+    padding: 7px 0;
+  }
+}
+
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  .info-list-item {
+    font-size: 18px;
+    letter-spacing: 0.09em;
+    line-height: 1;
+    padding: 6.85px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .info-list-item {
+    font-size: 20px;
+    letter-spacing: 0.107em;
+    padding: 7.15px 0;
+  }
+}

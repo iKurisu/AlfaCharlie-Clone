@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`slider renders correctly 1`] = `
+Array [
+  <div
+    className="slider-mask"
+  />,
+  <div
+    className="slider-swiper"
+    onMouseDown={[Function]}
+    onMouseMove={[Function]}
+    onMouseUp={[Function]}
+  >
+    <div
+      className="slider-wrapper"
+      style={
+        Object {
+          "transform": "translateX(0.000px)",
+          "transition": "transform 0ms",
+        }
+      }
+    >
+      <div
+        className="slide"
+      >
+        <div
+          className="slide-img"
+          style={
+            Object {
+              "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/05/Alfa-Charlie-Creative-Agency-home-e1558112927714.jpg)",
+              "transform": "translateX(1.000px)",
+              "transition": "transform 0ms",
+            }
+          }
+        />
+      </div>
+      <div
+        className="slide"
+      >
+        <div
+          className="slide-img"
+          style={
+            Object {
+              "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/05/Alfa-Charlie-Creative-Agency-about-5.jpg)",
+              "transform": "translateX(-9.000px)",
+              "transition": "transform 0ms",
+            }
+          }
+        />
+      </div>
+      <div
+        className="slide"
+      >
+        <div
+          className="slide-img"
+          style={
+            Object {
+              "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Alfa-Charlie-Creative-Agency-work.jpg)",
+              "transform": "translateX(-19.000px)",
+              "transition": "transform 0ms",
+            }
+          }
+        />
+      </div>
+      <div
+        className="slide"
+      >
+        <div
+          className="slide-img"
+          style={
+            Object {
+              "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/05/Alfa-Charlie-Creative-Agency-home-2.jpg)",
+              "transform": "translateX(-29.000px)",
+              "transition": "transform 0ms",
+            }
+          }
+        />
+      </div>
+      <div
+        className="slide"
+      >
+        <div
+          className="slide-img"
+          style={
+            Object {
+              "backgroundImage": "url(https://alfacharlie.b-cdn.net/wp-content/uploads/2019/05/Alfa-Charlie-Creative-Agency-contact-2.jpg)",
+              "transform": "translateX(-39.000px)",
+              "transition": "transform 0ms",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>,
+]
+`;

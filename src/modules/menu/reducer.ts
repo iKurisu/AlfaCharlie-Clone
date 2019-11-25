@@ -10,10 +10,15 @@ const reducer = (state = initialState, action: MenuActionTypes): MenuState => {
   switch (action.type) {
     case Types.TOGGLE_MENU:
       return { ...state, toggled: !state.toggled };
-    case Types.HOVER_ELEMENT:
+    case Types.SET_HOVERING_ELEMENT:
       return {
         ...state,
         hoveringElementID: action.elementID,
+        previousElementID: state.hoveringElementID
+      };
+    case Types.UPDATE_PREVIOUS_ELEMENT:
+      return {
+        ...state,
         previousElementID: state.hoveringElementID
       };
     default:

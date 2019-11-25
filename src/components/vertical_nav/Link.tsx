@@ -7,9 +7,10 @@ interface Props {
   active: boolean;
   order: number;
   show: boolean;
+  delay: number;
 }
 
-const Link = ({ link, active, order, show }: Props): JSX.Element => {
+const Link = ({ link, active, order, show, delay }: Props): JSX.Element => {
   const mask = useRef(null);
   const name = useRef(null);
 
@@ -17,7 +18,7 @@ const Link = ({ link, active, order, show }: Props): JSX.Element => {
     from: { transform: "translateX(-101%)" },
     to: { transform: "translateX(101%)" },
     config: {
-      delay: 1400 + order * 250,
+      delay: delay + order * 250,
       duration: 1400,
       timing: [0.85, 0, 0.15, 1]
     }
@@ -27,7 +28,7 @@ const Link = ({ link, active, order, show }: Props): JSX.Element => {
     from: { opacity: 0 },
     to: { opacity: 1 },
     config: {
-      delay: 2100 + order * 200,
+      delay: delay + 700 + order * 200,
       duration: 700,
       timing: [0.55, 0, 0.45, 1]
     }

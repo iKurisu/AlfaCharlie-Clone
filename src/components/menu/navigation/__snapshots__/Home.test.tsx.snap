@@ -11,7 +11,7 @@ exports[`renders correctly 1`] = `
   }
 >
   <svg
-    className="menu-logo"
+    className="symbol"
     viewBox="0 0 156.23 156.23"
     x="0px"
     y="0px"
@@ -53,7 +53,7 @@ exports[`renders correctly 1`] = `
  c4.59-1.55,8.89-0.3,12.93,3.73C88.08,123.44,89.48,126.46,89.56,129.8z"
     />
     <g
-      className="menu-logo-lines"
+      className="symbol-lines"
     >
       <line
         x1="28.39"

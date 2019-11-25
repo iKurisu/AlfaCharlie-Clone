@@ -5,14 +5,22 @@ import "./VerticalNav.scss";
 interface NavProps {
   links: [string, boolean][];
   show?: boolean;
+  delay?: number;
 }
 
-const VerticalNav = ({ links, show }: NavProps): JSX.Element => (
+const VerticalNav = ({ links, show, delay = 0 }: NavProps): JSX.Element => (
   <nav className="vertical-nav">
     <ul className="vertical-nav-links">
       {links.map(
         ([link, active], id): JSX.Element => (
-          <Link key={id} link={link} active={active} order={id} show={show} />
+          <Link
+            key={id}
+            link={link}
+            active={active}
+            order={id}
+            show={show}
+            delay={delay}
+          />
         )
       )}
     </ul>

@@ -1,10 +1,12 @@
 import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Logo from "components/Logo";
 import Header from "components/Header";
 import VerticalNav from "components/VerticalNav";
 import MenuButton from "components/MenuButton";
 import Menu from "components/Menu";
 import Cursor from "components/Cursor";
+import Home from "pages/Home";
 import "./styles.scss";
 
 const App = (): JSX.Element => (
@@ -22,8 +24,13 @@ const App = (): JSX.Element => (
       <div className="scroll-content-wrapper">
         <div className="scroll-content">
           <Logo />
-          <Header />
-          <div className="main-content"></div>
+          <Route exact path="/" component={Header} />
+          <div className="main-content">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Redirect to="/" />
+            </Switch>
+          </div>
         </div>
       </div>
     </main>
