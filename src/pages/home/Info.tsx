@@ -1,4 +1,5 @@
 import React from "react";
+import SectionHeader from "./shared/SectionHeader";
 import List from "./info/List";
 import Link from "./shared/Link";
 import "./Info.scss";
@@ -6,15 +7,7 @@ import "./Info.scss";
 const Info = (): JSX.Element => {
   return (
     <section className="info">
-      <div className="info-header-wrapper">
-        <h2 className="info-header">
-          {"elegant solutions".split("").map((char, id) => (
-            <span className="info-char" key={id}>
-              {char}
-            </span>
-          ))}
-        </h2>
-      </div>
+      <SectionHeader text="elegant solutions" />
       <div className="info-image-wrapper">
         <div className="info-image">
           <div className="image-wrapper">
