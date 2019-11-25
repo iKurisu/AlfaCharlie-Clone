@@ -6,7 +6,7 @@
   height: 221px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
   .separator {
     height: 121px;
   }
