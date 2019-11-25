@@ -23,16 +23,16 @@ const rightItems = [
 
 const List = (): JSX.Element => (
   <div className="info-list">
-    <div className="info-list-left">
+    <ul className="info-list-left">
       {leftItems.map((item, id) => (
         <Item text={item} key={id} />
       ))}
-    </div>
-    <div className="info-list-right">
+    </ul>
+    <ul className="info-list-right">
       {rightItems.map((item, id) => (
         <Item text={item} key={id} />
       ))}
-    </div>
+    </ul>
   </div>
 );
 

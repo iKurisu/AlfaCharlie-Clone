@@ -13,9 +13,19 @@
   margin-right: 10px;
 }
 
+@media (max-width: 768px) {
+  .info-list-item {
+    font-size: 18px;
+    letter-spacing: 0.09em;
+    line-height: 1;
+    padding: 6.85px 0;
+  }
+}
+
 @media (max-width: 480px) {
   .info-list-item {
+    font-size: 20px;
     letter-spacing: 0.107em;
-    padding: 6.11px 0;
+    padding: 7.15px 0;
   }
 }

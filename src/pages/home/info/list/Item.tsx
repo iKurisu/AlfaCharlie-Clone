@@ -6,9 +6,9 @@ interface Props {
 }
 
 const Item = ({ text }: Props): JSX.Element => (
-  <div className="info-list-item">
+  <li className="info-list-item">
     <span>{text}</span>
-  </div>
+  </li>
 );
 
 export default Item;
