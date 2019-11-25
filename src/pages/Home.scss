@@ -6,8 +6,18 @@
   height: 221px;
 }
 
+@media (max-width: 768px) {
+  .separator {
+    height: 121px;
+  }
+}
+
 @media (max-width: 480px) {
   .row {
     padding: 0 30px;
+  }
+
+  .separator {
+    height: 76px;
   }
 }
