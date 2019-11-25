@@ -60,21 +60,16 @@
 
 @media (max-width: 1366px) {
   .info-header-wrapper {
-    margin-bottom: 13px;
+    margin-bottom: 55px;
   }
 
   .info-header {
     font-size: 86.5px;
     letter-spacing: 0.061em;
-    // line-height: 0.8;
   }
 
   .info-image-wrapper {
     overflow: hidden;
-  }
-
-  .info-content-wrapper {
-    margin-top: 42px;
   }
 
   .info-title {
@@ -114,7 +109,6 @@
     width: 100%;
     position: static;
     margin-top: -25%;
-    overflow: hidden;
   }
 
   .info-image {
@@ -133,9 +127,7 @@
   }
 
   .info-text {
-    width: 85%;
     font-size: 15px;
-    letter-spacing: 0.02em;
     line-height: 1.55;
     margin-bottom: 34.5px;
   }
