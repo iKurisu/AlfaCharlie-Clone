@@ -36,7 +36,7 @@ const Info = (): JSX.Element => {
             <List />
           </div>
           <div>
-            <Link text="Learn more" />
+            <Link content="Learn more" />
           </div>
         </div>
       </div>

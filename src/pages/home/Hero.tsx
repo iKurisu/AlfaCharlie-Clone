@@ -135,7 +135,7 @@ export const Hero = ({
           ref={link}
           style={{ transform: "translateX(40px)", opacity: 0 }}
         >
-          <Link text="View our work" />
+          <Link content="View our work" />
         </div>
       </div>
       <div className="hero-slider">
