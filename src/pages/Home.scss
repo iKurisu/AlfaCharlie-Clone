@@ -6,6 +6,24 @@
   height: 221px;
 }
 
+@media (max-width: 1600px) {
+  .separator {
+    height: 196px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .separator {
+    height: 182px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .separator {
+    height: 196px;
+  }
+}
+
 @media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
   .separator {
     height: 121px;
