@@ -10,7 +10,7 @@ const reducer = (
   action: TestimonialsActionTypes
 ): TestimonialsState => {
   switch (action.type) {
-    case Types.SWIPE_SLIDE:
+    case Types.SET_SLIDE:
       return { ...state, currentSlideID: action.slideID };
     case Types.UPDATE_PREVIOUS_SLIDE:
       return { ...state, previousSlideID: state.currentSlideID };

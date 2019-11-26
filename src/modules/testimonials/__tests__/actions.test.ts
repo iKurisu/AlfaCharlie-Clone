@@ -4,11 +4,11 @@ import { TestimonialsActionTypes, Types } from "../types";
 describe("testimonials actions", (): void => {
   it("creates an action to set the new slide", (): void => {
     const expectedAction: TestimonialsActionTypes = {
-      type: Types.SWIPE_SLIDE,
+      type: Types.SET_SLIDE,
       slideID: 4
     };
 
-    expect(actions.swipeSlide(4)).toEqual(expectedAction);
+    expect(actions.setSlide(4)).toEqual(expectedAction);
   });
 
   it("creates an action to update the previous slide", (): void => {

@@ -1,7 +1,7 @@
 import { TestimonialsActionTypes, Types } from "./types";
 
-const swipeSlide = (slideID: number): TestimonialsActionTypes => ({
-  type: Types.SWIPE_SLIDE,
+const setSlide = (slideID: number): TestimonialsActionTypes => ({
+  type: Types.SET_SLIDE,
   slideID
 });
 
@@ -10,6 +10,6 @@ const updatePreviousSlide = (): TestimonialsActionTypes => ({
 });
 
 export default {
-  swipeSlide,
+  setSlide,
   updatePreviousSlide
 };

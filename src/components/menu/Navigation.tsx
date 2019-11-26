@@ -106,9 +106,9 @@ const mapDispatch = (dispatch: Dispatch): MappedActions => ({
     elementID: number,
     duration: number
   ): MouseEventHandler => (): void => {
-    dispatch(menuActions.setHoveringElement(elementID));
+    dispatch(menuActions.setSlide(elementID));
 
-    setTimeout(() => dispatch(menuActions.updatePreviousElement()), duration);
+    setTimeout(() => dispatch(menuActions.updatePreviousSlide()), duration);
   }
 });
 

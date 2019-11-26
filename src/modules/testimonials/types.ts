@@ -1,5 +1,5 @@
 export enum Types {
-  SWIPE_SLIDE = "testimonials/SWIPE_SLIDE",
+  SET_SLIDE = "testimonials/SET_SLIDE",
   UPDATE_PREVIOUS_SLIDE = "testimonials/UPDATE_PREVIOUS_SLIDE"
 }
 
@@ -9,7 +9,7 @@ export interface TestimonialsState {
 }
 
 interface SwipeSlideAction {
-  type: Types.SWIPE_SLIDE;
+  type: Types.SET_SLIDE;
   slideID: number;
 }
 

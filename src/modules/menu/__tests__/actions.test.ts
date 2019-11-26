@@ -17,7 +17,7 @@ describe("menu actions", (): void => {
       elementID
     };
 
-    expect(actions.setHoveringElement(elementID)).toEqual(expectedAction);
+    expect(actions.setSlide(elementID)).toEqual(expectedAction);
   });
 
   it("creates an action to update the previous hovered element", (): void => {
@@ -25,6 +25,6 @@ describe("menu actions", (): void => {
       type: Types.UPDATE_PREVIOUS_ELEMENT
     };
 
-    expect(actions.updatePreviousElement()).toEqual(expectedAction);
+    expect(actions.updatePreviousSlide()).toEqual(expectedAction);
   });
 });

@@ -200,8 +200,8 @@ const mapMenuDispatch = (dispatch: Dispatch): MappedActions => ({
     elementID: number,
     duration: number
   ): React.MouseEventHandler => (): void => {
-    dispatch(menuActions.setHoveringElement(elementID));
-    setTimeout(() => dispatch(menuActions.updatePreviousElement()), duration);
+    dispatch(menuActions.setSlide(elementID));
+    setTimeout(() => dispatch(menuActions.updatePreviousSlide()), duration);
   }
 });
 

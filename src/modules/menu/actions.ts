@@ -4,17 +4,17 @@ const toggleMenu = (): MenuActionTypes => ({
   type: Types.TOGGLE_MENU
 });
 
-const setHoveringElement = (elementID: number): MenuActionTypes => ({
+const setSlide = (elementID: number): MenuActionTypes => ({
   type: Types.SET_HOVERING_ELEMENT,
   elementID
 });
 
-const updatePreviousElement = (): MenuActionTypes => ({
+const updatePreviousSlide = (): MenuActionTypes => ({
   type: Types.UPDATE_PREVIOUS_ELEMENT
 });
 
 export default {
   toggleMenu,
-  setHoveringElement,
-  updatePreviousElement
+  setSlide,
+  updatePreviousSlide
 };

@@ -16,7 +16,7 @@ describe("testimonials reducer", (): void => {
 
   it("handles SWIPE_SLIDE", (): void => {
     const action: TestimonialsActionTypes = {
-      type: Types.SWIPE_SLIDE,
+      type: Types.SET_SLIDE,
       slideID: 3
     };
 
