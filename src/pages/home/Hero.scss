@@ -36,84 +36,6 @@
   background: $background;
 }
 
-.hero-slider-nav {
-  display: flex;
-  position: absolute;
-  top: 13%;
-  right: -67px;
-}
-
-.hero-slider-progress {
-  color: $grey;
-  font-family: "benton-modern-display";
-  font-size: 20px;
-  margin-right: 30px;
-  line-height: 1;
-}
-
-.hero-slider-prefix {
-  line-height: 1;
-}
-
-.hero-slider-prefix span {
-  font-size: 12px;
-  position: absolute;
-  top: 1px;
-  left: 17px;
-}
-
-.hero-slider-current {
-  position: absolute;
-  left: 30px;
-  width: 16px;
-  height: 100%;
-  overflow: hidden;
-  line-height: 1;
-}
-
-.hero-slider-current span {
-  position: absolute;
-  transition: all 0.3s cubic-bezier(0.215, 0.31, 0.655, 1);
-}
-
-.hero-slider-dots {
-  display: flex;
-  align-items: center;
-}
-
-.hero-slider-dot {
-  position: relative;
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  cursor: pointer;
-  transition: width 0.45s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.hero-slider-dot::after {
-  content: "";
-  width: 2px;
-  height: 2px;
-  background: $grey;
-  position: absolute;
-  top: 5px;
-  left: 4px;
-}
-
-.hero-slider-dot.active {
-  width: 96px;
-  pointer-events: none;
-}
-
-.hero-slider-dot.active::after {
-  width: calc(100% - 10px);
-  height: 1px;
-}
-
-.hero-slider-dot:not(.active)::after {
-  border-radius: 50%;
-}
-
 .hero-arrows svg {
   width: 33px;
   height: 13px;
@@ -213,7 +135,6 @@
     width: 70%;
   }
 
-  .hero-slider-nav,
   .hero-symbol {
     display: none;
   }

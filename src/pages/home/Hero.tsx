@@ -6,6 +6,7 @@ import { heroActions } from "modules/hero";
 import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
+import SliderNav from "../shared/SliderNav";
 import Symbol from "components/Symbol";
 import Link from "../shared/Link";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
@@ -41,14 +42,9 @@ export const Hero = ({
   toggleIntro,
   swipeSlide
 }: Props): JSX.Element => {
-  const [dot, setDot] = useState(currentSlideID);
   const [symbolRotation, rotateSymbol] = useState(0);
 
-  const updateDot = (dot: number): MouseEventHandler => () => setDot(dot);
-  const resetDot = (): void => setDot(currentSlideID);
-
   useDidUpdateEffect((): void => {
-    resetDot();
     rotateSymbol(
       prevRotation =>
         prevRotation + (currentSlideID > previousSlideID ? -90 : 90)
@@ -146,44 +142,11 @@ export const Hero = ({
             width: { wrapper: wrapperWidth, image: imageWidth }
           }}
         />
-        <div className="hero-slider-nav">
-          <span className="hero-slider-progress">
-            <span className="hero-slider-prefix">
-              N<span>o</span>
-            </span>
-            <span className="hero-slider-current">
-              {imageUrls.map((_, id) => (
-                <span
-                  style={{
-                    top: `${100 * id}%`,
-                    transform: `translateY(${-100 * dot}%)`,
-                    opacity: Number(dot === id)
-                  }}
-                  key={id}
-                >
-                  {id + 1}
-                </span>
-              ))}
-            </span>
-          </span>
-          <div className="hero-slider-dots">
-            {imageUrls.map((_, id) => (
-              <span
-                className={classList({
-                  ["hero-slider-dot"]: true,
-                  active: id === currentSlideID
-                })}
-                onClick={swipeSlide(
-                  id,
-                  getDuration({ from: currentSlideID, to: id })
-                )}
-                onMouseOver={updateDot(id)}
-                onMouseLeave={resetDot}
-                key={id}
-              ></span>
-            ))}
-          </div>
-        </div>
+        <SliderNav
+          imageUrls={imageUrls}
+          currentSlideID={currentSlideID}
+          swipeSlide={swipeSlide}
+        />
         <div className="hero-arrows">
           <div
             className={classList({
