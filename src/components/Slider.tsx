@@ -13,7 +13,7 @@ import { setTransform, setTransition } from "utils/refs";
 import "./Slider.scss";
 
 interface MappedState {
-  isOpen?: boolean;
+  isOpen: boolean;
   currentSlideID: number;
   previousSlideID: number;
 }
@@ -34,7 +34,6 @@ interface SliderOptions {
 
 interface OwnProps {
   imageUrls: string[];
-  isOpen?: boolean;
   options: SliderOptions;
 }
 
@@ -237,7 +236,11 @@ export const HeroSlider = connect(
   mapHeroDispatch
 )(Slider);
 
-const mapTestimonialsState = ({ testimonials }: AppState): MappedState => ({
+const mapTestimonialsState = ({
+  intro,
+  testimonials
+}: AppState): MappedState => ({
+  isOpen: !intro.toggled,
   currentSlideID: testimonials.currentSlideID,
   previousSlideID: testimonials.previousSlideID
 });
