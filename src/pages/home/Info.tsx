@@ -1,7 +1,7 @@
 import React from "react";
 import SectionHeader from "./shared/SectionHeader";
 import List from "./info/List";
-import Link from "./shared/Link";
+import Link from "../shared/Link";
 import "./Info.scss";
 
 const Info = (): JSX.Element => {

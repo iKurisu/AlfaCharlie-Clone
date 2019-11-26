@@ -7,7 +7,7 @@ import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
 import Symbol from "components/Symbol";
-import Link from "./shared/Link";
+import Link from "../shared/Link";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import useTransition from "hooks/useTransition";
 import useMediaQuery from "hooks/useMediaQuery";
