@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { AppState } from "store";
 import { menuActions } from "modules/menu";
 import { heroActions } from "modules/hero";
+import { testimonialsActions } from "modules/testimonials";
 import Mask from "./slider/Mask";
 import Slide from "./slider/Slide";
 import useDrag, { Handler } from "hooks/useDrag";
@@ -12,7 +13,7 @@ import { setTransform, setTransition } from "utils/refs";
 import "./Slider.scss";
 
 interface MappedState {
-  isOpen: boolean;
+  isOpen?: boolean;
   currentSlideID: number;
   previousSlideID: number;
 }
@@ -33,6 +34,7 @@ interface SliderOptions {
 
 interface OwnProps {
   imageUrls: string[];
+  isOpen?: boolean;
   options: SliderOptions;
 }
 
@@ -229,4 +231,27 @@ const mapHeroDispatch = (dispatch: Dispatch): MappedActions => ({
 export const HeroSlider = connect(
   mapHeroState,
   mapHeroDispatch
+)(Slider);
+
+const mapTestimonialsState = ({ testimonials }: AppState): MappedState => ({
+  currentSlideID: testimonials.currentSlideID,
+  previousSlideID: testimonials.previousSlideID
+});
+
+const mapTestimonialsDispatch = (dispatch: Dispatch): MappedActions => ({
+  swipeSlide: (
+    elementID: number,
+    duration: number
+  ): React.MouseEventHandler => (): void => {
+    dispatch(testimonialsActions.setSlide(elementID));
+    setTimeout(
+      () => dispatch(testimonialsActions.updatePreviousSlide()),
+      duration
+    );
+  }
+});
+
+export const TestimonialsSlider = connect(
+  mapTestimonialsState,
+  mapTestimonialsDispatch
 )(Slider);
