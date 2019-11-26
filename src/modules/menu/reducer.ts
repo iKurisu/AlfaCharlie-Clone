@@ -13,7 +13,7 @@ const reducer = (state = initialState, action: MenuActionTypes): MenuState => {
     case Types.SET_HOVERING_ELEMENT:
       return {
         ...state,
-        hoveringElementID: action.elementID,
+        hoveringElementID: action.slideID,
         previousElementID: state.hoveringElementID
       };
     case Types.UPDATE_PREVIOUS_ELEMENT:

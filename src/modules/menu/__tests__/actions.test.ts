@@ -11,13 +11,13 @@ describe("menu actions", (): void => {
   });
 
   it("creates an action to update the element being hovered", (): void => {
-    const elementID = 2;
+    const slideID = 2;
     const expectedAction = {
       type: Types.SET_HOVERING_ELEMENT,
-      elementID
+      slideID
     };
 
-    expect(actions.setSlide(elementID)).toEqual(expectedAction);
+    expect(actions.setSlide(slideID)).toEqual(expectedAction);
   });
 
   it("creates an action to update the previous hovered element", (): void => {

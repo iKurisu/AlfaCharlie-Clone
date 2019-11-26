@@ -4,9 +4,9 @@ const toggleMenu = (): MenuActionTypes => ({
   type: Types.TOGGLE_MENU
 });
 
-const setSlide = (elementID: number): MenuActionTypes => ({
+const setSlide = (slideID: number): MenuActionTypes => ({
   type: Types.SET_HOVERING_ELEMENT,
-  elementID
+  slideID
 });
 
 const updatePreviousSlide = (): MenuActionTypes => ({
