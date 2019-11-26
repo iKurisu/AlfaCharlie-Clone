@@ -1,5 +1,5 @@
 import React from "react";
-import { Author } from "../testimonials/Slider";
+import { Author } from "./testimonials/Slider";
 import "./Link.scss";
 
 interface Props {
