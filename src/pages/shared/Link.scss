@@ -48,7 +48,9 @@
   padding: 0 10px;
 }
 
-.main-link .link-text {
+.main-link .link-text,
+.main-link .link-author,
+.main-link .link-position {
   color: #d43246;
   display: inline-block;
   font-size: 13px;
@@ -56,6 +58,11 @@
   line-height: 1.1;
   text-transform: uppercase;
   transition: transform 1s cubic-bezier(0, 0, 0, 1) 0.15s;
+}
+
+.main-link .link-position::before {
+  content: "•";
+  margin: 0 6px;
 }
 
 .main-link:hover .link-line {
