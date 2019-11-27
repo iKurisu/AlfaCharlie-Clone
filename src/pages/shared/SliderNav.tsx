@@ -25,12 +25,12 @@ const SliderNav = ({
   }, [currentSlideID]);
 
   return (
-    <div className="hero-slider-nav">
-      <span className="hero-slider-progress">
-        <span className="hero-slider-prefix">
+    <div className="slider-nav">
+      <span className="slider-progress">
+        <span className="slider-prefix">
           N<span>o</span>
         </span>
-        <span className="hero-slider-current">
+        <span className="slider-current">
           {imageUrls.map((_, id) => (
             <span
               style={{
@@ -45,11 +45,11 @@ const SliderNav = ({
           ))}
         </span>
       </span>
-      <div className="hero-slider-dots">
+      <div className="slider-dots">
         {imageUrls.map((_, id) => (
           <span
             className={classList({
-              ["hero-slider-dot"]: true,
+              ["slider-dot"]: true,
               active: id === currentSlideID
             })}
             onClick={swipeSlide(
