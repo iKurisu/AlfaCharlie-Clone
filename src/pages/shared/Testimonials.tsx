@@ -31,10 +31,12 @@ const Testimonials = (props: Props): JSX.Element => (
   <section className="testimonials">
     <SectionHeader text="brilliant clients" />
     <div className="testimonials-image-wrapper">
-      <TestimonialsSlider
-        imageUrls={imageUrls}
-        options={{ fadeDirection: "left", width: { image: 52, wrapper: 60 } }}
-      />
+      <div className="testimonials-slider">
+        <TestimonialsSlider
+          imageUrls={imageUrls}
+          options={{ fadeDirection: "left", width: { image: 52, wrapper: 60 } }}
+        />
+      </div>
       <SliderNav imageUrls={imageUrls} {...props} />
     </div>
     <div className="testimonials-content">
