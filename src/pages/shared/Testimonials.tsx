@@ -6,9 +6,10 @@ import { testimonialsActions } from "modules/testimonials";
 import SectionHeader from "../home/shared/SectionHeader";
 import { TestimonialsSlider } from "components/Slider";
 import Slider from "./testimonials/Slider";
+import Arrows from "./Arrows";
 import SliderNav from "./SliderNav";
-import "./Testimonials.scss";
 import useMediaQuery from "hooks/useMediaQuery";
+import "./Testimonials.scss";
 
 const imageUrls = [
   "2019/04/classic-journeys-editorial-2.jpg",
@@ -53,6 +54,7 @@ const Testimonials = (props: Props): JSX.Element => {
           />
         </div>
         <SliderNav imageUrls={imageUrls} {...props} />
+        <Arrows maxSwipes={imageUrls.length - 1} {...props} />
       </div>
       <div className="testimonials-content">
         <span className="quotemark">“</span>
