@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, RefObject, useEffect } from "react";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import Link from "../Link";
@@ -90,28 +90,56 @@ interface MappedState {
   activeSlide: number;
 }
 
-export const Slider = ({ activeSlide }: MappedState): JSX.Element => (
-  <div className="testimonials-slider">
-    {testimonials.map(({ paragraphs, author }, id) => (
-      <div
-        className={classList({
-          ["testimonials-slide"]: true,
-          active: id === activeSlide
-        })}
-        key={id}
-      >
-        <div className="testimonial">
-          {paragraphs.map((paragraph, id) => (
-            <p key={id}>{paragraph}</p>
-          ))}
+export const Slider = ({ activeSlide }: MappedState): JSX.Element => {
+  const [height, setHeight] = useState(0);
+
+  const refs: RefObject<HTMLDivElement>[] = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null)
+  ];
+
+  const updateHeight = (): void =>
+    setHeight(
+      Math.max(
+        ...refs.map((ref): number =>
+          ref.current ? ref.current.clientHeight : 0
+        )
+      )
+    );
+
+  useEffect((): (() => void) => {
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
+
+  return (
+    <div className="testimonials-slider" style={{ height: `${height}px` }}>
+      {testimonials.map(({ paragraphs, author }, id) => (
+        <div
+          className={classList({
+            ["testimonials-slide"]: true,
+            active: id === activeSlide
+          })}
+          ref={refs[id]}
+          key={id}
+        >
+          <div className="testimonial">
+            {paragraphs.map((paragraph, id) => (
+              <p key={id}>{paragraph}</p>
+            ))}
+          </div>
+          <div className="testimonial-author">
+            <Link content={author} />
+          </div>
         </div>
-        <div className="testimonial-author">
-          <Link content={author} />
-        </div>
-      </div>
-    ))}
-  </div>
-);
+      ))}
+    </div>
+  );
+};
 
 const mapState = ({ testimonials }: AppState): MappedState => ({
   activeSlide: testimonials.currentSlideID
