@@ -90,7 +90,7 @@ interface MappedState {
   activeSlide: number;
 }
 
-const Slider = ({ activeSlide }: MappedState): JSX.Element => (
+export const Slider = ({ activeSlide }: MappedState): JSX.Element => (
   <div className="testimonials-slider">
     {testimonials.map(({ paragraphs, author }, id) => (
       <div
