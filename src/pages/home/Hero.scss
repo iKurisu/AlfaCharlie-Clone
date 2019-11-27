@@ -38,43 +38,6 @@
   right: -67px;
 }
 
-.hero-arrows svg {
-  width: 33px;
-  height: 13px;
-}
-
-.hero-arrows {
-  width: 95px;
-  height: 26px;
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-  right: 0;
-  margin-top: 14px;
-}
-
-.hero-arrows .disabled {
-  pointer-events: none;
-  opacity: 0.25;
-}
-
-.arrow-prev,
-.arrow-next {
-  padding: 0 6px;
-}
-
-.arrow-prev {
-  transform: rotate(-180deg);
-}
-
-.hero-arrows polyline,
-.hero-arrows line {
-  fill: none;
-  stroke: $grey;
-  stroke-width: 3;
-}
-
 .hero-symbol {
   position: absolute;
   top: 66%;
@@ -139,10 +102,6 @@
 
   .hero-symbol {
     display: none;
-  }
-
-  .hero-arrows {
-    display: flex;
   }
 }
 

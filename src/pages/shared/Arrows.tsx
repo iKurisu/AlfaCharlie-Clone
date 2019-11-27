@@ -1,6 +1,7 @@
 import React, { MouseEventHandler } from "react";
 import { classList } from "utils/class";
 import { getDuration } from "utils/slider";
+import "./Arrows.scss";
 
 export interface Props {
   currentSlideID: number;
@@ -13,7 +14,7 @@ const Arrows = ({
   maxSwipes,
   swipeSlide
 }: Props): JSX.Element => (
-  <div className="hero-arrows">
+  <div className="arrows">
     <div
       className={classList({
         ["arrow-prev"]: true,
