@@ -1,9 +1,15 @@
+@import "sass/_variables.scss";
+
 .row {
   padding: 0 10.5%;
 }
 
 .separator {
   height: 221px;
+}
+
+section .slider-mask {
+  background: $background;
 }
 
 @media (max-width: 1600px) {
