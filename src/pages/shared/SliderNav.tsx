@@ -4,7 +4,7 @@ import { classList } from "utils/class";
 import { getDuration } from "utils/slider";
 import "./SliderNav.scss";
 
-interface Props {
+export interface Props {
   imageUrls: string[];
   currentSlideID: number;
   swipeSlide: (slideID: number, delay: number) => MouseEventHandler;
