@@ -8,6 +8,7 @@ import { TestimonialsSlider } from "components/Slider";
 import Slider from "./testimonials/Slider";
 import SliderNav from "./SliderNav";
 import "./Testimonials.scss";
+import useMediaQuery from "hooks/useMediaQuery";
 
 const imageUrls = [
   "2019/04/classic-journeys-editorial-2.jpg",
@@ -27,24 +28,39 @@ interface MappedActions {
 
 type Props = MappedState & MappedActions;
 
-const Testimonials = (props: Props): JSX.Element => (
-  <section className="testimonials">
-    <SectionHeader text="brilliant clients" />
-    <div className="testimonials-image-wrapper">
-      <div className="testimonials-slider">
-        <TestimonialsSlider
-          imageUrls={imageUrls}
-          options={{ fadeDirection: "left", width: { image: 52, wrapper: 60 } }}
-        />
+const Testimonials = (props: Props): JSX.Element => {
+  const wrapperWidth = useMediaQuery([
+    "(maxWidth: 1600px) => 37.5vw",
+    "(minWidth: 1601px) => 37.5vw"
+  ]);
+
+  const imageWidth = useMediaQuery([
+    "(maxWidth: 1600px) => 31.93vw",
+    "(minWidth: 1601px) => 31.90vw"
+  ]);
+
+  return (
+    <section className="testimonials">
+      <SectionHeader text="brilliant clients" />
+      <div className="testimonials-image-wrapper">
+        <div className="testimonials-slider">
+          <TestimonialsSlider
+            imageUrls={imageUrls}
+            options={{
+              fadeDirection: "left",
+              width: { image: imageWidth, wrapper: wrapperWidth }
+            }}
+          />
+        </div>
+        <SliderNav imageUrls={imageUrls} {...props} />
       </div>
-      <SliderNav imageUrls={imageUrls} {...props} />
-    </div>
-    <div className="testimonials-content">
-      <span className="quotemark">“</span>
-      <Slider />
-    </div>
-  </section>
-);
+      <div className="testimonials-content">
+        <span className="quotemark">“</span>
+        <Slider />
+      </div>
+    </section>
+  );
+};
 
 const mapState = ({ testimonials }: AppState): MappedState => ({
   currentSlideID: testimonials.currentSlideID
