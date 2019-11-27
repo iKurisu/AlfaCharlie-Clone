@@ -35,11 +35,11 @@ const Testimonials = (props: Props): JSX.Element => (
         imageUrls={imageUrls}
         options={{ fadeDirection: "left", width: { image: 52, wrapper: 60 } }}
       />
+      <SliderNav imageUrls={imageUrls} {...props} />
     </div>
     <div className="testimonials-content">
       <span className="quotemark">“</span>
       <Slider />
-      <SliderNav imageUrls={imageUrls} {...props} />
     </div>
   </section>
 );
