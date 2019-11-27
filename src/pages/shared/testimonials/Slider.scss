@@ -1,0 +1,26 @@
+.testimonials-content .testimonials-slider {
+  position: relative;
+  height: 375px;
+}
+
+.testimonials-content .testimonials-slide {
+  position: absolute;
+  top: 0;
+}
+
+.testimonials-content .testimonials-slide:not(.active) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.testimonial {
+  width: 88%;
+  margin-bottom: 30px;
+}
+
+.testimonial p {
+  font-family: "benton-modern-display";
+  font-size: 25px;
+  letter-spacing: 0.08em;
+  line-height: 1.327;
+}
