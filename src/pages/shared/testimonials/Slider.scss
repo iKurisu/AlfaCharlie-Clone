@@ -1,3 +1,5 @@
+@import "sass/_variables.scss";
+
 .testimonials-content .testimonials-slider {
   position: relative;
 }
@@ -18,9 +20,26 @@
 }
 
 .testimonial p {
+  color: $black;
   font-family: "benton-modern-display";
   font-size: 25px;
   letter-spacing: 0.08em;
   line-height: 1.327;
   margin-bottom: 30px;
+}
+
+@media (max-width: 480px) {
+  .testimonial {
+    width: 88%;
+  }
+
+  .testimonial p {
+    font-size: 19.5px;
+    letter-spacing: 0.08em;
+    line-height: 1.502;
+  }
+
+  .testimonial-author .link-line {
+    top: 22px;
+  }
 }
