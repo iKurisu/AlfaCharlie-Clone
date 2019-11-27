@@ -30,7 +30,7 @@ type Props = MappedState & MappedActions;
 const Testimonials = (props: Props): JSX.Element => (
   <section className="testimonials">
     <SectionHeader text="brilliant clients" />
-    <div className="testimonials-slider">
+    <div className="testimonials-image-wrapper">
       <TestimonialsSlider
         imageUrls={imageUrls}
         options={{ fadeDirection: "left", width: { image: 52, wrapper: 60 } }}

@@ -2,10 +2,20 @@
   position: relative;
 }
 
-.testimonials-slider {
+.testimonials-image-wrapper {
   width: 50%;
   height: 20vw;
   position: absolute;
   // top: 11%;
   overflow: hidden;
+}
+
+.testimonials-content {
+  padding-left: 51%;
+}
+
+.testimonials-content .quotemark {
+  color: #fff;
+  font-family: "benton-modern-display";
+  font-size: 120px;
 }
