@@ -32,6 +32,12 @@
   position: relative;
 }
 
+.hero .slider-nav {
+  position: absolute;
+  top: 13%;
+  right: -67px;
+}
+
 .hero .slider-mask {
   background: $background;
 }
