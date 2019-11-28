@@ -35,7 +35,7 @@
   line-height: 0.8;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
   .testimonials .section-header-wrapper {
     margin-bottom: 8vw;
   }
@@ -50,11 +50,17 @@
 
   .testimonials-content {
     padding: 0;
-    margin-top: 46px;
+    margin-top: 10%;
   }
 
   .testimonials-content .quotemark {
     font-size: 112px;
     line-height: 0.8;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-content {
+    margin-top: 46px;
   }
 }

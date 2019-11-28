@@ -105,6 +105,21 @@
   }
 }
 
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  .main-link .link-author {
+    padding: 0;
+    line-height: 1;
+  }
+
+  .testimonials-content .link-text-wrapper {
+    padding: 0 5px;
+  }
+
+  .testimonials-content .main-link svg {
+    width: 30px;
+  }
+}
+
 @media (max-width: 480px) {
   .main-link .link-author {
     padding: 0;
@@ -113,5 +128,9 @@
 
   .testimonials-content .link-text-wrapper {
     padding: 0 6.5px;
+  }
+
+  .testimonials-content .main-link svg {
+    width: 36px;
   }
 }
