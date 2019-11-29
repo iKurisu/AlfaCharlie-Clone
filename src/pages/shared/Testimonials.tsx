@@ -31,11 +31,18 @@ type Props = MappedState & MappedActions;
 
 const Testimonials = (props: Props): JSX.Element => {
   const wrapperWidth = useMediaQuery([
-    "(maxWidth: 1600px) => 37.5vw",
+    "(maxWidth: 420px) => 85.61vw",
+    "(maxWidth: 823px) and (orientatin: landscape) => 79.01vw",
+    "(maxWidth: 768px) => 79.01vw",
+    "(maxWidth: 1366px) => 37.5vw",
+    "(maxWidth: 1600px) => 37.55vw",
     "(minWidth: 1601px) => 37.5vw"
   ]);
 
   const imageWidth = useMediaQuery([
+    "(maxWidth: 420px) => 72.66vw",
+    "(maxWidth: 823px) and (orientation: landscape) => 67.22vw",
+    "(maxWidth: 768px) => 67.22vw",
     "(maxWidth: 1600px) => 31.93vw",
     "(minWidth: 1601px) => 31.90vw"
   ]);
