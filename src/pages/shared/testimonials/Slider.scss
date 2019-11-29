@@ -28,6 +28,13 @@
   margin-bottom: 30px;
 }
 
+@media (max-width: 1366px) {
+  .testimonial p {
+    font-size: 1.14rem;
+    line-height: 1.5;
+  }
+}
+
 @media (max-width: 1024px) {
   .testimonial {
     width: 86%;

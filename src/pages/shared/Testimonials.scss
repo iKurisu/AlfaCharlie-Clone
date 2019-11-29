@@ -36,11 +36,21 @@
   line-height: 0.8;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1366px) {
   .testimonials .section-header-wrapper {
     margin-bottom: 8vw;
   }
 
+  .testimonials-image-wrapper .slider-nav {
+    margin-top: 24px;
+  }
+
+  .testimonials-content .quotemark {
+    font-size: 105px;
+  }
+}
+
+@media (max-width: 1024px) {
   .testimonials-image-wrapper {
     top: 11%;
   }
