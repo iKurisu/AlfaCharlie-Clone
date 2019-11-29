@@ -46,6 +46,7 @@
 .main-link .link-text-wrapper {
   display: inline-block;
   padding: 0 10px;
+  white-space: nowrap;
 }
 
 .main-link .link-text,
@@ -102,6 +103,12 @@
   .main-link .link-author,
   .main-link .link-position {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-link .link-author {
+    line-height: 1.2;
   }
 }
 
