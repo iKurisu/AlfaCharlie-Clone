@@ -5,7 +5,7 @@
 }
 
 .testimonials .section-header-wrapper {
-  margin-bottom: 155px;
+  margin-bottom: 8vw;
 }
 
 .testimonials-image-wrapper {
@@ -36,11 +36,13 @@
   line-height: 0.8;
 }
 
-@media (max-width: 1366px) {
-  .testimonials .section-header-wrapper {
-    margin-bottom: 8vw;
+@media (max-width: 1600px) {
+  .testimonials-content .quotemark {
+    font-size: 112px;
   }
+}
 
+@media (max-width: 1366px) {
   .testimonials-image-wrapper .slider-nav {
     margin-top: 24px;
   }
