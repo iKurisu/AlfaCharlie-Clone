@@ -6,22 +6,6 @@
   position: relative;
 }
 
-.info-header-wrapper {
-  position: relative;
-  z-index: 10;
-  margin-bottom: 67px;
-}
-
-.info-header {
-  color: #fff;
-  font-family: "benton-modern-display";
-  font-size: 127px;
-  font-weight: 400;
-  letter-spacing: 0.0617em;
-  line-height: 1;
-  text-align: center;
-}
-
 .info-image-wrapper {
   width: 50%;
   padding: 0 5%;
@@ -60,15 +44,6 @@
 }
 
 @media (max-width: 1600px) {
-  .info-header-wrapper {
-    margin-bottom: 58px;
-  }
-
-  .info-header {
-    font-size: 102px;
-    letter-spacing: 0.06em;
-  }
-
   .info-title {
     margin-bottom: 25px;
   }
@@ -81,11 +56,6 @@
 }
 
 @media (max-width: 1366px) {
-  .info-header {
-    font-size: 86.5px;
-    letter-spacing: 0.061em;
-  }
-
   .info-title {
     font-size: 35px;
     letter-spacing: 0.06em;
@@ -107,17 +77,6 @@
 }
 
 @media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
-  .info-header-wrapper {
-    margin-bottom: 60px;
-  }
-
-  .info-header {
-    font-size: 93px;
-    letter-spacing: 0.06em;
-    line-height: 0.8;
-    text-align: start;
-  }
-
   .info-image-wrapper {
     width: 100%;
     position: static;
@@ -151,14 +110,6 @@
     margin-bottom: -1%;
   }
 
-  .info-header-wrapper {
-    margin: 0;
-  }
-
-  .info-header {
-    font-size: 75px;
-  }
-
   .info-content-wrapper {
     margin-top: 44px;
   }
@@ -166,11 +117,13 @@
   .info-title {
     font-size: 30px;
     letter-spacing: 0.06em;
-    margin-bottom: 17px;
+    margin-bottom: 18px;
   }
 
   .info-text {
     width: 100%;
     margin-bottom: 30px;
+    letter-spacing: 0.02em;
+    line-height: 1.53;
   }
 }

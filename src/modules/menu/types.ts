@@ -16,7 +16,7 @@ interface ToggleMenuAction {
 
 interface SetHoveringElementAction {
   type: Types.SET_HOVERING_ELEMENT;
-  elementID: number;
+  slideID: number;
 }
 
 interface UpdatePreviousElementAction {

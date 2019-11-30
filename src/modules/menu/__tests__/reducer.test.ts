@@ -26,7 +26,7 @@ describe("menu reducer", (): void => {
   it("handles SET_HOVER_ELEMENT", (): void => {
     const action: MenuActionTypes = {
       type: Types.SET_HOVERING_ELEMENT,
-      elementID: 1
+      slideID: 1
     };
 
     const newState = {
@@ -39,7 +39,7 @@ describe("menu reducer", (): void => {
 
     const secondAction: MenuActionTypes = {
       type: Types.SET_HOVERING_ELEMENT,
-      elementID: 2
+      slideID: 2
     };
 
     expect(reducer(newState, secondAction)).toEqual({

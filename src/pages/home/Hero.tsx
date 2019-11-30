@@ -6,12 +6,13 @@ import { heroActions } from "modules/hero";
 import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
+import SliderNav from "../shared/SliderNav";
+import Arrows from "../shared/Arrows";
 import Symbol from "components/Symbol";
-import Link from "./shared/Link";
+import Link from "../shared/Link";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import useTransition from "hooks/useTransition";
 import useMediaQuery from "hooks/useMediaQuery";
-import { classList } from "utils/class";
 import { getDuration } from "utils/slider";
 import "./Hero.scss";
 
@@ -41,14 +42,9 @@ export const Hero = ({
   toggleIntro,
   swipeSlide
 }: Props): JSX.Element => {
-  const [dot, setDot] = useState(currentSlideID);
   const [symbolRotation, rotateSymbol] = useState(0);
 
-  const updateDot = (dot: number): MouseEventHandler => () => setDot(dot);
-  const resetDot = (): void => setDot(currentSlideID);
-
   useDidUpdateEffect((): void => {
-    resetDot();
     rotateSymbol(
       prevRotation =>
         prevRotation + (currentSlideID > previousSlideID ? -90 : 90)
@@ -135,7 +131,7 @@ export const Hero = ({
           ref={link}
           style={{ transform: "translateX(40px)", opacity: 0 }}
         >
-          <Link text="View our work" />
+          <Link content="View our work" />
         </div>
       </div>
       <div className="hero-slider">
@@ -146,92 +142,16 @@ export const Hero = ({
             width: { wrapper: wrapperWidth, image: imageWidth }
           }}
         />
-        <div className="hero-slider-nav">
-          <span className="hero-slider-progress">
-            <span className="hero-slider-prefix">
-              N<span>o</span>
-            </span>
-            <span className="hero-slider-current">
-              {imageUrls.map((_, id) => (
-                <span
-                  style={{
-                    top: `${100 * id}%`,
-                    transform: `translateY(${-100 * dot}%)`,
-                    opacity: Number(dot === id)
-                  }}
-                  key={id}
-                >
-                  {id + 1}
-                </span>
-              ))}
-            </span>
-          </span>
-          <div className="hero-slider-dots">
-            {imageUrls.map((_, id) => (
-              <span
-                className={classList({
-                  ["hero-slider-dot"]: true,
-                  active: id === currentSlideID
-                })}
-                onClick={swipeSlide(
-                  id,
-                  getDuration({ from: currentSlideID, to: id })
-                )}
-                onMouseOver={updateDot(id)}
-                onMouseLeave={resetDot}
-                key={id}
-              ></span>
-            ))}
-          </div>
-        </div>
-        <div className="hero-arrows">
-          <div
-            className={classList({
-              ["arrow-prev"]: true,
-              disabled: currentSlideID === 0
-            })}
-            onClick={swipeSlide(
-              currentSlideID - 1,
-              getDuration({ from: currentSlideID, to: currentSlideID - 1 })
-            )}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              version="1.1"
-              x="0px"
-              y="0px"
-              viewBox="0 0 157.34 51.71"
-              xmlSpace="preserve"
-            >
-              <polyline points="128.65,45.62 148.36,25.91 128.47,6.02 " />
-              <line x1="8.46" y1="25.91" x2="147.73" y2="25.91" />
-            </svg>
-          </div>
-          <div
-            className={classList({
-              ["arrow-next"]: true,
-              disabled: currentSlideID === imageUrls.length - 1
-            })}
-            onClick={swipeSlide(
-              currentSlideID + 1,
-              getDuration({ from: currentSlideID, to: currentSlideID + 1 })
-            )}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              version="1.1"
-              x="0px"
-              y="0px"
-              viewBox="0 0 157.34 51.71"
-              xmlSpace="preserve"
-            >
-              <polyline points="128.65,45.62 148.36,25.91 128.47,6.02 " />
-              <line x1="8.46" y1="25.91" x2="147.73" y2="25.91" />
-            </svg>
-          </div>
-        </div>
+        <SliderNav
+          imageUrls={imageUrls}
+          currentSlideID={currentSlideID}
+          swipeSlide={swipeSlide}
+        />
+        <Arrows
+          currentSlideID={currentSlideID}
+          maxSwipes={imageUrls.length - 1}
+          swipeSlide={swipeSlide}
+        />
         <div
           className="hero-symbol"
           style={{

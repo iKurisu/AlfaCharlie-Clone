@@ -1,9 +1,10 @@
 import React, { useRef, MouseEventHandler, RefObject } from "react";
-import { Dispatch } from "redux";
+import { Dispatch, AnyAction } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import { menuActions } from "modules/menu";
 import { heroActions } from "modules/hero";
+import { testimonialsActions } from "modules/testimonials";
 import Mask from "./slider/Mask";
 import Slide from "./slider/Slide";
 import useDrag, { Handler } from "hooks/useDrag";
@@ -189,6 +190,22 @@ export const Slider = ({
   );
 };
 
+interface Actions<T> {
+  setSlide: (slideID: number) => T;
+  updatePreviousSlide: () => T;
+}
+
+const swipeSlide = <T extends AnyAction>(
+  dispatch: Dispatch,
+  actions: Actions<T>
+) => (
+  elementID: number,
+  duration: number
+): React.MouseEventHandler => (): void => {
+  dispatch(actions.setSlide(elementID));
+  setTimeout(() => dispatch(actions.updatePreviousSlide()), duration);
+};
+
 const mapMenuState = ({ menu }: AppState): MappedState => ({
   isOpen: menu.toggled,
   currentSlideID: menu.hoveringElementID,
@@ -196,13 +213,7 @@ const mapMenuState = ({ menu }: AppState): MappedState => ({
 });
 
 const mapMenuDispatch = (dispatch: Dispatch): MappedActions => ({
-  swipeSlide: (
-    elementID: number,
-    duration: number
-  ): React.MouseEventHandler => (): void => {
-    dispatch(menuActions.setHoveringElement(elementID));
-    setTimeout(() => dispatch(menuActions.updatePreviousElement()), duration);
-  }
+  swipeSlide: swipeSlide(dispatch, menuActions)
 });
 
 export const MenuSlider = connect(
@@ -217,16 +228,28 @@ const mapHeroState = ({ hero, intro }: AppState): MappedState => ({
 });
 
 const mapHeroDispatch = (dispatch: Dispatch): MappedActions => ({
-  swipeSlide: (
-    elementID: number,
-    duration: number
-  ): React.MouseEventHandler => (): void => {
-    dispatch(heroActions.setSlide(elementID));
-    setTimeout(() => dispatch(heroActions.updatePreviousSlide()), duration);
-  }
+  swipeSlide: swipeSlide(dispatch, heroActions)
 });
 
 export const HeroSlider = connect(
   mapHeroState,
   mapHeroDispatch
+)(Slider);
+
+const mapTestimonialsState = ({
+  intro,
+  testimonials
+}: AppState): MappedState => ({
+  isOpen: !intro.toggled,
+  currentSlideID: testimonials.currentSlideID,
+  previousSlideID: testimonials.previousSlideID
+});
+
+const mapTestimonialsDispatch = (dispatch: Dispatch): MappedActions => ({
+  swipeSlide: swipeSlide(dispatch, testimonialsActions)
+});
+
+export const TestimonialsSlider = connect(
+  mapTestimonialsState,
+  mapTestimonialsDispatch
 )(Slider);

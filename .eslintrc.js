@@ -11,7 +11,8 @@ module.exports = {
       allowExpressions: true,
       allowTypedFunctionExpressions: true,
       allowHigherOrderFunctions: true
-    }]
+    }],
+    "react/prop-types": ["off"]
   },
   parserOptions: {
     ecmaVersion: 2019,

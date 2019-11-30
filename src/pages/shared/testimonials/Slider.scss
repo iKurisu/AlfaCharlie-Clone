@@ -1,0 +1,78 @@
+@import "sass/_variables.scss";
+
+.testimonials-content .testimonials-slider {
+  position: relative;
+}
+
+.testimonials-content .testimonials-slide {
+  position: absolute;
+  top: 0;
+  transition: opacity 1.3s ease;
+}
+
+.testimonials-content .testimonials-slide:not(.active) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.testimonial {
+  width: 88%;
+}
+
+.testimonial p {
+  color: $black;
+  font-family: "benton-modern-display";
+  font-size: 25px;
+  letter-spacing: 0.08em;
+  line-height: 1.327;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 1600px) {
+  .testimonial p {
+    font-size: 1.22rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 1366px) {
+  .testimonial p {
+    font-size: 1.14rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 1024px) {
+  .testimonial {
+    width: 86%;
+  }
+
+  .testimonial p {
+    font-size: 19.5px;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  .testimonial {
+    width: 88%;
+  }
+
+  .testimonial p {
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-content .testimonials-slider {
+    margin-top: -5%;
+  }
+
+  .testimonial-author .link-line {
+    top: 22px;
+  }
+
+  .testimonials-slider .main-link svg {
+    margin-top: -17px;
+  }
+}
