@@ -14,7 +14,7 @@ const Home = (): JSX.Element => {
       <div className="row">
         <Info />
       </div>
-      <div className="separator" />
+      <div className="separator -big" />
       <div className="row">
         <Testimonials />
       </div>
