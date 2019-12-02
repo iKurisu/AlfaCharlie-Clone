@@ -7,6 +7,7 @@ import MenuButton from "components/MenuButton";
 import Menu from "components/Menu";
 import Cursor from "components/Cursor";
 import Home from "pages/Home";
+import Agency from "pages/Agency";
 import "./styles.scss";
 
 const App = (): JSX.Element => (
@@ -28,6 +29,7 @@ const App = (): JSX.Element => (
           <div className="main-content">
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/agency" component={Agency} />
               <Redirect to="/" />
             </Switch>
           </div>
