@@ -1,0 +1,43 @@
+@import "sass/_variables.scss";
+
+.brief {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  height: 100vh;
+  padding: 0 4%;
+}
+
+.brief-content {
+  margin-top: 10vh;
+  margin-left: -15%;
+  position: relative;
+  z-index: 10;
+}
+
+.brief-title {
+  width: 85%;
+  line-height: 1;
+  margin-bottom: 30px;
+}
+
+.brief-text {
+  width: 85%;
+  color: $grey;
+  margin-bottom: 30px;
+}
+
+.brief-image-wrapper {
+  flex: 0 0 66%;
+  overflow: hidden;
+}
+
+.brief-image {
+  width: 82%;
+  transform: translateY(-3%);
+}
+
+.brief-image img {
+  width: 100%;
+  height: auto;
+}

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Brief from "./agency/Brief";
 
 const Agency = (): JSX.Element => {
   useEffect((): void => {
@@ -8,7 +9,9 @@ const Agency = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      <div className="row"></div>
+      <div className="row">
+        <Brief />
+      </div>
     </React.Fragment>
   );
 };
