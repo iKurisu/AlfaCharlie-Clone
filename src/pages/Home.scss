@@ -8,6 +8,10 @@
   height: 221px;
 }
 
+.separator.-big {
+  height: 271px;
+}
+
 section .slider-mask {
   background: $background;
 }
@@ -16,11 +20,19 @@ section .slider-mask {
   .separator {
     height: 196px;
   }
+
+  .separator.-big {
+    height: 240px;
+  }
 }
 
 @media (max-width: 1366px) {
   .separator {
     height: 182px;
+  }
+
+  .separator.-big {
+    height: 224px;
   }
 }
 
@@ -28,11 +40,19 @@ section .slider-mask {
   .separator {
     height: 196px;
   }
+
+  .separator.-big {
+    height: 240px;
+  }
 }
 
 @media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
   .separator {
     height: 121px;
+  }
+
+  .separator.-big {
+    height: 75px;
   }
 }
 
@@ -43,5 +63,9 @@ section .slider-mask {
 
   .separator {
     height: 76px;
+  }
+
+  .separator.-big {
+    height: 75px;
   }
 }

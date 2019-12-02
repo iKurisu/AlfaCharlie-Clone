@@ -4,7 +4,8 @@
   font-size: 20px;
   font-weight: 300;
   letter-spacing: 0.1em;
-  padding: 6px 0;
+  line-height: 1;
+  padding: 7px 0;
 }
 
 .info-list-item span::before {
@@ -17,7 +18,7 @@
   .info-list-item {
     font-size: 17px;
     letter-spacing: 0.12em;
-    padding: 6.3px 0;
+    padding: 7px 0;
   }
 }
 
@@ -25,6 +26,7 @@
   .info-list-item {
     font-size: 16px;
     letter-spacing: 0.115em;
+    line-height: 1.1;
     padding: 7px 0;
   }
 }
@@ -34,7 +36,7 @@
     font-size: 18px;
     letter-spacing: 0.09em;
     line-height: 1;
-    padding: 6.85px 0;
+    padding: 6.5px 0;
   }
 }
 
@@ -42,6 +44,6 @@
   .info-list-item {
     font-size: 20px;
     letter-spacing: 0.107em;
-    padding: 7.15px 0;
+    padding: 7px 0;
   }
 }
