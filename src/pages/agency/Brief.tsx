@@ -17,7 +17,9 @@ const Brief = (): JSX.Element => (
           territory, together.
         </p>
       </div>
-      <Link content="Get in touch" />
+      <div className="brief-animation">
+        <Link content="Get in touch" />
+      </div>
     </div>
     <div className="brief-image-wrapper">
       <div className="brief-image">
