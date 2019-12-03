@@ -41,3 +41,58 @@
   width: 100%;
   height: auto;
 }
+
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  .brief {
+    height: auto;
+    min-height: 100vh;
+    flex-direction: column-reverse;
+    padding: 98px 0 0;
+  }
+
+  .brief-image-wrapper,
+  .brief-content {
+    flex: 1;
+  }
+
+  .brief-image {
+    width: 100%;
+  }
+
+  .brief-content {
+    margin: 0;
+  }
+
+  .brief-title,
+  .brief-text {
+    width: 90%;
+    margin-bottom: 26.4px;
+  }
+
+  .brief-title {
+    font-size: 37.5px;
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .brief-content {
+    margin: 10% 0 0;
+  }
+
+  .brief-title,
+  .brief-text {
+    width: 100%;
+  }
+
+  .brief-title {
+    font-size: 30px;
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+
+  .brief-text {
+    margin-bottom: 10px;
+  }
+}
