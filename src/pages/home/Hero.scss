@@ -1,0 +1,158 @@
+@import "sass/_variables.scss";
+
+.hero {
+  height: 100vh;
+  padding-top: 3%;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  margin-top: 10vh;
+  flex: 0 0 33.8%;
+  position: relative;
+  z-index: 11;
+}
+
+.hero-title {
+  line-height: 1;
+  margin-bottom: 29.9px;
+}
+
+.hero-text {
+  color: $grey;
+  width: 70%;
+  margin-bottom: 29.9px;
+}
+
+.hero-slider {
+  width: 65%;
+  height: 70vh;
+  margin-left: -8%;
+  position: relative;
+}
+
+.hero .slider-nav {
+  position: absolute;
+  top: 13%;
+  right: -67px;
+}
+
+.hero-symbol {
+  position: absolute;
+  top: 66%;
+  right: -66px;
+  width: 132px;
+  height: 132px;
+}
+
+@media (max-width: 1600px) {
+  .hero-content {
+    flex: 0 0 40%;
+  }
+
+  .hero-title {
+    margin-bottom: 26.5px;
+  }
+
+  .hero-text {
+    margin-bottom: 26.5px;
+  }
+
+  .hero-slider {
+    width: 70%;
+    margin-left: -16%;
+  }
+
+  .hero-symbol {
+    right: -60px;
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .hero-title {
+    margin-bottom: 24px;
+  }
+
+  .hero-text {
+    margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-content {
+    flex: 0 0 40%;
+    margin-top: 10vh;
+  }
+
+  .hero-title {
+    margin-bottom: 27px;
+  }
+
+  .hero-text {
+    margin-bottom: 27px;
+  }
+
+  .hero-slider {
+    margin-left: -16%;
+    width: 70%;
+  }
+
+  .hero-symbol {
+    display: none;
+  }
+}
+
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  .hero {
+    flex-direction: column-reverse;
+    height: auto;
+    min-height: 100vh;
+    padding-top: 121px;
+  }
+
+  .hero-content {
+    flex: 1;
+    margin-top: 75px;
+  }
+
+  .hero-title {
+    margin-bottom: 26px;
+  }
+
+  .hero-text {
+    margin-bottom: 27.5px;
+  }
+
+  .hero-slider {
+    flex: 1;
+    height: 79vw;
+  }
+
+  .hero-slider {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 107px;
+  }
+
+  .hero-content {
+    padding: 0 5%;
+    margin-top: 75px;
+  }
+
+  .hero-title {
+    margin-bottom: 20px;
+  }
+
+  .hero-text {
+    width: 95%;
+    margin-bottom: 10.5px;
+  }
+}

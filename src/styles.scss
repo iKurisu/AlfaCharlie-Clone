@@ -1,0 +1,132 @@
+@import "sass/_variables.scss";
+
+@font-face {
+  font-family: "benton-sans";
+  src: url("https://use.typekit.net/af/f7a7fa/00000000000000003b9b2cf4/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/f7a7fa/00000000000000003b9b2cf4/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/f7a7fa/00000000000000003b9b2cf4/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+      format("opentype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "benton-modern-display";
+  src: url("https://use.typekit.net/af/4217f2/00000000000000003b9af2cb/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/4217f2/00000000000000003b9af2cb/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/4217f2/00000000000000003b9af2cb/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3")
+      format("opentype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: auto;
+}
+
+@font-face {
+  font-family: "benton-modern-display";
+  src: url("https://use.typekit.net/af/a06a81/00000000000000003b9af2cd/27/l?subset_id=2&fvd=n4&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/a06a81/00000000000000003b9af2cd/27/d?subset_id=2&fvd=n4&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/a06a81/00000000000000003b9af2cd/27/a?subset_id=2&fvd=n4&v=3")
+      format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: none; // Remove once custom scroll is implemented
+}
+
+body {
+  font-family: "benton-sans", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-content {
+  // Commented out until custom scroll is implemented
+  // position: fixed;
+  width: 100vw;
+  // height: 100vh;
+  // overflow: hidden;
+  background-color: $background;
+}
+
+ul {
+  list-style: none;
+}
+
+h3 {
+  color: $black;
+  font-size: 51px;
+  font-family: "benton-modern-display";
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+p {
+  font-size: 16.5px;
+  letter-spacing: 0.033em;
+  line-height: 1.6;
+}
+
+@media (max-width: 1600px) {
+  h3 {
+    font-size: 45px;
+  }
+
+  p {
+    font-size: 14.5px;
+    letter-spacing: 0.035em;
+    line-height: 1.58;
+  }
+}
+
+@media (max-width: 1366px) {
+  h3 {
+    font-size: 42px;
+  }
+
+  p {
+    font-size: 13.5px;
+    letter-spacing: 0.037em;
+    line-height: 1.58;
+  }
+}
+
+@media (max-width: 1024px) {
+  h3 {
+    font-size: 45px;
+  }
+
+  p {
+    font-size: 14.4px;
+    letter-spacing: 0.039em;
+  }
+}
+
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  p {
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  h3 {
+    font-size: 35px;
+    letter-spacing: 0.054em;
+  }
+}

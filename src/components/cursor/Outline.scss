@@ -1,0 +1,11 @@
+.cursor-outline {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.cursor-outline circle {
+  fill: none;
+  stroke: rgba(58, 60, 73, .1);
+  stroke-width: 1.2;
+}

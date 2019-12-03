@@ -1,0 +1,52 @@
+.menu-nav-link {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.link-characters {
+  font-family: 'benton-modern-display';
+  font-size: 6.2vw;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.menu-nav-links:hover .menu-nav-link:not(:hover) {
+  opacity: 0.5;
+}
+
+@media (max-width: 1600px) {
+  .link-characters {
+    font-size: 102px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .link-characters {
+    font-size: 95px;
+    letter-spacing: 6px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .link-characters {
+    font-size: 102px;
+    letter-spacing: 6.3px;
+  }
+}
+
+@media (max-width: 823px) and (orientation: landscape) {
+  .link-characters {
+    font-size: 49.5px;
+    letter-spacing: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .link-characters {
+    font-size: 68px;
+    letter-spacing: 4px;
+  }
+}

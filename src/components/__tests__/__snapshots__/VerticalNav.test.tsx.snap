@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`vertical nav renders correctly 1`] = `
+<nav
+  className="vertical-nav"
+>
+  <ul
+    className="vertical-nav-links"
+  >
+    <li>
+      <span
+        className="link-wrapper"
+      >
+        <span
+          className="link-name"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
+        >
+          Expertise
+        </span>
+        <span
+          className="link-mask"
+          style={
+            Object {
+              "transform": "translateX(-101%)",
+            }
+          }
+        />
+      </span>
+    </li>
+    <li>
+      <span
+        className="link-wrapper active"
+      >
+        <span
+          className="link-name"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
+        >
+          Team
+        </span>
+        <span
+          className="link-mask"
+          style={
+            Object {
+              "transform": "translateX(-101%)",
+            }
+          }
+        />
+      </span>
+    </li>
+    <li>
+      <span
+        className="link-wrapper"
+      >
+        <span
+          className="link-name"
+          style={
+            Object {
+              "opacity": 0,
+            }
+          }
+        >
+          Clients
+        </span>
+        <span
+          className="link-mask"
+          style={
+            Object {
+              "transform": "translateX(-101%)",
+            }
+          }
+        />
+      </span>
+    </li>
+  </ul>
+</nav>
+`;

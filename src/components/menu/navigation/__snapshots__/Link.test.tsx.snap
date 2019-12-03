@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`navigation link renders correctly 1`] = `
+<a
+  className="menu-nav-link"
+  onMouseEnter={[MockFunction]}
+>
+  <span
+    className="link-characters"
+  >
+    <span
+      className="link-character"
+      style={
+        Object {
+          "opacity": 0,
+        }
+      }
+    >
+      A
+    </span>
+    <span
+      className="link-character"
+      style={
+        Object {
+          "opacity": 0,
+        }
+      }
+    >
+      g
+    </span>
+    <span
+      className="link-character"
+      style={
+        Object {
+          "opacity": 0,
+        }
+      }
+    >
+      e
+    </span>
+    <span
+      className="link-character"
+      style={
+        Object {
+          "opacity": 0,
+        }
+      }
+    >
+      n
+    </span>
+    <span
+      className="link-character"
+      style={
+        Object {
+          "opacity": 0,
+        }
+      }
+    >
+      c
+    </span>
+    <span
+      className="link-character"
+      style={
+        Object {
+          "opacity": 0,
+        }
+      }
+    >
+      y
+    </span>
+  </span>
+</a>
+`;

@@ -1,0 +1,45 @@
+.menu-button {
+  width: 60px;
+  height: 60px;
+  padding: 20px;
+  position: fixed;
+  top: 43px;
+  right: 44px;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.menu-button line {
+  stroke-dasharray: 68;
+}
+
+@for $i from 1 through 3 {
+  .menu-button .menu-hamburger line:nth-child(#{$i}) {
+    transition: 0.4s calc(0.95s + #{$i - 1} * 0.1s);
+  }
+
+  .menu-button.open .menu-hamburger line:nth-child(#{$i}) {
+    transition: 0.4s #{0.1s * $i};
+  }
+
+  .menu-button .menu-cross line:nth-child(#{$i}) {
+    transition: 0.4s #{0.1s * $i};
+  }
+
+  .menu-button.open .menu-cross line:nth-child(#{$i}) {
+    transition: 0.4s calc(0.85s + #{$i - 1} * 0.1s);
+  }
+}
+
+@media (max-width: 1600px) {
+  .menu-button {
+    top: 20px;
+    right: 33px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-button {
+    right: 12px;
+  }
+}

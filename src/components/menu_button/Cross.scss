@@ -1,0 +1,18 @@
+@import 'sass/_variables.scss';
+
+.menu-cross {
+  width: 20px;
+  position: absolute;
+  left: calc(50% - 10px);
+}
+
+.menu-cross line {
+  fill: none;
+  stroke: $black;
+  stroke-width: 5;
+  stroke-dashoffset: 68;
+}
+
+.menu-button.open .menu-cross line {
+  stroke-dashoffset: 0;
+}

@@ -2,6 +2,10 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className=""
-/>
+  className="header"
+>
+  <h1>
+    SAN DIEGO CREATIVE AGENCY
+  </h1>
+</div>
 `;

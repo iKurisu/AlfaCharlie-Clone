@@ -1,0 +1,147 @@
+.main-link {
+  padding: 16px 0;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.link-line {
+  content: "";
+  width: 23px;
+  height: 1px;
+  background: #d43246;
+  display: inline-block;
+  position: absolute;
+  top: calc(50% - 1px);
+  transform-origin: 0% 50%;
+  transition: transform 0.35s cubic-bezier(0.645, 0.045, 0.355, 1) 0.33s;
+}
+
+.main-link svg {
+  width: 36px;
+  height: 11px;
+  margin-top: -1px;
+}
+
+.main-link polyline,
+.main-link line {
+  fill: none;
+  stroke: #d43246;
+  stroke-width: 4;
+}
+
+.main-link polyline {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  transition: stroke-dashoffset 0.3s;
+}
+
+.main-link line {
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
+  transition: stroke-dashoffset 0.4s;
+}
+
+.main-link .link-text-wrapper {
+  display: inline-block;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+.main-link .link-text,
+.main-link .link-author,
+.main-link .link-position {
+  color: #d43246;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  transition: transform 1s cubic-bezier(0, 0, 0, 1) 0.15s;
+}
+
+.main-link .link-text {
+  display: inline-block;
+}
+
+.main-link .link-author {
+  padding-left: 4px;
+}
+
+.main-link .link-position {
+  padding-left: 5px;
+}
+
+.main-link .link-position::before {
+  content: "•";
+  margin: 0 6px;
+}
+
+.main-link:hover .link-line {
+  transform: scaleX(0);
+  transform-origin: 100% 50%;
+  transition: transform 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.main-link:hover polyline {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.3s 0.4s;
+}
+
+.main-link:hover line {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.3s 0.3s;
+}
+
+.main-link:hover .link-text {
+  transform: translateX(5px);
+  transition: transform 1s cubic-bezier(0, 0, 0, 1) 0.5s;
+}
+
+@media (max-width: 1600px) {
+  .main-link .link-text,
+  .main-link .link-author,
+  .main-link .link-position {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-link .link-author {
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  .main-link .link-author {
+    padding: 0;
+    line-height: 1;
+  }
+
+  .testimonials-content .link-text-wrapper {
+    padding: 0 5px;
+  }
+
+  .testimonials-content .main-link svg {
+    width: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-link .link-text-wrapper {
+    white-space: unset;
+  }
+
+  .main-link .link-author {
+    padding: 0;
+    line-height: 1.4;
+  }
+
+  .testimonials-content .link-text-wrapper {
+    padding: 0 6.5px;
+  }
+
+  .testimonials-content .main-link svg {
+    width: 36px;
+  }
+}

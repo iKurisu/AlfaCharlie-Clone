@@ -1,0 +1,12 @@
+@import 'sass/_variables.scss';
+
+.menu-hamburger line {
+  fill: none;
+  stroke: $black;
+  stroke-width: 5;
+  stroke-dashoffset: 0;
+}
+
+.menu-button.open .menu-hamburger line {
+  stroke-dashoffset: 68;
+}

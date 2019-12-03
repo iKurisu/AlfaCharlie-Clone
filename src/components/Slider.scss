@@ -1,0 +1,37 @@
+.slider-mask {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  position: absolute;
+  z-index: 10;
+}
+
+.slider-swiper {
+  overflow: hidden;
+}
+
+.slider-wrapper,
+.slide {
+  width: 100%;
+  height: 100%;
+}
+
+.slider-wrapper {
+  display: flex;
+}
+
+.slide {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.slide-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}

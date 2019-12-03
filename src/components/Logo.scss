@@ -1,0 +1,34 @@
+@import 'sass/_variables.scss';
+
+.logo-wrapper {
+  position: absolute;
+  top: 37px;
+  left: 35px;
+  width: 180px;
+}
+
+.logo-wrapper svg {
+  fill: $black;
+}
+
+@media (min-width: $m) {
+  .logo-wrapper {
+    top: 30px;
+    left: 50px;
+    width: 220px;
+  }
+}
+
+@media (min-width: $l) {
+  .logo-wrapper {
+    left: 75px;
+  }
+}
+
+@media (min-width: $xxl) {
+  .logo-wrapper {
+    top: 50px;
+    left: 95px;
+    width: 256px;
+  }
+}

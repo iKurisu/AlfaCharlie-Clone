@@ -1,0 +1,14 @@
+.info-list {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.info-list-left {
+  flex: 0 50%;
+}
+
+@media (max-width: 480px) {
+  .info-list {
+    flex-direction: column;
+  }
+}

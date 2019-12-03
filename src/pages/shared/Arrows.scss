@@ -1,0 +1,44 @@
+@import "sass/_variables.scss";
+
+.arrows svg {
+  width: 33px;
+  height: 13px;
+}
+
+.arrows {
+  width: 95px;
+  height: 26px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  margin-top: 14px;
+}
+
+.arrows .disabled {
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+.arrow-prev,
+.arrow-next {
+  padding: 0 6px;
+}
+
+.arrow-prev {
+  transform: rotate(-180deg);
+}
+
+.arrows polyline,
+.arrows line {
+  fill: none;
+  stroke: $grey;
+  stroke-width: 3;
+}
+
+@media (max-width: 1024px) {
+  .arrows {
+    display: flex;
+  }
+}

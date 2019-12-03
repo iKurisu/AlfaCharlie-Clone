@@ -1,0 +1,14 @@
+.menu-gray {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: #e2ded9;
+  top: 0;
+  z-index: 11;
+}
+
+@media (max-width: 1024px) {
+  .menu-gray {
+    width: 100%;
+  }
+}

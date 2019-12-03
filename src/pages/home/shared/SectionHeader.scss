@@ -1,0 +1,64 @@
+@import "sass/_variables.scss";
+
+.section-header-wrapper {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 67px;
+}
+
+.section-header {
+  color: #fff;
+  font-family: "benton-modern-display";
+  font-size: 127px;
+  font-weight: 400;
+  letter-spacing: 0.0617em;
+  line-height: 1;
+  text-align: center;
+}
+
+@media (max-width: 1600px) {
+  .section-header-wrapper {
+    margin-bottom: 55px;
+  }
+
+  .section-header {
+    font-size: 102px;
+    letter-spacing: 0.06em;
+  }
+}
+
+@media (max-width: 1366px) {
+  .section-header {
+    font-size: 86.5px;
+    letter-spacing: 0.061em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .section-header {
+    font-size: 93px;
+    letter-spacing: 0.06em;
+  }
+}
+
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  .section-header-wrapper {
+    margin-bottom: 60px;
+  }
+
+  .section-header {
+    font-size: 93px;
+    line-height: 0.8;
+    text-align: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header-wrapper {
+    margin: 0;
+  }
+
+  .section-header {
+    font-size: 75px;
+  }
+}

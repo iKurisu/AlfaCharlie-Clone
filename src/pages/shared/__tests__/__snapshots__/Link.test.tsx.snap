@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link renders correct span when a string is passed 1`] = `ShallowWrapper {}`;
+
+exports[`Link renders correct spans when an author is passed 1`] = `ShallowWrapper {}`;
