@@ -15,14 +15,17 @@
   z-index: 10;
 }
 
-.brief-title {
+.brif-title,
+.brief-text {
   width: 85%;
+}
+
+.brief-title {
   line-height: 1;
   margin-bottom: 30px;
 }
 
 .brief-text {
-  width: 85%;
   color: $grey;
   margin-bottom: 30px;
 }
