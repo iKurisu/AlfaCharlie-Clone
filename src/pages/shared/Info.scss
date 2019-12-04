@@ -56,12 +56,13 @@
 
 @media (max-width: 1600px) {
   .info-title {
-    margin-bottom: 25px;
+    margin-bottom: 25.5px;
   }
 
   .info-text {
     width: 85%;
     letter-spacing: 0.037em;
+    line-height: 1.55;
     margin-bottom: 36px;
   }
 }
@@ -70,7 +71,7 @@
   .info-title {
     font-size: 35px;
     letter-spacing: 0.06em;
-    margin-bottom: 23px;
+    margin-bottom: 25px;
   }
 
   .info-text {
@@ -82,8 +83,15 @@
 }
 
 @media (max-width: 1024px) {
+  .info-title {
+    font-size: 37.5px;
+    margin-bottom: 26.5px;
+  }
+
   .info-text {
     letter-spacing: 0.055em;
+    line-height: 1.6;
+    margin-bottom: 35px;
   }
 }
 
@@ -91,6 +99,13 @@
   .info-image-wrapper {
     width: 100%;
     position: static;
+  }
+
+  .info.-align-left .info-image-wrapper {
+    margin-top: -25%;
+  }
+
+  .info.-align-right .info-image-wrapper {
     margin-top: -25%;
   }
 
@@ -98,22 +113,27 @@
     width: 100%;
   }
 
+  .info.-align-left .info-content-wrapper,
+  .info.-align-right .info-content-wrapper {
+    padding: 0;
+  }
+
   .info-content-wrapper {
     padding: 0;
-    margin-top: 42px;
+    margin-top: 45px;
   }
 
   .info-title {
-    font-size: 38px;
-    letter-spacing: 0.055em;
-    margin-bottom: 24px;
+    font-size: 37.5px;
+    letter-spacing: 0.06em;
+    margin-bottom: 26px;
   }
 
   .info-text {
     font-size: 15px;
     letter-spacing: 0.02em;
-    line-height: 1.55;
-    margin-bottom: 34.5px;
+    line-height: 1.5;
+    margin-bottom: 36px;
   }
 }
 
@@ -123,17 +143,21 @@
   }
 
   .info-content-wrapper {
-    margin-top: 44px;
+    margin-top: 45px;
+  }
+
+  .info-title,
+  .info-text {
+    width: 100%;
   }
 
   .info-title {
     font-size: 30px;
     letter-spacing: 0.06em;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
   }
 
   .info-text {
-    width: 100%;
     margin-bottom: 30px;
     letter-spacing: 0.02em;
     line-height: 1.53;

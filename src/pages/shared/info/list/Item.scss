@@ -31,6 +31,14 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .info-list-item {
+    font-size: 17.5px;
+    letter-spacing: 0.105em;
+    line-height: 1;
+  }
+}
+
 @media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
   .info-list-item {
     font-size: 18px;

@@ -18,7 +18,7 @@
 
 @media (max-width: 1600px) {
   .section-header-wrapper {
-    margin-bottom: 55px;
+    margin-bottom: 60px;
   }
 
   .section-header {
@@ -28,6 +28,10 @@
 }
 
 @media (max-width: 1366px) {
+  .section-header-wrapper {
+    margin-bottom: 56px;
+  }
+
   .section-header {
     font-size: 86.5px;
     letter-spacing: 0.061em;
@@ -35,6 +39,10 @@
 }
 
 @media (max-width: 1024px) {
+  .section-header-wrapper {
+    margin-bottom: 60px;
+  }
+
   .section-header {
     font-size: 93px;
     letter-spacing: 0.06em;
@@ -43,6 +51,7 @@
 
 @media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
   .section-header-wrapper {
+    width: 70%;
     margin-bottom: 60px;
   }
 
@@ -55,6 +64,7 @@
 
 @media (max-width: 480px) {
   .section-header-wrapper {
+    width: 225px;
     margin: 0;
   }
 
