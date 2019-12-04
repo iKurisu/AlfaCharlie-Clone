@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import { testimonialsActions } from "modules/testimonials";
-import SectionHeader from "../home/shared/SectionHeader";
+import SectionHeader from "./SectionHeader";
 import { TestimonialsSlider } from "components/Slider";
 import Slider from "./testimonials/Slider";
 import Arrows from "./Arrows";
