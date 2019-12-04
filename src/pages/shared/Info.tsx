@@ -10,6 +10,7 @@ interface Props {
   title: string;
   text: string;
   link?: boolean;
+  align?: "left" | "right";
 }
 
 const Info = ({
@@ -17,10 +18,11 @@ const Info = ({
   image,
   title,
   text,
-  link = false
+  link = false,
+  align = "right"
 }: Props): JSX.Element => {
   return (
-    <section className="info">
+    <section className={`info -align-${align}`}>
       <SectionHeader text={header} />
       <div className="info-image-wrapper">
         <div className="info-image">

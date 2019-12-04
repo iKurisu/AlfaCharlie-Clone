@@ -15,6 +15,10 @@
   overflow: hidden;
 }
 
+.info.-align-left .info-image-wrapper {
+  right: 5%;
+}
+
 .info-image {
   width: 80%;
   margin: auto;
@@ -27,20 +31,27 @@
   height: auto;
 }
 
-.info-content-wrapper {
+.info.-align-right .info-content-wrapper {
   padding-left: 51%;
 }
 
+.info.-align-left .info-content-wrapper {
+  padding-left: 5%;
+  padding-right: 50%;
+}
+
 .info-title {
-  margin-bottom: 27px;
+  width: 75%;
+  line-height: 1;
+  margin-bottom: 30px;
 }
 
 .info-text {
   color: $grey;
   width: 85%;
-  line-height: 1.57;
+  line-height: 1.6;
   letter-spacing: 0.034em;
-  margin-bottom: 41px;
+  margin-bottom: 40px;
 }
 
 @media (max-width: 1600px) {
