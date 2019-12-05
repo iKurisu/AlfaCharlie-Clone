@@ -1,0 +1,40 @@
+@import "sass/_variables.scss";
+
+.team {
+  padding: 0 5%;
+}
+
+.team .section-header-wrapper {
+  margin: 0;
+}
+
+.team-inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.team-left,
+.team-right {
+  flex: 1 50%;
+}
+
+.team-left {
+  padding-right: 10%;
+  margin-top: -5vh;
+}
+
+.team-right {
+  padding-left: 1%;
+  padding-right: 9%;
+  margin-top: 85px;
+}
+
+.team-title {
+  margin-bottom: 30px;
+  line-height: 1;
+}
+
+.team-text {
+  margin-bottom: 68px;
+  color: $grey;
+}

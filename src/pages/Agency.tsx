@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Brief from "./agency/Brief";
 import Info from "./shared/Info";
+import Team from "./agency/Team";
 
 const Agency = (): JSX.Element => {
   useEffect((): void => {
@@ -31,6 +32,10 @@ const Agency = (): JSX.Element => {
           link={false}
           align={"left"}
         />
+      </div>
+      <div className="separator" />
+      <div className="row">
+        <Team />
       </div>
     </React.Fragment>
   );
