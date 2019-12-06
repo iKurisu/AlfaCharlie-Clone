@@ -39,12 +39,7 @@ const Member = ({ img, name, position, about }: Props): JSX.Element => {
   };
 
   return (
-    <div
-      className={classList({
-        member: true,
-        active: isActive
-      })}
-    >
+    <div className={classList(["member", { active: isActive }])}>
       <div className="member-image-wrapper">
         <div className="member-image">
           <img src={img} />

@@ -48,10 +48,10 @@ const SliderNav = ({
       <div className="slider-dots">
         {imageUrls.map((_, id) => (
           <span
-            className={classList({
-              ["slider-dot"]: true,
-              active: id === currentSlideID
-            })}
+            className={classList([
+              "slider-dot",
+              { active: id === currentSlideID }
+            ])}
             onClick={swipeSlide(
               id,
               getDuration({ from: currentSlideID, to: id })

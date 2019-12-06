@@ -120,10 +120,10 @@ export const Slider = ({ activeSlide }: MappedState): JSX.Element => {
     <div className="testimonials-slider" style={{ height: `${height}px` }}>
       {testimonials.map(({ paragraphs, author }, id) => (
         <div
-          className={classList({
-            ["testimonials-slide"]: true,
-            active: id === activeSlide
-          })}
+          className={classList([
+            "testimonials-slide",
+            { active: id === activeSlide }
+          ])}
           ref={refs[id]}
           key={id}
         >

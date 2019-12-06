@@ -16,10 +16,7 @@ const Arrows = ({
 }: Props): JSX.Element => (
   <div className="arrows">
     <div
-      className={classList({
-        ["arrow-prev"]: true,
-        disabled: currentSlideID === 0
-      })}
+      className={classList(["arrow-prev", { disabled: currentSlideID === 0 }])}
       onClick={swipeSlide(
         currentSlideID - 1,
         getDuration({ from: currentSlideID, to: currentSlideID - 1 })
@@ -39,10 +36,10 @@ const Arrows = ({
       </svg>
     </div>
     <div
-      className={classList({
-        ["arrow-next"]: true,
-        disabled: currentSlideID === maxSwipes
-      })}
+      className={classList([
+        "arrow-next",
+        { disabled: currentSlideID === maxSwipes }
+      ])}
       onClick={swipeSlide(
         currentSlideID + 1,
         getDuration({ from: currentSlideID, to: currentSlideID + 1 })
