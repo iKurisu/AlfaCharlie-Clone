@@ -79,13 +79,3 @@
   width: 95%;
   margin-top: 29.5px;
 }
-
-.member.active .member-about {
-  visibility: visible;
-  opacity: 1;
-}
-
-.member:not(.active) .member-about {
-  visibility: hidden;
-  opacity: 0;
-}
