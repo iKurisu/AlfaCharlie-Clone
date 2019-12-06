@@ -38,6 +38,19 @@
   font-display: auto;
 }
 
+@font-face {
+  font-family: "benton-modern-display";
+  src: url("https://use.typekit.net/af/b62aba/00000000000000003b9af2ce/27/l?subset_id=2&fvd=i4&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/b62aba/00000000000000003b9af2ce/27/d?subset_id=2&fvd=i4&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/b62aba/00000000000000003b9af2ce/27/a?subset_id=2&fvd=i4&v=3")
+      format("opentype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: auto;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -67,18 +80,37 @@ ul {
   list-style: none;
 }
 
-h3 {
-  color: $black;
-  font-size: 51px;
+h3,
+h4,
+h6 {
   font-family: "benton-modern-display";
   font-weight: 400;
+}
+
+h3,
+h4 {
+  color: $black;
+}
+
+h3 {
+  font-size: 51px;
   letter-spacing: 0.06em;
+}
+
+h6 {
+  color: $grey;
+  font-style: italic;
 }
 
 p {
   font-size: 16.5px;
   letter-spacing: 0.033em;
   line-height: 1.6;
+}
+
+img {
+  width: 100%;
+  height: auto;
 }
 
 @media (max-width: 1600px) {
