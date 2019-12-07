@@ -76,6 +76,97 @@
 
 .member-about {
   color: $grey;
-  width: 95%;
+  width: 94%;
   margin-top: 29.5px;
+}
+
+@media (max-width: 1600px) {
+  .member-info {
+    padding: 36px 0 22.5px 22.5px;
+  }
+
+  .member-name {
+    font-size: 23px;
+    letter-spacing: 0.145em;
+    margin-bottom: 17px;
+  }
+
+  .member-position {
+    font-size: 15px;
+  }
+
+  .member-about {
+    margin-top: 25px;
+  }
+
+  .member-icon {
+    padding: 15px;
+    top: 18px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .member-info {
+    padding: 34px 0 21px 21px;
+  }
+
+  .member-name {
+    font-size: 21px;
+    letter-spacing: 0.16em;
+    margin-bottom: 15px;
+  }
+
+  .member-position {
+    font-size: 14px;
+  }
+
+  .member-icon {
+    padding: 14px;
+    top: 16px;
+  }
+
+  .member-about {
+    width: 97%;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .member-info {
+    padding: 35.7px 0 22.5px 22.5px;
+  }
+
+  .member-name {
+    font-size: 22.5px;
+    margin-bottom: 17px;
+  }
+
+  .member-position {
+    font-size: 15px;
+  }
+
+  .member-icon {
+    padding: 15px;
+    top: 17.7px;
+  }
+
+  .member-about {
+    max-width: 89.95%;
+    margin-top: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .member-info {
+    padding-left: 0;
+  }
+
+  .member-about {
+    margin-top: 24.5px;
+  }
+
+  .member-icon {
+    padding: 7.5px;
+    top: 24.5px;
+  }
 }
