@@ -1,24 +1,21 @@
 import { MappedProperty } from "hooks/transition/types";
 
-export const getPropFunction = (
-  prop: string | number,
-  array: boolean = false
-): string | string[] => {
+export const getPropFunction = (prop: string | number): string[] => {
   const propFunction =
     typeof prop === "string"
       ? prop.match(
           /((translate|scale|rotate)([XYZ]|3d)?|skew[XY]?|matrix(3d)?)(?=\()/g
         )
-      : null;
+      : [];
 
-  return propFunction ? (array ? propFunction : propFunction[0]) : null;
+  return propFunction;
 };
 
 export const getValue = (prop: string | number): number =>
   typeof prop === "string" ? +prop.match(/-?\d+/g)[0] : prop;
 
-export const getUnit = (prop: string | number): string => {
-  const match = typeof prop === "string" ? prop.match(/px|%|vw|vh|deg/g) : null;
+export const getUnit = (prop: string): string => {
+  const match = prop.match(/px|%|vw|vh|deg/g);
 
   return match ? match[0] : null;
 };
