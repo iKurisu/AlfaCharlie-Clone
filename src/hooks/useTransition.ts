@@ -17,6 +17,17 @@ interface Props {
   config: Config;
 }
 
+/**
+ * Generates a function that will perform a transition from A to B on a ref
+ * object.
+ *
+ * @param element A ref object.
+ *
+ * @param props The transition's properties: `from`, `to` and `config`.
+ *
+ * @returns A function that will perform the transition when called and resolves
+ * a promise once the transition completes.
+ */
 const useTransition = (
   element: RefObject<HTMLElement>,
   props: Props
