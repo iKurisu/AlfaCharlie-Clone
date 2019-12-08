@@ -8,12 +8,14 @@ it("maps properties into an object", (): void => {
   };
 
   const mappedProps: MappedProperties = {
-    transform: {
-      function: "translateX",
-      initialValue: 50,
-      targetValue: 0,
-      unit: "%"
-    },
+    transform: [
+      {
+        function: "translateX",
+        initialValue: 50,
+        targetValue: 0,
+        unit: "%"
+      }
+    ],
     opacity: {
       initialValue: 1,
       targetValue: 0
@@ -30,12 +32,14 @@ it("handles missing target value correctly", (): void => {
   };
 
   const mappedProps: MappedProperties = {
-    transform: {
-      function: "translateX",
-      initialValue: 100,
-      targetValue: 0,
-      unit: "%"
-    },
+    transform: [
+      {
+        function: "translateX",
+        initialValue: 100,
+        targetValue: 0,
+        unit: "%"
+      }
+    ],
     opacity: {
       initialValue: 1,
       targetValue: null
@@ -52,12 +56,14 @@ it("handles missing initial value correctly", (): void => {
   };
 
   const mappedProps: MappedProperties = {
-    transform: {
-      function: "translateX",
-      initialValue: null,
-      targetValue: 100,
-      unit: "%"
-    },
+    transform: [
+      {
+        function: "translateX",
+        initialValue: null,
+        targetValue: 100,
+        unit: "%"
+      }
+    ],
     opacity: {
       initialValue: 1,
       targetValue: 0
@@ -74,12 +80,14 @@ it("handles negative numbers", (): void => {
   };
 
   const mappedProps: MappedProperties = {
-    transform: {
-      function: "translateX",
-      initialValue: -100,
-      targetValue: 0,
-      unit: "%"
-    }
+    transform: [
+      {
+        function: "translateX",
+        initialValue: -100,
+        targetValue: 0,
+        unit: "%"
+      }
+    ]
   };
 
   expect(mapProperties(from, to)).toMatchObject(mappedProps);
@@ -92,12 +100,14 @@ it("handles initial value without unit", (): void => {
   };
 
   const mappedProps: MappedProperties = {
-    transform: {
-      function: "translateX",
-      initialValue: 0,
-      targetValue: 50,
-      unit: "%"
-    }
+    transform: [
+      {
+        function: "translateX",
+        initialValue: 0,
+        targetValue: 50,
+        unit: "%"
+      }
+    ]
   };
 
   expect(mapProperties(from, to)).toMatchObject(mappedProps);
