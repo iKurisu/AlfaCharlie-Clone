@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import { classList } from "utils/class";
 import useTransition from "hooks/useTransition";
 import "./Member.scss";
-import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 
 interface Props {
   img: string;

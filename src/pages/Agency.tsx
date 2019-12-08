@@ -37,6 +37,7 @@ const Agency = (): JSX.Element => {
       <div className="row">
         <Team />
       </div>
+      <div className="separator -big" />
     </React.Fragment>
   );
 };
