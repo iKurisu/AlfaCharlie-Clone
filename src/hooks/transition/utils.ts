@@ -20,6 +20,12 @@ export const getUnit = (prop: string): string => {
   return match ? match[0] : null;
 };
 
+export const indexOfFn = (fn: string, properties: string[]): number =>
+  properties.findIndex((property: string): boolean => {
+    const regex = new RegExp(fn, "g");
+    return property.match(regex) !== null;
+  });
+
 const framesInMs = 60 / 1000;
 const frameDuration = 1 / framesInMs;
 
