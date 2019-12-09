@@ -1,4 +1,4 @@
-import { getPropFunction, getValue, getUnit } from "utils/transition";
+import { getPropFunction, getValue, getUnit, indexOfFn } from "./utils";
 import { mergeWithoutDupicates } from "utils/array";
 import { Properties, MappedProperty, MappedProperties } from "./types";
 
@@ -9,12 +9,6 @@ const getOpacityProperties = (
   initialValue: "opacity" in from ? getValue(from.opacity) : null,
   targetValue: "opacity" in to ? getValue(to.opacity) : null
 });
-
-const indexOfFn = (fn: string, properties: string[]): number =>
-  properties.findIndex((property: string): boolean => {
-    const regex = new RegExp(fn, "g");
-    return property.match(regex) !== null;
-  });
 
 const getProperty = <T>(
   cb: (prop: string | number) => T
