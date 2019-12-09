@@ -40,12 +40,7 @@ export const getEasingTime = (
   return duration === 0 ? 1 : transcurredTime / duration;
 };
 
-export const getCurrentValue = (
+export const applyEase = (
   { targetValue, initialValue }: MappedProperty,
   ease: number
-): number => {
-  const applyEase = (targetValue: number): number =>
-    ease * (targetValue - initialValue) + initialValue;
-
-  return applyEase(targetValue);
-};
+): number => ease * (targetValue - initialValue) + initialValue;

@@ -1,5 +1,5 @@
 import { Properties, MappedProperties, MappedProperty } from "./types";
-import { getCurrentValue } from "./utils";
+import { applyEase } from "./utils";
 
 const stringify = (fn: string, value: number, unit: string): string | number =>
   fn ? `${fn}(${value}${unit || ""})` : unit ? `${value}${unit}` : value;
@@ -20,7 +20,7 @@ const getStringifiedValueAtTime = (
       ? targetValue
       : targetValue === null
       ? initialValue
-      : getCurrentValue({ initialValue, targetValue }, ease);
+      : applyEase({ initialValue, targetValue }, ease);
 
   return stringify(fn, value, unit);
 };
