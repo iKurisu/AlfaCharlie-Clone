@@ -17,7 +17,9 @@ module.exports = {
   devtool: "eval",
   devServer: {
     contentBase: "./dist",
-    hot: true
+    hot: true,
+    historyApiFallback: true,
+    host: "0.0.0.0"
   },
   output: {
     filename: "main.js",
