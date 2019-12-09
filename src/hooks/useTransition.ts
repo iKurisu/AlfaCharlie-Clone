@@ -2,7 +2,7 @@ import { useRef, RefObject } from "react";
 import BezierEasing from "bezier-easing";
 import mapProperties from "./transition/mapProperties";
 import stringifyProperties from "./transition/stringify";
-import { getEasingTime, getTotalFrames } from "./transition/utils";
+import { getProgress, toFrames } from "./transition/utils";
 import { Properties } from "./transition/types";
 
 interface Config {
@@ -22,7 +22,6 @@ interface Props {
  * object.
  *
  * @param element A ref object.
- *
  * @param props The transition's properties: `from`, `to` and `config`.
  *
  * @returns A function that will perform the transition when called and resolves
@@ -53,13 +52,13 @@ const useTransition = (
 
       const easing = BezierEasing(...timing);
       const mappedProperties = mapProperties(from, to);
-      const totalFrames = getTotalFrames(duration);
+      const frames = toFrames(duration);
 
       const animation = (): void => {
         const { current: currentFrame } = frame;
 
-        const ease = easing(getEasingTime(currentFrame, duration));
-        const maxEase = easing(getEasingTime(Math.ceil(totalFrames), duration));
+        const ease = easing(getProgress(currentFrame, frames));
+        const maxEase = easing(getProgress(Math.ceil(frames), frames));
 
         Object.assign(
           element.current.style,
@@ -69,7 +68,7 @@ const useTransition = (
           )
         );
 
-        if (currentFrame >= totalFrames) {
+        if (currentFrame >= frames) {
           resetFrame();
           cancelAnimationFrame(animationId.current);
           resolve();
