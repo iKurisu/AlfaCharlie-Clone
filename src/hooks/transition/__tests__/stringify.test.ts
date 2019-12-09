@@ -4,12 +4,14 @@ import { Properties, MappedProperties } from "../types";
 describe("stringifyProperties", (): void => {
   it("turns an object into a string property", (): void => {
     const properties: MappedProperties = {
-      transform: {
-        function: "translateX",
-        initialValue: 0,
-        targetValue: 100,
-        unit: "%"
-      },
+      transform: [
+        {
+          function: "translateX",
+          initialValue: 0,
+          targetValue: 100,
+          unit: "%"
+        }
+      ],
       opacity: {
         initialValue: 1,
         targetValue: 0
@@ -36,12 +38,14 @@ describe("stringifyProperties", (): void => {
 
   it("handles null values", (): void => {
     const properties: MappedProperties = {
-      transform: {
-        function: "translateX",
-        initialValue: null,
-        targetValue: 100,
-        unit: "%"
-      },
+      transform: [
+        {
+          function: "translateX",
+          initialValue: null,
+          targetValue: 100,
+          unit: "%"
+        }
+      ],
       opacity: {
         initialValue: 1,
         targetValue: null
