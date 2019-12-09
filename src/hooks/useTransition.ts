@@ -2,7 +2,7 @@ import { useRef, RefObject } from "react";
 import BezierEasing from "bezier-easing";
 import mapProperties from "./transition/mapProperties";
 import stringifyProperties from "./transition/stringify";
-import { getEasingTime, getTotalFrames } from "utils/transition";
+import { getEasingTime, getTotalFrames } from "./transition/utils";
 import { Properties } from "./transition/types";
 
 interface Config {

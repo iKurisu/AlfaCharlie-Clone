@@ -1,4 +1,4 @@
-import { getPropFunction, getValue, getUnit } from "utils/transition";
+import { getPropFunction, getValue, getUnit } from "./utils";
 import { mergeWithoutDupicates } from "utils/array";
 import { Properties, MappedProperty, MappedProperties } from "./types";
 

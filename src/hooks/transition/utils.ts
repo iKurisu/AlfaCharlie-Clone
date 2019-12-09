@@ -1,4 +1,4 @@
-import { MappedProperty } from "hooks/transition/types";
+import { MappedProperty } from "./types";
 
 export const getPropFunction = (prop: string | number): string[] => {
   const propFunction =

@@ -1,4 +1,4 @@
-import { getEasingTime, getTotalFrames } from "utils/transition";
+import { getEasingTime, getTotalFrames } from "../transition/utils";
 
 const expression = /((translate|scale|rotate)([XYZ]|3d)?|skew[XYZ]?|matrix(3d)?)(?=\()/g;
 

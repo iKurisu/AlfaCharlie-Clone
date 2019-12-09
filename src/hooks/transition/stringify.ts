@@ -1,5 +1,5 @@
 import { Properties, MappedProperties, MappedProperty } from "./types";
-import { getCurrentValue } from "utils/transition";
+import { getCurrentValue } from "./utils";
 
 const stringify = (fn: string, value: number, unit: string): string | number =>
   fn ? `${fn}(${value}${unit || ""})` : unit ? `${value}${unit}` : value;
