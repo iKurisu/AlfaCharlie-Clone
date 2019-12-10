@@ -7,6 +7,10 @@ export interface Properties {
   left?: string;
   right?: string;
   bottom?: string;
+  marginTop?: string;
+  marginRight?: string;
+  marginLeft?: string;
+  marginBottom?: string;
 }
 
 export interface MappedProperty {
@@ -25,4 +29,8 @@ export interface MappedProperties {
   left?: MappedProperty;
   right?: MappedProperty;
   bottom?: MappedProperty;
+  marginTop?: MappedProperty;
+  marginLeft?: MappedProperty;
+  marginRight?: MappedProperty;
+  marginBottom?: MappedProperty;
 }
