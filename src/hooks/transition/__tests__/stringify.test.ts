@@ -106,4 +106,29 @@ describe("stringifyProperties", (): void => {
       stringifiedProperties2
     );
   });
+
+  it("stringifies width, top, bottom, etc. properties", (): void => {
+    const mappedProps: MappedProperties = {
+      width: {
+        initialValue: 256,
+        targetValue: 100,
+        unit: "px"
+      },
+      top: {
+        initialValue: 5,
+        targetValue: 10,
+        unit: "%"
+      }
+    };
+
+    const from = { width: "256px", top: "5%" };
+    const to = { width: "100px", top: "10%" };
+
+    expect(stringifyProperties(mappedProps, 0)).toMatchObject(from);
+    expect(stringifyProperties(mappedProps, 1)).toMatchObject(to);
+    expect(stringifyProperties(mappedProps, 0.5)).toMatchObject({
+      width: "178px",
+      top: "7.5%"
+    });
+  });
 });

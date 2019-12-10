@@ -44,6 +44,16 @@ const mapPropertiesWithFn = (
     getPropertyUnit(fn, targetProperties)
 });
 
+const mapPropertiesWithoutFn = (
+  from: Properties,
+  to: Properties,
+  key: keyof Properties
+): MappedProperty => ({
+  initialValue: key in from ? getValue(from[key]) : null,
+  targetValue: key in to ? getValue(to[key]) : null,
+  unit: getUnit(from[key] as string) || getUnit(to[key] as string)
+});
+
 /**
  * Maps `transform` properties into a `MappedProperty`.
  * @param from The initial properties.
@@ -52,7 +62,7 @@ const mapPropertiesWithFn = (
 const getTransformProperties = (
   from: Properties,
   to: Properties
-): MappedProperty | MappedProperty[] => {
+): MappedProperty[] => {
   const functions = mergeWithoutDupicates(
     getPropFunction(from.transform),
     getPropFunction(to.transform)
@@ -87,7 +97,7 @@ const mapProperties = (from: Properties, to: Properties): MappedProperties => {
           ? getTransformProperties(from, to)
           : curr === "opacity"
           ? getOpacityProperties(from, to)
-          : "TODO";
+          : mapPropertiesWithoutFn(from, to, curr);
 
       return { ...prev, ...{ [curr]: properties } };
     },
