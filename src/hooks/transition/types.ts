@@ -1,14 +1,3 @@
-export enum Types {
-  opacity = "opacity",
-  transform = "transform",
-  height = "height",
-  width = "width",
-  top = "top",
-  left = "left",
-  right = "right",
-  bottom = "bottom"
-}
-
 export interface Properties {
   opacity?: number;
   transform?: string;
