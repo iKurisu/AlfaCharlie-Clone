@@ -2,19 +2,6 @@ import { getPropFunction, getValue, getUnit, indexOfFn } from "./utils";
 import { mergeWithoutDupicates } from "utils/array";
 import { Properties, MappedProperty, MappedProperties } from "./types";
 
-/**
- * Maps `opacity` properties into a `MappedProperty`.
- * @param from The initial properties.
- * @param to The target properties.
- */
-const getOpacityProperties = (
-  from: Properties,
-  to: Properties
-): MappedProperty => ({
-  initialValue: "opacity" in from ? getValue(from.opacity) : null,
-  targetValue: "opacity" in to ? getValue(to.opacity) : null
-});
-
 const getProperty = <T>(cb: (prop: string | number) => T) => (
   fn: string,
   properties: string[]
@@ -27,12 +14,12 @@ const getPropertyValue = getProperty(getValue);
 const getPropertyUnit = getProperty(getUnit);
 
 /**
- * Maps properties that uses functions, such as `transform`, into a
+ * Maps properties with functions, such as `transform`, into a
  * `MappedProperty`.
  * @param fn The property's function.
  * @param properties The initial and target properties.
  */
-const mapPropertiesWithFn = (
+const mapPropsWithFn = (
   fn: string,
   { initialProperties, targetProperties }: { [k: string]: string[] }
 ): MappedProperty => ({
@@ -44,15 +31,27 @@ const mapPropertiesWithFn = (
     getPropertyUnit(fn, targetProperties)
 });
 
-const mapPropertiesWithoutFn = (
+/**
+ * Maps properties that without functions.
+ * @param from The initial properties.
+ * @param to The target properties.
+ * @param key The name of the property, i.e., `opacity`, `width`, etc.
+ */
+const mapPropsWithoutFn = (
   from: Properties,
   to: Properties,
   key: keyof Properties
-): MappedProperty => ({
-  initialValue: key in from ? getValue(from[key]) : null,
-  targetValue: key in to ? getValue(to[key]) : null,
-  unit: getUnit(from[key] as string) || getUnit(to[key] as string)
-});
+): MappedProperty => {
+  const plain = {
+    initialValue: key in from ? getValue(from[key]) : null,
+    targetValue: key in to ? getValue(to[key]) : null
+  };
+
+  const unit =
+    key !== "opacity" ? getUnit(from[key]) || getUnit(to[key]) : null;
+
+  return Object.assign({}, plain, { unit });
+};
 
 /**
  * Maps `transform` properties into a `MappedProperty`.
@@ -78,7 +77,7 @@ const getTransformProperties = (
   };
 
   return functions.map(
-    (fn: string): MappedProperty => mapPropertiesWithFn(fn, properties)
+    (fn: string): MappedProperty => mapPropsWithFn(fn, properties)
   );
 };
 
@@ -95,9 +94,7 @@ const mapProperties = (from: Properties, to: Properties): MappedProperties => {
       const properties =
         curr === "transform"
           ? getTransformProperties(from, to)
-          : curr === "opacity"
-          ? getOpacityProperties(from, to)
-          : mapPropertiesWithoutFn(from, to, curr);
+          : mapPropsWithoutFn(from, to, curr);
 
       return { ...prev, ...{ [curr]: properties } };
     },
