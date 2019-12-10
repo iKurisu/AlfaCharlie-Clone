@@ -2,6 +2,11 @@ import { getPropFunction, getValue, getUnit, indexOfFn } from "./utils";
 import { mergeWithoutDupicates } from "utils/array";
 import { Properties, MappedProperty, MappedProperties } from "./types";
 
+/**
+ * Maps `opacity` properties into a `MappedProperty`.
+ * @param from The initial properties.
+ * @param to The target properties.
+ */
 const getOpacityProperties = (
   from: Properties,
   to: Properties
@@ -10,9 +15,10 @@ const getOpacityProperties = (
   targetValue: "opacity" in to ? getValue(to.opacity) : null
 });
 
-const getProperty = <T>(
-  cb: (prop: string | number) => T
-): ((fn: string, properties: string[]) => T) => (fn, properties): T => {
+const getProperty = <T>(cb: (prop: string | number) => T) => (
+  fn: string,
+  properties: string[]
+): T => {
   const indexOfCb = indexOfFn(fn, properties);
   return indexOfCb !== -1 ? cb(properties[indexOfCb]) : null;
 };
@@ -20,7 +26,13 @@ const getProperty = <T>(
 const getPropertyValue = getProperty(getValue);
 const getPropertyUnit = getProperty(getUnit);
 
-const mapTransformProperties = (
+/**
+ * Maps properties that uses functions, such as `transform`, into a
+ * `MappedProperty`.
+ * @param fn The property's function.
+ * @param properties The initial and target properties.
+ */
+const mapPropertiesWithFn = (
   fn: string,
   { initialProperties, targetProperties }: { [k: string]: string[] }
 ): MappedProperty => ({
@@ -32,6 +44,11 @@ const mapTransformProperties = (
     getPropertyUnit(fn, targetProperties)
 });
 
+/**
+ * Maps `transform` properties into a `MappedProperty`.
+ * @param from The initial properties.
+ * @param to The target properties.
+ */
 const getTransformProperties = (
   from: Properties,
   to: Properties
@@ -51,10 +68,15 @@ const getTransformProperties = (
   };
 
   return functions.map(
-    (fn: string): MappedProperty => mapTransformProperties(fn, properties)
+    (fn: string): MappedProperty => mapPropertiesWithFn(fn, properties)
   );
 };
 
+/**
+ * Maps transition properties into a `MappedProperties` object.
+ * @param from The initial properties.
+ * @param to The target properties.
+ */
 const mapProperties = (from: Properties, to: Properties): MappedProperties => {
   const properties = mergeWithoutDupicates(Object.keys(from), Object.keys(to));
 
@@ -63,7 +85,9 @@ const mapProperties = (from: Properties, to: Properties): MappedProperties => {
       const properties =
         curr === "transform"
           ? getTransformProperties(from, to)
-          : getOpacityProperties(from, to);
+          : curr === "opacity"
+          ? getOpacityProperties(from, to)
+          : "TODO";
 
       return { ...prev, ...{ [curr]: properties } };
     },

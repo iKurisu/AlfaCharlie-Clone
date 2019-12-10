@@ -1,4 +1,4 @@
-import { Properties, MappedProperties, MappedProperty, Types } from "./types";
+import { Properties, MappedProperties, MappedProperty } from "./types";
 import { applyEase } from "./utils";
 
 /**
@@ -18,6 +18,13 @@ const at = (moment: "end" | "start") => (ease: number): boolean =>
 
 const atEnd = at("end");
 
+/**
+ * Provides the correct value of a `MappedProperty` at a certain point of
+ * the transition.
+ *
+ * @param property A `MappedProperty`.
+ * @param ease The transition's progress.
+ */
 const validValue = (
   { initialValue, targetValue }: MappedProperty,
   ease: number
@@ -36,6 +43,12 @@ const validValue = (
   return value;
 };
 
+/**
+ * Stringifies a `MappedProperty`.
+ *
+ * @param ease The transition's progress.
+ * @param property A `MappedProperty`.
+ */
 const stringifyProperty = (
   ease: number,
   { function: fn, initialValue, targetValue, unit }: MappedProperty
@@ -45,6 +58,12 @@ const stringifyProperty = (
   return value !== null ? stringify(fn, value, unit) : null;
 };
 
+/**
+ * Stringifies an array of `transform` properties.
+ *
+ * @param mappedProperty A `transform` property.
+ * @param ease The transition's progress.
+ */
 const stringifyTransform = (
   mappedProperty: MappedProperty[],
   ease: number
@@ -57,6 +76,11 @@ const stringifyTransform = (
     }, [])
     .join(" ");
 
+/**
+ * Stringifies the given `MappedProperties`.
+ * @param mappedProperties An object of `MappedProperty`.
+ * @param ease The transition's progres.
+ */
 const stringifyProperties = (
   mappedProperties: MappedProperties,
   ease: number
@@ -64,22 +88,20 @@ const stringifyProperties = (
   Object.keys(mappedProperties).reduce(
     (properties: Properties, key: keyof Properties): Properties => {
       switch (key) {
-        case Types.transform:
+        case "transform":
           return {
             ...properties,
             ...{
               transform: stringifyTransform(mappedProperties.transform, ease)
             }
           };
-        case Types.opacity:
+        case "opacity":
           return {
             ...properties,
             ...{ opacity: validValue(mappedProperties.opacity, ease) }
           };
         default:
-          const value = stringifyProperty(ease, mappedProperties[
-            key
-          ] as MappedProperty);
+          const value = stringifyProperty(ease, mappedProperties[key]);
 
           return value !== null
             ? { ...properties, ...{ [key]: value } }
