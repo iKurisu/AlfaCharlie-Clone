@@ -14,7 +14,7 @@ const Member = ({ img, name, position, about }: Props): JSX.Element => {
   const [isActive, setIsActive] = useState(false);
   const aboutRef = useRef(null);
 
-  const fadeIn = useTransition(aboutRef, {
+  const desktopFadeIn = useTransition(aboutRef, {
     from: { opacity: 0, transform: "skewY(2deg) translateY(20px)" },
     to: { opacity: 1, transform: "skewY(0) translateY(0)" },
     config: {
@@ -23,7 +23,16 @@ const Member = ({ img, name, position, about }: Props): JSX.Element => {
     }
   });
 
-  const fadeOut = useTransition(aboutRef, {
+  const mobileFadeIn = useTransition(aboutRef, {
+    from: { opacity: 0, height: "0px", marginTop: "0" },
+    to: { opacity: 1, height: "110px", marginTop: "25px" },
+    config: {
+      duration: 250,
+      timing: [0.25, 0.1, 0.25, 1]
+    }
+  });
+
+  const desktopFadeOut = useTransition(aboutRef, {
     from: { opacity: 1 },
     to: { opacity: 0 },
     config: {
@@ -32,8 +41,23 @@ const Member = ({ img, name, position, about }: Props): JSX.Element => {
     }
   });
 
+  const mobileFadeOut = useTransition(aboutRef, {
+    from: { opacity: 1, height: "110px", marginTop: "25px" },
+    to: { opacity: 0, height: "0", marginTop: "0" },
+    config: {
+      duration: 250,
+      timing: [0.25, 0.1, 0.25, 1]
+    }
+  });
+
   const toggleAbout = (): void => {
-    isActive ? fadeOut() : fadeIn();
+    isActive
+      ? window.innerWidth > 1024
+        ? desktopFadeOut()
+        : mobileFadeOut()
+      : window.innerWidth > 1024
+      ? desktopFadeIn()
+      : mobileFadeIn();
     setIsActive(!isActive);
   };
 
