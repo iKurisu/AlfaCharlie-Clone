@@ -1,4 +1,4 @@
-.info-list-item {
+.list-item {
   color: #635a55;
   font-family: "benton-modern-display";
   font-size: 19.5px;
@@ -8,14 +8,14 @@
   padding: 7px 0;
 }
 
-.info-list-item span::before {
+.list-item span::before {
   content: "+";
   font-weight: 400;
   margin-right: 10px;
 }
 
 @media (max-width: 1600px) {
-  .info-list-item {
+  .list-item {
     font-size: 17px;
     letter-spacing: 0.12em;
     padding: 7px 0;
@@ -23,7 +23,7 @@
 }
 
 @media (max-width: 1366px) {
-  .info-list-item {
+  .list-item {
     font-size: 16px;
     letter-spacing: 0.115em;
     line-height: 1.1;
@@ -32,7 +32,7 @@
 }
 
 @media (max-width: 1024px) {
-  .info-list-item {
+  .list-item {
     font-size: 17.5px;
     letter-spacing: 0.105em;
     line-height: 1;
@@ -40,7 +40,7 @@
 }
 
 @media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
-  .info-list-item {
+  .list-item {
     font-size: 18px;
     letter-spacing: 0.09em;
     line-height: 1;
@@ -49,7 +49,7 @@
 }
 
 @media (max-width: 480px) {
-  .info-list-item {
+  .list-item {
     font-size: 20px;
     letter-spacing: 0.107em;
     padding: 7px 0;

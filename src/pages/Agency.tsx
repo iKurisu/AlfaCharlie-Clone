@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Brief from "./agency/Brief";
 import Info from "./shared/Info";
 import Team from "./agency/Team";
+import Clients from "./agency/Clients";
 
 const Agency = (): JSX.Element => {
   useEffect((): void => {
@@ -36,6 +37,10 @@ const Agency = (): JSX.Element => {
       <div className="separator" />
       <div className="row">
         <Team />
+      </div>
+      <div className="separator -big" />
+      <div className="row">
+        <Clients />
       </div>
       <div className="separator -big" />
     </React.Fragment>

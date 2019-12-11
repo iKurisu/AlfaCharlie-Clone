@@ -1,5 +1,5 @@
 import React from "react";
-import Item from "./list/Item";
+import { renderItem } from "../ListItem";
 import "./List.scss";
 
 const leftItems = [
@@ -23,16 +23,8 @@ const rightItems = [
 
 const List = (): JSX.Element => (
   <div className="info-list">
-    <ul className="info-list-left">
-      {leftItems.map((item, id) => (
-        <Item text={item} key={id} />
-      ))}
-    </ul>
-    <ul className="info-list-right">
-      {rightItems.map((item, id) => (
-        <Item text={item} key={id} />
-      ))}
-    </ul>
+    <ul className="info-list-left">{leftItems.map(renderItem)}</ul>
+    <ul className="info-list-right">{rightItems.map(renderItem)}</ul>
   </div>
 );
 
