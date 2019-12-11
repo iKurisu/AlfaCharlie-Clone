@@ -21,12 +21,10 @@ const rightItems = [
   "Videography"
 ];
 
-const renderInfoItem = renderItem("info");
-
 const List = (): JSX.Element => (
   <div className="info-list">
-    <ul className="info-list-left">{leftItems.map(renderInfoItem)}</ul>
-    <ul className="info-list-right">{rightItems.map(renderInfoItem)}</ul>
+    <ul className="info-list-left">{leftItems.map(renderItem)}</ul>
+    <ul className="info-list-right">{rightItems.map(renderItem)}</ul>
   </div>
 );
 

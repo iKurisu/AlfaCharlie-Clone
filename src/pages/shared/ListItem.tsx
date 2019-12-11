@@ -1,20 +1,18 @@
 import React from "react";
+import "./ListItem.scss";
 
 interface Props {
-  component?: string;
   text: string;
 }
 
-const ListItem = ({ component, text }: Props): JSX.Element => (
-  <li className={`${component ? `${component}-` : ""}list-item`}>
+const ListItem = ({ text }: Props): JSX.Element => (
+  <li className="list-item">
     <span>{text}</span>
   </li>
 );
 
-// eslint-disable-next-line react/display-name
-export const renderItem = (component: string) => (
-  item: string,
-  id: number
-): JSX.Element => <ListItem component={component} text={item} key={id} />;
+export const renderItem = (item: string, id: number): JSX.Element => (
+  <ListItem text={item} key={id} />
+);
 
 export default ListItem;
