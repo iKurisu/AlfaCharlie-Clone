@@ -1,0 +1,67 @@
+@import "sass/_variables.scss";
+
+.clients {
+  display: flex;
+  flex-direction: column;
+  padding: 0 5%;
+}
+
+.clients .section-header-wrapper {
+  margin: 0;
+}
+
+.clients-top {
+  position: relative;
+  margin-bottom: 119px;
+}
+
+.clients-image-wrapper {
+  width: 50%;
+  height: 100%;
+  padding-top: 38%;
+  position: absolute;
+  top: -10%;
+}
+
+.clients-image-wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.clients-image {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.clients-content {
+  padding-left: 55%;
+  padding-right: 10%;
+  margin-top: 15%;
+}
+
+.clients-title {
+  margin-bottom: 29.9px;
+  line-height: 1;
+}
+
+.clients-text {
+  color: $grey;
+  letter-spacing: 0.035em;
+  margin-bottom: 29.9px;
+}
+
+.clients-list {
+  display: flex;
+}
+
+.clients-list-left {
+  flex: 1 40%;
+}
+
+.clients-list-center,
+.clients-list-right {
+  flex: 1 30%;
+}
