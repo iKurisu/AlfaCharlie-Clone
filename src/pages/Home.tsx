@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import Hero from "./home/Hero";
 import Info from "./shared/Info";
 import Testimonials from "./shared/Testimonials";
+import { introActions } from "modules/intro";
+import { IntroActionTypes } from "modules/intro/types";
 import "./Home.scss";
 
-const Home = (): JSX.Element => {
+interface MappedActions {
+  toggleIntro: () => IntroActionTypes;
+}
+
+type Props = MappedActions;
+
+const Home = ({ toggleIntro }: Props): JSX.Element => {
+  useEffect((): void => {
+    toggleIntro();
+  }, []);
+
   return (
     <React.Fragment>
       <div className="row">
@@ -29,10 +42,17 @@ const Home = (): JSX.Element => {
       </div>
       <div className="separator -big" />
       <div className="row">
-        <Testimonials />
+        <Testimonials title="brilliant clients" />
       </div>
     </React.Fragment>
   );
 };
 
-export default Home;
+const mapDispatch: MappedActions = {
+  toggleIntro: introActions.toggleIntro
+};
+
+export default connect(
+  null,
+  mapDispatch
+)(Home);
