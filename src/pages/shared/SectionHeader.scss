@@ -7,12 +7,6 @@
 }
 
 .section-header {
-  color: #fff;
-  font-family: "benton-modern-display";
-  font-size: 127.5px;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  line-height: 1;
   text-align: center;
 }
 
@@ -20,32 +14,17 @@
   .section-header-wrapper {
     margin-bottom: 60px;
   }
-
-  .section-header {
-    font-size: 102px;
-    letter-spacing: 0.06em;
-  }
 }
 
 @media (max-width: 1366px) {
   .section-header-wrapper {
     margin-bottom: 56px;
   }
-
-  .section-header {
-    font-size: 86.5px;
-    letter-spacing: 0.061em;
-  }
 }
 
 @media (max-width: 1024px) {
   .section-header-wrapper {
     margin-bottom: 60px;
-  }
-
-  .section-header {
-    font-size: 93px;
-    letter-spacing: 0.06em;
   }
 }
 
@@ -56,8 +35,6 @@
   }
 
   .section-header {
-    font-size: 93px;
-    line-height: 0.8;
     text-align: start;
   }
 }
@@ -66,9 +43,5 @@
   .section-header-wrapper {
     width: 225px;
     margin: 0;
-  }
-
-  .section-header {
-    font-size: 75px;
   }
 }
