@@ -27,7 +27,11 @@ interface MappedActions {
   swipeSlide: (slideID: number, delay: number) => MouseEventHandler;
 }
 
-type Props = MappedState & MappedActions;
+interface OwnProps {
+  title: string;
+}
+
+type Props = MappedState & MappedActions & OwnProps;
 
 const Testimonials = (props: Props): JSX.Element => {
   const wrapperWidth = useMediaQuery([
@@ -49,7 +53,7 @@ const Testimonials = (props: Props): JSX.Element => {
 
   return (
     <section className="testimonials">
-      <SectionHeader text="brilliant clients" />
+      <SectionHeader text={props.title} />
       <div className="testimonials-image-wrapper">
         <div className="testimonials-slider">
           <TestimonialsSlider
