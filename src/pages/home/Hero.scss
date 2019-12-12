@@ -5,6 +5,7 @@
   padding-top: 3%;
   display: flex;
   align-items: center;
+  margin-bottom: 51px;
 }
 
 .hero-content {
@@ -47,6 +48,10 @@
 }
 
 @media (max-width: 1600px) {
+  .hero {
+    margin-bottom: 45px;
+  }
+
   .hero-content {
     flex: 0 0 40%;
   }
@@ -140,6 +145,7 @@
 @media (max-width: 480px) {
   .hero {
     padding-top: 107px;
+    margin: 0;
   }
 
   .hero-content {

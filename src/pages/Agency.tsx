@@ -1,14 +1,25 @@
 import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import Brief from "./agency/Brief";
 import Info from "./shared/Info";
 import Team from "./agency/Team";
 import Clients from "./agency/Clients";
+import Testimonials from "./shared/Testimonials";
+import { introActions } from "modules/intro";
+import { IntroActionTypes } from "modules/intro/types";
 
-const Agency = (): JSX.Element => {
+interface MappedActions {
+  toggleIntro: () => IntroActionTypes;
+}
+
+type Props = MappedActions;
+
+const Agency = ({ toggleIntro }: Props): JSX.Element => {
   useEffect((): void => {
+    toggleIntro();
     document.title =
       "Branding, Web Design and Graphic Design | Alpha Charlie | What We Do";
-  });
+  }, []);
 
   return (
     <React.Fragment>
@@ -34,7 +45,7 @@ const Agency = (): JSX.Element => {
           align={"left"}
         />
       </div>
-      <div className="separator" />
+      <div className="separator -big" />
       <div className="row">
         <Team />
       </div>
@@ -43,8 +54,18 @@ const Agency = (): JSX.Element => {
         <Clients />
       </div>
       <div className="separator -big" />
+      <div className="row">
+        <Testimonials title="what they say" />
+      </div>
     </React.Fragment>
   );
 };
 
-export default Agency;
+const mapDispatch: MappedActions = {
+  toggleIntro: introActions.toggleIntro
+};
+
+export default connect(
+  null,
+  mapDispatch
+)(Agency);

@@ -3,7 +3,6 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import { heroActions } from "modules/hero";
-import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
 import SliderNav from "../shared/SliderNav";
@@ -30,7 +29,6 @@ interface MappedState {
 }
 
 interface MappedActions {
-  toggleIntro: () => IntroActionTypes;
   swipeSlide: (slideID: number, delay: number) => MouseEventHandler;
 }
 
@@ -39,7 +37,6 @@ export type Props = MappedState & MappedActions;
 export const Hero = ({
   currentSlideID,
   previousSlideID,
-  toggleIntro,
   swipeSlide
 }: Props): JSX.Element => {
   const [symbolRotation, rotateSymbol] = useState(0);
@@ -80,8 +77,6 @@ export const Hero = ({
   };
 
   useEffect((): void => {
-    toggleIntro();
-
     fadeInContent();
   }, []);
 
@@ -172,7 +167,6 @@ export const Hero = ({
 const mapState = ({ hero }: AppState): MappedState => ({ ...hero });
 
 const mapDispatch = (dispatch: Dispatch): MappedActions => ({
-  toggleIntro: () => dispatch(introActions.toggleIntro()),
   swipeSlide: (slideID: number, delay: number): MouseEventHandler => () => {
     dispatch(heroActions.setSlide(slideID));
     setTimeout(() => dispatch(heroActions.updatePreviousSlide()), delay);
