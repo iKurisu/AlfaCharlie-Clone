@@ -80,11 +80,19 @@ ul {
   list-style: none;
 }
 
+h2,
 h3,
 h4,
 h6 {
   font-family: "benton-modern-display";
   font-weight: 400;
+}
+
+h2 {
+  color: #fff;
+  font-size: 127.5px;
+  letter-spacing: 0.06em;
+  line-height: 1;
 }
 
 h3,
@@ -114,6 +122,11 @@ img {
 }
 
 @media (max-width: 1600px) {
+  h2 {
+    font-size: 102px;
+    letter-spacing: 0.06em;
+  }
+
   h3 {
     font-size: 45px;
   }
@@ -126,6 +139,11 @@ img {
 }
 
 @media (max-width: 1366px) {
+  h2 {
+    font-size: 86.5px;
+    letter-spacing: 0.061em;
+  }
+
   h3 {
     font-size: 42px;
   }
@@ -138,6 +156,11 @@ img {
 }
 
 @media (max-width: 1024px) {
+  h2 {
+    font-size: 93px;
+    letter-spacing: 0.06em;
+  }
+
   h3 {
     font-size: 45px;
   }
@@ -149,6 +172,11 @@ img {
 }
 
 @media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  h2 {
+    font-size: 93px;
+    line-height: 0.8;
+  }
+
   p {
     font-size: 15px;
     letter-spacing: 0.02em;
@@ -157,6 +185,10 @@ img {
 }
 
 @media (max-width: 480px) {
+  h2 {
+    font-size: 75px;
+  }
+
   h3 {
     font-size: 35px;
     letter-spacing: 0.054em;

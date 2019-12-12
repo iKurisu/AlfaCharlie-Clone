@@ -1,0 +1,34 @@
+.work {
+  padding: 155px calc(20.5vw - 88px) 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.project {
+  flex: 0 0 calc(50% - 88px);
+  margin: 0 44px 88px;
+  position: relative;
+}
+
+.project-title h2 {
+  font-size: 102px;
+}
+
+.project-title-top,
+.project-title-bottom {
+  position: absolute;
+}
+
+.project-title-top {
+  top: 10%;
+  left: -2.5%;
+}
+
+.project-title-bottom {
+  bottom: 10%;
+  right: -2.5%;
+}
+
+.project-title span {
+  display: block;
+}
