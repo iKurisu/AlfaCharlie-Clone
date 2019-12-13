@@ -5,18 +5,17 @@ import "./Character.scss";
 
 interface Props {
   char: string;
-  order: number;
   isOpen: boolean;
 }
 
-const Character = ({ char, order, isOpen }: Props): JSX.Element => {
+const Character = ({ char, isOpen }: Props): JSX.Element => {
   const character = useRef(null);
 
   const fadeIn = useTransition(character, {
     from: { opacity: 0 },
     to: { opacity: 1 },
     config: {
-      delay: 800 + order * 100,
+      delay: 800 + Math.ceil(Math.random() * 4) * 100,
       duration: 1000,
       timing: [0.28, 1, 0.5, 1]
     }
