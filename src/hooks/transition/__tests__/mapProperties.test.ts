@@ -72,6 +72,26 @@ describe("mapProperties", (): void => {
     };
 
     expect(mapProperties(from, to)).toMatchObject(mappedProps);
+
+    const from2 = { transform: "scaleX(0)" };
+    const to2 = { opacity: 1, transform: "scaleX(1)" };
+
+    const mappedProps2: MappedProperties = {
+      transform: [
+        {
+          function: "scaleX",
+          initialValue: 0,
+          targetValue: 1,
+          unit: null
+        }
+      ],
+      opacity: {
+        initialValue: null,
+        targetValue: 1
+      }
+    };
+
+    expect(mapProperties(from2, to2)).toMatchObject(mappedProps2);
   });
 
   it("handles negative numbers", (): void => {
