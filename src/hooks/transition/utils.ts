@@ -6,28 +6,35 @@ import { MappedProperty } from "./types";
  * @param prop A `transform` property.
  * @returns An array containing the matched functions.
  */
-export const getPropFunction = (prop: string): string[] => {
-  const matchedFunctions = prop
-    ? prop.match(
-        /((translate|scale|rotate)([XYZ]|3d)?|skew[XY]?|matrix(3d)?)(?=\()/g
-      )
-    : [];
+export const getFunction = (prop: string | number): string => {
+  if (typeof prop !== "string") return null;
 
-  return matchedFunctions;
+  const match = prop.match(
+    /((translate|scale|rotate)([XYZ]|3d)?|skew[XY]?|matrix(3d)?)(?=\()/g
+  );
+
+  return match ? match[0] : null;
 };
 
 /**
  * @param prop Any property.
  * @returns The value of a property
  */
-export const getValue = (prop: string | number): number =>
-  typeof prop === "string" ? +prop.match(/-?\d+/g)[0] : prop;
+export const getValue = (prop: string | number): number => {
+  if (prop === undefined) return null;
+
+  return typeof prop === "string"
+    ? +prop.match(/-?\d+(?!\.\d+)|\d\.\d+/g)[0]
+    : prop;
+};
 
 /**
  * @param prop Any property.
  * @returns The unit of a property.
  */
-export const getUnit = (prop: string): string => {
+export const getUnit = (prop: string | number): string => {
+  if (typeof prop !== "string") return null;
+
   const match = prop.match(/px|%|vw|vh|deg/g);
 
   return match ? match[0] : null;
