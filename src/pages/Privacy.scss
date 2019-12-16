@@ -1,0 +1,106 @@
+@import "sass/_variables.scss";
+
+.privacy {
+  padding: 0 21vw;
+}
+
+.privacy-header {
+  padding-top: 25%;
+}
+
+.privacy-title {
+  letter-spacing: 0.062em;
+  line-height: 1.16;
+  margin-bottom: 51px;
+}
+
+.privacy-content h3 {
+  font-size: 20px;
+  letter-spacing: 0.098em;
+  margin-top: 42.5px;
+  margin-bottom: 16px;
+}
+
+.privacy-content p {
+  color: $grey;
+  letter-spacing: 0.034em;
+  margin-bottom: 25.5px;
+}
+
+@media (max-width: 1600px) {
+  .privacy-title {
+    margin-bottom: 45px;
+  }
+
+  .privacy-content h3 {
+    font-size: 18.5px;
+    letter-spacing: 0.068em;
+    margin-top: 37px;
+    margin-bottom: 14px;
+  }
+
+  .privacy-content p {
+    letter-spacing: 0.0365em;
+    margin-bottom: 22.5px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .privacy {
+    padding: 0 10.5vw;
+  }
+
+  .privacy-title {
+    margin-bottom: 42px;
+  }
+
+  .privacy-content h3 {
+    font-size: 17px;
+    letter-spacing: 0.079em;
+    margin-top: 34px;
+    margin-bottom: 13px;
+  }
+
+  .privacy-content p {
+    letter-spacing: 0.0375em;
+    margin-bottom: 21px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .privacy-title {
+    margin-bottom: 45px;
+  }
+
+  .privacy-content h3 {
+    font-size: 19px;
+    letter-spacing: 0.05em;
+    margin-top: 36px;
+    margin-bottom: 13.5px;
+  }
+
+  .privacy-content p {
+    letter-spacing: 0.04em;
+    margin-bottom: 22.5px;
+  }
+}
+
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  .privacy-header {
+    padding-top: 150px;
+  }
+
+  .privacy-content p {
+    letter-spacing: 0.02em;
+  }
+}
+
+@media (max-width: 460px) {
+  .privacy {
+    padding: 0 30px;
+  }
+
+  .privacy-title {
+    font-size: 45px;
+  }
+}
