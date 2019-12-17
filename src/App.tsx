@@ -10,6 +10,9 @@ import Home from "pages/Home";
 import Agency from "pages/Agency";
 import Work from "pages/Work";
 import Privacy from "pages/Privacy";
+import Project from "pages/Project";
+import projects from "data/projects.json";
+import { ACProject } from "data/types";
 import "./styles.scss";
 
 const App = (): JSX.Element => (
@@ -34,6 +37,16 @@ const App = (): JSX.Element => (
               <Route exact path="/agency" component={Agency} />
               <Route exact path="/work" component={Work} />
               <Route exact path="/privacy-policy" component={Privacy} />
+              {projects.map((project: ACProject, id: number) => (
+                <Route
+                  exact
+                  path={`/projects/${project.title
+                    .toLowerCase()
+                    .replace(/ /g, "-")}`}
+                  render={() => <Project project={project} />}
+                  key={id}
+                />
+              ))}
               <Redirect to="/" />
             </Switch>
           </div>
