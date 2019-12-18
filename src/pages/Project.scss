@@ -1,0 +1,157 @@
+@import "sass/_variables.scss";
+
+.project-intro {
+  padding-top: 39.6vh;
+}
+
+.project-intro-title {
+  margin-bottom: 36px;
+}
+
+.project-intro-description {
+  width: 59%;
+  font-size: 51px;
+  letter-spacing: 0.05em;
+  line-height: 1.12;
+}
+
+.project-intro {
+  margin-bottom: 85px;
+}
+
+.project-hero {
+  position: relative;
+}
+
+.hero-cover {
+  background: $background;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 10.5%;
+  z-index: 10;
+}
+
+.hero-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 30vw;
+}
+
+.hero-image-wrapper img {
+  position: absolute;
+  bottom: 0;
+}
+
+.project-info {
+  display: flex;
+  padding: 102px 0;
+}
+
+.project-info-left {
+  flex: 0 66%;
+  padding: 0 121.5px;
+}
+
+.project-info-text p {
+  color: $grey;
+  letter-spacing: 0.034em;
+  line-height: 1.7;
+}
+
+.project-info-right {
+  flex: 0 34%;
+  padding: 0 34px 0;
+}
+
+.project-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.project-meta li {
+  display: flex;
+}
+
+.project-meta-title {
+  flex: 1 40%;
+}
+
+.project-meta-description {
+  flex: 1 60%;
+}
+
+.project-meta h5 {
+  line-height: 1.75;
+}
+
+.project-item {
+  margin-bottom: 8.3vw;
+  text-align: center;
+}
+
+.project-double .project-item-wrapper {
+  display: inline-block;
+  width: 40%;
+  margin: 0 5%;
+}
+
+.project-quote {
+  margin: 0 8.3vw 8.3vw 33.8vw;
+}
+
+.project-quote .quotemark {
+  color: #fff;
+  font-family: "benton-modern-display";
+  font-size: 128px;
+  line-height: 0.8;
+}
+
+.project-quote .quote {
+  margin-bottom: 30px;
+}
+
+.project-quote .quote p {
+  color: $black;
+  font-family: "benton-modern-display";
+  font-size: 25.4px;
+  letter-spacing: 0.073em;
+  line-height: 1.3;
+}
+
+.project-quote .quote-author {
+  text-transform: uppercase;
+}
+
+.project-quote .quote-author {
+  color: #d43246;
+  position: relative;
+  padding: 13px 0 16px 35px;
+}
+
+.project-quote .quote-line {
+  content: "";
+  width: 23px;
+  height: 1px;
+  background-color: currentColor;
+  position: absolute;
+  top: 21px;
+  left: 0;
+}
+
+.project-quote .author-name,
+.project-quote .author-position {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+}
+
+.project-quote .author-name {
+  padding-left: 15px;
+}
+
+.project-quote .author-position:before {
+  content: "•";
+  margin: 0 6px;
+}
