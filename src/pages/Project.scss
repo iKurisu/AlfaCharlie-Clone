@@ -2,6 +2,7 @@
 
 .project-intro {
   padding-top: 39.6vh;
+  margin-bottom: 85px;
 }
 
 .project-intro-title {
@@ -13,10 +14,6 @@
   font-size: 51px;
   letter-spacing: 0.05em;
   line-height: 1.12;
-}
-
-.project-intro {
-  margin-bottom: 85px;
 }
 
 .project-hero {
@@ -154,4 +151,251 @@
 .project-quote .author-position:before {
   content: "•";
   margin: 0 6px;
+}
+
+@media (max-width: 1920px) {
+  .project-intro-description {
+    width: 70%;
+  }
+}
+
+@media (max-width: 1600px) {
+  .project-intro {
+    padding-top: 45.1vh;
+    margin-bottom: 75px;
+  }
+
+  .project-intro-title {
+    margin-bottom: 32px;
+  }
+
+  .project-intro-description {
+    font-size: 45px;
+    width: 65%;
+  }
+
+  .project-info {
+    padding: 90px 0;
+  }
+
+  .project-info-left {
+    padding: 0 8%;
+  }
+
+  .project-info-text p {
+    line-height: 1.75;
+    letter-spacing: 0.037em;
+  }
+
+  .project-meta h5 {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    line-height: 1.6;
+  }
+
+  .project-info-right {
+    padding: 0 30px;
+  }
+
+  .project-quote .quotemark {
+    font-size: 112px;
+  }
+
+  .project-quote .quote p {
+    font-size: 20px;
+    line-height: 1.45;
+    letter-spacing: 0.068em;
+  }
+
+  .project-quote .quote-author {
+    padding-top: 15px;
+  }
+
+  .project-quote .author-name,
+  .project-quote .author-position {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .project-intro {
+    padding-top: 46vh;
+    margin-bottom: 70px;
+  }
+
+  .project-intro-title {
+    margin-bottom: 30px;
+  }
+
+  .project-intro-description {
+    font-size: 42px;
+    width: 75%;
+  }
+
+  .project-info {
+    padding: 84px 0;
+  }
+
+  .project-info-right {
+    padding: 0 28px;
+  }
+
+  .project-meta h5 {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    line-height: 1.7;
+  }
+
+  .project-quote .quotemark {
+    font-size: 104px;
+  }
+
+  .project-quote .quote p {
+    font-size: 18px;
+    letter-spacing: 0.085em;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 1024px) {
+  .project-intro {
+    padding-top: 47vh;
+    margin-bottom: 74px;
+  }
+
+  .project-intro-title {
+    margin-bottom: 32px;
+  }
+
+  .project-intro-description {
+    font-size: 45px;
+  }
+
+  .project-info {
+    padding: 90px 0;
+  }
+
+  .project-info-left {
+    flex: 0 60%;
+    padding-left: 0;
+  }
+
+  .project-info-text p {
+    letter-spacing: 0.04em;
+  }
+
+  .project-meta h5 {
+    font-size: 9.5px;
+    letter-spacing: 0.295em;
+  }
+
+  .project-info-right {
+    flex: 0 40%;
+    padding-left: 30px;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-intro-description {
+    width: 100%;
+  }
+
+  .hero-image-wrapper {
+    height: 40vw;
+  }
+
+  .hero-image-wrapper img {
+    height: 120%;
+    object-fit: cover;
+  }
+
+  .project-info-text p {
+    font-size: 14.5px;
+    letter-spacing: 0.037em;
+  }
+
+  .project-quote {
+    margin-left: 0;
+  }
+
+  .project-quote .quotemark {
+    font-size: 112px;
+  }
+
+  .project-quote .quote p {
+    font-size: 20px;
+    letter-spacing: 0.069em;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-intro {
+    padding-top: 35vh;
+    margin-bottom: 45px;
+  }
+
+  .project-intro-description {
+    font-size: 38px;
+    letter-spacing: 0.045em;
+    line-height: 1.05;
+  }
+
+  .project-hero {
+    padding: 0 30px;
+  }
+
+  .hero-cover {
+    display: none;
+  }
+
+  .hero-image-wrapper {
+    height: 50vw;
+  }
+
+  .project-info {
+    padding: 60px 22.5px;
+    flex-direction: column-reverse;
+  }
+
+  .project-info-right {
+    padding: 0;
+  }
+
+  .project-meta > li {
+    margin-bottom: 22.5px;
+  }
+
+  .project-info-left {
+    margin-top: 22.5px;
+    padding: 0;
+  }
+
+  .project-quote {
+    padding: 0 22.5px;
+    margin: 74px 0 45px;
+  }
+
+  .project-quote .quotemark {
+    line-height: 0.55;
+  }
+
+  .project-quote .quote {
+    margin-bottom: 14px;
+  }
+
+  .project-quote .author-name {
+    padding-left: 0;
+  }
+
+  .project-item {
+    margin-bottom: 30px;
+  }
+
+  .project-double .project-item-wrapper {
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
 }

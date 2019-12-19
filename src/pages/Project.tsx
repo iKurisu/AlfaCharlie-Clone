@@ -9,11 +9,7 @@ interface Props {
 const isVideo = (src: string): boolean => src.match(/\.mp4$/g) !== null;
 
 const Project = ({ project }: Props): JSX.Element => {
-  // eslint-disable-next-line react/display-name
-  const renderItems = (type: "leading" | "lazy") => (
-    item: string | string[],
-    id: number
-  ): JSX.Element =>
+  const renderItems = (item: string | string[], id: number): JSX.Element =>
     typeof item === "object" ? (
       <div className={`project-double`} key={id}>
         {item.map((img, id) => (
@@ -80,7 +76,7 @@ const Project = ({ project }: Props): JSX.Element => {
       </div>
       <div className="row">
         <div className="project-leading">
-          {project.leading.map(renderItems("leading"))}
+          {project.leading.map(renderItems)}
         </div>
       </div>
       {project.quote ? (
@@ -101,9 +97,7 @@ const Project = ({ project }: Props): JSX.Element => {
         </div>
       ) : null}
       <div className="row">
-        <div className="project-lazy">
-          {project.lazy.map(renderItems("lazy"))}
-        </div>
+        <div className="project-lazy">{project.lazy.map(renderItems)}</div>
       </div>
     </React.Fragment>
   );
