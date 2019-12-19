@@ -1,62 +1,335 @@
 [
   {
+    "title": "Symbiotic Training Center",
+    "description": "Establishing a brand identity and web design for an elite athletic training center.",
+    "info": "We worked with the founders of Symbiotic Training from the ground up. After a deep dive into understanding the mission of the company, we assisted in establishing the name and executing its meaning through an all-around brand identity package and website. We used the concept of the yin and yang to bring together the ‘S’ shape and opposing blue dots. The modern style speaks to the elite and professional level athletes that Symbiotic works with, while still being approachable for their younger audience. The powerful, vibrant aesthetic translates beautifully onto accessories, signage, and more.",
     "article": {
       "title": ["symbiotic", "training"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Symbiotic-Training-Center-Branding-2.jpg"
-    }
+    },
+    "client": "Symbiotic Training Center",
+    "year": 2018,
+    "services": [
+      "Strategy",
+      "Naming",
+      "Brand Identity",
+      "Web Design",
+      "Web Development",
+      "Print",
+      "Apparel"
+    ],
+    "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Symbiotic-Training-Center-1.jpg",
+    "leading": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Symbiotic-Training-Center-2.gif",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Symbiotic-Training-Center-3.jpg"
+    ],
+    "quote": {
+      "text": "Kim and Reva are not only talented artists, but also true professionals who made the effort to get to know us and our business. They spent the extra time to uniquely understand the vision and goal of our company, and I think everything in our brand and branding strategy reflects that. I would highly recommend Alfa Charlie to anyone looking to launch, refresh, or re-strategize the branding of their business.",
+      "author": {
+        "name": "Dana Sorensen",
+        "position": "founder, Symbiotic training center"
+      }
+    },
+    "lazy": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Symbiotic-Training-Center-4.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Symbiotic-Training-Center-5.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Symbiotic-Training-Center-6.jpg",
+      [
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Symbiotic-Training-Center-7.jpg",
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Symbiotic-Training-Center-8.jpg"
+      ],
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Symbiotic-Training-Center-10.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Symbiotic-Training-Center-1400.jpg"
+    ]
   },
   {
+    "title": "Lion House",
+    "description": "Crafting a brand identity and website for an event planning company.",
+    "info": "We joined the Lion House party in the early stages of business to help design and grow their extraordinary brand and website. Founded by Lauren Watson, the Lion House is an event planning and design company located in Raleigh, North Carolina. As a new business it was pivotal that we understood her target audience to create designs and a digital presence that would not only speak directly to them, but show Lauren's experience in the industry. When building out the brand we challenged ourselves to combine the relaxed, California vibes Lauren picked up while living out west, with her southern roots of home.",
     "article": {
       "title": ["lion", "house"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-House-Branding-Digital.jpg"
-    }
+    },
+    "client": "Lion House",
+    "year": 2016,
+    "services": ["Strategy", "Brand Identity", "Print", "Web Design"],
+    "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-house-TOP.jpg",
+    "leading": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lionhouse_logo_v03.mp4"
+    ],
+    "lazy": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-house-business-cards.jpg",
+      [
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-house-Icon.jpg",
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-house-Pattern.jpg"
+      ],
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-House-Invitation.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-house-Tags.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-House-Bag-e1555164768606.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-House-Stationary.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-House-Matchbox-2.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-House-Website.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-house-stamp-2.jpg"
+    ]
   },
   {
+    "title": "Rhum Bar",
+    "description": "Creating a brand identity and collateral for an island-inspired rum bar in Patchogue, NY.",
+    "info": "Located in New York, Rhum Bar is one of the well-establish Hamptons restaurants managed by Rooted Hospitality Group. Through our collaboration with Rooted Hospitality Group, we have worked on a mixture of branding, printed collateral, and packaging for Rhum Bar and their signature drink mixer line, Rumba. Our designs incorporate the universal island theme seen throughout their entire restaurant portfolio.",
     "article": {
       "title": ["rhum", "bar"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-Branding-2-1.jpg"
-    }
+    },
+    "client": "Rhum Bar",
+    "year": 2016,
+    "services": ["Brand Identity", "Print", "Signage", "Apparel"],
+    "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-TOP.jpg",
+    "leading": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-Logo-Design.jpg"
+    ],
+    "lazy": [
+      [
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-Pattern.jpg",
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-Icon.jpg"
+      ],
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-Patchogue-Bag.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-Patchogue-Coasters.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-Patchogue-Signage-2.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-Business-Cards.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-Patchogue-Menu.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-Patchogue-Bartender.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-Patchogue-T-shirt-2.jpg"
+    ]
   },
   {
+    "title": "Scale San Diego",
+    "description": "Designing a brand identity system for a smart city accelerator program.",
+    "info": "We started working with SCALE San Diego during their launch in early 2017. As a smart city accelerator program, they are constantly working to make San Diego a smarter and greener city. We were tasked with creating a visual identity system that encompasses their bold vision and attracts young innovators to get involved. We expanded the brand through various marketing materials, web designs, event signage.",
     "article": {
       "title": ["scale", "san diego"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Scale-San-Diego-Branding.jpg"
-    }
+    },
+    "client": "Scale San Diego",
+    "year": 2017,
+    "services": ["Brand Identity", "Print", "Web Design", "Signage"],
+    "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Scale-San-Diego-TOP.jpg",
+    "leading": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Scale-San-Diego-Logo-Design.jpg"
+    ],
+    "lazy": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Scale-San-Diego-Business-Cards-2.jpg",
+      [
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Scale-San-Diego-Icon-colors.gif",
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Scale-San-Diego-Icon.jpg"
+      ],
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Scale-San-Diego-Sign.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Scale-San-Diego-Booklet.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Scale-San-Diego-Phone-2.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Scale-San-Diego-Web-Design.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Scale-San-Diego-Stamp-2.jpg"
+    ]
   },
   {
+    "title": "The One Club For Creativity San Diego",
+    "description": "Supporting the local creative community through a brand and website for The One Club San Diego.",
+    "info": "In 2019, SDX (formerly the Ad Club) transitioned to be the city chapter of The One Club for Creativity, with a mission to bring attention to the talent among San Diego’s creatives. We stayed true to the essence of the parent brand by utilizing the bold, sans serif typography of The One Club paired with its predominantly black and white color scheme. To create contrast and to align with the relaxed, cool Southern California vibes, we replaced the secondary color palette with a soft orange and teal. For the website, we created a fully, customized digital presence using animated features, a clean aesthetic, and fluid content organization. Our challenge was to increase awareness and drive membership through a refreshed logo, new website and launch party to celebrate.",
     "article": {
       "title": ["one club", "san diego"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/10/One-Club-for-Creativity-San-Diego-Website-featured.jpg"
-    }
+    },
+    "client": "The One Club San Diego",
+    "year": 2019,
+    "services": [
+      "Branding",
+      "Web Design",
+      "Web Development",
+      "Social Media Graphics",
+      "Event Collateral"
+    ],
+    "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/10/One-Club-for-Creativity-San-Diego-Website-banner.jpg",
+    "leading": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/10/One-Club-for-Creativity-San-Diego-Website-tote.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/10/One-Club-for-Creativity-San-Diego-Branding-Tags.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/10/One-Club-for-Creativity-San-Diego-business-cards.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/10/one-club-san-diego-launch-party-logo.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/10/One-Club-for-Creativity-San-Diego-sponsor-design.jpg"
+    ],
+    "lazy": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/10/One-Club-for-Creativity-San-Diego-website-imac-2.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/10/One-Club-for-Creativity-San-Diego-Website-pages.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/10/One-Club-for-Creativity-San-Diego-Website-404.mp4"
+    ]
   },
   {
+    "title": "GRX Baseball",
+    "description": "Designing a logo and website for a professional baseball training program.",
+    "info": "GRx Baseball is an ever-evolving, high-performance training program focused on providing individualized programming for professional baseball players. We were hired to create a name, visual identity, and website that reflects the owner’s strong personality and affinity for the Tyrannosaurus rex. The “G” in GRx stands for his last name, Green, while the Rx is a common abbreviation for medical prescriptions. The name is also a play on his alter ego, the Tyrannosaurus rex. Jono wanted his brand to be serious enough for professional athletes, but also show some of his quirky personality.",
     "article": {
       "title": ["grx", "baseball"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-Branding-Digital-1.jpg"
-    }
+    },
+    "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-TOP.jpg",
+    "client": "GRX Baseball",
+    "year": 2018,
+    "services": [
+      "Strategy",
+      "Naming",
+      "Brand Identity",
+      "Web Design",
+      "Web Development",
+      "Print",
+      "Apparel"
+    ],
+    "leading": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-Logo-Design.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-Shirt.jpg"
+    ],
+    "quote": {
+      "text": "The creative process with Kim and Reva was both interactive and fun, and the quality of their work is second to none. I couldn’t be happier with the outcome.",
+      "author": {
+        "name": "Jono Green",
+        "position": "Founder, GRx Baseball"
+      }
+    },
+    "lazy": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-Website.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-Business-Cards.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-Hat-Packaging.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-Sweatshirt.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-Model-Shirt.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-Model-Shirt-3.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-Clothing-Tag.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-Phone-2.jpg"
+    ]
   },
   {
+    "title": "Ingenious Automation",
+    "description": "Building a website for a full service electrical contractor in San Diego, CA.",
+    "info": "Ingenious Automation is a full service electrical contractor specializing in the automation and integration of audio/video, networking and lighting control systems. We teamed up with the founders to create a stunning website that showcases their work and helps them stand out from their competition. We went with a bold, sleek style that plays into their brand personality and positions them as a young and hip leader in their market.",
     "article": {
       "title": ["ingenious", "automation"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Ingenious-Automation-Web-Design-1.jpg"
-    }
+    },
+    "client": "Ingenious Automation",
+    "year": 2018,
+    "services": ["Strategy", "Web Design", "Web Development"],
+    "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Ingenious-Automation-TOP.jpg",
+    "leading": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Ingenious-Automation-Website.jpg"
+    ],
+    "lazy": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Ingenious-Automation-Laptop.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Ingenious-Automation-Web-Pages.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Ingenious-Automation-iPad-2.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Ingenious-Automation-Computer.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Ingenious-Automation-iPhone-2.jpg"
+    ]
   },
   {
+    "title": "ChamberlaynePR",
+    "description": "Designing a visual identity and web development for a public relations & communications firm.",
+    "info": "We partnered with ChamberlaynePR to design a visual identity and website for their new public relations and communications firm. The classic logo is a testament to their traditional values and high level of experience and expertise. We complimented that simplistic logo with a splash of vibrant colors, energetic photos, and a bold symbol to highlight the company’s emphasis on diversity and audacity. Altogether, the visual identity remains sophisticated but with a young, urban touch.",
     "article": {
       "title": ["chamber layne", "pr"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-Branding-Web-Design-1.jpg"
-    }
+    },
+    "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-TOP.jpg",
+    "client": "ChamberlaynePR",
+    "year": 2018,
+    "services": ["Brand Identity", "Print", "Web Design", "Web Development"],
+    "leading": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-Letterpress.jpg",
+      [
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-Branding.jpg",
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-Symbol.jpg"
+      ],
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-Website.jpg"
+    ],
+    "quote": {
+      "text": "A head and shoulders above others, Alfa Charlie is a leading design agency. As the owner of a growing communications firm, I need to partner with teams that are quick, reliable and creative. On every project, Alfa Charlie has delivered an exceptional product and service for our clients that we’ve all been very proud of.",
+      "author": {
+        "name": "Charles Chamberlayne",
+        "position": "Principal, ChamberlaynePR"
+      }
+    },
+    "lazy": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-Website-Pages-2.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-Stationery.jpg",
+      [
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-Brochures.jpg",
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-Brochure-Back.jpg"
+      ],
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-Book.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR_Business-Cards-2.jpg"
+    ]
   },
   {
+    "title": "Diamond Solutions",
+    "description": "Crafting a brand identity and collateral for a softball and baseball consulting firm.",
+    "info": "Diamond Solutions uses its MLB front office and development experience to serve as a player development consulting firm that aims to maximize baseball and softball players’ potential using pitch tracking technologies and other relevant front office statistical methods. We were hired to design a logo to reflect their top quality product, as well as to design their primary deliverable, a complex analytics report. Our challenge was to transform the company's complex data into an easily digestible and visually pleasing product.",
     "article": {
       "title": ["diamond", "solutions"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-Branding.jpg"
-    }
+    },
+    "client": "Diamond Solutions",
+    "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-TOP.jpg",
+    "year": 2018,
+    "services": ["Strategy", "Brand Identity", "Print"],
+    "leading": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-Logo.jpg"
+    ],
+    "lazy": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-Business-Card.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-Website.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-Booklet-2.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-Packet.jpg",
+      [
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-iPhone.jpg",
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-Booklet-Briefcase.jpg"
+      ],
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-Magazine.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-Stamp-2.jpg"
+    ]
   },
   {
+    "title": "Sorensen Elite",
+    "description": "Building a brand identity and website for a softball pitching program.",
+    "info": "Sorensen Elite is a private softball pitching instruction and training company started by softball athlete Dana Sorensen. After Dana’s long and successful career as one of the nation’s top pitchers, including playing in 2 Women’s College World Series and being inducted into the Stanford Athletics Hall of Fame, Dana started Sorensen Elite to help high school, college, and professional softball pitchers improve their skills. We teamed up with Dana to create a logo and website that reflects her style and builds her brand’s recognition within the softball community. The logo was designed to work well on screen printed apparel, and the ‘SE’ emblem is meant to emulate the stitches of a softball.",
     "article": {
       "title": ["sorensen", "elite"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Sorensen-Elite-Softball-Pitching-Branding-Web-Design-1.jpg"
-    }
+    },
+    "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Sorensen-Elite-Softball-Pitching-TOP.jpg",
+    "client": "Sorensen Elite",
+    "year": 2018,
+    "services": [
+      "Strategy",
+      "Brand Identity",
+      "Web Design",
+      "Web Development",
+      "Apparel"
+    ],
+    "leading": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Sorensen-Elite-Softball-Pitching-Logo-Metal.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/SE-Shirt.jpg"
+    ],
+    "quote": {
+      "text": "My experience working with Alfa Charlie to develop a brand identity and website for Sorensen Elite was truly wonderful and has been supremely helpful in launching our company. Kim and Reva are not only talented artists, but also true professionals who spent the extra time to uniquely understand the vision and goal of our company. I would highly recommend Alfa Charlie to anyone looking to launch, refresh, or re-strategize the branding of their business.",
+      "author": {
+        "name": "Dana Sorensen",
+        "position": "Founder, Sorensen Elite"
+      }
+    },
+    "lazy": [
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Sorensen-Elite-Softball-Pitching-website.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Sorensen-Elite-Softball-Pitching-ipad-2.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Sorensen-Elite-Softball-Pitching-Sweatshirt.jpg",
+      [
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Sorensen-Elite-Softball-Pitching-Shirt.jpg",
+        "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Sorensen-Elite-Softball-Pitching-Bag.jpg"
+      ],
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Sorensen-Elite-Softball-Pitching-Long-Sleeve-2.jpg",
+      "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Sorensen-Elite-Softball-Pitching-Clothing-Tag.jpg"
+    ]
   }
 ]

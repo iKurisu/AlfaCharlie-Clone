@@ -88,6 +88,14 @@ h6 {
   font-weight: 400;
 }
 
+h5 {
+  color: $grey;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.27em;
+}
+
 h2 {
   color: #fff;
   font-size: 127.5px;
@@ -117,8 +125,16 @@ p {
 }
 
 img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
+}
+
+.-left {
+  left: 0;
+}
+
+.-right {
+  right: 0;
 }
 
 @media (max-width: 1600px) {
