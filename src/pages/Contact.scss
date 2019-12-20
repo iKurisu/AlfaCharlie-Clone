@@ -1,0 +1,237 @@
+@import "sass/_variables.scss";
+
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #e2ded9;
+}
+
+.contact-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24vw;
+  height: 32vw;
+}
+
+.contact-image img {
+  object-fit: cover;
+  height: 100%;
+}
+
+.contact-labels {
+  display: flex;
+  width: 100vw;
+}
+
+.contact-label-left,
+.contact-label-right {
+  flex: 0 50%;
+  position: relative;
+  transition: opacity 0.4s;
+}
+
+.contact-label-separator {
+  display: none;
+}
+
+.contact-label-left .contact-label {
+  text-align: right;
+  padding-right: 10%;
+}
+
+.contact-label-right .contact-label {
+  padding-left: 18%;
+}
+
+.contact-label-left .label-arrow {
+  padding-right: 24.7px;
+}
+
+.contact-label-right .label-arrow {
+  padding-left: 24.5px;
+}
+
+.contact-labels:hover .contact-label-right:not(:hover),
+.contact-labels:hover .contact-label-left:not(:hover) {
+  opacity: 0.5;
+}
+
+.contact-label {
+  cursor: pointer;
+}
+
+.contact h2 {
+  font-size: 85px;
+}
+
+.contact-label-left:hover .label-arrow svg {
+  transform: scaleX(-1) translateX(20%);
+}
+
+.contact-label-right:hover .label-arrow svg {
+  transform: translateX(20%);
+}
+
+@media (max-width: 1600px) {
+  .contact-label-left .label-arrow {
+    padding-right: 17px;
+  }
+
+  .contact-label-right .label-arrow {
+    padding-left: 16.5px;
+  }
+
+  .label-title {
+    line-height: 1.16;
+  }
+
+  .contact h2 {
+    font-size: 60px;
+  }
+
+  .label-arrow svg {
+    width: 60px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .contact h2 {
+    font-size: 56px;
+  }
+
+  .label-arrow svg {
+    width: 55px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact-image,
+  .contact-labels {
+    width: 33vw;
+    height: 43vw;
+  }
+
+  .contact-labels {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .contact-label-left,
+  .contact-label-right {
+    display: flex;
+    width: 50%;
+    position: relative;
+  }
+
+  .contact-label-left {
+    left: -20%;
+  }
+
+  .contact-label-right {
+    align-items: flex-end;
+    right: -20%;
+  }
+
+  .contact-label-left .contact-label {
+    padding-right: 0;
+  }
+  .contact-label {
+    display: inline-block;
+  }
+
+  .contact h2 {
+    font-size: 60px;
+    line-height: 1.12;
+  }
+
+  .label-arrow {
+    position: absolute;
+  }
+
+  .contact-label-left .label-arrow {
+    top: 31.5px;
+    right: 100%;
+    padding: 0;
+  }
+
+  .contact-label-right .label-arrow {
+    bottom: 15.5px;
+    left: 100%;
+    padding-left: 0;
+  }
+
+  .label-arrow svg {
+    width: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-image,
+  .contact-labels {
+    width: 50vw;
+    height: 65vw;
+  }
+
+  .contact-label-left {
+    padding-right: 5%;
+    left: -10%;
+  }
+
+  .contact-label-right {
+    right: -10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-image {
+    display: none;
+  }
+
+  .contact-labels {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: static;
+    transform: none;
+  }
+
+  .contact-label-left,
+  .contact-label-right {
+    display: block;
+    padding: 0;
+    width: 100%;
+    position: static;
+    flex: 0 auto;
+    text-align: center;
+  }
+
+  .contact-label-right .contact-label {
+    padding: 0;
+  }
+
+  .contact-label-separator {
+    display: block;
+    width: 80%;
+    margin: 10vmin auto;
+    border-bottom: 1px solid rgba(58, 60, 73, 0.2);
+  }
+
+  .label-arrow {
+    display: none;
+  }
+
+  .contact h2 {
+    font-size: 10vmin;
+    color: $black;
+    line-height: 1.1;
+  }
+}
