@@ -23,6 +23,7 @@ const Contact = (): JSX.Element => (
           </h2>
         </div>
       </div>
+      <div className="contact-label-separator" />
       <div className="contact-label-right">
         <div className="contact-label">
           <h2 className="label-title">
@@ -32,6 +33,12 @@ const Contact = (): JSX.Element => (
             </span>
           </h2>
         </div>
+      </div>
+      <div className="contact-form-wrapper">
+        <div className="contact-form"></div>
+      </div>
+      <div className="contact-form-wrapper">
+        <div className="contact-form"></div>
       </div>
     </div>
   </div>
