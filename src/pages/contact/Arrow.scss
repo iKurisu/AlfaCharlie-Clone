@@ -1,0 +1,15 @@
+.label-arrow line,
+.label-arrow polyline {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 4;
+}
+
+.contact-label-left svg {
+  transform: scaleX(-1);
+}
+
+.label-arrow svg {
+  width: 68px;
+  vertical-align: middle;
+}

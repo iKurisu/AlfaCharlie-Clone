@@ -1,0 +1,57 @@
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #e2ded9;
+}
+
+.contact-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24vw;
+  height: 32vw;
+}
+
+.contact-image img {
+  object-fit: cover;
+  height: 100%;
+}
+
+.contact-labels {
+  display: flex;
+  width: 100vw;
+}
+
+.contact-label-left,
+.contact-label-right {
+  flex: 0 50%;
+  position: relative;
+}
+
+.contact-label-left .contact-label {
+  text-align: right;
+  padding-right: 10%;
+}
+
+.contact-label-right .contact-label {
+  padding-left: 18%;
+}
+
+.contact-label-left .label-arrow {
+  padding-right: 24.7px;
+}
+
+.contact-label-right .label-arrow {
+  padding-left: 24.5px;
+}
+
+.contact-label {
+  cursor: pointer;
+}
+
+.contact h2 {
+  font-size: 85px;
+}

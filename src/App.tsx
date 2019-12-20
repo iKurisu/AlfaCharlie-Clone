@@ -11,6 +11,7 @@ import Agency from "pages/Agency";
 import Work from "pages/Work";
 import Privacy from "pages/Privacy";
 import Project from "pages/Project";
+import Contact from "pages/Contact";
 import projects from "data/projects.json";
 import { ACProject } from "data/types";
 import "./styles.scss";
@@ -47,6 +48,7 @@ const App = (): JSX.Element => (
                   key={id}
                 />
               ))}
+              <Route exact path="/contact" component={Contact} />
               <Redirect to="/" />
             </Switch>
           </div>
