@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SliderNav from "../shared/SliderNav";
 import { classList } from "utils/class";
 import "./Form.scss";
 
@@ -32,9 +33,18 @@ const errors: Lookup = {
 const Form = ({ names, show }: Props): JSX.Element => {
   const [slide, setSlide] = useState(0);
 
+  const changeSlide = (slide: number) => () => setSlide(slide);
+
   return (
     <div className={classList(["contact-form-wrapper", { "-active": show }])}>
       <form className="contact-form">
+        <div className="form-bullets">
+          <SliderNav
+            slides={names}
+            currentSlideID={slide}
+            swipeSlide={changeSlide}
+          />
+        </div>
         <div className="form-labels">
           {names.map((name, id) => (
             <label
