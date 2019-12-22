@@ -138,7 +138,7 @@ export const Hero = ({
           }}
         />
         <SliderNav
-          imageUrls={imageUrls}
+          slides={imageUrls}
           currentSlideID={currentSlideID}
           swipeSlide={swipeSlide}
         />

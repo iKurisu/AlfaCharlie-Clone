@@ -5,13 +5,13 @@ import { getDuration } from "utils/slider";
 import "./SliderNav.scss";
 
 export interface Props {
-  imageUrls: string[];
+  slides: string[];
   currentSlideID: number;
   swipeSlide: (slideID: number, delay: number) => MouseEventHandler;
 }
 
 const SliderNav = ({
-  imageUrls,
+  slides,
   currentSlideID,
   swipeSlide
 }: Props): JSX.Element => {
@@ -31,7 +31,7 @@ const SliderNav = ({
           N<span>o</span>
         </span>
         <span className="slider-current">
-          {imageUrls.map((_, id) => (
+          {slides.map((_, id) => (
             <span
               style={{
                 top: `${100 * id}%`,
@@ -46,7 +46,7 @@ const SliderNav = ({
         </span>
       </span>
       <div className="slider-dots">
-        {imageUrls.map((_, id) => (
+        {slides.map((_, id) => (
           <span
             className={classList([
               "slider-dot",
