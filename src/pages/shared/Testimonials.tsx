@@ -64,7 +64,7 @@ const Testimonials = (props: Props): JSX.Element => {
             }}
           />
         </div>
-        <SliderNav imageUrls={imageUrls} {...props} />
+        <SliderNav slides={imageUrls} {...props} />
         <Arrows maxSwipes={imageUrls.length - 1} {...props} />
       </div>
       <div className="testimonials-content">
