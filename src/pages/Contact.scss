@@ -17,6 +17,11 @@
   height: 32vw;
 }
 
+.contact-image.-hide,
+.contact-labels.-hide {
+  display: none;
+}
+
 .contact-image img {
   object-fit: cover;
   height: 100%;

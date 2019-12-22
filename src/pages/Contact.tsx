@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Arrow from "./contact/Arrow";
 import Form from "./contact/Form";
 import "./Contact.scss";
+import { classList } from "utils/class";
 
 enum Forms {
   START_A_PROJECT = "START_A_PROJECT",
@@ -18,7 +19,7 @@ const Contact = (): JSX.Element => {
 
   return (
     <div className="contact">
-      <div className="contact-image">
+      <div className={classList(["contact-image", { "-hide": !!activeForm }])}>
         <img
           src={
             "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/" +
@@ -26,7 +27,7 @@ const Contact = (): JSX.Element => {
           }
         />
       </div>
-      <div className="contact-labels">
+      <div className={classList(["contact-labels", { "-hide": !!activeForm }])}>
         <div className="contact-label-left" onClick={startAProject}>
           <div className="contact-label">
             <h2 className="label-title">
