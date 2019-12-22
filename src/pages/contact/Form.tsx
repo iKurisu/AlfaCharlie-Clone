@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SliderNav from "../shared/SliderNav";
+import Arrow from "./Arrow";
 import { classList } from "utils/class";
 import "./Form.scss";
 
@@ -35,6 +36,9 @@ const Form = ({ names, show }: Props): JSX.Element => {
 
   const changeSlide = (slide: number) => () => setSlide(slide);
 
+  const prevSlide = (): void => setSlide(prevSlide => prevSlide - 1);
+  const nextSlide = (): void => setSlide(prevSlide => prevSlide + 1);
+
   return (
     <div className={classList(["contact-form-wrapper", { "-active": show }])}>
       <form className="contact-form">
@@ -64,6 +68,7 @@ const Form = ({ names, show }: Props): JSX.Element => {
               key={id}
             />
           ))}
+          <span className="input-line" />
         </div>
         <div className="form-errors">
           {names.map((name, id) => (
@@ -74,6 +79,23 @@ const Form = ({ names, show }: Props): JSX.Element => {
               {errors[name]}
             </span>
           ))}
+        </div>
+        <div className="form-arrows">
+          <span
+            className={classList(["arrow-prev", { "-disabled": !slide }])}
+            onClick={prevSlide}
+          >
+            <Arrow />
+          </span>
+          <span
+            className={classList([
+              "arrow-next",
+              { "-disabled": slide === names.length - 1 }
+            ])}
+            onClick={nextSlide}
+          >
+            <Arrow />
+          </span>
         </div>
       </form>
     </div>
