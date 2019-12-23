@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, SyntheticEvent } from "react";
 import Arrow from "./contact/Arrow";
 import Form from "./contact/Form";
 import "./Contact.scss";
 import { classList } from "utils/class";
+import useForm from "hooks/useForm";
 
 enum Forms {
   START_A_PROJECT = "START_A_PROJECT",
@@ -11,8 +12,18 @@ enum Forms {
 
 type FormTypes = keyof typeof Forms;
 
+const initialState = {
+  name: "",
+  email: "",
+  company: "",
+  project: "",
+  hello: "",
+  birthday: ""
+};
+
 const Contact = (): JSX.Element => {
   const [activeForm, setActiveForm] = useState<FormTypes>(null);
+  const [form, updateForm] = useForm(initialState);
 
   const startAProject = (): void => setActiveForm(Forms.START_A_PROJECT);
   const sayHello = (): void => setActiveForm(Forms.SAY_HELLO);
@@ -52,10 +63,14 @@ const Contact = (): JSX.Element => {
       </div>
       <Form
         names={["name", "email", "company", "project", "birthday"]}
+        form={form}
+        handleInput={updateForm}
         show={activeForm === Forms.START_A_PROJECT}
       />
       <Form
         names={["name", "email", "hello", "birthday"]}
+        form={form}
+        handleInput={updateForm}
         show={activeForm === Forms.SAY_HELLO}
       />
     </div>

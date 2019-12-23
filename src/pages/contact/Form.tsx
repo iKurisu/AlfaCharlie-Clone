@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import SliderNav from "../shared/SliderNav";
 import Arrow from "./Arrow";
+import { InputHandler } from "hooks/useForm";
 import { classList } from "utils/class";
 import "./Form.scss";
 
 interface Props {
   names: string[];
+  form: { [k: string]: string };
+  handleInput: InputHandler;
   show: boolean;
 }
 
@@ -31,7 +34,7 @@ const errors: Lookup = {
   birthday: "Please provide a valid birthday."
 };
 
-const Form = ({ names, show }: Props): JSX.Element => {
+const Form = ({ names, form, handleInput, show }: Props): JSX.Element => {
   const [slide, setSlide] = useState(0);
 
   const changeSlide = (slide: number) => () => setSlide(slide);
@@ -65,6 +68,8 @@ const Form = ({ names, show }: Props): JSX.Element => {
             <input
               className={classList(["form-input", { "-active": slide === id }])}
               name={name}
+              value={form[name]}
+              onChange={handleInput}
               key={id}
             />
           ))}
