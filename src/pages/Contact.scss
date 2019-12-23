@@ -8,6 +8,16 @@
   background: #e2ded9;
 }
 
+.contact-image-mask {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  background: #e2ded9;
+  z-index: 10;
+}
+
 .contact-image {
   position: absolute;
   top: 50%;
@@ -25,6 +35,7 @@
 .contact-image img {
   object-fit: cover;
   height: 100%;
+  // display: inline-block;
 }
 
 .contact-labels {
