@@ -1,7 +1,8 @@
-@import 'sass/_variables.scss';
+@import "sass/_variables.scss";
 
 .logo-wrapper {
   position: absolute;
+  z-index: 20;
   top: 37px;
   left: 35px;
   width: 180px;
