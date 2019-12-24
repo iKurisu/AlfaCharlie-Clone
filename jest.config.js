@@ -3,7 +3,6 @@ module.exports = {
   testEnvironment: "node",
   moduleNameMapper: {
     "^components(.*)$": "<rootDir>/src/components$1",
-    // "^data(.*)$": "<rootDir>/src/data$1",
     "^modules(.*)$": "<rootDir>/src/modules$1",
     "^pages(.*)$": "<rootDir>/src/pages$1",
     "^hooks(.*)$": "<rootDir>/src/hooks$1",

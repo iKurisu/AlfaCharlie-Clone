@@ -35,6 +35,14 @@
   position: absolute;
 }
 
+.contact-form-wrapper:not(.-active) {
+  .form-label,
+  .form-input,
+  .form-error {
+    display: none;
+  }
+}
+
 .form-label:not(.-active),
 .form-input:not(.-active),
 .form-error:not(.-active) {

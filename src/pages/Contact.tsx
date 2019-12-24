@@ -41,7 +41,7 @@ const fadeOutProps: TransitionProps = {
 
 const longFadeOutProps: TransitionProps = {
   ...fadeOutProps,
-  config: { duration: 600, ...fadeOutProps.config }
+  config: { duration: 600, timing: [0.28, 1, 0.5, 1] }
 };
 
 const slideInConfig: TransitionProps["config"] = {
@@ -220,6 +220,7 @@ const Contact = (): JSX.Element => {
         handleInput={updateForm}
         show={activeForm === Forms.START_A_PROJECT}
       />
+
       <Form
         names={["name", "email", "hello", "birthday"]}
         form={form}
