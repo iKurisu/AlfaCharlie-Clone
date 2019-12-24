@@ -204,7 +204,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px), (max-width: 823px) and (orientation: landscape) {
   .contact-image {
     display: none;
   }

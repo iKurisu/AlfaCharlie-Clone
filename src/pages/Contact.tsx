@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Arrow from "./contact/Arrow";
 import Form from "./contact/Form";
 import "./Contact.scss";
@@ -22,13 +22,21 @@ const initialState = {
   birthday: ""
 };
 
+const fadeConfig: TransitionProps["config"] = {
+  duration: 200,
+  timing: [0.28, 1, 0.5, 1]
+};
+
+const fadeInProps: TransitionProps = {
+  from: { opacity: 0 },
+  to: { opacity: 1 },
+  config: fadeConfig
+};
+
 const fadeOutProps: TransitionProps = {
   from: { opacity: 0.5 },
   to: { opacity: 0 },
-  config: {
-    duration: 200,
-    timing: [0.28, 1, 0.5, 1]
-  }
+  config: fadeConfig
 };
 
 const longFadeOutProps: TransitionProps = {
@@ -51,6 +59,7 @@ const Contact = (): JSX.Element => {
   const rightLabel = useRef(null);
   const mask = useRef(null);
   const image = useRef(null);
+  const separator = useRef(null);
 
   const slideInLeftLabel = useTransition(leftLabel, {
     from: { transform: "translateX(0)" },
@@ -76,35 +85,84 @@ const Contact = (): JSX.Element => {
     config: slideInConfig
   });
 
+  const reduceSeparator = useTransition(separator, {
+    from: { transform: "scaleX(1)" },
+    to: { transform: "scaleX(0)" },
+    config: {
+      duration: 900,
+      timing: [0.53, 0.15, 0.2, 0.92]
+    }
+  });
+
   const fadeOutLeftLabel = useTransition(leftLabel, fadeOutProps);
   const fadeOutRightLabel = useTransition(rightLabel, fadeOutProps);
   const longFadeOutLeftLabel = useTransition(leftLabel, longFadeOutProps);
   const longFadeOutRightLabel = useTransition(rightLabel, longFadeOutProps);
 
+  const fadeOutAll = (longFadeOut: () => void, formType: FormTypes): void => {
+    slideInMask();
+    moveImage();
+    reduceSeparator();
+    setTimeout(() => longFadeOut(), 1000);
+    setTimeout(() => setActiveForm(formType), 1600);
+  };
+
   const startAProject = (): void => {
     setHiddenArrow("left");
     fadeOutRightLabel();
     slideInLeftLabel();
-    slideInMask();
-    moveImage();
-    setTimeout(() => longFadeOutLeftLabel(), 1000);
-    setTimeout(() => setActiveForm(Forms.START_A_PROJECT), 2000);
+    fadeOutAll(longFadeOutLeftLabel, Forms.START_A_PROJECT);
   };
 
   const sayHello = (): void => {
     setHiddenArrow("right");
     fadeOutLeftLabel();
-    slideInRightLabel().then(() => setActiveForm(Forms.SAY_HELLO));
+    slideInRightLabel();
+    fadeOutAll(longFadeOutRightLabel, Forms.SAY_HELLO);
   };
+
+  const slideLeft = useTransition(leftLabel, {
+    from: { transform: "translateX(10%)" },
+    to: { transform: "translateX(0)" },
+    config: {
+      duration: 800,
+      timing: [0.73, 0.35, 0.2, 0.92]
+    }
+  });
+
+  const slideRight = useTransition(rightLabel, {
+    from: { transform: "translateX(-10%)" },
+    to: { transform: "translateX(0)" },
+    config: {
+      duration: 800,
+      timing: [0.73, 0.35, 0.2, 0.92]
+    }
+  });
+
+  const fadeInLeftLabel = useTransition(leftLabel, fadeInProps);
+  const fadeInRightLabel = useTransition(rightLabel, fadeInProps);
+
+  const revealImage = useTransition(mask, {
+    from: { transform: "translatex(0)" },
+    to: { transform: "translateX(-100%)" },
+    config: {
+      duration: 800,
+      timing: [0.73, 0.35, 0.2, 0.92]
+    }
+  });
+
+  useEffect((): void => {
+    slideLeft();
+    fadeInLeftLabel();
+    slideRight();
+    fadeInRightLabel();
+    revealImage();
+  }, []);
 
   return (
     <div className="contact">
       <div className={classList(["contact-image", { "-hide": !!activeForm }])}>
-        <div
-          className="contact-image-mask"
-          style={{ transform: "translateX(-100%)" }}
-          ref={mask}
-        />
+        <div className="contact-image-mask" ref={mask} />
         <img
           src={
             "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/" +
@@ -117,6 +175,7 @@ const Contact = (): JSX.Element => {
         <div
           className="contact-label-left"
           onClick={startAProject}
+          style={{ transform: "translateX(10%)", opacity: 0 }}
           ref={leftLabel}
         >
           <div className="contact-label">
@@ -133,10 +192,11 @@ const Contact = (): JSX.Element => {
             </h2>
           </div>
         </div>
-        <div className="contact-label-separator" />
+        <div className="contact-label-separator" ref={separator} />
         <div
           className="contact-label-right"
           onClick={sayHello}
+          style={{ transform: "translateX(-10%)", opacity: 0 }}
           ref={rightLabel}
         >
           <div className="contact-label">
