@@ -1,60 +1,35 @@
-import React, { useRef, useEffect } from "react";
-import useTransition from "hooks/useTransition";
+import React from "react";
 import "./Link.scss";
+import useLinkTransition from "hooks/useLinkTransition";
 
-interface Props {
+interface Link {
   link: string;
-  active: boolean;
-  order: number;
-  show: boolean;
-  delay: number;
+  href?: string;
+  click?: <T>() => T;
+  active?: boolean;
 }
 
-const Link = ({ link, active, order, show, delay }: Props): JSX.Element => {
-  const mask = useRef(null);
-  const name = useRef(null);
+interface TransitionOptions {
+  order?: number;
+  delay?: number;
+}
 
-  const unmask = useTransition(mask, {
-    from: { transform: "translateX(-101%)" },
-    to: { transform: "translateX(101%)" },
-    config: {
-      delay: delay + order * 250,
-      duration: 1400,
-      timing: [0.85, 0, 0.15, 1]
-    }
-  });
+interface Props {
+  link: Link;
+  show: boolean;
+  options?: TransitionOptions;
+}
 
-  const fadeIn = useTransition(name, {
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    config: {
-      delay: delay + 700 + order * 200,
-      duration: 700,
-      timing: [0.55, 0, 0.45, 1]
-    }
-  });
-
-  const fadeOut = useTransition(name, {
-    from: { opacity: 1 },
-    to: { opacity: 0 },
-    config: {
-      delay: order * 300,
-      duration: 400,
-      timing: [0.35, 0.6, 0.45, 1]
-    }
-  });
-
-  useEffect((): void => {
-    if (show) {
-      unmask();
-      fadeIn();
-    } else {
-      fadeOut();
-    }
-  }, [show]);
+const Link = ({
+  link: { link, href, click, active },
+  show,
+  options: { order = 0, delay = 0 }
+}: Props): JSX.Element => {
+  const [name, mask] = useLinkTransition(show, { order, delay });
 
   return (
-    <li>
+    <React.Fragment>
+      {href && <a href={href} />}
       <span className={`link-wrapper${active ? " active" : ""}`}>
         <span className="link-name" ref={name} style={{ opacity: 0 }}>
           {link}
@@ -65,7 +40,7 @@ const Link = ({ link, active, order, show, delay }: Props): JSX.Element => {
           ref={mask}
         />
       </span>
-    </li>
+    </React.Fragment>
   );
 };
 
