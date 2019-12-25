@@ -19,7 +19,13 @@ export const Menu = ({ isOpen }: Props): JSX.Element => (
     <Navigation isOpen={isOpen} />
     <Images isOpen={isOpen} />
     <VerticalNav
-      links={[["Instagram", false], ["Privacy", false]]}
+      links={[
+        {
+          link: "Instagram",
+          href: "https://www.instagram.com/alfacharlie.co/"
+        },
+        { link: "Privacy", href: "/privacy-policy" }
+      ]}
       show={isOpen}
       delay={1400}
     />
