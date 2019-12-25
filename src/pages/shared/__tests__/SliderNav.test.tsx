@@ -10,7 +10,7 @@ describe("SliderNav", (): void => {
   const swipeSlide = jest.fn();
 
   const props: Props = {
-    imageUrls: ["", "", "", "", ""],
+    slides: ["", "", "", "", ""],
     currentSlideID: 0,
     swipeSlide: (id: number, delay: number) => swipeSlide.bind(null, id, delay)
   };

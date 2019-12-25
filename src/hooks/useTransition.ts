@@ -11,7 +11,7 @@ interface Config {
   delay?: number;
 }
 
-interface Props {
+export interface TransitionProps {
   from: Properties;
   to: Properties;
   config: Config;
@@ -29,7 +29,7 @@ interface Props {
  */
 const useTransition = (
   element: RefObject<HTMLElement>,
-  props: Props
+  props: TransitionProps
 ): (() => Promise<void>) => {
   const animationId = useRef<number>(null);
   const frame = useRef<number>(0);

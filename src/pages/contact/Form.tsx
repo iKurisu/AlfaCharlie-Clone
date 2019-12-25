@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import SliderNav from "../shared/SliderNav";
 import Arrow from "./Arrow";
+import { InputHandler } from "hooks/useForm";
 import { classList } from "utils/class";
+import { isValidEmail } from "utils/string";
 import "./Form.scss";
 
 interface Props {
   names: string[];
+  form: { [k: string]: string };
+  handleInput: InputHandler;
   show: boolean;
 }
 
@@ -31,13 +35,23 @@ const errors: Lookup = {
   birthday: "Please provide a valid birthday."
 };
 
-const Form = ({ names, show }: Props): JSX.Element => {
+const Form = ({ names, form, handleInput, show }: Props): JSX.Element => {
   const [slide, setSlide] = useState(0);
+  const [displayError, toggleError] = useState(false);
 
   const changeSlide = (slide: number) => () => setSlide(slide);
 
   const prevSlide = (): void => setSlide(prevSlide => prevSlide - 1);
-  const nextSlide = (): void => setSlide(prevSlide => prevSlide + 1);
+
+  const nextSlide = (): void => {
+    const value = form[names[slide]];
+    if (value === "" || (names[slide] === "email" && !isValidEmail(value))) {
+      toggleError(true);
+    } else {
+      toggleError(false);
+      setSlide(prevSlide => prevSlide + 1);
+    }
+  };
 
   return (
     <div className={classList(["contact-form-wrapper", { "-active": show }])}>
@@ -65,6 +79,8 @@ const Form = ({ names, show }: Props): JSX.Element => {
             <input
               className={classList(["form-input", { "-active": slide === id }])}
               name={name}
+              value={form[name]}
+              onChange={handleInput}
               key={id}
             />
           ))}
@@ -73,7 +89,10 @@ const Form = ({ names, show }: Props): JSX.Element => {
         <div className="form-errors">
           {names.map((name, id) => (
             <span
-              className={classList(["form-error", { "-active": slide === id }])}
+              className={classList([
+                "form-error",
+                { "-active": slide === id && displayError }
+              ])}
               key={id}
             >
               {errors[name]}
