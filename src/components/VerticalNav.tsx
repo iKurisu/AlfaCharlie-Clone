@@ -32,7 +32,7 @@ enum WorkLinks {
   DIGITAL = "work/DIGITAL"
 }
 
-const VerticalNav = ({
+export const VerticalNav = ({
   menu,
   show,
   delay = 0,
@@ -42,7 +42,7 @@ const VerticalNav = ({
     WorkLinks.ALL
   );
 
-  const MenuLinks = (
+  const renderMenuLinks = (): JSX.Element => (
     <React.Fragment>
       <li key={0}>
         <SocialLink show={show} options={{ order: 0, delay }} />
@@ -53,7 +53,7 @@ const VerticalNav = ({
     </React.Fragment>
   );
 
-  const homeLinks = (
+  const renderHomeLinks = (): JSX.Element => (
     <li key={0}>
       <SocialLink show={show} />
     </li>
@@ -77,7 +77,7 @@ const VerticalNav = ({
     window.scrollTo({ top: 0 });
   });
 
-  const agencyLinks = (
+  const renderAgencyLinks = (): JSX.Element => (
     <React.Fragment>
       <li key={0}>
         <ClickLink
@@ -118,7 +118,7 @@ const VerticalNav = ({
     </React.Fragment>
   );
 
-  const workLinks = (
+  const renderWorkLinks = (): JSX.Element => (
     <React.Fragment>
       <li key={0}>
         <ClickLink
@@ -154,17 +154,17 @@ const VerticalNav = ({
     <nav className="vertical-nav">
       <ul className="vertical-nav-links">
         {menu ? (
-          MenuLinks
+          renderMenuLinks()
         ) : (
           <Switch>
             <Route exact path="/">
-              {homeLinks}
+              {renderHomeLinks()}
             </Route>
             <Route exact path="/agency">
-              {agencyLinks}
+              {renderAgencyLinks()}
             </Route>
             <Route exact path="/work">
-              {workLinks}
+              {renderWorkLinks()}
             </Route>
           </Switch>
         )}
