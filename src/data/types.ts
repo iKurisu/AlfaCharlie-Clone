@@ -3,13 +3,14 @@ export interface ACProject {
   description: string;
   info: string;
   article: Article;
+  types: ("BRANDING" | "DIGITAL")[];
   client: string;
   year: number;
   services: string[];
   hero: string;
   leading: (string | string[])[];
   quote: Quote;
-  lazy: (string | string[])[]
+  lazy: (string | string[])[];
 }
 
 interface Article {

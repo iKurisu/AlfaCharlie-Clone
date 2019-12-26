@@ -7,6 +7,7 @@
       "title": ["symbiotic", "training"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Symbiotic-Training-Center-Branding-2.jpg"
     },
+    "types": ["BRANDING", "DIGITAL"],
     "client": "Symbiotic Training Center",
     "year": 2018,
     "services": [
@@ -50,6 +51,7 @@
       "title": ["lion", "house"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Lion-House-Branding-Digital.jpg"
     },
+    "types": ["BRANDING", "DIGITAL"],
     "client": "Lion House",
     "year": 2016,
     "services": ["Strategy", "Brand Identity", "Print", "Web Design"],
@@ -80,6 +82,7 @@
       "title": ["rhum", "bar"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Rhum-Bar-Branding-2-1.jpg"
     },
+    "types": ["BRANDING"],
     "client": "Rhum Bar",
     "year": 2016,
     "services": ["Brand Identity", "Print", "Signage", "Apparel"],
@@ -109,6 +112,7 @@
       "title": ["scale", "san diego"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Scale-San-Diego-Branding.jpg"
     },
+    "types": ["BRANDING", "DIGITAL"],
     "client": "Scale San Diego",
     "year": 2017,
     "services": ["Brand Identity", "Print", "Web Design", "Signage"],
@@ -137,6 +141,7 @@
       "title": ["one club", "san diego"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/10/One-Club-for-Creativity-San-Diego-Website-featured.jpg"
     },
+    "types": ["BRANDING"],
     "client": "The One Club San Diego",
     "year": 2019,
     "services": [
@@ -168,6 +173,7 @@
       "title": ["grx", "baseball"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-Branding-Digital-1.jpg"
     },
+    "types": ["BRANDING", "DIGITAL"],
     "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/GRx-Baseball-TOP.jpg",
     "client": "GRX Baseball",
     "year": 2018,
@@ -210,6 +216,7 @@
       "title": ["ingenious", "automation"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Ingenious-Automation-Web-Design-1.jpg"
     },
+    "types": ["DIGITAL"],
     "client": "Ingenious Automation",
     "year": 2018,
     "services": ["Strategy", "Web Design", "Web Development"],
@@ -233,6 +240,7 @@
       "title": ["chamber layne", "pr"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-Branding-Web-Design-1.jpg"
     },
+    "types": ["BRANDING", "DIGITAL"],
     "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/ChamberlaynePR-TOP.jpg",
     "client": "ChamberlaynePR",
     "year": 2018,
@@ -271,6 +279,7 @@
       "title": ["diamond", "solutions"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-Branding.jpg"
     },
+    "types": ["BRANDING"],
     "client": "Diamond Solutions",
     "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Diamond-Solutions-TOP.jpg",
     "year": 2018,
@@ -299,6 +308,7 @@
       "title": ["sorensen", "elite"],
       "img": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Sorensen-Elite-Softball-Pitching-Branding-Web-Design-1.jpg"
     },
+    "types": ["BRANDING", "DIGITAL"],
     "hero": "https://alfacharlie.b-cdn.net/wp-content/uploads/2019/04/Sorensen-Elite-Softball-Pitching-TOP.jpg",
     "client": "Sorensen Elite",
     "year": 2018,

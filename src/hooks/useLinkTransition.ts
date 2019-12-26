@@ -1,19 +1,18 @@
-import React, { useRef, useEffect } from "react";
-import useTransition from "hooks/useTransition";
-import "./Link.scss";
+import { useRef, useEffect, RefObject } from "react";
+import useTransition from "./useTransition";
 
-interface Props {
-  link: string;
-  active: boolean;
-  order: number;
-  show: boolean;
-  delay: number;
+interface Options {
+  order?: number;
+  delay?: number;
 }
 
-const Link = ({ link, active, order, show, delay }: Props): JSX.Element => {
+const useLinkTransition = (
+  trigger: boolean,
+  { order = 0, delay = 0 }: Options
+): [RefObject<HTMLElement>, RefObject<HTMLElement>] => {
   const mask = useRef(null);
   const name = useRef(null);
-
+  console.log(order, delay);
   const unmask = useTransition(mask, {
     from: { transform: "translateX(-101%)" },
     to: { transform: "translateX(101%)" },
@@ -45,28 +44,15 @@ const Link = ({ link, active, order, show, delay }: Props): JSX.Element => {
   });
 
   useEffect((): void => {
-    if (show) {
+    if (trigger) {
       unmask();
       fadeIn();
     } else {
       fadeOut();
     }
-  }, [show]);
+  }, [trigger]);
 
-  return (
-    <li>
-      <span className={`link-wrapper${active ? " active" : ""}`}>
-        <span className="link-name" ref={name} style={{ opacity: 0 }}>
-          {link}
-        </span>
-        <span
-          className="link-mask"
-          style={{ transform: "translateX(-101%)" }}
-          ref={mask}
-        />
-      </span>
-    </li>
-  );
+  return [name, mask];
 };
 
-export default Link;
+export default useLinkTransition;

@@ -19,15 +19,7 @@ import "./styles.scss";
 const App = (): JSX.Element => (
   <React.Fragment>
     <main>
-      <VerticalNav
-        links={[
-          ["All", true],
-          ["Design", false],
-          ["Wellness", false],
-          ["Agency", false]
-        ]}
-        show={true}
-      />
+      <VerticalNav show={true} />
       <div className="scroll-content-wrapper">
         <div className="scroll-content">
           <Logo />

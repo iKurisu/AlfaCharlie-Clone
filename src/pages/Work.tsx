@@ -1,19 +1,25 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { AppState } from "store";
 import Project from "./work/Project";
 import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
+import { Filters } from "modules/work/types";
 import projects from "data/projects.json";
 import { ACProject } from "data/types";
 import "./Work.scss";
+
+interface MappedState {
+  filter: Filters;
+}
 
 interface MappedActions {
   toggleIntro: () => IntroActionTypes;
 }
 
-type Props = MappedActions;
+type Props = MappedState & MappedActions;
 
-const Work = ({ toggleIntro }: Props): JSX.Element => {
+const Work = ({ filter, toggleIntro }: Props): JSX.Element => {
   useEffect((): void => {
     toggleIntro();
     document.title =
@@ -23,18 +29,21 @@ const Work = ({ toggleIntro }: Props): JSX.Element => {
 
   return (
     <div className="work">
-      {projects.map(({ article }: ACProject, id: number) => (
-        <Project {...article} key={id} />
-      ))}
+      {projects
+        .filter(({ types }) => filter === "ALL" || types.includes(filter))
+        .map(({ article }: ACProject, id: number) => (
+          <Project {...article} key={id} />
+        ))}
     </div>
   );
 };
+
+const mapState = (state: AppState): MappedState => ({
+  filter: state.work.visibilityFilter
+});
 
 const mapDispatch: MappedActions = {
   toggleIntro: introActions.toggleIntro
 };
 
-export default connect(
-  null,
-  mapDispatch
-)(Work);
+export default connect(mapState, mapDispatch)(Work);
