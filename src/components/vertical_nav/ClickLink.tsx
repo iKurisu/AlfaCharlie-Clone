@@ -9,15 +9,16 @@ interface Props {
   options: TransitionOptions;
 }
 
-const Link = ({ link, click, show, isActive, options }: Props): JSX.Element => {
-  return (
-    <span
-      className={`link-wrapper${isActive ? " active" : ""}`}
-      onClick={click}
-    >
-      <InnerLink show={show} options={options} text={link} />
-    </span>
-  );
-};
+const ClickLink = ({
+  link,
+  click,
+  show,
+  isActive,
+  options
+}: Props): JSX.Element => (
+  <span className={`link-wrapper${isActive ? " active" : ""}`} onClick={click}>
+    <InnerLink show={show} options={options} text={link} />
+  </span>
+);
 
-export default Link;
+export default ClickLink;

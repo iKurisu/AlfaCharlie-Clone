@@ -19,7 +19,7 @@ const InnerLink = ({
   text
 }: Props): JSX.Element => {
   const [name, mask] = useLinkTransition(show, options);
-  console.log(options);
+
   return (
     <React.Fragment>
       <span className="link-name" ref={name} style={{ opacity: 0 }}>
