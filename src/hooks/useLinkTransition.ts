@@ -6,18 +6,13 @@ interface Options {
   delay?: number;
 }
 
-const defaultOptions = {
-  order: 0,
-  delay: 0
-};
-
 const useLinkTransition = (
   trigger: boolean,
-  { order, delay }: Options = defaultOptions
+  { order = 0, delay = 0 }: Options
 ): [RefObject<HTMLElement>, RefObject<HTMLElement>] => {
   const mask = useRef(null);
   const name = useRef(null);
-
+  console.log(order, delay);
   const unmask = useTransition(mask, {
     from: { transform: "translateX(-101%)" },
     to: { transform: "translateX(101%)" },
