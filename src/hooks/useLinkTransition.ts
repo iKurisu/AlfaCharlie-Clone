@@ -12,7 +12,7 @@ const useLinkTransition = (
 ): [RefObject<HTMLElement>, RefObject<HTMLElement>] => {
   const mask = useRef(null);
   const name = useRef(null);
-  console.log(order, delay);
+
   const unmask = useTransition(mask, {
     from: { transform: "translateX(-101%)" },
     to: { transform: "translateX(101%)" },
