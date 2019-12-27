@@ -216,10 +216,7 @@ const mapMenuDispatch = (dispatch: Dispatch): MappedActions => ({
   swipeSlide: swipeSlide(dispatch, menuActions)
 });
 
-export const MenuSlider = connect(
-  mapMenuState,
-  mapMenuDispatch
-)(Slider);
+export const MenuSlider = connect(mapMenuState, mapMenuDispatch)(Slider);
 
 const mapHeroState = ({ hero, intro }: AppState): MappedState => ({
   isOpen: !intro.toggled,
@@ -231,10 +228,7 @@ const mapHeroDispatch = (dispatch: Dispatch): MappedActions => ({
   swipeSlide: swipeSlide(dispatch, heroActions)
 });
 
-export const HeroSlider = connect(
-  mapHeroState,
-  mapHeroDispatch
-)(Slider);
+export const HeroSlider = connect(mapHeroState, mapHeroDispatch)(Slider);
 
 const mapTestimonialsState = ({
   intro,
