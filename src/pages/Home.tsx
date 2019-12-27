@@ -52,7 +52,4 @@ const mapDispatch: MappedActions = {
   toggleIntro: introActions.toggleIntro
 };
 
-export default connect(
-  null,
-  mapDispatch
-)(Home);
+export default connect(null, mapDispatch)(Home);
