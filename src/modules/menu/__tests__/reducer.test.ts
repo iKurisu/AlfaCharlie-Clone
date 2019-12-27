@@ -7,7 +7,8 @@ describe("menu reducer", (): void => {
     expect(reducer(undefined, {} as MenuActionTypes)).toEqual({
       toggled: false,
       hoveringElementID: 0,
-      previousElementID: 0
+      previousElementID: 0,
+      onTransition: false
     });
   });
 
@@ -19,7 +20,8 @@ describe("menu reducer", (): void => {
     expect(reducer(undefined, action)).toEqual({
       toggled: true,
       hoveringElementID: 0,
-      previousElementID: 0
+      previousElementID: 0,
+      onTransition: true
     });
   });
 
@@ -32,7 +34,8 @@ describe("menu reducer", (): void => {
     const newState = {
       toggled: false,
       hoveringElementID: 1,
-      previousElementID: 0
+      previousElementID: 0,
+      onTransition: false
     };
 
     expect(reducer(undefined, action)).toEqual(newState);
@@ -45,7 +48,8 @@ describe("menu reducer", (): void => {
     expect(reducer(newState, secondAction)).toEqual({
       toggled: false,
       hoveringElementID: 2,
-      previousElementID: 1
+      previousElementID: 1,
+      onTransition: false
     });
   });
 
@@ -54,16 +58,44 @@ describe("menu reducer", (): void => {
       type: Types.UPDATE_PREVIOUS_ELEMENT
     };
 
-    const initialState = {
+    const commonState = {
       toggled: false,
       hoveringElementID: 2,
+      onTransition: false
+    };
+
+    const initialState = {
+      ...commonState,
       previousElementID: 0
     };
 
     const newState = {
-      toggled: false,
-      hoveringElementID: 2,
+      ...commonState,
       previousElementID: 2
+    };
+
+    expect(reducer(initialState, action)).toEqual(newState);
+  });
+
+  it("handles END_TRANSITION", (): void => {
+    const action: MenuActionTypes = {
+      type: Types.END_TRANSITION
+    };
+
+    const commonState = {
+      toggled: true,
+      hoveringElementID: 0,
+      previousElementID: 0
+    };
+
+    const initialState = {
+      ...commonState,
+      onTransition: true
+    };
+
+    const newState = {
+      ...commonState,
+      onTransition: false
     };
 
     expect(reducer(initialState, action)).toEqual(newState);

@@ -27,4 +27,12 @@ describe("menu actions", (): void => {
 
     expect(actions.updatePreviousSlide()).toEqual(expectedAction);
   });
+
+  it("creates an action that informs the transition has ended", (): void => {
+    const expectedAction = {
+      type: Types.END_TRANSITION
+    };
+
+    expect(actions.endTransition()).toEqual(expectedAction);
+  });
 });

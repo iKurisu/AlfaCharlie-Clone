@@ -105,7 +105,4 @@ const mapDispatch = (dispatch: Dispatch): MappedActions => ({
   }
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Navigation);
+export default connect(mapState, mapDispatch)(Navigation);
