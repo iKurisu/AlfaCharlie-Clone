@@ -23,9 +23,7 @@ export const getFunction = (prop: string | number): string => {
 export const getValue = (prop: string | number): number => {
   if (prop === undefined) return null;
 
-  return typeof prop === "string"
-    ? +prop.match(/-?\d+(?!\.\d+)|\d\.\d+/g)[0]
-    : prop;
+  return typeof prop === "string" ? +prop.match(/-?\d+(\.\d+)?/g)[0] : prop;
 };
 
 /**
