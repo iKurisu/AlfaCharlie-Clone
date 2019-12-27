@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 
@@ -42,6 +42,12 @@ const Mask = ({ isOpen, options }: Props): JSX.Element => {
     }
   });
 
+  useEffect((): void => {
+    if (isOpen) {
+      revealSlider();
+    }
+  }, []);
+
   useDidUpdateEffect((): void => {
     if (isOpen) {
       revealSlider();
@@ -50,7 +56,13 @@ const Mask = ({ isOpen, options }: Props): JSX.Element => {
     }
   }, [isOpen]);
 
-  return <div className="slider-mask" ref={mask} />;
+  return (
+    <div
+      className="slider-mask"
+      ref={mask}
+      style={{ transform: "translateX(0)" }}
+    />
+  );
 };
 
 export default Mask;
