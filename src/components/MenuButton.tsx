@@ -31,7 +31,4 @@ const mapDispatch: MappedActions = {
   toggle: menuActions.toggleMenu
 };
 
-export default connect(
-  mapState,
-  mapDispatch
-)(MenuButton);
+export default connect(mapState, mapDispatch)(MenuButton);
