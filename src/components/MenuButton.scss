@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.menu-button.disabled {
+  pointer-events: none;
+}
+
 .menu-button line {
   stroke-dasharray: 68;
 }

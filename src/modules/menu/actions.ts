@@ -13,8 +13,13 @@ const updatePreviousSlide = (): MenuActionTypes => ({
   type: Types.UPDATE_PREVIOUS_ELEMENT
 });
 
+const endTransition = (): MenuActionTypes => ({
+  type: Types.END_TRANSITION
+});
+
 export default {
   toggleMenu,
   setSlide,
-  updatePreviousSlide
+  updatePreviousSlide,
+  endTransition
 };
