@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import Character from "./link/Character";
 import "./Link.scss";
 
@@ -9,7 +10,12 @@ interface Props {
 }
 
 const Link = ({ link, isOpen, swipeSlide }: Props): JSX.Element => (
-  <a className="menu-nav-link" onMouseEnter={swipeSlide}>
+  // <a className="menu-nav-link" onMouseEnter={swipeSlide}>
+  <RouterLink
+    className="menu-nav-link"
+    to={`/${link}`}
+    onMouseEnter={swipeSlide}
+  >
     <span className="link-characters">
       {link.split("").map(
         (character: string, id: number): JSX.Element => (
@@ -17,7 +23,8 @@ const Link = ({ link, isOpen, swipeSlide }: Props): JSX.Element => (
         )
       )}
     </span>
-  </a>
+  </RouterLink>
+  // </a>
 );
 
 export default Link;
