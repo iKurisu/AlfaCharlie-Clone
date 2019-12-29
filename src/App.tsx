@@ -20,13 +20,17 @@ import "./styles.scss";
 const App = (): JSX.Element => {
   const scrollContent = useRef(null);
 
-  useCustomScroll(scrollContent);
+  const scroll = useCustomScroll(scrollContent, {
+    distance: 100,
+    duration: 1500,
+    curve: [0, 0, 0.1, 1]
+  });
 
   return (
     <React.Fragment>
       <main>
         <VerticalNav show={true} />
-        <div className="scroll-content-wrapper">
+        <div className="scroll-content-wrapper" {...scroll}>
           <div
             className="scroll-content"
             style={{ transform: "translateY(0) " }}
