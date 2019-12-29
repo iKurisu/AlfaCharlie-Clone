@@ -70,6 +70,10 @@ body {
   background-color: $background;
 }
 
+.scroll-content {
+  touch-action: none;
+}
+
 ul {
   list-style: none;
 }
