@@ -24,7 +24,7 @@ const useCustomScroll = (
 ): EventHandlers => {
   const [subscribeAnimation, unsuscribeAnimation] = useAnimationFrame();
   const frame = useRef(0);
-  const prevTouch = useRef(0);
+  const prevTouch = useRef([0, 0]);
 
   const updateFrame = (x: number): void => {
     frame.current = x;
@@ -34,7 +34,7 @@ const useCustomScroll = (
   const resetFrame = (): void => updateFrame(0);
 
   const setPrevTouch = (x: number): void => {
-    prevTouch.current = x;
+    prevTouch.current = [prevTouch.current[1], x];
   };
 
   const easing = BezierEasing(...curve);
@@ -78,7 +78,7 @@ const useCustomScroll = (
     const from = getValue(ref.current.style.transform);
 
     ref.current.style.transform = `translateY(${from -
-      (prevTouch.current - e.touches[0].clientY)}px)`;
+      (prevTouch.current[1] - e.touches[0].clientY)}px)`;
 
     setPrevTouch(e.touches[0].clientY);
   };
@@ -86,11 +86,14 @@ const useCustomScroll = (
   const touchEnd = (e: TouchEvent<HTMLElement>): void => {
     const from = getValue(ref.current.style.transform);
 
+    e.persist();
+    console.log(prevTouch.current);
+
     const animation = (): void => {
       const ease = maxFrames === 0 ? 1 : frame.current / maxFrames;
 
       ref.current.style.transform = `translateY(${from -
-        500 * easing(ease)}px)`;
+        (prevTouch.current[0] - prevTouch.current[1]) * 100 * easing(ease)}px)`;
 
       if (frame.current === maxFrames) {
         resetFrame();
