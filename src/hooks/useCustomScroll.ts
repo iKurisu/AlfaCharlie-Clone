@@ -34,8 +34,18 @@ const useCustomScroll = (
   const increaseFrame = (): void => updateFrame(frame.current + 1);
   const resetFrame = (): void => updateFrame(0);
 
+  const limit = (x: number): number => {
+    const { clientHeight } = ref.current;
+
+    return x > 0 ? 0 : x < -clientHeight ? -clientHeight : x;
+  };
+
+  const setTarget = (x: number): void => {
+    target.current = x;
+  };
+
   const increaseTarget = (x: number): void => {
-    target.current += x;
+    setTarget(target.current + x);
   };
 
   const setPrevTouch = (x: number): void => {
@@ -46,7 +56,16 @@ const useCustomScroll = (
   const maxFrames = (duration / 1000) * 60;
 
   const wheel = (e: WheelEvent<HTMLElement>): void => {
-    const from = getValue(ref.current.style.transform);
+    const { clientHeight } = ref.current;
+    const { current: currentTarget } = target;
+    const from = limit(getValue(ref.current.style.transform));
+
+    if (
+      (currentTarget > 0 && e.deltaY > 0) ||
+      (currentTarget < -clientHeight && e.deltaY < 0)
+    ) {
+      setTarget(from);
+    }
 
     increaseTarget(e.deltaY < 0 ? distance : -distance);
     resetFrame();
@@ -55,7 +74,7 @@ const useCustomScroll = (
       const ease = maxFrames === 0 ? 1 : frame.current / maxFrames;
       const value = (target.current - from) * easing(ease) + from;
 
-      ref.current.style.transform = `translateY(${value}px)`;
+      ref.current.style.transform = `translateY(${limit(value)}px)`;
 
       if (frame.current === maxFrames) {
         resetFrame();
@@ -79,7 +98,7 @@ const useCustomScroll = (
     const from = getValue(ref.current.style.transform);
     const value = from - (prevTouches.current[1] - e.touches[0].clientY);
 
-    ref.current.style.transform = `translateY(${value}px)`;
+    ref.current.style.transform = `translateY(${limit(value)}px)`;
 
     setPrevTouch(e.touches[0].clientY);
   };
@@ -94,7 +113,7 @@ const useCustomScroll = (
       const d = prevTouches.current[0] - prevTouches.current[1];
       const value = from - d * 100 * easing(ease);
 
-      ref.current.style.transform = `translateY(${value}px)`;
+      ref.current.style.transform = `translateY(${limit(value)}px)`;
 
       if (frame.current === maxFrames) {
         resetFrame();
