@@ -16,6 +16,7 @@ module.exports = {
   },
   setupFilesAfterEnv: [
     "<rootDir>/src/setupTests.ts",
-    "<rootDir>/src/setupDom.ts"
+    "<rootDir>/src/setupDom.ts",
+    "./node_modules/jest-enzyme/lib/index.js"
   ]
 };

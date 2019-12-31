@@ -55,7 +55,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scrollbar-width: none; // Remove once custom scroll is implemented
 }
 
 body {
@@ -63,17 +62,16 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-::-webkit-scrollbar {
-  display: none;
+.scroll-content-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: $background;
 }
 
 .scroll-content {
-  // Commented out until custom scroll is implemented
-  // position: fixed;
-  width: 100vw;
-  // height: 100vh;
-  // overflow: hidden;
-  background-color: $background;
+  touch-action: none;
 }
 
 ul {
