@@ -25,6 +25,7 @@ const useCustomScroll = (
   const [subscribeAnimation, unsuscribeAnimation] = useAnimationFrame();
   const frame = useRef(0);
   const prevTouches = useRef([0, 0]);
+  const target = useRef(0);
 
   const updateFrame = (x: number): void => {
     frame.current = x;
@@ -33,28 +34,28 @@ const useCustomScroll = (
   const increaseFrame = (): void => updateFrame(frame.current + 1);
   const resetFrame = (): void => updateFrame(0);
 
+  const increaseTarget = (x: number): void => {
+    target.current += x;
+  };
+
   const setPrevTouch = (x: number): void => {
     prevTouches.current = [prevTouches.current[1], x];
   };
 
   const easing = BezierEasing(...curve);
-
   const maxFrames = (duration / 1000) * 60;
-  let target = 0;
 
   const wheel = (e: WheelEvent<HTMLElement>): void => {
     const from = getValue(ref.current.style.transform);
 
-    target += e.deltaY < 0 ? distance : -distance;
-
+    increaseTarget(e.deltaY < 0 ? distance : -distance);
     resetFrame();
 
     const animation = (): void => {
       const ease = maxFrames === 0 ? 1 : frame.current / maxFrames;
+      const value = (target.current - from) * easing(ease) + from;
 
-      ref.current.style.transform = `translateY(${(target - from) *
-        easing(ease) +
-        from}px)`;
+      ref.current.style.transform = `translateY(${value}px)`;
 
       if (frame.current === maxFrames) {
         resetFrame();
@@ -76,9 +77,9 @@ const useCustomScroll = (
 
   const touchMove = (e: TouchEvent<HTMLElement>): void => {
     const from = getValue(ref.current.style.transform);
+    const value = from - (prevTouches.current[1] - e.touches[0].clientY);
 
-    ref.current.style.transform = `translateY(${from -
-      (prevTouches.current[1] - e.touches[0].clientY)}px)`;
+    ref.current.style.transform = `translateY(${value}px)`;
 
     setPrevTouch(e.touches[0].clientY);
   };
@@ -90,11 +91,10 @@ const useCustomScroll = (
 
     const animation = (): void => {
       const ease = maxFrames === 0 ? 1 : frame.current / maxFrames;
+      const d = prevTouches.current[0] - prevTouches.current[1];
+      const value = from - d * 100 * easing(ease);
 
-      ref.current.style.transform = `translateY(${from -
-        (prevTouches.current[0] - prevTouches.current[1]) *
-          100 *
-          easing(ease)}px)`;
+      ref.current.style.transform = `translateY(${value}px)`;
 
       if (frame.current === maxFrames) {
         resetFrame();
