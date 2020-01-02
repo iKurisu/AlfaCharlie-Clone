@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Logo from "components/Logo";
 import Header from "components/Header";
 import VerticalNav from "components/VerticalNav";
+import Footer from "components/Footer";
 import MenuButton from "components/MenuButton";
 import Menu from "components/Menu";
 import Cursor from "components/Cursor";
@@ -22,8 +23,11 @@ const App = (): JSX.Element => {
 
   const scroll = useCustomScroll(scrollContent, {
     distance: 100,
-    duration: 1500,
-    curve: [0, 0, 0.1, 1]
+    duration: 2000,
+    curve: [0, 0, 0.2, 1],
+    limitMod: {
+      bottom: window.innerHeight / 2
+    }
   });
 
   return (
@@ -60,6 +64,7 @@ const App = (): JSX.Element => {
             </div>
           </div>
         </div>
+        <Route exact path={["/", "/agency"]} component={Footer} />
       </main>
       <Cursor />
       <MenuButton />
