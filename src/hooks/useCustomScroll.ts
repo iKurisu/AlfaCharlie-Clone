@@ -7,6 +7,10 @@ interface Config {
   distance: number;
   duration: number;
   curve?: [number, number, number, number];
+  limitMod?: {
+    top?: number;
+    bottom?: number;
+  };
 }
 
 type TouchEvents = "onTouchStart" | "onTouchMove" | "onTouchEnd";
@@ -20,7 +24,12 @@ type EventHandlers = {
 /** Makes an element scrollable. */
 const useCustomScroll = (
   ref: RefObject<HTMLElement>,
-  { distance, duration, curve = [0, 0, 1, 1] }: Config
+  {
+    distance,
+    duration,
+    curve = [0, 0, 1, 1],
+    limitMod = { top: 0, bottom: 0 }
+  }: Config
 ): EventHandlers => {
   const [subscribeAnimation, unsuscribeAnimation] = useAnimationFrame();
   const frame = useRef(0);
@@ -34,10 +43,16 @@ const useCustomScroll = (
   const increaseFrame = (): void => updateFrame(frame.current + 1);
   const resetFrame = (): void => updateFrame(0);
 
-  const limit = (x: number): number => {
+  const calcBottomLimit = (): number => {
     const { clientHeight } = ref.current;
 
-    return x > 0 ? 0 : x < -clientHeight ? -clientHeight : x;
+    return clientHeight - window.innerHeight + limitMod.bottom;
+  };
+
+  const limit = (x: number): number => {
+    const bottomLimit = calcBottomLimit();
+
+    return x > 0 ? 0 : x < -bottomLimit ? -bottomLimit : x;
   };
 
   const setTarget = (x: number): void => {
@@ -56,13 +71,14 @@ const useCustomScroll = (
   const maxFrames = (duration / 1000) * 60;
 
   const wheel = (e: WheelEvent<HTMLElement>): void => {
-    const { clientHeight } = ref.current;
     const { current: currentTarget } = target;
     const from = limit(getValue(ref.current.style.transform));
 
+    const bottomLimit = calcBottomLimit();
+
     if (
       (currentTarget > 0 && e.deltaY > 0) ||
-      (currentTarget < -clientHeight && e.deltaY < 0)
+      (currentTarget < -bottomLimit && e.deltaY < 0)
     ) {
       setTarget(from);
     }

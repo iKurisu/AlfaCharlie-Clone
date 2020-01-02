@@ -24,7 +24,10 @@ const App = (): JSX.Element => {
   const scroll = useCustomScroll(scrollContent, {
     distance: 100,
     duration: 2000,
-    curve: [0, 0, 0.2, 1]
+    curve: [0, 0, 0.2, 1],
+    limitMod: {
+      bottom: window.innerHeight / 2
+    }
   });
 
   return (
