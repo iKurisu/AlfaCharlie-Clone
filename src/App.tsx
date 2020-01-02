@@ -64,7 +64,7 @@ const App = (): JSX.Element => {
             </div>
           </div>
         </div>
-        <Footer />
+        <Route exact path={["/", "/agency"]} component={Footer} />
       </main>
       <Cursor />
       <MenuButton />
