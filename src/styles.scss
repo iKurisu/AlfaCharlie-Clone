@@ -68,8 +68,6 @@ body {
   height: 100vh;
   overflow: hidden;
   z-index: 10;
-  padding-bottom: 50vh;
-  pointer-events: none; // observe scroll
 }
 
 .scroll-content {
