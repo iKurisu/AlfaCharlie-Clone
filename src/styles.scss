@@ -67,12 +67,14 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  z-index: 10;
+  // z-index: 10;
 }
 
 .scroll-content {
   touch-action: none;
   background-color: $background;
+  position: relative;
+  z-index: 11;
 }
 
 ul {
