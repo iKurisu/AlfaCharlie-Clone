@@ -1,3 +1,5 @@
+@import "sass/_variables.scss";
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -20,13 +22,20 @@
 
 .footer-contact {
   position: relative;
+  text-align: center;
+  flex-grow: 1;
 }
 
-.footer-contact > a {
+.footer-contact-inner {
+  position: relative;
+}
+
+.footer-contact-inner > a {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 10;
+  left: 0;
 }
 
 .footer-contact h3 {
@@ -36,11 +45,9 @@
 }
 
 .footer-contact span {
+  display: inline-block;
+  color: $red;
   font-size: 12.5px;
-  letter-spacing: 0.19em;
-  margin-bottom: 16px;
-}
-
-.footer-text {
-  margin-bottom: 90px;
+  letter-spacing: 0.185em;
+  margin-bottom: 13px;
 }

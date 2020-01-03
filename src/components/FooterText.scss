@@ -1,0 +1,45 @@
+@import "sass/_variables.scss";
+
+.footer-text {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 110px;
+  margin-bottom: 78px;
+  position: relative;
+  z-index: 10;
+}
+
+.footer-center {
+  margin-left: 90px;
+}
+
+.footer-center span {
+  margin-right: 9px;
+}
+
+.footer-text a {
+  color: $grey;
+  text-decoration: none;
+}
+
+.footer-center a {
+  position: relative;
+}
+
+.footer-center a::before {
+  content: "•";
+  margin: 0 6px;
+  position: relative;
+  top: -1px;
+}
+
+.footer-right {
+  cursor: pointer;
+}
+
+.footer-text span {
+  color: $grey;
+  font-size: 11px;
+  letter-spacing: 0.605em;
+}
