@@ -21,12 +21,14 @@ import "./styles.scss";
 const App = (): JSX.Element => {
   const scrollContent = useRef(null);
 
+  const { innerWidth, innerHeight } = window;
+
   const scroll = useCustomScroll(scrollContent, {
     distance: 100,
     duration: 2000,
     curve: [0, 0, 0.2, 1],
     limitMod: {
-      bottom: window.innerHeight / 2
+      bottom: innerWidth > 480 ? innerHeight / 2 : innerHeight
     }
   });
 
