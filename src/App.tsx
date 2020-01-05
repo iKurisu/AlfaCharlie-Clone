@@ -7,6 +7,7 @@ import Footer from "components/Footer";
 import MenuButton from "components/MenuButton";
 import Menu from "components/Menu";
 import Cursor from "components/Cursor";
+import ArrowButton from "components/ArrowButton";
 import Home from "pages/Home";
 import Agency from "pages/Agency";
 import Work from "pages/Work";
@@ -71,6 +72,7 @@ const App = (): JSX.Element => {
       <Cursor />
       <MenuButton />
       <Menu />
+      <ArrowButton />
     </React.Fragment>
   );
 };

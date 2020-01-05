@@ -1,0 +1,27 @@
+@import "sass/_variables.scss";
+
+.arrow-button {
+  width: 47px;
+  height: 14px;
+  position: fixed;
+  top: 94px;
+  right: 39px;
+  z-index: 12;
+}
+
+.arrow-button svg {
+  transform: rotate(-90deg);
+}
+
+.arrow-button line,
+.arrow-button polyline {
+  fill: none;
+  stroke: $black;
+  stroke-width: 2;
+}
+
+@media (max-width: 480px) {
+  .arrow-button {
+    right: 18px;
+  }
+}
