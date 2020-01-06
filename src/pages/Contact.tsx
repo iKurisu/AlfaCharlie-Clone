@@ -5,6 +5,7 @@ import "./Contact.scss";
 import { classList } from "utils/class";
 import useForm from "hooks/useForm";
 import useTransition, { TransitionProps } from "hooks/useTransition";
+import FooterText from "components/FooterText";
 
 enum Forms {
   START_A_PROJECT = "START_A_PROJECT",
@@ -227,6 +228,7 @@ const Contact = (): JSX.Element => {
         handleInput={updateForm}
         show={activeForm === Forms.SAY_HELLO}
       />
+      <FooterText />
     </div>
   );
 };
