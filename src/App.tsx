@@ -22,14 +22,19 @@ import "./styles.scss";
 const App = (): JSX.Element => {
   const scrollContent = useRef(null);
 
-  const { innerWidth, innerHeight } = window;
+  const { innerWidth, innerHeight, location } = window;
 
   const scroll = useCustomScroll(scrollContent, {
     distance: 100,
     duration: 2000,
     curve: [0, 0, 0.2, 1],
     limitMod: {
-      bottom: innerWidth > 480 ? innerHeight / 2 : innerHeight
+      bottom:
+        location.pathname === "/contact"
+          ? 0
+          : innerWidth > 480
+          ? innerHeight / 2
+          : innerHeight
     }
   });
 
