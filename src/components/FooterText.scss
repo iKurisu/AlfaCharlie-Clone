@@ -1,0 +1,145 @@
+@import "sass/_variables.scss";
+
+.footer-text {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.footer .footer-text {
+  position: relative;
+  padding: 0 110px;
+  margin-bottom: 78px;
+}
+
+.contact .footer-text {
+  position: absolute;
+  bottom: 0;
+  padding: 0 60px 0 95px;
+  margin-bottom: 58px;
+}
+
+.footer-center {
+  margin-left: 90px;
+}
+
+.footer-center span {
+  margin-right: 9px;
+}
+
+.footer-text a {
+  position: relative;
+  color: $grey;
+  text-decoration: none;
+}
+
+.footer-center a::before {
+  content: "•";
+  margin: 0 6px;
+  position: relative;
+  top: -1px;
+}
+
+.footer-right {
+  cursor: pointer;
+}
+
+.footer-text span {
+  color: $grey;
+  font-size: 11px;
+  letter-spacing: 0.605em;
+}
+
+@media (max-width: 1600px) {
+  .footer .footer-text {
+    margin-bottom: 37px;
+  }
+
+  .footer-text span {
+    font-size: 10px;
+    letter-spacing: 0.57em;
+  }
+
+  .footer-center span {
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .footer .footer-text,
+  .contact .footer-text {
+    margin-bottom: 40px;
+  }
+
+  .contact .footer-text {
+    padding: 0 60px;
+  }
+
+  .contact .footer-text span:not(:last-child) a {
+    display: none;
+  }
+
+  .footer-text span {
+    font-size: 9px;
+    letter-spacing: 0.61em;
+    line-height: 1;
+  }
+
+  .contact .footer-center {
+    margin-left: 97px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer .footer-text {
+    padding: 0 50px;
+  }
+
+  .footer-text span {
+    font-size: 9.5px;
+    letter-spacing: 0.63em;
+  }
+
+  .footer-center {
+    margin-left: 89px;
+  }
+
+  .contact .footer-center {
+    margin-left: 98px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer .footer-text,
+  .contact .footer-text {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .footer-text span {
+    margin-bottom: 14px;
+  }
+
+  .footer-text span:not(:last-child) a {
+    display: none;
+  }
+
+  .contact .footer-center,
+  .footer .footer-center {
+    margin-left: 8px;
+  }
+}
+
+@media (max-width: 480px), (max-width: 823px) and (orientation: landscape) {
+  .contact .footer-text {
+    margin-bottom: 22px;
+  }
+
+  .contact .footer-left,
+  .contact .footer-center {
+    display: none;
+  }
+}

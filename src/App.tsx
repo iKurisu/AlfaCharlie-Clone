@@ -7,6 +7,7 @@ import Footer from "components/Footer";
 import MenuButton from "components/MenuButton";
 import Menu from "components/Menu";
 import Cursor from "components/Cursor";
+import ArrowButton from "components/ArrowButton";
 import Home from "pages/Home";
 import Agency from "pages/Agency";
 import Work from "pages/Work";
@@ -21,12 +22,19 @@ import "./styles.scss";
 const App = (): JSX.Element => {
   const scrollContent = useRef(null);
 
+  const { innerWidth, innerHeight, location } = window;
+
   const scroll = useCustomScroll(scrollContent, {
     distance: 100,
     duration: 2000,
     curve: [0, 0, 0.2, 1],
     limitMod: {
-      bottom: window.innerHeight / 2
+      bottom:
+        location.pathname === "/contact"
+          ? 0
+          : innerWidth > 480
+          ? innerHeight / 2
+          : innerHeight
     }
   });
 
@@ -63,12 +71,13 @@ const App = (): JSX.Element => {
               </Switch>
             </div>
           </div>
+          <Route exact path={["/", "/agency", "/work"]} component={Footer} />
         </div>
-        <Route exact path={["/", "/agency"]} component={Footer} />
       </main>
       <Cursor />
       <MenuButton />
       <Menu />
+      <ArrowButton />
     </React.Fragment>
   );
 };

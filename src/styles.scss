@@ -67,14 +67,13 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  z-index: 10;
-  padding-bottom: 50vh;
-  pointer-events: none; // observe scroll
 }
 
 .scroll-content {
   touch-action: none;
   background-color: $background;
+  position: relative;
+  z-index: 11;
 }
 
 ul {
