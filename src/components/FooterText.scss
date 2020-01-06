@@ -19,12 +19,9 @@
 }
 
 .footer-text a {
+  position: relative;
   color: $grey;
   text-decoration: none;
-}
-
-.footer-center a {
-  position: relative;
 }
 
 .footer-center a::before {
