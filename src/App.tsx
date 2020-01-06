@@ -66,7 +66,7 @@ const App = (): JSX.Element => {
               </Switch>
             </div>
           </div>
-          <Route exact path={["/", "/agency"]} component={Footer} />
+          <Route exact path={["/", "/agency", "/work"]} component={Footer} />
         </div>
       </main>
       <Cursor />
