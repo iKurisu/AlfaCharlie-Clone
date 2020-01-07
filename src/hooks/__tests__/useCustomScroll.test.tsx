@@ -6,11 +6,16 @@ import "../../__mocks__/clientHeight";
 describe("useCustomScroll", (): void => {
   const TestComponent = (): JSX.Element => {
     const element = useRef(null);
+    const listener = useRef(null);
 
-    const [scroll] = useCustomScroll(element, {
+    const [scroll, subscribe] = useCustomScroll(element, {
       distance: 100,
       duration: 0,
       curve: [0, 0, 0.1, 1]
+    });
+
+    subscribe(scroll => {
+      listener.current.style.transform = `translateY(${100 + scroll}px)`;
     });
 
     return (
@@ -19,29 +24,36 @@ describe("useCustomScroll", (): void => {
           className="scroll-content"
           ref={element}
           style={{ transform: "translateY(0)" }}
-        />
+        >
+          <div className="scroll-listener" ref={listener} />
+        </div>
       </div>
     );
   };
 
   let wrapper: ReactWrapper;
 
-  const expectTransformToBe = (value: string): void =>
+  const expectTransformToBe = (selector: string) => (value: string): void =>
     expect(
-      getComputedStyle(
-        wrapper.find(".scroll-content").getDOMNode()
-      ).getPropertyValue("transform")
+      getComputedStyle(wrapper.find(selector).getDOMNode()).getPropertyValue(
+        "transform"
+      )
     ).toBe(value);
+
+  const expectContentTransformToBe = expectTransformToBe(".scroll-content");
+  const expectListenerTransformToBe = expectTransformToBe(".scroll-listener");
 
   beforeEach((): void => {
     wrapper = mount(<TestComponent />);
   });
 
   it("updates styles when the user scrolls", (): void => {
-    expectTransformToBe("translateY(0)");
+    expectContentTransformToBe("translateY(0)");
+
     wrapper.find(".scroll").simulate("wheel", { deltaY: 100 });
 
-    expectTransformToBe("translateY(-100px)");
+    expectContentTransformToBe("translateY(-100px)");
+    expectListenerTransformToBe("translateY(0px)");
   });
 
   it("updates styles when the user touches the screen", (): void => {
@@ -52,10 +64,12 @@ describe("useCustomScroll", (): void => {
       .find(".scroll")
       .simulate("touchMove", { touches: [{ clientY: 190 }] });
 
-    expectTransformToBe("translateY(-10px)");
+    expectContentTransformToBe("translateY(-10px)");
+    expectListenerTransformToBe("translateY(90px)");
 
     wrapper.find(".scroll").simulate("touchEnd");
 
-    expectTransformToBe("translateY(-610px)");
+    expectContentTransformToBe("translateY(-610px)");
+    expectListenerTransformToBe("translateY(-510px)");
   });
 });

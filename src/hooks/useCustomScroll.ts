@@ -21,6 +21,9 @@ type EventHandlers = {
   onWheel: (e: WheelEvent<HTMLElement>) => void;
 };
 
+type Listener = (scroll: number, max: number) => void;
+type Subscriber = (listener: Listener) => void;
+
 /** Makes an element scrollable. */
 const useCustomScroll = (
   ref: RefObject<HTMLElement>,
@@ -30,11 +33,12 @@ const useCustomScroll = (
     curve = [0, 0, 1, 1],
     limitMod = { top: 0, bottom: 0 }
   }: Config
-): EventHandlers => {
+): [EventHandlers, Subscriber] => {
   const [subscribeAnimation, unsuscribeAnimation] = useAnimationFrame();
   const frame = useRef(0);
   const prevTouches = useRef([0, 0]);
   const target = useRef(0);
+  const listeners = useRef([]);
 
   const updateFrame = (x: number): void => {
     frame.current = x;
@@ -63,8 +67,18 @@ const useCustomScroll = (
     setTarget(target.current + x);
   };
 
+  const resetPrevTouches = (x: number): void => {
+    prevTouches.current = [x, x];
+  };
+
   const setPrevTouch = (x: number): void => {
     prevTouches.current = [prevTouches.current[1], x];
+  };
+
+  const subscribeListeners = (...fns: Listener[]): void => {
+    const { current: currentListeners } = listeners;
+
+    listeners.current = [...currentListeners, ...fns];
   };
 
   const easing = BezierEasing(...curve);
@@ -86,11 +100,17 @@ const useCustomScroll = (
     increaseTarget(e.deltaY < 0 ? distance : -distance);
     resetFrame();
 
+    const { clientHeight } = ref.current;
+
     const animation = (): void => {
       const ease = maxFrames === 0 ? 1 : frame.current / maxFrames;
-      const value = (target.current - from) * easing(ease) + from;
+      const value = limit((target.current - from) * easing(ease) + from);
 
-      ref.current.style.transform = `translateY(${limit(value)}px)`;
+      listeners.current.forEach((listener: Listener) => {
+        listener(value, clientHeight);
+      });
+
+      ref.current.style.transform = `translateY(${value}px)`;
 
       if (frame.current === maxFrames) {
         resetFrame();
@@ -107,27 +127,37 @@ const useCustomScroll = (
   const touchStart = (e: TouchEvent<HTMLElement>): void => {
     unsuscribeAnimation();
     resetFrame();
-    setPrevTouch(e.touches[0].clientY);
+    resetPrevTouches(e.touches[0].clientY);
   };
 
   const touchMove = (e: TouchEvent<HTMLElement>): void => {
     const from = getValue(ref.current.style.transform);
-    const value = from - (prevTouches.current[1] - e.touches[0].clientY);
+    const value = limit(from - (prevTouches.current[1] - e.touches[0].clientY));
+    const { clientHeight } = ref.current;
 
-    ref.current.style.transform = `translateY(${limit(value)}px)`;
+    listeners.current.forEach((listener: Listener) => {
+      listener(value, clientHeight);
+    });
+
+    ref.current.style.transform = `translateY(${value}px)`;
 
     setPrevTouch(e.touches[0].clientY);
   };
 
   const touchEnd = (e: TouchEvent<HTMLElement>): void => {
     const from = getValue(ref.current.style.transform);
+    const { clientHeight } = ref.current;
 
     e.persist();
 
     const animation = (): void => {
       const ease = maxFrames === 0 ? 1 : frame.current / maxFrames;
       const d = prevTouches.current[0] - prevTouches.current[1];
-      const value = from - d * 100 * easing(ease);
+      const value = limit(from - d * 60 * easing(ease));
+
+      listeners.current.forEach((listener: Listener) => {
+        listener(value, clientHeight);
+      });
 
       ref.current.style.transform = `translateY(${limit(value)}px)`;
 
@@ -143,12 +173,15 @@ const useCustomScroll = (
     animation();
   };
 
-  return {
-    onWheel: wheel,
-    onTouchStart: touchStart,
-    onTouchMove: touchMove,
-    onTouchEnd: touchEnd
-  };
+  return [
+    {
+      onWheel: wheel,
+      onTouchStart: touchStart,
+      onTouchMove: touchMove,
+      onTouchEnd: touchEnd
+    },
+    subscribeListeners
+  ];
 };
 
 export default useCustomScroll;
