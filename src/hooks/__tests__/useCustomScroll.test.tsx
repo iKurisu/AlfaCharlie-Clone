@@ -7,7 +7,7 @@ describe("useCustomScroll", (): void => {
   const TestComponent = (): JSX.Element => {
     const element = useRef(null);
 
-    const scroll = useCustomScroll(element, {
+    const [scroll] = useCustomScroll(element, {
       distance: 100,
       duration: 0,
       curve: [0, 0, 0.1, 1]
@@ -38,6 +38,7 @@ describe("useCustomScroll", (): void => {
   });
 
   it("updates styles when the user scrolls", (): void => {
+    expectTransformToBe("translateY(0)");
     wrapper.find(".scroll").simulate("wheel", { deltaY: 100 });
 
     expectTransformToBe("translateY(-100px)");
@@ -49,12 +50,12 @@ describe("useCustomScroll", (): void => {
       .simulate("touchStart", { touches: [{ clientY: 200 }] });
     wrapper
       .find(".scroll")
-      .simulate("touchMove", { touches: [{ clientY: 100 }] });
+      .simulate("touchMove", { touches: [{ clientY: 190 }] });
 
-    expectTransformToBe("translateY(-100px)");
+    expectTransformToBe("translateY(-10px)");
 
     wrapper.find(".scroll").simulate("touchEnd");
 
-    expectTransformToBe("translateY(-10100px)");
+    expectTransformToBe("translateY(-610px)");
   });
 });
