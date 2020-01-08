@@ -65,3 +65,9 @@
 .footer-b-left {
   right: 21.6vw;
 }
+
+@media (max-width: 480px), (max-width: 823px) and (orientation: landscape) {
+  .footer-art {
+    visibility: hidden;
+  }
+}
