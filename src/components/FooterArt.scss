@@ -1,0 +1,67 @@
+.footer-art {
+  width: 100%;
+  height: 50vh;
+  position: relative;
+}
+
+.footer-a,
+.footer-b {
+  position: absolute;
+}
+
+.footer-a {
+  left: 18%;
+  bottom: 1.75vw;
+}
+
+.footer-a::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 1.76vw;
+  background: #fff;
+}
+
+.footer-b {
+  right: 18%;
+  bottom: 0;
+}
+
+.footer-a-left,
+.footer-a-right {
+  display: inline-block;
+  border-top: 10.5vw solid transparent;
+}
+
+.footer-a-left {
+  border-left: 13.5vw solid #fff;
+}
+
+.footer-a-right {
+  border-right: 13.5vw solid #fff;
+}
+
+.footer-b-left,
+.footer-b-center,
+.footer-b-right {
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 5.4vw;
+  height: 12.25vw;
+  margin-left: 100px;
+}
+
+.footer-b-right {
+  right: 0;
+}
+
+.footer-b-center {
+  right: 10.8vw;
+}
+
+.footer-b-left {
+  right: 21.6vw;
+}

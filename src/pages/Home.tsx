@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Hero from "./home/Hero";
 import Info from "./shared/Info";
 import Testimonials from "./shared/Testimonials";
+import FooterArt from "components/FooterArt";
 import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 import "./Home.scss";
@@ -44,6 +45,7 @@ const Home = ({ toggleIntro }: Props): JSX.Element => {
       <div className="row">
         <Testimonials title="brilliant clients" />
       </div>
+      <FooterArt />
     </React.Fragment>
   );
 };

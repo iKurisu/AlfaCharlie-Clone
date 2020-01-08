@@ -5,6 +5,7 @@ import Info from "./shared/Info";
 import Team from "./agency/Team";
 import Clients from "./agency/Clients";
 import Testimonials from "./shared/Testimonials";
+import FooterArt from "components/FooterArt";
 import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 
@@ -57,6 +58,7 @@ const Agency = ({ toggleIntro }: Props): JSX.Element => {
       <div className="row">
         <Testimonials title="what they say" />
       </div>
+      <FooterArt />
     </React.Fragment>
   );
 };
