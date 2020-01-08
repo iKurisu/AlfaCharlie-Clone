@@ -23,6 +23,7 @@ const App = (): JSX.Element => {
   const scrollContent = useRef(null);
 
   const { innerWidth, innerHeight, location } = window;
+  const landscape = innerWidth > innerHeight;
 
   const scroll = useCustomScroll(scrollContent, {
     distance: 100,
@@ -32,9 +33,9 @@ const App = (): JSX.Element => {
       bottom:
         location.pathname === "/contact"
           ? 0
-          : innerWidth > 480
-          ? innerHeight / 2
-          : innerHeight
+          : innerWidth <= 480 || (landscape && innerWidth <= 823)
+          ? innerHeight
+          : innerHeight / 2
     }
   });
 

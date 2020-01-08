@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import Project from "./work/Project";
+import FooterArt from "components/FooterArt";
 import { introActions } from "modules/intro";
 import { IntroActionTypes } from "modules/intro/types";
 import { Filters } from "modules/work/types";
@@ -28,13 +29,16 @@ const Work = ({ filter, toggleIntro }: Props): JSX.Element => {
   }, []);
 
   return (
-    <div className="work">
-      {projects
-        .filter(({ types }) => filter === "ALL" || types.includes(filter))
-        .map(({ article }: ACProject, id: number) => (
-          <Project {...article} key={id} />
-        ))}
-    </div>
+    <React.Fragment>
+      <div className="work">
+        {projects
+          .filter(({ types }) => filter === "ALL" || types.includes(filter))
+          .map(({ article }: ACProject, id: number) => (
+            <Project {...article} key={id} />
+          ))}
+      </div>
+      <FooterArt />
+    </React.Fragment>
   );
 };
 
