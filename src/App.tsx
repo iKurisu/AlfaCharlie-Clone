@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, createContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Logo from "components/Logo";
 import Header from "components/Header";
@@ -19,13 +19,15 @@ import projects from "data/projects.json";
 import { ACProject } from "data/types";
 import "./styles.scss";
 
+export const SubscriberContext = createContext(null);
+
 const App = (): JSX.Element => {
   const scrollContent = useRef(null);
 
   const { innerWidth, innerHeight, location } = window;
   const landscape = innerWidth > innerHeight;
 
-  const scroll = useCustomScroll(scrollContent, {
+  const [scroll, subscribe] = useCustomScroll(scrollContent, {
     distance: 100,
     duration: 2000,
     curve: [0, 0, 0.2, 1],
@@ -40,7 +42,7 @@ const App = (): JSX.Element => {
   });
 
   return (
-    <React.Fragment>
+    <SubscriberContext.Provider value={subscribe}>
       <main>
         <VerticalNav show={true} />
         <div className="scroll-content-wrapper" {...scroll}>
@@ -79,7 +81,7 @@ const App = (): JSX.Element => {
       <MenuButton />
       <Menu />
       <ArrowButton />
-    </React.Fragment>
+    </SubscriberContext.Provider>
   );
 };
 

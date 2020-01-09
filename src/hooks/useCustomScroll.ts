@@ -100,14 +100,12 @@ const useCustomScroll = (
     increaseTarget(e.deltaY < 0 ? distance : -distance);
     resetFrame();
 
-    const { clientHeight } = ref.current;
-
     const animation = (): void => {
       const ease = maxFrames === 0 ? 1 : frame.current / maxFrames;
       const value = limit((target.current - from) * easing(ease) + from);
 
       listeners.current.forEach((listener: Listener) => {
-        listener(value, clientHeight);
+        listener(value, -bottomLimit);
       });
 
       ref.current.style.transform = `translateY(${value}px)`;
@@ -133,10 +131,10 @@ const useCustomScroll = (
   const touchMove = (e: TouchEvent<HTMLElement>): void => {
     const from = getValue(ref.current.style.transform);
     const value = limit(from - (prevTouches.current[1] - e.touches[0].clientY));
-    const { clientHeight } = ref.current;
+    const bottomLimit = calcBottomLimit();
 
     listeners.current.forEach((listener: Listener) => {
-      listener(value, clientHeight);
+      listener(value, -bottomLimit);
     });
 
     ref.current.style.transform = `translateY(${value}px)`;
@@ -146,7 +144,7 @@ const useCustomScroll = (
 
   const touchEnd = (e: TouchEvent<HTMLElement>): void => {
     const from = getValue(ref.current.style.transform);
-    const { clientHeight } = ref.current;
+    const bottomLimit = calcBottomLimit();
 
     e.persist();
 
@@ -156,7 +154,7 @@ const useCustomScroll = (
       const value = limit(from - d * 60 * easing(ease));
 
       listeners.current.forEach((listener: Listener) => {
-        listener(value, clientHeight);
+        listener(value, -bottomLimit);
       });
 
       ref.current.style.transform = `translateY(${limit(value)}px)`;

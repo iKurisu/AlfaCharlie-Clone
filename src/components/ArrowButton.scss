@@ -1,12 +1,18 @@
 @import "sass/_variables.scss";
 
 .arrow-button {
+  display: none;
   width: 47px;
   height: 14px;
   position: fixed;
   top: 94px;
   right: 39px;
   z-index: 12;
+}
+
+.arrow-button:not(.-show) {
+  visibility: hidden;
+  transition: visibility 0.25s;
 }
 
 .arrow-button svg {
@@ -18,6 +24,33 @@
   fill: none;
   stroke: $black;
   stroke-width: 2;
+}
+
+.arrow-button line {
+  stroke-dashoffset: 140;
+  stroke-dasharray: 140;
+}
+
+.arrow-button polyline {
+  stroke-dashoffset: 55;
+  stroke-dasharray: 55;
+}
+
+.arrow-button line,
+.arrow-button polyline {
+  transition: stroke-dashoffset 0.25s;
+}
+
+.arrow-button.-show line,
+.arrow-button.-show polyline {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.7s;
+}
+
+@media (max-width: 480px), (max-width: 823px) and (orientation: landscape) {
+  .arrow-button {
+    display: block;
+  }
 }
 
 @media (max-width: 480px) {
