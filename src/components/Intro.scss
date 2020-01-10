@@ -42,15 +42,18 @@
 
 .main-symbol path {
   fill: $black;
+  opacity: 0;
 }
 
 .main-symbol line {
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
   stroke: $black;
 }
 
 .inverted-background {
   background: $black;
-  // transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 .symbol-mask {
@@ -72,6 +75,7 @@
 }
 
 .intro-title {
+  opacity: 0;
   z-index: 102;
 }
 
