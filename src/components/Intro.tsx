@@ -18,12 +18,33 @@ const topLineProps = generateDrawLineProps(900);
 const bottomLineProps = generateDrawLineProps();
 
 const Intro = (): JSX.Element => {
+  const symbol = useRef(null);
   const topLine = useRef(null);
   const bottomLine = useRef(null);
   const letters = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
+  const invertedBackground = useRef(null);
+
+  const firstRotation = useTransition(symbol, {
+    from: { transform: "rotate(30deg)" },
+    to: { transform: "rotate(0)" },
+    config: {
+      duration: 2000
+    }
+  });
+
+  const secondRotation = useTransition(symbol, {
+    from: { transform: "rotate(0)" },
+    to: { transform: "rotate(-90deg)" },
+    config: {
+      duration: 1100,
+      timing: [0.1, 0.4, 0.3, 1]
+    }
+  });
+
   const drawBottomLine = useTransition(bottomLine, bottomLineProps);
   const drawTopLine = useTransition(topLine, topLineProps);
+
   const lettersAnimations = letters.map(letter =>
     useTransition(letter, {
       from: { opacity: 0 },
@@ -36,6 +57,16 @@ const Intro = (): JSX.Element => {
     })
   );
 
+  const slideBackground = useTransition(invertedBackground, {
+    from: { transform: "translateX(-100%)" },
+    to: { transform: "translateX(0)" },
+    config: {
+      duration: 800,
+      delay: 400,
+      timing: [0.7, 0.05, 0.16, 0.95]
+    }
+  });
+
   const drawLines = (): void => {
     drawBottomLine();
     drawTopLine();
@@ -46,6 +77,10 @@ const Intro = (): JSX.Element => {
   };
 
   useEffect(() => {
+    firstRotation().then(() => {
+      secondRotation();
+      slideBackground();
+    });
     drawLines();
     showLetters();
   }, []);
@@ -57,6 +92,7 @@ const Intro = (): JSX.Element => {
         <div className="main-symbol">
           <div className="symbol-wrapper">
             <Symbol
+              symbol={symbol}
               topLine={topLine}
               bottomLine={bottomLine}
               letters={letters}
@@ -65,7 +101,7 @@ const Intro = (): JSX.Element => {
         </div>
       </div>
       <div className="intro-inverted">
-        <div className="inverted-background" />
+        <div className="inverted-background" ref={invertedBackground} />
         <div className="inverted-symbol">
           <div className="symbol-mask">
             <div className="symbol-wrapper">
