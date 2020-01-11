@@ -57,13 +57,12 @@
 }
 
 .symbol-mask {
-  transform: translateX(-100%);
+  transform: translateY(-100%);
   overflow: hidden;
 }
 
 .inverted-symbol .symbol {
-  transform: translateX(100%);
-  transform-origin: 50% 50%;
+  transform: translateY(100%);
 }
 
 .inverted-symbol path {

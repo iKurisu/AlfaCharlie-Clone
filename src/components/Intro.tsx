@@ -24,6 +24,9 @@ const Intro = (): JSX.Element => {
   const letters = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
   const invertedBackground = useRef(null);
+  const invertedSymbolContainer = useRef(null);
+  const symbolMask = useRef(null);
+  const invertedSymbol = useRef(null);
 
   const firstRotation = useTransition(symbol, {
     from: { transform: "rotate(30deg)" },
@@ -67,6 +70,35 @@ const Intro = (): JSX.Element => {
     }
   });
 
+  const rotateSymbolContainer = useTransition(invertedSymbolContainer, {
+    from: { transform: "rotate(0)" },
+    to: { transform: "rotate(-90deg)" },
+    config: {
+      duration: 1100,
+      timing: [0.1, 0.4, 0.3, 1]
+    }
+  });
+
+  const revealSymbol = useTransition(symbolMask, {
+    from: { transform: "translateY(-100%)" },
+    to: { transform: "translateY(0)" },
+    config: {
+      duration: 75,
+      delay: 750,
+      timing: [0.26, 0.13, 0.25, 1]
+    }
+  });
+
+  const slideSymbol = useTransition(invertedSymbol, {
+    from: { transform: "translateY(100%)" },
+    to: { transform: "translateY(0)" },
+    config: {
+      duration: 75,
+      delay: 750,
+      timing: [0.26, 0.13, 0.25, 1]
+    }
+  });
+
   const drawLines = (): void => {
     drawBottomLine();
     drawTopLine();
@@ -79,7 +111,10 @@ const Intro = (): JSX.Element => {
   useEffect(() => {
     firstRotation().then(() => {
       secondRotation();
+      rotateSymbolContainer();
       slideBackground();
+      revealSymbol();
+      slideSymbol();
     });
     drawLines();
     showLetters();
@@ -102,10 +137,10 @@ const Intro = (): JSX.Element => {
       </div>
       <div className="intro-inverted">
         <div className="inverted-background" ref={invertedBackground} />
-        <div className="inverted-symbol">
-          <div className="symbol-mask">
+        <div className="inverted-symbol" ref={invertedSymbolContainer}>
+          <div className="symbol-mask" ref={symbolMask}>
             <div className="symbol-wrapper">
-              <Symbol />
+              <Symbol symbol={invertedSymbol} />
             </div>
           </div>
         </div>
