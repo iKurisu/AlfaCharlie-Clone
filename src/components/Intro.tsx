@@ -14,8 +14,20 @@ const generateDrawLineProps = (delay: number = 0): TransitionProps => ({
   }
 });
 
-const topLineProps = generateDrawLineProps(900);
-const bottomLineProps = generateDrawLineProps();
+const generateHideLineProps = (delay: number = 0): TransitionProps => ({
+  from: { strokeDashoffset: 0, opacity: 1 },
+  to: { strokeDashoffset: 141, opacity: 0 },
+  config: {
+    delay: 1100 + delay,
+    duration: 400,
+    timing: [0.26, 0.13, 0.26, 1]
+  }
+});
+
+const drawTopLineProps = generateDrawLineProps(900);
+const hideTopLineProps = generateHideLineProps();
+const drawBottomLineProps = generateDrawLineProps();
+const hideBottomLineProps = generateHideLineProps(350);
 
 const Intro = (): JSX.Element => {
   const symbol = useRef(null);
@@ -26,7 +38,16 @@ const Intro = (): JSX.Element => {
   const invertedBackground = useRef(null);
   const invertedSymbolContainer = useRef(null);
   const symbolMask = useRef(null);
+
   const invertedSymbol = useRef(null);
+  const invertedTopLine = useRef(null);
+  const invertedBottomLine = useRef(null);
+  const invertedSymbolLetters = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null)
+  ];
 
   const firstRotation = useTransition(symbol, {
     from: { transform: "rotate(30deg)" },
@@ -41,17 +62,31 @@ const Intro = (): JSX.Element => {
     to: { transform: "rotate(-90deg)" },
     config: {
       duration: 1100,
-      timing: [0.1, 0.4, 0.3, 1]
+      timing: [0.1, 0.4, 0.3, 0.92]
     }
   });
 
-  const drawBottomLine = useTransition(bottomLine, bottomLineProps);
-  const drawTopLine = useTransition(topLine, topLineProps);
+  const drawBottomLine = useTransition(bottomLine, drawBottomLineProps);
+  const hideBottomLine = useTransition(invertedBottomLine, hideBottomLineProps);
+  const drawTopLine = useTransition(topLine, drawTopLineProps);
+  const hideTopLine = useTransition(invertedTopLine, hideTopLineProps);
 
   const lettersAnimations = letters.map(letter =>
     useTransition(letter, {
       from: { opacity: 0 },
       to: { opacity: 1 },
+      config: {
+        delay: 1100,
+        duration: 1200,
+        timing: [0.26, 0.13, 0.25, 1]
+      }
+    })
+  );
+
+  const invertedLettersAnimations = invertedSymbolLetters.map(letter =>
+    useTransition(letter, {
+      from: { opacity: 1 },
+      to: { opacity: 0 },
       config: {
         delay: 1100,
         duration: 1200,
@@ -75,7 +110,7 @@ const Intro = (): JSX.Element => {
     to: { transform: "rotate(-90deg)" },
     config: {
       duration: 1100,
-      timing: [0.1, 0.4, 0.3, 1]
+      timing: [0.1, 0.4, 0.3, 0.92]
     }
   });
 
@@ -99,22 +134,44 @@ const Intro = (): JSX.Element => {
     }
   });
 
+  const rotateInvertedSymbol = useTransition(invertedSymbol, {
+    from: { transform: "rotate(0)" },
+    to: { transform: "rotate(-40deg)" },
+    config: {
+      duration: 1100,
+      timing: [0.1, 0.5, 0.3, 0.92]
+    }
+  });
+
   const drawLines = (): void => {
     drawBottomLine();
     drawTopLine();
+  };
+
+  const hideLines = (): void => {
+    hideBottomLine();
+    hideTopLine();
   };
 
   const showLetters = (): void => {
     lettersAnimations.forEach(animation => animation());
   };
 
+  const hideLetters = (): void => {
+    invertedLettersAnimations.forEach(animation => animation());
+  };
+
   useEffect(() => {
     firstRotation().then(() => {
-      secondRotation();
+      secondRotation().then(() => {
+        rotateInvertedSymbol();
+      });
       rotateSymbolContainer();
       slideBackground();
       revealSymbol();
       slideSymbol();
+      hideLines();
+      hideLetters();
     });
     drawLines();
     showLetters();
@@ -140,7 +197,12 @@ const Intro = (): JSX.Element => {
         <div className="inverted-symbol" ref={invertedSymbolContainer}>
           <div className="symbol-mask" ref={symbolMask}>
             <div className="symbol-wrapper">
-              <Symbol symbol={invertedSymbol} />
+              <Symbol
+                symbol={invertedSymbol}
+                topLine={invertedTopLine}
+                bottomLine={invertedBottomLine}
+                letters={invertedSymbolLetters}
+              />
             </div>
           </div>
         </div>

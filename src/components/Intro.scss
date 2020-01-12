@@ -70,6 +70,8 @@
 }
 
 .inverted-symbol line {
+  stroke-dasharray: 141;
+  stroke-dashoffset: 0;
   stroke: $light;
 }
 
