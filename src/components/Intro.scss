@@ -1,5 +1,9 @@
 @import "sass/_variables.scss";
 
+.intro {
+  pointer-events: none;
+}
+
 .intro-main,
 .intro-inverted {
   position: fixed;
