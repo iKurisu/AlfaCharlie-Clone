@@ -27,17 +27,13 @@
   height: 100%;
 }
 
+.main-background {
+  background: $light;
+}
+
 .symbol-wrapper {
   width: 120px;
   height: 120px;
-}
-
-.main-background {
-  background: $light;
-}
-
-.main-background {
-  background: $light;
 }
 
 .main-symbol path {
@@ -76,13 +72,23 @@
 }
 
 .intro-title {
-  opacity: 0;
+  transform: scale(0.95);
   z-index: 102;
 }
 
 .intro-title .title {
-  width: 350px;
+  // width: 350px;
+  width: 420px;
   height: 120px;
+}
+
+.intro-title .title-top {
+  opacity: 0;
+}
+
+.intro-title .title-top g,
+.intro-title .title-bottom g {
+  opacity: 0;
 }
 
 .intro-title .title-top path {

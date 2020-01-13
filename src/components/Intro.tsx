@@ -49,6 +49,11 @@ const Intro = (): JSX.Element => {
     useRef(null)
   ];
 
+  const title = useRef(null);
+  const topTitle = useRef(null);
+  const bottomLeftTitle = useRef(null);
+  const bottomRightTitle = useRef(null);
+
   const firstRotation = useTransition(symbol, {
     from: { transform: "rotate(30deg)" },
     to: { transform: "rotate(0)" },
@@ -136,10 +141,48 @@ const Intro = (): JSX.Element => {
 
   const rotateInvertedSymbol = useTransition(invertedSymbol, {
     from: { transform: "rotate(0)" },
-    to: { transform: "rotate(-40deg)" },
+    to: { transform: "rotate(-35deg)" },
     config: {
       duration: 1100,
       timing: [0.1, 0.5, 0.3, 0.92]
+    }
+  });
+
+  const fadeInTopTitle = useTransition(topTitle, {
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: {
+      duration: 2000,
+      timing: [0.26, 0.13, 0.25, 1]
+    }
+  });
+
+  const scaleTitle = useTransition(title, {
+    from: { transform: "scale(0.95)" },
+    to: { transform: "scale(1)" },
+    config: {
+      duration: 2000,
+      timing: [0, 0, 1, 1]
+    }
+  });
+
+  const fadeInBottomLeftTitle = useTransition(bottomLeftTitle, {
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: {
+      duration: 1500,
+      delay: 400,
+      timing: [0.26, 0.13, 0.25, 1]
+    }
+  });
+
+  const fadeInBottomRightTitle = useTransition(bottomRightTitle, {
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: {
+      duration: 1400,
+      delay: 600,
+      timing: [0.26, 0.13, 0.25, 1]
     }
   });
 
@@ -162,19 +205,26 @@ const Intro = (): JSX.Element => {
   };
 
   useEffect(() => {
+    drawLines();
+    showLetters();
+
     firstRotation().then(() => {
-      secondRotation().then(() => {
-        rotateInvertedSymbol();
-      });
       rotateSymbolContainer();
       slideBackground();
       revealSymbol();
       slideSymbol();
       hideLines();
       hideLetters();
+
+      secondRotation().then(() => {
+        rotateInvertedSymbol().then(() => {
+          fadeInTopTitle();
+          scaleTitle();
+          fadeInBottomLeftTitle();
+          fadeInBottomRightTitle();
+        });
+      });
     });
-    drawLines();
-    showLetters();
   }, []);
 
   return (
@@ -207,8 +257,12 @@ const Intro = (): JSX.Element => {
           </div>
         </div>
       </div>
-      <div className="intro-title">
-        <Title />
+      <div className="intro-title" ref={title}>
+        <Title
+          top={topTitle}
+          bottomLeft={bottomLeftTitle}
+          bottomRight={bottomRightTitle}
+        />
       </div>
     </div>
   );
