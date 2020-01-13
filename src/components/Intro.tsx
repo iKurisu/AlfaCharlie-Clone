@@ -1,8 +1,17 @@
 import React, { useRef, useEffect } from "react";
 import Symbol from "./Symbol";
 import Title from "./intro/Title";
-import "./Intro.scss";
 import useTransition, { TransitionProps } from "hooks/useTransition";
+import { linear, ease, easeInOut, easeOut, easeOut2 } from "utils/timings";
+import {
+  fadeIn,
+  fadeOut,
+  slideFromLeft,
+  slideFromTop,
+  slideFromBottom,
+  slideToRight
+} from "utils/transitions";
+import "./Intro.scss";
 
 const generateDrawLineProps = (delay: number = 0): TransitionProps => ({
   from: { strokeDashoffset: 140 },
@@ -10,7 +19,7 @@ const generateDrawLineProps = (delay: number = 0): TransitionProps => ({
   config: {
     delay,
     duration: 850,
-    timing: [0.26, 0.13, 0.26, 1]
+    timing: ease
   }
 });
 
@@ -18,9 +27,9 @@ const generateHideLineProps = (delay: number = 0): TransitionProps => ({
   from: { strokeDashoffset: 0, opacity: 1 },
   to: { strokeDashoffset: 141, opacity: 0 },
   config: {
-    delay: 1100 + delay,
+    delay: delay,
     duration: 400,
-    timing: [0.26, 0.13, 0.26, 1]
+    timing: ease
   }
 });
 
@@ -68,7 +77,7 @@ const Intro = (): JSX.Element => {
     to: { transform: "rotate(-90deg)" },
     config: {
       duration: 1100,
-      timing: [0.1, 0.4, 0.3, 0.92]
+      timing: easeOut
     }
   });
 
@@ -79,35 +88,31 @@ const Intro = (): JSX.Element => {
 
   const lettersAnimations = letters.map(letter =>
     useTransition(letter, {
-      from: { opacity: 0 },
-      to: { opacity: 1 },
+      ...fadeIn,
       config: {
         delay: 1100,
         duration: 1200,
-        timing: [0.26, 0.13, 0.25, 1]
+        timing: ease
       }
     })
   );
 
   const invertedLettersAnimations = invertedSymbolLetters.map(letter =>
     useTransition(letter, {
-      from: { opacity: 1 },
-      to: { opacity: 0 },
+      ...fadeOut,
       config: {
-        delay: 1100,
         duration: 1200,
-        timing: [0.26, 0.13, 0.25, 1]
+        timing: ease
       }
     })
   );
 
   const slideBackground = useTransition(invertedBackground, {
-    from: { transform: "translateX(-100%)" },
-    to: { transform: "translateX(0)" },
+    ...slideFromLeft,
     config: {
       duration: 800,
       delay: 400,
-      timing: [0.7, 0.05, 0.16, 0.95]
+      timing: easeInOut
     }
   });
 
@@ -116,27 +121,25 @@ const Intro = (): JSX.Element => {
     to: { transform: "rotate(-90deg)" },
     config: {
       duration: 1100,
-      timing: [0.1, 0.4, 0.3, 0.92]
+      timing: easeOut
     }
   });
 
   const revealSymbol = useTransition(symbolMask, {
-    from: { transform: "translateY(-100%)" },
-    to: { transform: "translateY(0)" },
+    ...slideFromTop,
     config: {
       duration: 75,
       delay: 750,
-      timing: [0.26, 0.13, 0.25, 1]
+      timing: ease
     }
   });
 
   const slideSymbol = useTransition(invertedSymbol, {
-    from: { transform: "translateY(100%)" },
-    to: { transform: "translateY(0)" },
+    ...slideFromBottom,
     config: {
       duration: 75,
       delay: 750,
-      timing: [0.26, 0.13, 0.25, 1]
+      timing: ease
     }
   });
 
@@ -145,16 +148,15 @@ const Intro = (): JSX.Element => {
     to: { transform: "rotate(-35deg)" },
     config: {
       duration: 1100,
-      timing: [0.1, 0.5, 0.3, 0.92]
+      timing: easeOut2
     }
   });
 
   const fadeInTopTitle = useTransition(topTitle, {
-    from: { opacity: 0 },
-    to: { opacity: 1 },
+    ...fadeIn,
     config: {
       duration: 2000,
-      timing: [0.26, 0.13, 0.25, 1]
+      timing: ease
     }
   });
 
@@ -163,64 +165,53 @@ const Intro = (): JSX.Element => {
     to: { transform: "scale(1)" },
     config: {
       duration: 2000,
-      timing: [0, 0, 1, 1]
+      timing: linear
     }
   });
 
   const fadeInBottomLeftTitle = useTransition(bottomLeftTitle, {
-    from: { opacity: 0 },
-    to: { opacity: 1 },
+    ...fadeIn,
     config: {
       duration: 1500,
       delay: 400,
-      timing: [0.26, 0.13, 0.25, 1]
+      timing: ease
     }
   });
 
   const fadeInBottomRightTitle = useTransition(bottomRightTitle, {
-    from: { opacity: 0 },
-    to: { opacity: 1 },
+    ...fadeIn,
     config: {
       duration: 1400,
       delay: 600,
-      timing: [0.26, 0.13, 0.25, 1]
+      timing: ease
     }
   });
 
   const hideMainBackground = useTransition(mainBackground, {
-    from: { opacity: 1 },
-    to: { opacity: 0 },
+    ...fadeOut,
     config: { duration: 0 }
   });
 
   const hideSymbol = useTransition(symbol, {
-    from: { opacity: 1 },
-    to: { opacity: 0 },
+    ...fadeOut,
     config: { duration: 0 }
   });
 
   const slideOutInvertedBackground = useTransition(invertedBackground, {
-    from: { transform: "translateX(0)" },
-    to: { transform: "translateX(100%)" },
+    ...slideToRight,
     config: {
       duration: 800,
-      timing: [0.7, 0.05, 0.16, 0.95]
+      timing: easeInOut
     }
   });
 
   const hideTitle = useTransition(title, {
-    from: { opacity: 1 },
-    to: { opacity: 0 },
+    ...fadeOut,
     config: {
       duration: 500,
-      timing: [0.7, 0.05, 0.16, 0.95]
+      timing: easeInOut
     }
   });
-
-  const drawLines = (): void => {
-    drawBottomLine();
-    drawTopLine();
-  };
 
   const hideLines = (): void => {
     hideBottomLine();
@@ -231,34 +222,55 @@ const Intro = (): JSX.Element => {
     lettersAnimations.forEach(animation => animation());
   };
 
+  const showSymbol = (): void => {
+    drawBottomLine();
+    drawTopLine();
+    showLetters();
+  };
+
+  const rotateBothSymbols = async (): Promise<void> => {
+    rotateSymbolContainer();
+    return await secondRotation();
+  };
+
+  const invert = (): void => {
+    slideBackground();
+    revealSymbol();
+    slideSymbol();
+  };
+
   const hideLetters = (): void => {
     invertedLettersAnimations.forEach(animation => animation());
   };
 
+  const hideInvertedSymbol = (): void => {
+    hideLines();
+    hideLetters();
+  };
+
+  const fadeInTitle = (): void => {
+    fadeInTopTitle();
+    fadeInBottomLeftTitle();
+    fadeInBottomRightTitle();
+  };
+
+  const hideIntro = (): void => {
+    hideMainBackground();
+    hideSymbol();
+    slideOutInvertedBackground();
+    hideTitle();
+  };
+
   useEffect(() => {
-    drawLines();
-    showLetters();
-
+    showSymbol();
     firstRotation().then(() => {
-      rotateSymbolContainer();
-      slideBackground();
-      revealSymbol();
-      slideSymbol();
-      hideLines();
-      hideLetters();
-
-      secondRotation().then(() => {
+      invert();
+      rotateBothSymbols().then(() => {
         rotateInvertedSymbol().then(() => {
-          fadeInTopTitle();
-          fadeInBottomLeftTitle();
-          fadeInBottomRightTitle();
-          scaleTitle().then(() => {
-            hideMainBackground();
-            hideSymbol();
-            slideOutInvertedBackground();
-            hideTitle();
-          });
+          fadeInTitle();
+          scaleTitle().then(hideIntro);
         });
+        hideInvertedSymbol();
       });
     });
   }, []);
