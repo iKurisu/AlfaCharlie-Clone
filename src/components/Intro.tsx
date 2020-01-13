@@ -205,6 +205,15 @@ const Intro = (): JSX.Element => {
     }
   });
 
+  const slideOutTitle = useTransition(title, {
+    from: { transform: "translateX(0)" },
+    to: { transform: "translateX(20%)" },
+    config: {
+      duration: 1000,
+      timing: easeInOut
+    }
+  });
+
   const hideTitle = useTransition(title, {
     ...fadeOut,
     config: {
@@ -258,6 +267,7 @@ const Intro = (): JSX.Element => {
     hideMainBackground();
     hideSymbol();
     slideOutInvertedBackground();
+    slideOutTitle();
     hideTitle();
   };
 

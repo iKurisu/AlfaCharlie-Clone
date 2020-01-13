@@ -36,8 +36,10 @@
 }
 
 .symbol-wrapper {
-  width: 120px;
-  height: 120px;
+  width: 132px;
+  height: 132px;
+  // width: 120px;
+  // height: 120px;
 }
 
 .main-symbol path {
@@ -81,7 +83,6 @@
 }
 
 .intro-title .title {
-  // width: 350px;
   width: 420px;
   height: 120px;
 }
@@ -101,4 +102,21 @@
 
 .intro-title .title-bottom path {
   fill: #bdb5aa;
+}
+
+@media (max-width: 1600px) {
+  .symbol-wrapper {
+    width: 120px;
+    height: 120px;
+  }
+
+  .intro-title .title {
+    width: 350px;
+  }
+}
+
+@media (max-width: 480px), (max-width: 823px) and (orientation: landscape) {
+  .intro-title .title {
+    width: 220px;
+  }
 }
