@@ -30,6 +30,7 @@ const drawBottomLineProps = generateDrawLineProps();
 const hideBottomLineProps = generateHideLineProps(350);
 
 const Intro = (): JSX.Element => {
+  const mainBackground = useRef(null);
   const symbol = useRef(null);
   const topLine = useRef(null);
   const bottomLine = useRef(null);
@@ -186,6 +187,36 @@ const Intro = (): JSX.Element => {
     }
   });
 
+  const hideMainBackground = useTransition(mainBackground, {
+    from: { opacity: 1 },
+    to: { opacity: 0 },
+    config: { duration: 0 }
+  });
+
+  const hideSymbol = useTransition(symbol, {
+    from: { opacity: 1 },
+    to: { opacity: 0 },
+    config: { duration: 0 }
+  });
+
+  const slideOutInvertedBackground = useTransition(invertedBackground, {
+    from: { transform: "translateX(0)" },
+    to: { transform: "translateX(100%)" },
+    config: {
+      duration: 800,
+      timing: [0.7, 0.05, 0.16, 0.95]
+    }
+  });
+
+  const hideTitle = useTransition(title, {
+    from: { opacity: 1 },
+    to: { opacity: 0 },
+    config: {
+      duration: 500,
+      timing: [0.7, 0.05, 0.16, 0.95]
+    }
+  });
+
   const drawLines = (): void => {
     drawBottomLine();
     drawTopLine();
@@ -219,9 +250,14 @@ const Intro = (): JSX.Element => {
       secondRotation().then(() => {
         rotateInvertedSymbol().then(() => {
           fadeInTopTitle();
-          scaleTitle();
           fadeInBottomLeftTitle();
           fadeInBottomRightTitle();
+          scaleTitle().then(() => {
+            hideMainBackground();
+            hideSymbol();
+            slideOutInvertedBackground();
+            hideTitle();
+          });
         });
       });
     });
@@ -230,7 +266,7 @@ const Intro = (): JSX.Element => {
   return (
     <div className="intro">
       <div className="intro-main">
-        <div className="main-background" />
+        <div className="main-background" ref={mainBackground} />
         <div className="main-symbol">
           <div className="symbol-wrapper">
             <Symbol
