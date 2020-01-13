@@ -1,5 +1,9 @@
 @import "sass/_variables.scss";
 
+.intro {
+  pointer-events: none;
+}
+
 .intro-main,
 .intro-inverted {
   position: fixed;
@@ -27,40 +31,38 @@
   height: 100%;
 }
 
+.main-background {
+  background: $light;
+}
+
 .symbol-wrapper {
   width: 120px;
   height: 120px;
 }
 
-.main-background {
-  background: $light;
-}
-
-.main-background {
-  background: $light;
-}
-
 .main-symbol path {
   fill: $black;
+  opacity: 0;
 }
 
 .main-symbol line {
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
   stroke: $black;
 }
 
 .inverted-background {
   background: $black;
-  // transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 .symbol-mask {
-  transform: translateX(-100%);
+  transform: translateY(-100%);
   overflow: hidden;
 }
 
 .inverted-symbol .symbol {
-  transform: translateX(100%);
-  transform-origin: 50% 50%;
+  transform: translateY(100%);
 }
 
 .inverted-symbol path {
@@ -68,16 +70,29 @@
 }
 
 .inverted-symbol line {
+  stroke-dasharray: 141;
+  stroke-dashoffset: 0;
   stroke: $light;
 }
 
 .intro-title {
+  transform: scale(0.95);
   z-index: 102;
 }
 
 .intro-title .title {
-  width: 350px;
+  // width: 350px;
+  width: 420px;
   height: 120px;
+}
+
+.intro-title .title-top {
+  opacity: 0;
+}
+
+.intro-title .title-top g,
+.intro-title .title-bottom g {
+  opacity: 0;
 }
 
 .intro-title .title-top path {
