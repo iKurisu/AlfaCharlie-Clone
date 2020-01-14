@@ -89,7 +89,4 @@ const mapDispatch = (dispatch: Dispatch): MappedActions => ({
   }
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Testimonials);
+export default connect(mapState, mapDispatch)(Testimonials);

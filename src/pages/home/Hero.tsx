@@ -126,7 +126,7 @@ export const Hero = ({
           ref={link}
           style={{ transform: "translateX(40px)", opacity: 0 }}
         >
-          <Link content="View our work" />
+          <Link content="View our work" to="/work" />
         </div>
       </div>
       <div className="hero-slider">
@@ -173,7 +173,4 @@ const mapDispatch = (dispatch: Dispatch): MappedActions => ({
   }
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Hero);
+export default connect(mapState, mapDispatch)(Hero);
