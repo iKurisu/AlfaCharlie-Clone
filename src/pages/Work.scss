@@ -12,6 +12,13 @@
   position: relative;
 }
 
+.project a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 12;
+}
+
 .project-title {
   position: absolute;
   top: 0;

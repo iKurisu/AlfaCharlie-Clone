@@ -18,7 +18,7 @@ const Brief = (): JSX.Element => (
         </p>
       </div>
       <div className="brief-animation">
-        <Link content="Get in touch" />
+        <Link content="Get in touch" to="/contact" />
       </div>
     </div>
     <div className="brief-image-wrapper">
