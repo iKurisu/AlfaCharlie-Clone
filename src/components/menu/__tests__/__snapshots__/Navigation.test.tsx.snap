@@ -6,6 +6,8 @@ exports[`menu navigation renders correctly 1`] = `
 >
   <a
     className="menu-home-link"
+    href="/"
+    onClick={[Function]}
     style={
       Object {
         "opacity": 0,
@@ -83,6 +85,8 @@ exports[`menu navigation renders correctly 1`] = `
   >
     <a
       className="menu-nav-link"
+      href="/agency"
+      onClick={[Function]}
     >
       <span
         className="link-characters"
@@ -151,6 +155,8 @@ exports[`menu navigation renders correctly 1`] = `
     </a>
     <a
       className="menu-nav-link"
+      href="/work"
+      onClick={[Function]}
     >
       <span
         className="link-characters"
@@ -199,6 +205,8 @@ exports[`menu navigation renders correctly 1`] = `
     </a>
     <a
       className="menu-nav-link"
+      href="/journal"
+      onClick={[Function]}
     >
       <span
         className="link-characters"
@@ -277,6 +285,8 @@ exports[`menu navigation renders correctly 1`] = `
     </a>
     <a
       className="menu-nav-link"
+      href="/contact"
+      onClick={[Function]}
     >
       <span
         className="link-characters"

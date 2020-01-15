@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import renderer from "react-test-renderer";
 import { shallow } from "enzyme";
 import Link from "./Link";
@@ -14,13 +15,21 @@ describe("navigation link", (): void => {
   };
 
   it("renders correctly", (): void => {
-    const component = renderer.create(<Link {...props} />);
+    const component = renderer.create(
+      <Router>
+        <Link {...props} />
+      </Router>
+    );
 
     expect(component).toMatchSnapshot();
   });
 
   it("calls event handler", (): void => {
-    const link = shallow(<Link {...props} />);
+    const link = shallow(
+      <Router>
+        <Link {...props} />
+      </Router>
+    );
 
     link.find(".menu-nav-link").simulate("mouseenter");
 
