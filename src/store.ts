@@ -5,6 +5,7 @@ import menu from "modules/menu";
 import navigation from "modules/navigation";
 import testimonials from "modules/testimonials";
 import work from "modules/work";
+import cursor from "modules/cursor";
 
 const rootReducer = combineReducers({
   hero,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   menu,
   navigation,
   testimonials,
-  work
+  work,
+  cursor
 });
 
 const store = createStore(rootReducer);
