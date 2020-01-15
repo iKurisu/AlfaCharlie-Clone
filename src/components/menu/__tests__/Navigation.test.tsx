@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import renderer from "react-test-renderer";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import { Navigation } from "../Navigation";
 
 describe("menu navigation", (): void => {
@@ -19,7 +19,7 @@ describe("menu navigation", (): void => {
     const mockFn = jest.fn();
     const hoverElement = (id: number) => () => mockFn(id);
 
-    const component = shallow(
+    const component = mount(
       <Router>
         <Navigation
           isOpen={false}
