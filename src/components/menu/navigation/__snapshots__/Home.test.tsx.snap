@@ -3,6 +3,8 @@
 exports[`renders correctly 1`] = `
 <a
   className="menu-home-link"
+  href="/"
+  onClick={[Function]}
   style={
     Object {
       "opacity": 0,

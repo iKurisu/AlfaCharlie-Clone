@@ -28,14 +28,28 @@ const Work = ({ filter, toggleIntro }: Props): JSX.Element => {
       "Alfa Charlie | Work";
   }, []);
 
+  const mapProject = (project: ACProject, id: number): JSX.Element => {
+    return (
+      <Project projectTitle={project.title} {...project.article} key={id} />
+    );
+  };
+
+  const reduceProjects = (
+    filteredProjects: JSX.Element[],
+    project: ACProject,
+    id: number
+  ): JSX.Element[] => {
+    return project.types.includes(filter as "BRANDING" | "DIGITAL")
+      ? filteredProjects.concat(mapProject(project, id))
+      : filteredProjects;
+  };
+
   return (
     <React.Fragment>
       <div className="work">
-        {projects
-          .filter(({ types }) => filter === "ALL" || types.includes(filter))
-          .map(({ article }: ACProject, id: number) => (
-            <Project {...article} key={id} />
-          ))}
+        {filter === "ALL"
+          ? projects.map(mapProject)
+          : projects.reduce(reduceProjects, [])}
       </div>
       <FooterArt />
     </React.Fragment>

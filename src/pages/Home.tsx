@@ -38,7 +38,7 @@ const Home = ({ toggleIntro }: Props): JSX.Element => {
             "designs capture the essence of your business, so you can make " +
             "a more consistent and memorable impact, everywhere."
           }
-          link={true}
+          link="/agency"
         />
       </div>
       <div className="separator -big" />

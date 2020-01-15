@@ -13,6 +13,7 @@ export interface Author {
 interface Testimonial {
   paragraphs: string[];
   author: Author;
+  link: string;
 }
 
 const testimonials: Testimonial[] = [
@@ -28,7 +29,8 @@ const testimonials: Testimonial[] = [
     author: {
       name: "Edward Piegza",
       position: "Founder, Classic Journeys"
-    }
+    },
+    link: "https://www.classicjourneys.com/"
   },
   {
     paragraphs: [
@@ -42,7 +44,8 @@ const testimonials: Testimonial[] = [
     author: {
       name: "Teal Cooper",
       position: "Founder, Vendibean"
-    }
+    },
+    link: "https://vendibean.com/"
   },
   {
     paragraphs: [
@@ -55,7 +58,8 @@ const testimonials: Testimonial[] = [
     author: {
       name: "Kristina Doherty",
       position: "Founder, Kristina Kay Photography"
-    }
+    },
+    link: "https://www.kristinakayphotography.com/"
   },
   {
     paragraphs: [
@@ -68,7 +72,8 @@ const testimonials: Testimonial[] = [
     author: {
       name: "Charles Chamberlayne",
       position: "Principal, Chamberlaynepr"
-    }
+    },
+    link: "http://chamberlaynepr.com/"
   },
   {
     paragraphs: [
@@ -82,7 +87,8 @@ const testimonials: Testimonial[] = [
     author: {
       name: "Jono Green",
       position: "Founder, GRX Baseball"
-    }
+    },
+    link: "https://grxbaseball.com/"
   }
 ];
 
@@ -118,7 +124,7 @@ export const Slider = ({ activeSlide }: MappedState): JSX.Element => {
 
   return (
     <div className="testimonials-slider" style={{ height: `${height}px` }}>
-      {testimonials.map(({ paragraphs, author }, id) => (
+      {testimonials.map(({ paragraphs, author, link }, id) => (
         <div
           className={classList([
             "testimonials-slide",
@@ -133,7 +139,7 @@ export const Slider = ({ activeSlide }: MappedState): JSX.Element => {
             ))}
           </div>
           <div className="testimonial-author">
-            <Link content={author} />
+            <Link content={author} to={link} />
           </div>
         </div>
       ))}

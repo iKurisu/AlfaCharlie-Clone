@@ -10,7 +10,6 @@ interface Props {
 }
 
 const Link = ({ link, isOpen, swipeSlide }: Props): JSX.Element => (
-  // <a className="menu-nav-link" onMouseEnter={swipeSlide}>
   <RouterLink
     className="menu-nav-link"
     to={`/${link}`}
@@ -24,7 +23,6 @@ const Link = ({ link, isOpen, swipeSlide }: Props): JSX.Element => (
       )}
     </span>
   </RouterLink>
-  // </a>
 );
 
 export default Link;

@@ -1,12 +1,15 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import renderer from "react-test-renderer";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import { Navigation } from "../Navigation";
 
 describe("menu navigation", (): void => {
   it("renders correctly", (): void => {
     const component = renderer.create(
-      <Navigation isOpen={false} currentSlideID={0} swipeSlide={jest.fn()} />
+      <Router>
+        <Navigation isOpen={false} currentSlideID={0} swipeSlide={jest.fn()} />
+      </Router>
     );
 
     expect(component).toMatchSnapshot();
@@ -16,8 +19,14 @@ describe("menu navigation", (): void => {
     const mockFn = jest.fn();
     const hoverElement = (id: number) => () => mockFn(id);
 
-    const component = shallow(
-      <Navigation isOpen={false} currentSlideID={0} swipeSlide={hoverElement} />
+    const component = mount(
+      <Router>
+        <Navigation
+          isOpen={false}
+          currentSlideID={0}
+          swipeSlide={hoverElement}
+        />
+      </Router>
     );
 
     expect(mockFn.mock.calls.length).toBe(0);

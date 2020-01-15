@@ -9,7 +9,7 @@ interface Props {
   image: string;
   title: string;
   text: string;
-  link?: boolean;
+  link?: string;
   align?: "left" | "right";
 }
 
@@ -18,7 +18,7 @@ const Info = ({
   image,
   title,
   text,
-  link = false,
+  link,
   align = "right"
 }: Props): JSX.Element => {
   return (
@@ -42,7 +42,7 @@ const Info = ({
           <div>
             <List />
           </div>
-          <div>{link && <Link content="Learn more" />}</div>
+          <div>{link && <Link content="Learn more" to={link} />}</div>
         </div>
       </div>
     </section>
