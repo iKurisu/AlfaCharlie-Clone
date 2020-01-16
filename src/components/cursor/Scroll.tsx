@@ -4,14 +4,17 @@ import { AppState } from "store";
 import Outline from "./Outline";
 import Progress from "./Progress";
 import { SubscriberContext } from "../../App";
+import { Cursor } from "modules/cursor/types";
+import { classList } from "utils/class";
 
 interface MappedState {
   menuToggled: boolean;
+  cursor: Cursor;
 }
 
 type Props = MappedState;
 
-export const Scroll = ({ menuToggled }: Props): JSX.Element => {
+export const Scroll = ({ menuToggled, cursor }: Props): JSX.Element => {
   const progress = useRef(null);
   const subscribe = useContext(SubscriberContext);
 
@@ -22,14 +25,20 @@ export const Scroll = ({ menuToggled }: Props): JSX.Element => {
   }, []);
 
   return (
-    <div className="scroll-cursor" style={{ opacity: menuToggled ? 0 : 1 }}>
+    <div
+      className={classList([
+        "scroll-cursor",
+        { "-show": !menuToggled && cursor === Cursor.SCROLL }
+      ])}
+    >
       <Outline />
       <Progress circleRef={progress} />
     </div>
   );
 };
 
-const mapState = ({ menu }: AppState): MappedState => ({
+const mapState = ({ menu, cursor }: AppState): MappedState => ({
+  cursor,
   menuToggled: menu.toggled
 });
 

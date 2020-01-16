@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import { AppState } from "store";
 import Outline from "./Outline";
 import Progress from "./Progress";
+import { Cursor } from "modules/cursor/types";
+import { classList } from "utils/class";
 
 interface MappedState {
   menuToggled: boolean;
+  cursor: Cursor;
   hoveringElementID: number;
 }
 
@@ -13,15 +16,22 @@ type Props = MappedState;
 
 export const Menu = ({
   menuToggled,
-  hoveringElementID
+  hoveringElementID,
+  cursor
 }: Props): JSX.Element => (
-  <div className="menu-cursor" style={{ opacity: menuToggled ? 1 : 0 }}>
+  <div
+    className={classList([
+      "menu-cursor",
+      { "-show": menuToggled || cursor === Cursor.SLIDER }
+    ])}
+  >
     <Outline />
-    <Progress progress={hoveringElementID / 4} />
+    <Progress progress={hoveringElementID / 5} />
   </div>
 );
 
-const mapState = ({ menu }: AppState): MappedState => ({
+const mapState = ({ menu, cursor }: AppState): MappedState => ({
+  cursor,
   menuToggled: menu.toggled,
   hoveringElementID: menu.hoveringElementID
 });
