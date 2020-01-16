@@ -13,3 +13,11 @@
   position: absolute;
   width: 100%;
 }
+
+.cursor .-show {
+  opacity: 1;
+}
+
+.cursor > div:not(.-show) {
+  opacity: 0;
+}
