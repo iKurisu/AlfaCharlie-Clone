@@ -9,12 +9,12 @@ import { classList } from "utils/class";
 
 interface MappedState {
   menuToggled: boolean;
-  cursor: Cursor;
+  currentCursor: Cursor;
 }
 
 type Props = MappedState;
 
-export const Scroll = ({ menuToggled, cursor }: Props): JSX.Element => {
+export const Scroll = ({ menuToggled, currentCursor }: Props): JSX.Element => {
   const progress = useRef(null);
   const subscribe = useContext(SubscriberContext);
 
@@ -28,7 +28,7 @@ export const Scroll = ({ menuToggled, cursor }: Props): JSX.Element => {
     <div
       className={classList([
         "scroll-cursor",
-        { "-show": !menuToggled && cursor === Cursor.SCROLL }
+        { "-show": !menuToggled && currentCursor === Cursor.SCROLL }
       ])}
     >
       <Outline />
@@ -37,8 +37,11 @@ export const Scroll = ({ menuToggled, cursor }: Props): JSX.Element => {
   );
 };
 
-const mapState = ({ menu, cursor }: AppState): MappedState => ({
-  cursor,
+const mapState = ({
+  menu,
+  cursor: { currentCursor }
+}: AppState): MappedState => ({
+  currentCursor,
   menuToggled: menu.toggled
 });
 
