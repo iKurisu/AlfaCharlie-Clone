@@ -1,20 +1,45 @@
 import reducer from "../reducer";
-import { CursorActionTypes, CursorState, Cursor, Types } from "../types";
+import {
+  CursorActionTypes,
+  CursorState,
+  Cursor,
+  Types,
+  HoverableElement
+} from "../types";
 
 describe("intro reducer", (): void => {
-  it("returns initial state", (): void => {
-    const expectedState: CursorState = Cursor.SCROLL;
+  const initialState: CursorState = {
+    currentCursor: Cursor.SCROLL,
+    hovering: null
+  };
 
+  it("returns initial state", (): void => {
     // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
-    expect(reducer(undefined, {} as CursorActionTypes)).toEqual(expectedState);
+    expect(reducer(undefined, {} as CursorActionTypes)).toEqual(initialState);
   });
 
-  it("handles TOGGLE_INTRO", (): void => {
+  it("handles RESET_CURSOR", (): void => {
     const action: CursorActionTypes = {
-      type: Types.SWITCH_CURSOR
+      type: Types.RESET_CURSOR
     };
 
-    expect(reducer(undefined, action)).toEqual(Cursor.SLIDER);
-    expect(reducer(Cursor.SLIDER, action)).toEqual(Cursor.SCROLL);
+    expect(reducer(undefined, action)).toEqual(initialState);
+    expect(
+      reducer({ currentCursor: Cursor.SLIDER, hovering: null }, action)
+    ).toEqual(initialState);
+  });
+
+  it("handles HOVER_ELEMENT", (): void => {
+    const action: CursorActionTypes = {
+      type: Types.HOVER_ELEMENT,
+      payload: HoverableElement.HERO
+    };
+
+    const expectedState: CursorState = {
+      currentCursor: Cursor.SLIDER,
+      hovering: HoverableElement.HERO
+    };
+
+    expect(reducer(undefined, action)).toEqual(expectedState);
   });
 });

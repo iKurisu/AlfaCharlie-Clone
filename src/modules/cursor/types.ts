@@ -3,14 +3,29 @@ export enum Cursor {
   SLIDER = "SLIDER"
 }
 
+export enum HoverableElement {
+  MENU = "MENU",
+  HERO = "HERO",
+  TESTIMONIALS = "TESTIMONIALS"
+}
+
 export enum Types {
-  SWITCH_CURSOR = "cursor/SWITCH_CURSOR"
+  RESET_CURSOR = "cursor/RESET_CURSOR",
+  HOVER_ELEMENT = "cursor/HOVER_ELEMENT"
 }
 
-export type CursorState = Cursor;
-
-export interface SwitchCursor {
-  type: Types.SWITCH_CURSOR;
+export interface CursorState {
+  currentCursor: Cursor;
+  hovering: HoverableElement;
 }
 
-export type CursorActionTypes = SwitchCursor;
+export interface ResetCursor {
+  type: Types.RESET_CURSOR;
+}
+
+export interface HoverElement {
+  type: Types.HOVER_ELEMENT;
+  payload: HoverableElement;
+}
+
+export type CursorActionTypes = ResetCursor | HoverElement;
