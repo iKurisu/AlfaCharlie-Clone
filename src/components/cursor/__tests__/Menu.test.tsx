@@ -1,13 +1,41 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { mount } from "enzyme";
 import { Menu } from "../Menu";
+import { Cursor } from "modules/cursor/types";
+import { SubscriberContext } from "../../../App";
 
-describe("scroll cursor", (): void => {
-  it("renders correcty", (): void => {
-    const cursor = renderer.create(
-      <Menu menuToggled={false} hoveringElementID={2} />
+describe("menu cursor", (): void => {
+  it("has correct class", (): void => {
+    const cursor = mount(
+      <SubscriberContext.Provider value={jest.fn()}>
+        <Menu
+          menuToggled={false}
+          cursor={Cursor.SCROLL}
+          hoveringElementID={0}
+        />
+      </SubscriberContext.Provider>
     );
 
-    expect(cursor).toMatchSnapshot();
+    expect(cursor.find(".menu-cursor").hasClass("-show")).toBe(false);
+
+    cursor.setProps({
+      children: (
+        <Menu menuToggled={true} cursor={Cursor.SCROLL} hoveringElementID={0} />
+      )
+    });
+
+    expect(cursor.find(".menu-cursor").hasClass("-show")).toBe(true);
+
+    cursor.setProps({
+      children: (
+        <Menu
+          menuToggled={false}
+          cursor={Cursor.SLIDER}
+          hoveringElementID={0}
+        />
+      )
+    });
+
+    expect(cursor.find(".menu-cursor").hasClass("-show")).toBe(true);
   });
 });
