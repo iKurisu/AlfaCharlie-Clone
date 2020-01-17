@@ -21,3 +21,7 @@
 .cursor > div:not(.-show) {
   opacity: 0;
 }
+
+.cursor > div {
+  transition: opacity 0.5s ease;
+}
