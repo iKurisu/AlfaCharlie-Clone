@@ -12,6 +12,7 @@ import {
   slideToRight
 } from "utils/transitions";
 import "./Intro.scss";
+import Inverted from "./Inverted";
 
 const generateDrawLineProps = (delay: number = 0): TransitionProps => ({
   from: { strokeDashoffset: 140 },
@@ -301,19 +302,15 @@ const Intro = (): JSX.Element => {
         </div>
       </div>
       <div className="intro-inverted">
-        <div className="inverted-background" ref={invertedBackground} />
-        <div className="inverted-symbol" ref={invertedSymbolContainer}>
-          <div className="symbol-mask" ref={symbolMask}>
-            <div className="symbol-wrapper">
-              <Symbol
-                symbol={invertedSymbol}
-                topLine={invertedTopLine}
-                bottomLine={invertedBottomLine}
-                letters={invertedSymbolLetters}
-              />
-            </div>
-          </div>
-        </div>
+        <Inverted
+          invertedBackground={invertedBackground}
+          invertedSymbolContainer={invertedSymbolContainer}
+          symbolMask={symbolMask}
+          invertedSymbol={invertedSymbol}
+          invertedTopLine={invertedTopLine}
+          invertedBottomLine={invertedBottomLine}
+          invertedSymbolLetters={invertedSymbolLetters}
+        />
       </div>
       <div className="intro-title" ref={title}>
         <Title
