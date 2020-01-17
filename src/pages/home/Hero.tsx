@@ -3,7 +3,6 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import { heroActions } from "modules/hero";
-import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
 import SliderNav from "../shared/SliderNav";
 import Arrows from "../shared/Arrows";

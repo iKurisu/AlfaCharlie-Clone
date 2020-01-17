@@ -11,6 +11,8 @@ import useDrag, { Handler } from "hooks/useDrag";
 import { getDistance, getDuration } from "utils/slider";
 import { setTransform, setTransition } from "utils/refs";
 import "./Slider.scss";
+import { cursorActions } from "modules/cursor";
+import { HoverableElement } from "modules/cursor/types";
 
 interface MappedState {
   isOpen: boolean;
@@ -20,6 +22,8 @@ interface MappedState {
 
 interface MappedActions {
   swipeSlide: (elementID: number, duration: number) => MouseEventHandler;
+  mouseEnter: MouseEventHandler;
+  mouseLeave: MouseEventHandler;
 }
 
 interface SliderOptions {
@@ -55,7 +59,9 @@ export const Slider = ({
   isOpen,
   currentSlideID,
   previousSlideID,
-  swipeSlide
+  swipeSlide,
+  mouseEnter,
+  mouseLeave
 }: Props): JSX.Element => {
   const wrapper = useRef(null);
   const images = imageUrls.map(() => useRef(null));
@@ -164,7 +170,12 @@ export const Slider = ({
   return (
     <React.Fragment>
       <Mask isOpen={isOpen} options={{ fadeDirection, delay }} />
-      <div className="slider-swiper" {...dragProps}>
+      <div
+        className="slider-swiper"
+        {...dragProps}
+        onMouseEnter={mouseEnter}
+        onMouseLeave={mouseLeave}
+      >
         <div
           className="slider-wrapper"
           ref={wrapper}
@@ -206,6 +217,19 @@ const swipeSlide = <T extends AnyAction>(
   setTimeout(() => dispatch(actions.updatePreviousSlide()), duration);
 };
 
+interface MouseHandlers {
+  mouseEnter: MouseEventHandler;
+  mouseLeave: MouseEventHandler;
+}
+
+const composeMouseHandlers = (
+  dispatch: Dispatch,
+  element: HoverableElement
+): MouseHandlers => ({
+  mouseEnter: () => dispatch(cursorActions.hoverElement(element)),
+  mouseLeave: () => dispatch(cursorActions.resetCursor())
+});
+
 const mapMenuState = ({ menu }: AppState): MappedState => ({
   isOpen: menu.toggled,
   currentSlideID: menu.hoveringElementID,
@@ -213,7 +237,8 @@ const mapMenuState = ({ menu }: AppState): MappedState => ({
 });
 
 const mapMenuDispatch = (dispatch: Dispatch): MappedActions => ({
-  swipeSlide: swipeSlide(dispatch, menuActions)
+  swipeSlide: swipeSlide(dispatch, menuActions),
+  ...composeMouseHandlers(dispatch, HoverableElement.MENU)
 });
 
 export const MenuSlider = connect(mapMenuState, mapMenuDispatch)(Slider);
@@ -225,7 +250,8 @@ const mapHeroState = ({ hero, intro }: AppState): MappedState => ({
 });
 
 const mapHeroDispatch = (dispatch: Dispatch): MappedActions => ({
-  swipeSlide: swipeSlide(dispatch, heroActions)
+  swipeSlide: swipeSlide(dispatch, heroActions),
+  ...composeMouseHandlers(dispatch, HoverableElement.HERO)
 });
 
 export const HeroSlider = connect(mapHeroState, mapHeroDispatch)(Slider);
@@ -240,7 +266,8 @@ const mapTestimonialsState = ({
 });
 
 const mapTestimonialsDispatch = (dispatch: Dispatch): MappedActions => ({
-  swipeSlide: swipeSlide(dispatch, testimonialsActions)
+  swipeSlide: swipeSlide(dispatch, testimonialsActions),
+  ...composeMouseHandlers(dispatch, HoverableElement.TESTIMONIALS)
 });
 
 export const TestimonialsSlider = connect(

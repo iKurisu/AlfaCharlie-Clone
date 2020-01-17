@@ -7,5 +7,9 @@ describe("cursor progress", (): void => {
     const cursor = shallow(<Progress progress={0.75} />);
 
     expect(cursor.find("circle").props().style.strokeDashoffset).toBe(50);
+
+    cursor.setProps({ progress: 0.5 });
+
+    expect(cursor.find("circle").props().style.strokeDashoffset).toBe(100);
   });
 });

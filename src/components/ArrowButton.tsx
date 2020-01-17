@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import Arrow from "./Arrow";
 import { SubscriberContext } from "../App";
 import { classList } from "utils/class";
-import { isMobile } from "utils/responsive";
+import { isLandscape, isMobile } from "utils/responsive";
 import "./ArrowButton.scss";
 
 const ArrowButton = (): JSX.Element => {
@@ -11,8 +11,10 @@ const ArrowButton = (): JSX.Element => {
 
   useEffect(() => {
     if (isMobile()) {
+      const percentage = isLandscape() ? 0.98 : 0.95;
+
       subscribe((scroll: number, max: number): void => {
-        toggle(scroll < max * 0.95);
+        toggle(scroll < max * percentage);
       });
     }
   }, []);

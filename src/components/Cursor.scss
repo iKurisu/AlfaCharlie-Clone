@@ -4,11 +4,24 @@
   position: fixed;
   top: -24px;
   left: -24px;
-  z-index: 100;
+  z-index: 120;
   pointer-events: none;
   transition: 150ms transform ease;
 }
 
 .scroll-cursor {
   position: absolute;
+  width: 100%;
+}
+
+.cursor .-show {
+  opacity: 1;
+}
+
+.cursor > div:not(.-show) {
+  opacity: 0;
+}
+
+.cursor > div {
+  transition: opacity 0.5s ease;
 }
