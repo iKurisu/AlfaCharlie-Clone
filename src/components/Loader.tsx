@@ -7,12 +7,17 @@ import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import { slideFromLeft, fadeIn, slideToRight } from "utils/transitions";
 import { easeInOut, ease, easeOut2 } from "utils/timings";
 import "./Loader.scss";
+import { loaderActions } from "modules/loader";
 
 interface MappedState {
   toggled: boolean;
 }
 
-type Props = MappedState;
+interface MappedActions {
+  toggle: () => void;
+}
+
+type Props = MappedState & MappedActions;
 
 const generateDrawLineProps = (delay: number = 0): TransitionProps => ({
   from: { strokeDashoffset: 140 },
@@ -27,7 +32,7 @@ const generateDrawLineProps = (delay: number = 0): TransitionProps => ({
 const drawTopLineProps = generateDrawLineProps();
 const drawBottomLineProps = generateDrawLineProps(700);
 
-const Loader = ({ toggled }: Props): JSX.Element => {
+const Loader = ({ toggled, toggle }: Props): JSX.Element => {
   const invertedBackground = useRef(null);
   const invertedSymbolContainer = useRef(null);
   const symbolMask = useRef(null);
@@ -111,6 +116,7 @@ const Loader = ({ toggled }: Props): JSX.Element => {
 
     secondRotation();
     slideOutBackground();
+    toggle();
   };
 
   useDidUpdateEffect((): void => {
@@ -136,4 +142,8 @@ const mapState = ({ loader }: AppState): MappedState => ({
   toggled: loader.toggled
 });
 
-export default connect(mapState)(Loader);
+const mapDispatch: MappedActions = {
+  toggle: loaderActions.toggleLoader
+};
+
+export default connect(mapState, mapDispatch)(Loader);
