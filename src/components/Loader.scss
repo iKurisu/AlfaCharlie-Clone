@@ -8,6 +8,10 @@
   pointer-events: none;
 }
 
+.loader .inverted-background {
+  pointer-events: all;
+}
+
 .loader .inverted-symbol {
   opacity: 0;
 }
