@@ -7,7 +7,6 @@ import { menuActions } from "modules/menu";
 interface MappedActions {
   toggleLoader: () => void;
   toggleMenu: () => void;
-  endTransition: () => void;
 }
 
 interface OwnProps extends React.HTMLAttributes<HTMLElement> {
@@ -20,7 +19,6 @@ const LoaderLink = ({
   to,
   toggleLoader,
   toggleMenu,
-  endTransition,
   ...props
 }: Props): JSX.Element => {
   const history = useHistory();
@@ -32,7 +30,6 @@ const LoaderLink = ({
 
     setTimeout(() => {
       toggleMenu();
-      endTransition();
     }, 1000);
 
     setTimeout(() => {
@@ -49,8 +46,7 @@ const LoaderLink = ({
 
 const mapDispatch: MappedActions = {
   toggleLoader: loaderActions.toggleLoader,
-  toggleMenu: menuActions.toggleMenu,
-  endTransition: menuActions.endTransition
+  toggleMenu: menuActions.toggleMenu
 };
 
 export default connect(null, mapDispatch)(LoaderLink);
