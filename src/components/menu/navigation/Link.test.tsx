@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import renderer from "react-test-renderer";
+import { Provider } from "react-redux";
+import store from "store";
 import { mount } from "enzyme";
 import Link from "./Link";
 
@@ -14,21 +15,13 @@ describe("navigation link", (): void => {
     swipeSlide
   };
 
-  it("renders correctly", (): void => {
-    const component = renderer.create(
-      <Router>
-        <Link {...props} />
-      </Router>
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
   it("calls event handler", (): void => {
     const link = mount(
-      <Router>
-        <Link {...props} />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Link {...props} />
+        </Router>
+      </Provider>
     );
 
     link

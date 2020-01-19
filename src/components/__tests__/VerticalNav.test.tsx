@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 import { mount, ReactWrapper } from "enzyme";
+import store from "store";
 import { VerticalNav } from "../VerticalNav";
 
 describe("VerticalNav", () => {
@@ -8,9 +10,11 @@ describe("VerticalNav", () => {
 
   const mountAt = (route: string): ReactWrapper =>
     mount(
-      <MemoryRouter initialEntries={[route]}>
-        <VerticalNav setFilter={setFilter} />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={[route]}>
+          <VerticalNav setFilter={setFilter} />
+        </MemoryRouter>
+      </Provider>
     );
 
   const expectLinksToBe = (wrapper: ReactWrapper, links: string[]): void => {
@@ -20,9 +24,11 @@ describe("VerticalNav", () => {
 
   it("renders a list of links when it's under menu", () => {
     const wrapper = mount(
-      <BrowserRouter>
-        <VerticalNav menu setFilter={setFilter} />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <VerticalNav menu setFilter={setFilter} />
+        </BrowserRouter>
+      </Provider>
     );
 
     expectLinksToBe(wrapper, ["Instagram", "Privacy"]);

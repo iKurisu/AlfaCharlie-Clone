@@ -8,20 +8,20 @@ describe("scroll cursor", (): void => {
   it("has correct class", (): void => {
     const cursor = mount(
       <SubscriberContext.Provider value={jest.fn()}>
-        <Scroll menuToggled={false} cursor={Cursor.SCROLL} />
+        <Scroll menuToggled={false} currentCursor={Cursor.SCROLL} />
       </SubscriberContext.Provider>
     );
 
     expect(cursor.find(".scroll-cursor").hasClass("-show")).toBe(true);
 
     cursor.setProps({
-      children: <Scroll menuToggled={true} cursor={Cursor.SCROLL} />
+      children: <Scroll menuToggled={true} currentCursor={Cursor.SCROLL} />
     });
 
     expect(cursor.find(".scroll-cursor").hasClass("-show")).toBe(false);
 
     cursor.setProps({
-      children: <Scroll menuToggled={false} cursor={Cursor.SLIDER} />
+      children: <Scroll menuToggled={false} currentCursor={Cursor.SLIDER} />
     });
 
     expect(cursor.find(".scroll-cursor").hasClass("-show")).toBe(false);

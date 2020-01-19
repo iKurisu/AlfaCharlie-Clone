@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Link renders correct span when a string is passed 1`] = `
-<Link
+<Connect(Component)
   className="main-link"
   to="/"
 >
@@ -34,7 +34,7 @@ exports[`Link renders correct span when a string is passed 1`] = `
       className="link-text"
     />
   </span>
-</Link>
+</Connect(Component)>
 `;
 
 exports[`Link renders correct spans when an author is passed 1`] = `
