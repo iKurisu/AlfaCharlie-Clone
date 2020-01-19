@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import LoaderLink from "components/LoaderLink";
 import FooterText from "./FooterText";
 import "./Footer.scss";
 
@@ -8,7 +8,7 @@ const Footer = (): JSX.Element => (
     <div className="footer-content">
       <div className="footer-contact">
         <div className="footer-contact-inner">
-          <Link to="/contact" />
+          <LoaderLink to="/contact" />
           <h3>Let’s work together.</h3>
           <span>GET IN TOUCH</span>
         </div>

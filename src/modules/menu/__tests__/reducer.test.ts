@@ -7,8 +7,7 @@ describe("menu reducer", (): void => {
     expect(reducer(undefined, {} as MenuActionTypes)).toEqual({
       toggled: false,
       hoveringElementID: 0,
-      previousElementID: 0,
-      onTransition: false
+      previousElementID: 0
     });
   });
 
@@ -20,8 +19,7 @@ describe("menu reducer", (): void => {
     expect(reducer(undefined, action)).toEqual({
       toggled: true,
       hoveringElementID: 0,
-      previousElementID: 0,
-      onTransition: true
+      previousElementID: 0
     });
   });
 
@@ -34,8 +32,7 @@ describe("menu reducer", (): void => {
     const newState = {
       toggled: false,
       hoveringElementID: 1,
-      previousElementID: 0,
-      onTransition: false
+      previousElementID: 0
     };
 
     expect(reducer(undefined, action)).toEqual(newState);
@@ -48,8 +45,7 @@ describe("menu reducer", (): void => {
     expect(reducer(newState, secondAction)).toEqual({
       toggled: false,
       hoveringElementID: 2,
-      previousElementID: 1,
-      onTransition: false
+      previousElementID: 1
     });
   });
 
@@ -60,8 +56,7 @@ describe("menu reducer", (): void => {
 
     const commonState = {
       toggled: false,
-      hoveringElementID: 2,
-      onTransition: false
+      hoveringElementID: 2
     };
 
     const initialState = {
@@ -72,30 +67,6 @@ describe("menu reducer", (): void => {
     const newState = {
       ...commonState,
       previousElementID: 2
-    };
-
-    expect(reducer(initialState, action)).toEqual(newState);
-  });
-
-  it("handles END_TRANSITION", (): void => {
-    const action: MenuActionTypes = {
-      type: Types.END_TRANSITION
-    };
-
-    const commonState = {
-      toggled: true,
-      hoveringElementID: 0,
-      previousElementID: 0
-    };
-
-    const initialState = {
-      ...commonState,
-      onTransition: true
-    };
-
-    const newState = {
-      ...commonState,
-      onTransition: false
     };
 
     expect(reducer(initialState, action)).toEqual(newState);

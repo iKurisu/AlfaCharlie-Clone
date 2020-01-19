@@ -1,32 +1,25 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import renderer from "react-test-renderer";
+import store from "store";
 import { mount } from "enzyme";
 import { Navigation } from "../Navigation";
+import { Provider } from "react-redux";
 
 describe("menu navigation", (): void => {
-  it("renders correctly", (): void => {
-    const component = renderer.create(
-      <Router>
-        <Navigation isOpen={false} currentSlideID={0} swipeSlide={jest.fn()} />
-      </Router>
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  it("call event handler", (): void => {
+  it("calls event handler", (): void => {
     const mockFn = jest.fn();
     const hoverElement = (id: number) => () => mockFn(id);
 
     const component = mount(
-      <Router>
-        <Navigation
-          isOpen={false}
-          currentSlideID={0}
-          swipeSlide={hoverElement}
-        />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Navigation
+            isOpen={false}
+            currentSlideID={0}
+            swipeSlide={hoverElement}
+          />
+        </Router>
+      </Provider>
     );
 
     expect(mockFn.mock.calls.length).toBe(0);

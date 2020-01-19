@@ -2,17 +2,27 @@ import React, { useRef } from "react";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import Inverted from "./Inverted";
+import { loaderActions } from "modules/loader";
 import useTransition, { TransitionProps } from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
-import { slideFromLeft, fadeIn, slideToRight } from "utils/transitions";
-import { easeInOut, ease, easeOut2 } from "utils/timings";
+import {
+  slideFromLeft,
+  fadeIn,
+  slideToRight,
+  fadeOut
+} from "utils/transitions";
+import { easeInOut, ease, easeOut2, easeOut } from "utils/timings";
 import "./Loader.scss";
 
 interface MappedState {
   toggled: boolean;
 }
 
-type Props = MappedState;
+interface MappedActions {
+  toggle: () => void;
+}
+
+type Props = MappedState & MappedActions;
 
 const generateDrawLineProps = (delay: number = 0): TransitionProps => ({
   from: { strokeDashoffset: 140 },
@@ -27,7 +37,7 @@ const generateDrawLineProps = (delay: number = 0): TransitionProps => ({
 const drawTopLineProps = generateDrawLineProps();
 const drawBottomLineProps = generateDrawLineProps(700);
 
-const Loader = ({ toggled }: Props): JSX.Element => {
+const Loader = ({ toggled, toggle }: Props): JSX.Element => {
   const invertedBackground = useRef(null);
   const invertedSymbolContainer = useRef(null);
   const symbolMask = useRef(null);
@@ -58,6 +68,15 @@ const Loader = ({ toggled }: Props): JSX.Element => {
     }
   });
 
+  const fadeInContainer = useTransition(invertedSymbolContainer, {
+    ...fadeIn,
+    config: {
+      duration: 200,
+      delay: 400,
+      timing: ease
+    }
+  });
+
   const firstRotation = useTransition(invertedSymbol, {
     from: { transform: "rotate(30deg)", opacity: 0.6 },
     to: { transform: "rotate(0)", opacity: 0.8 },
@@ -78,19 +97,39 @@ const Loader = ({ toggled }: Props): JSX.Element => {
   const drawBottomLine = useTransition(invertedBottomLine, drawBottomLineProps);
   const drawTopLine = useTransition(invertedTopLine, drawTopLineProps);
 
-  const lettersAnimations = invertedSymbolLetters.map(letter =>
+  const fadeInLettersAnimations = invertedSymbolLetters.map(letter =>
     useTransition(letter, {
       ...fadeIn,
       config: {
         duration: 2000,
-        delay: 0,
-        timing: ease
+        timing: easeOut
       }
     })
   );
 
+  const resetLine = {
+    from: { strokeDashoffset: 0 },
+    to: { strokeDashoffset: 141 },
+    config: { duration: 0 }
+  };
+
+  const resetTopLine = useTransition(invertedTopLine, resetLine);
+  const resetBottomLine = useTransition(invertedBottomLine, resetLine);
+
+  const resetLettersAnimations = invertedSymbolLetters.map(letter =>
+    useTransition(letter, {
+      ...fadeOut,
+      config: { duration: 0 }
+    })
+  );
+
+  const resetContainer = useTransition(invertedSymbolContainer, {
+    ...fadeOut,
+    config: { duration: 0 }
+  });
+
   const fadeInLetters = (): void => {
-    lettersAnimations.forEach(animation => animation());
+    fadeInLettersAnimations.forEach(animation => animation());
   };
 
   const drawLines = (): void => {
@@ -103,14 +142,30 @@ const Loader = ({ toggled }: Props): JSX.Element => {
     fadeInLetters();
   };
 
+  const resetLines = (): void => {
+    resetTopLine();
+    resetBottomLine();
+  };
+
+  const resetLetters = (): void => {
+    resetLettersAnimations.forEach(animation => animation());
+  };
+
   const performTransition = async (): Promise<void> => {
     slideInBackground();
+    fadeInContainer();
     drawSymbol();
 
     await firstRotation();
 
     secondRotation();
-    slideOutBackground();
+    toggle();
+
+    await slideOutBackground();
+
+    resetLines();
+    resetLetters();
+    resetContainer();
   };
 
   useDidUpdateEffect((): void => {
@@ -136,4 +191,8 @@ const mapState = ({ loader }: AppState): MappedState => ({
   toggled: loader.toggled
 });
 
-export default connect(mapState)(Loader);
+const mapDispatch: MappedActions = {
+  toggle: loaderActions.toggleLoader
+};
+
+export default connect(mapState, mapDispatch)(Loader);

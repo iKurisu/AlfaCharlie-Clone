@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import LoaderLink from "components/LoaderLink";
 import Character from "./link/Character";
 import "./Link.scss";
 
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Link = ({ link, isOpen, swipeSlide }: Props): JSX.Element => (
-  <RouterLink
+  <LoaderLink
     className="menu-nav-link"
     to={`/${link}`}
     onMouseEnter={swipeSlide}
@@ -22,7 +22,7 @@ const Link = ({ link, isOpen, swipeSlide }: Props): JSX.Element => (
         )
       )}
     </span>
-  </RouterLink>
+  </LoaderLink>
 );
 
 export default Link;

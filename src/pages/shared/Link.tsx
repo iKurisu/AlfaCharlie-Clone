@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import LoaderLink from "components/LoaderLink";
 import { Author } from "./testimonials/Slider";
 import "./Link.scss";
 
@@ -40,9 +40,9 @@ const Link = ({ content, to }: Props): JSX.Element => {
 
   const renderWithWrapper = (): JSX.Element =>
     to[0] === "/" ? (
-      <RouterLink className="main-link" to={to}>
+      <LoaderLink className="main-link" to={to}>
         {renderContent()}
-      </RouterLink>
+      </LoaderLink>
     ) : (
       <a
         className="main-link"
