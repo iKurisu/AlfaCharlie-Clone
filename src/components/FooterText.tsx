@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import LoaderLink from "components/LoaderLink";
 import "./FooterText.scss";
 
 const FooterText = (): JSX.Element => (
@@ -7,7 +7,7 @@ const FooterText = (): JSX.Element => (
     <span className="footer-left">SAN DIEGO, CA</span>
     <span className="footer-center">
       <span>© COPYRIGHT ALFA CHARLIE LLC</span>
-      <Link to="/privacy-policy">PRIVACY POLICY</Link>
+      <LoaderLink to="/privacy-policy">PRIVACY POLICY</LoaderLink>
     </span>
     <span className="footer-right">
       <a href="mailto:hello@alfacharlie.co">HELLO@ALFACHARLIE.CO</a>

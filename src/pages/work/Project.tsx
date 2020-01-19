@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import LoaderLink from "components/LoaderLink";
 
 interface Props {
   projectTitle: string;
@@ -13,7 +13,7 @@ const Project = ({ projectTitle, title, img }: Props): JSX.Element => {
 
   return (
     <article className="project">
-      <Link to={url} />
+      <LoaderLink to={url} />
       <div className="project-image-wrapper">
         <div className="project-image-crop">
           <div className="project-crop" />
