@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React, { forwardRef, RefObject, MouseEvent } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { loaderActions } from "modules/loader";
@@ -20,13 +20,10 @@ interface OwnProps extends React.HTMLAttributes<HTMLElement> {
 
 type Props = MappedState & MappedActions & OwnProps;
 
-const LoaderLink = ({
-  to,
-  menuToggled,
-  toggleLoader,
-  toggleMenu,
-  ...props
-}: Props): JSX.Element => {
+const LoaderLink = (
+  { to, menuToggled, toggleLoader, toggleMenu, ...props }: Props,
+  ref?: RefObject<Link<{}>>
+): JSX.Element => {
   const history = useHistory();
 
   const click = (e: MouseEvent): void => {
@@ -46,7 +43,7 @@ const LoaderLink = ({
   };
 
   return (
-    <Link {...props} to={to} onClick={click}>
+    <Link {...props} to={to} ref={ref} onClick={click}>
       {props.children}
     </Link>
   );
@@ -61,4 +58,6 @@ const mapDispatch: MappedActions = {
   toggleMenu: menuActions.toggleMenu
 };
 
-export default connect(mapState, mapDispatch)(LoaderLink);
+export default connect(mapState, mapDispatch, null, { forwardRef: true })(
+  forwardRef(LoaderLink)
+);
