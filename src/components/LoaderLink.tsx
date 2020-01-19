@@ -3,6 +3,11 @@ import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { loaderActions } from "modules/loader";
 import { menuActions } from "modules/menu";
+import { AppState } from "store";
+
+interface MappedState {
+  menuToggled: boolean;
+}
 
 interface MappedActions {
   toggleLoader: () => void;
@@ -13,10 +18,11 @@ interface OwnProps extends React.HTMLAttributes<HTMLElement> {
   to: string;
 }
 
-type Props = MappedActions & OwnProps;
+type Props = MappedState & MappedActions & OwnProps;
 
 const LoaderLink = ({
   to,
+  menuToggled,
   toggleLoader,
   toggleMenu,
   ...props
@@ -28,9 +34,11 @@ const LoaderLink = ({
 
     toggleLoader();
 
-    setTimeout(() => {
-      toggleMenu();
-    }, 1000);
+    if (menuToggled) {
+      setTimeout(() => {
+        toggleMenu();
+      }, 1000);
+    }
 
     setTimeout(() => {
       history.push(to);
@@ -44,9 +52,13 @@ const LoaderLink = ({
   );
 };
 
+const mapState = ({ menu }: AppState): MappedState => ({
+  menuToggled: menu.toggled
+});
+
 const mapDispatch: MappedActions = {
   toggleLoader: loaderActions.toggleLoader,
   toggleMenu: menuActions.toggleMenu
 };
 
-export default connect(null, mapDispatch)(LoaderLink);
+export default connect(mapState, mapDispatch)(LoaderLink);
