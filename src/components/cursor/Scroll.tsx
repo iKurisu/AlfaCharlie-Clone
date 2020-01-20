@@ -16,12 +16,16 @@ type Props = MappedState;
 
 export const Scroll = ({ menuToggled, currentCursor }: Props): JSX.Element => {
   const progress = useRef(null);
-  const subscribe = useContext(SubscriberContext);
+  const [subscribe, unsubscribe] = useContext(SubscriberContext);
 
-  useEffect((): void => {
-    subscribe((scroll: number, max: number) => {
-      progress.current.style.strokeDashoffset = (scroll * -200) / max + 200;
-    });
+  const fillProgress = (scroll: number, max: number): void => {
+    progress.current.style.strokeDashoffset = (scroll * -200) / max + 200;
+  };
+
+  useEffect((): (() => void) => {
+    subscribe(fillProgress);
+
+    return () => unsubscribe(fillProgress);
   }, []);
 
   return (

@@ -29,7 +29,7 @@ const App = (): JSX.Element => {
   const { innerWidth, innerHeight, location } = window;
   const landscape = innerWidth > innerHeight;
 
-  const [scroll, subscribe] = useCustomScroll(scrollContent, {
+  const [scroll, subscribe, unsubscribe] = useCustomScroll(scrollContent, {
     distance: 100,
     duration: 2000,
     curve: [0, 0, 0.2, 1],
@@ -44,7 +44,7 @@ const App = (): JSX.Element => {
   });
 
   return (
-    <SubscriberContext.Provider value={subscribe}>
+    <SubscriberContext.Provider value={[subscribe, unsubscribe]}>
       <main>
         <VerticalNav show={true} />
         <div className="scroll-content-wrapper" {...scroll}>

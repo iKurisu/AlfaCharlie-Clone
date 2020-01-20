@@ -3,17 +3,19 @@ import LoaderLink from "components/LoaderLink";
 import InnerLink, { TransitionOptions } from "./InnerLink";
 
 interface Props {
+  to: string;
+  link: string;
   show: boolean;
-  options: TransitionOptions;
+  options?: TransitionOptions;
 }
 
-const PolicyLink = (props: Props): JSX.Element => (
+const RoutedLink = ({ to, link, ...props }: Props): JSX.Element => (
   <React.Fragment>
     <span className="link-wrapper">
-      <LoaderLink to="/privacy-policy" />
-      <InnerLink {...props} text="Privacy" />
+      <LoaderLink to={to} />
+      <InnerLink {...props} text={link} />
     </span>
   </React.Fragment>
 );
 
-export default PolicyLink;
+export default RoutedLink;

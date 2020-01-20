@@ -8,18 +8,24 @@ describe("useCustomScroll", (): void => {
     const element = useRef(null);
     const listener = useRef(null);
 
-    const [scroll, subscribe] = useCustomScroll(element, {
+    const [scroll, subscribe, unsubscribe] = useCustomScroll(element, {
       distance: 100,
       duration: 0,
       curve: [0, 0, 0.1, 1]
     });
 
-    subscribe(scroll => {
+    const scrollContent = (scroll: number): void => {
       listener.current.style.transform = `translateY(${100 + scroll}px)`;
-    });
+    };
+
+    subscribe(scrollContent);
+
+    const unsubscribeListener = (): void => {
+      unsubscribe(scrollContent);
+    };
 
     return (
-      <div className="scroll" {...scroll}>
+      <div className="scroll" {...scroll} onClick={unsubscribeListener}>
         <div
           className="scroll-content"
           ref={element}
@@ -57,19 +63,26 @@ describe("useCustomScroll", (): void => {
   });
 
   it("updates styles when the user touches the screen", (): void => {
-    wrapper
-      .find(".scroll")
-      .simulate("touchStart", { touches: [{ clientY: 200 }] });
-    wrapper
-      .find(".scroll")
-      .simulate("touchMove", { touches: [{ clientY: 190 }] });
+    const scroll = wrapper.find(".scroll");
+
+    scroll.simulate("touchStart", { touches: [{ clientY: 200 }] });
+    scroll.simulate("touchMove", { touches: [{ clientY: 190 }] });
 
     expectContentTransformToBe("translateY(-10px)");
     expectListenerTransformToBe("translateY(90px)");
 
-    wrapper.find(".scroll").simulate("touchEnd");
+    scroll.simulate("touchEnd");
 
     expectContentTransformToBe("translateY(-610px)");
     expectListenerTransformToBe("translateY(-510px)");
+  });
+
+  it("unsubscribes listener", (): void => {
+    const scroll = wrapper.find(".scroll");
+
+    scroll.simulate("click");
+    scroll.simulate("wheel", { deltaY: 100 });
+
+    expectListenerTransformToBe("");
   });
 });
