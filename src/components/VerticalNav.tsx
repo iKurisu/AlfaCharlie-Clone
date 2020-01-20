@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Switch, Route } from "react-router-dom";
-import PolicyLink from "./vertical_nav/PolicyLink";
+import RoutedLink from "./vertical_nav/RoutedLink";
 import SocialLink from "./vertical_nav/SocialLink";
 import ClickLink from "./vertical_nav/ClickLink";
 import { workActions } from "modules/work";
@@ -48,7 +48,12 @@ export const VerticalNav = ({
         <SocialLink show={show} options={{ order: 0, delay }} />
       </li>
       <li key={1}>
-        <PolicyLink show={show} options={{ order: 1, delay }} />
+        <RoutedLink
+          to="/privacy-policy"
+          link="Privacy"
+          show={show}
+          options={{ order: 1, delay }}
+        />
       </li>
     </React.Fragment>
   );
@@ -150,6 +155,14 @@ export const VerticalNav = ({
     </React.Fragment>
   );
 
+  const renderProjectLinks = (): JSX.Element => (
+    <React.Fragment>
+      <li key={0}>
+        <RoutedLink to="/work" link="View all projects" show={show} />
+      </li>
+    </React.Fragment>
+  );
+
   return (
     <nav className="vertical-nav">
       <ul className="vertical-nav-links">
@@ -166,6 +179,7 @@ export const VerticalNav = ({
             <Route exact path="/work">
               {renderWorkLinks()}
             </Route>
+            <Route path="/projects">{renderProjectLinks()}</Route>
           </Switch>
         )}
       </ul>
