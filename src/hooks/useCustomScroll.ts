@@ -23,6 +23,7 @@ type EventHandlers = {
 
 type Listener = (scroll: number, max: number) => void;
 type Subscriber = (listener: Listener) => void;
+type Unsubscriber = (listener: Listener) => void;
 
 /** Makes an element scrollable. */
 const useCustomScroll = (
@@ -33,7 +34,7 @@ const useCustomScroll = (
     curve = [0, 0, 1, 1],
     limitMod = { top: 0, bottom: 0 }
   }: Config
-): [EventHandlers, Subscriber] => {
+): [EventHandlers, Subscriber, Unsubscriber] => {
   const [subscribeAnimation, unsuscribeAnimation] = useAnimationFrame();
   const frame = useRef(0);
   const prevTouches = useRef([0, 0]);
@@ -78,7 +79,15 @@ const useCustomScroll = (
   const subscribeListeners = (...fns: Listener[]): void => {
     const { current: currentListeners } = listeners;
 
-    listeners.current = [...currentListeners, ...fns];
+    listeners.current = currentListeners.concat(fns);
+  };
+
+  const unsubscribeListeners = (...fns: Listener[]): void => {
+    const { current: currentListeners } = listeners;
+
+    listeners.current = currentListeners.filter(
+      listener => !fns.includes(listener)
+    );
   };
 
   const easing = BezierEasing(...curve);
@@ -178,7 +187,8 @@ const useCustomScroll = (
       onTouchMove: touchMove,
       onTouchEnd: touchEnd
     },
-    subscribeListeners
+    subscribeListeners,
+    unsubscribeListeners
   ];
 };
 

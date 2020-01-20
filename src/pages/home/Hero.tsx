@@ -1,7 +1,14 @@
-import React, { useState, useEffect, useRef, MouseEventHandler } from "react";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useRef,
+  MouseEventHandler
+} from "react";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
+import { SubscriberContext } from "../../App";
 import { heroActions } from "modules/hero";
 import { HeroSlider } from "components/Slider";
 import SliderNav from "../shared/SliderNav";
@@ -47,6 +54,9 @@ export const Hero = ({
     );
   }, [currentSlideID]);
 
+  const symbol = useRef(null);
+  const [subscribe, unsubscribe] = useContext(SubscriberContext);
+
   const title = useRef(null);
   const text = useRef(null);
   const link = useRef(null);
@@ -75,8 +85,15 @@ export const Hero = ({
     fadeInLink();
   };
 
-  useEffect((): void => {
+  const rotateWithScroll = (scroll: number): void => {
+    symbol.current.style.transform = `rotate(${scroll * 0.125}deg)`;
+  };
+
+  useEffect((): (() => void) => {
     fadeInContent();
+    subscribe(rotateWithScroll);
+
+    return () => unsubscribe(rotateWithScroll);
   }, []);
 
   const wrapperWidth = useMediaQuery([
@@ -156,7 +173,7 @@ export const Hero = ({
             })}ms`
           }}
         >
-          <Symbol />
+          <Symbol symbol={symbol} />
         </div>
       </div>
     </section>
