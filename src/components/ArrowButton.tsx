@@ -7,16 +7,18 @@ import "./ArrowButton.scss";
 
 const ArrowButton = (): JSX.Element => {
   const [isVisible, toggle] = useState(false);
-  const subscribe = useContext(SubscriberContext);
+  const [subscribe, unsubscribe] = useContext(SubscriberContext);
+
+  const percentage = isLandscape() ? 0.98 : 0.95;
+
+  const toggleArrow = (scroll: number, max: number): void => {
+    toggle(scroll < max * percentage);
+  };
 
   useEffect(() => {
-    if (isMobile()) {
-      const percentage = isLandscape() ? 0.98 : 0.95;
+    if (isMobile()) subscribe(toggleArrow);
 
-      subscribe((scroll: number, max: number): void => {
-        toggle(scroll < max * percentage);
-      });
-    }
+    return () => unsubscribe(toggleArrow);
   }, []);
 
   return (
