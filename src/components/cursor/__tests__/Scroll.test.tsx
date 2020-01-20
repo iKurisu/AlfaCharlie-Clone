@@ -5,9 +5,11 @@ import { Cursor } from "modules/cursor/types";
 import { SubscriberContext } from "../../../App";
 
 describe("scroll cursor", (): void => {
+  const values = [jest.fn(), jest.fn()];
+
   it("has correct class", (): void => {
     const cursor = mount(
-      <SubscriberContext.Provider value={jest.fn()}>
+      <SubscriberContext.Provider value={values}>
         <Scroll menuToggled={false} currentCursor={Cursor.SCROLL} />
       </SubscriberContext.Provider>
     );
