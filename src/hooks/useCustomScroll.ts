@@ -1,16 +1,28 @@
-import { RefObject, useRef, WheelEvent, TouchEvent } from "react";
+import { RefObject, useRef, WheelEvent, TouchEvent, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import BezierEasing from "bezier-easing";
 import { getValue } from "./transition/utils";
 import useAnimationFrame from "./useAnimationFrame";
 
-interface Config {
+interface TransitionConfig {
   distance: number;
   duration: number;
-  curve?: [number, number, number, number];
+  timing?: [number, number, number, number];
+}
+
+interface ScrollConfig {
   limitMod?: {
-    top?: number;
-    bottom?: number;
+    top?: () => number;
+    bottom?: () => number;
   };
+  withRouter?: boolean;
+  preserveScroll?: boolean;
+}
+
+interface ManualScrollConfig {
+  to: number;
+  duration: number;
+  timing?: [number, number, number, number];
 }
 
 type TouchEvents = "onTouchStart" | "onTouchMove" | "onTouchEnd";
@@ -24,22 +36,27 @@ type EventHandlers = {
 type Listener = (scroll: number, max: number) => void;
 type Subscriber = (listener: Listener) => void;
 type Unsubscriber = (listener: Listener) => void;
+type ManualScroller = (config: ManualScrollConfig) => void;
 
 /** Makes an element scrollable. */
 const useCustomScroll = (
   ref: RefObject<HTMLElement>,
+  { distance, duration, timing = [0, 0, 1, 1] }: TransitionConfig,
   {
-    distance,
-    duration,
-    curve = [0, 0, 1, 1],
-    limitMod = { top: 0, bottom: 0 }
-  }: Config
-): [EventHandlers, Subscriber, Unsubscriber] => {
+    limitMod: { top: limitModTop = () => 0, bottom: limitModBottom = () => 0 },
+    withRouter = false,
+    preserveScroll = false
+  }: ScrollConfig
+): [EventHandlers, Subscriber, Unsubscriber, ManualScroller] => {
+  const location = withRouter ? useLocation() : { pathname: "/" };
   const [subscribeAnimation, unsuscribeAnimation] = useAnimationFrame();
+
   const frame = useRef(0);
   const prevTouches = useRef([0, 0]);
   const target = useRef(0);
   const listeners = useRef([]);
+  const topLimit = useRef(0);
+  const bottomLimit = useRef(0);
 
   const updateFrame = (x: number): void => {
     frame.current = x;
@@ -51,7 +68,7 @@ const useCustomScroll = (
   const calcBottomLimit = (): number => {
     const { clientHeight } = ref.current;
 
-    return clientHeight - window.innerHeight + limitMod.bottom;
+    return clientHeight - window.innerHeight + bottomLimit.current;
   };
 
   const limit = (x: number): number => {
@@ -90,7 +107,48 @@ const useCustomScroll = (
     );
   };
 
-  const easing = BezierEasing(...curve);
+  useEffect(() => {
+    if (!preserveScroll) {
+      ref.current.style.transform = "translateY(0)";
+      target.current = 0;
+    }
+
+    topLimit.current = limitModTop();
+    bottomLimit.current = limitModBottom();
+  }, [location.pathname]);
+
+  const manualScroll = ({ to, duration, timing }: ManualScrollConfig): void => {
+    const from = limit(getValue(ref.current.style.transform));
+    const maxFrames = (duration / 1000) * 60;
+    const easing = BezierEasing(...timing);
+    const bottomLimit = calcBottomLimit();
+
+    setTarget(-to);
+    resetFrame();
+
+    const animation = (): void => {
+      const ease = maxFrames === 0 ? 1 : frame.current / maxFrames;
+      const value = limit(-(from + to) * easing(ease) + from);
+
+      listeners.current.forEach((listener: Listener) => {
+        listener(value, -bottomLimit);
+      });
+
+      ref.current.style.transform = `translateY(${value}px)`;
+
+      if (frame.current === maxFrames) {
+        resetFrame();
+        unsuscribeAnimation();
+      } else {
+        increaseFrame();
+        subscribeAnimation(animation);
+      }
+    };
+
+    animation();
+  };
+
+  const easing = BezierEasing(...timing);
   const maxFrames = (duration / 1000) * 60;
 
   const wheel = (e: WheelEvent<HTMLElement>): void => {
@@ -188,7 +246,8 @@ const useCustomScroll = (
       onTouchEnd: touchEnd
     },
     subscribeListeners,
-    unsubscribeListeners
+    unsubscribeListeners,
+    manualScroll
   ];
 };
 
