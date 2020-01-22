@@ -33,7 +33,9 @@ type EventHandlers = {
   onWheel: (e: WheelEvent<HTMLElement>) => void;
 };
 
+/** A function that will get called when the user scrolls. */
 type Listener = (scroll: number, max: number) => void;
+
 type Subscriber = (listener: Listener) => void;
 type Unsubscriber = (listener: Listener) => void;
 type ManualScroller = (config: ManualScrollConfig) => void;
@@ -126,6 +128,7 @@ const useCustomScroll = (
     bottomLimit.current = limitModBottom();
   }, [location.pathname]);
 
+  /** Performs a scroll-like animation to the given position. */
   const manualScroll = ({ to, duration, timing }: ManualScrollConfig): void => {
     const from = limit(getValue(ref.current.style.transform));
     const maxFrames = (duration / 1000) * 60;
