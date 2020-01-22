@@ -18,7 +18,12 @@ describe("VerticalNav", () => {
     mount(
       <Provider store={store}>
         <MemoryRouter initialEntries={[route]}>
-          <ScrollContext.Provider value={{ manualScroll: jest.fn() }}>
+          <ScrollContext.Provider
+            value={{
+              subscriber: [jest.fn(), jest.fn()],
+              manualScroll: jest.fn()
+            }}
+          >
             <VerticalNav position={position} setFilter={setFilter} />
           </ScrollContext.Provider>
         </MemoryRouter>
@@ -34,7 +39,12 @@ describe("VerticalNav", () => {
     const wrapper = mount(
       <Provider store={store}>
         <BrowserRouter>
-          <ScrollContext.Provider value={{ manualScroll: jest.fn() }}>
+          <ScrollContext.Provider
+            value={{
+              subscriber: [jest.fn(), jest.fn()],
+              manualScroll: jest.fn()
+            }}
+          >
             <VerticalNav menu position={position} setFilter={setFilter} />
           </ScrollContext.Provider>
         </BrowserRouter>
