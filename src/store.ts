@@ -7,6 +7,7 @@ import testimonials from "modules/testimonials";
 import work from "modules/work";
 import cursor from "modules/cursor";
 import loader from "modules/loader";
+import agency from "modules/agency";
 
 const rootReducer = combineReducers({
   hero,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   testimonials,
   work,
   cursor,
-  loader
+  loader,
+  agency
 });
 
 const store = createStore(rootReducer);
