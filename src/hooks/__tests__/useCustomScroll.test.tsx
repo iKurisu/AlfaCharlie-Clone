@@ -11,7 +11,7 @@ describe("useCustomScroll", (): void => {
     const [scroll, subscribe, unsubscribe] = useCustomScroll(element, {
       distance: 100,
       duration: 0,
-      curve: [0, 0, 0.1, 1]
+      timing: [0, 0, 0.1, 1]
     });
 
     const scrollContent = (scroll: number): void => {

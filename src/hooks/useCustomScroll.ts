@@ -38,15 +38,24 @@ type Subscriber = (listener: Listener) => void;
 type Unsubscriber = (listener: Listener) => void;
 type ManualScroller = (config: ManualScrollConfig) => void;
 
+const defaultScrollConfig = {
+  limitMod: {
+    top: () => 0,
+    bottom: () => 0
+  },
+  withRouter: false,
+  preserveScroll: false
+};
+
 /** Makes an element scrollable. */
 const useCustomScroll = (
   ref: RefObject<HTMLElement>,
   { distance, duration, timing = [0, 0, 1, 1] }: TransitionConfig,
   {
-    limitMod: { top: limitModTop = () => 0, bottom: limitModBottom = () => 0 },
-    withRouter = false,
-    preserveScroll = false
-  }: ScrollConfig
+    limitMod: { top: limitModTop, bottom: limitModBottom },
+    withRouter,
+    preserveScroll
+  }: ScrollConfig = defaultScrollConfig
 ): [EventHandlers, Subscriber, Unsubscriber, ManualScroller] => {
   const location = withRouter ? useLocation() : { pathname: "/" };
   const [subscribeAnimation, unsuscribeAnimation] = useAnimationFrame();
