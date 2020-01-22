@@ -8,7 +8,7 @@ import React, {
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
-import { SubscriberContext } from "../../App";
+import { ScrollContext } from "../../App";
 import { heroActions } from "modules/hero";
 import { HeroSlider } from "components/Slider";
 import SliderNav from "../shared/SliderNav";
@@ -55,7 +55,9 @@ export const Hero = ({
   }, [currentSlideID]);
 
   const symbol = useRef(null);
-  const [subscribe, unsubscribe] = useContext(SubscriberContext);
+  const {
+    subscriber: [subscribe, unsubscribe]
+  } = useContext(ScrollContext);
 
   const title = useRef(null);
   const text = useRef(null);

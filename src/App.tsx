@@ -21,7 +21,7 @@ import projects from "data/projects.json";
 import { ACProject } from "data/types";
 import "./styles.scss";
 
-export const SubscriberContext = createContext(null);
+export const ScrollContext = createContext(null);
 
 const App = (): JSX.Element => {
   const scrollContent = useRef(null);
@@ -29,22 +29,31 @@ const App = (): JSX.Element => {
   const { innerWidth, innerHeight, location } = window;
   const landscape = innerWidth > innerHeight;
 
-  const [scroll, subscribe, unsubscribe] = useCustomScroll(scrollContent, {
-    distance: 100,
-    duration: 2000,
-    curve: [0, 0, 0.2, 1],
-    limitMod: {
-      bottom:
-        location.pathname === "/contact"
-          ? 0
-          : innerWidth <= 480 || (landscape && innerWidth <= 823)
-          ? innerHeight
-          : innerHeight / 2
+  const [scroll, subscribe, unsubscribe, manualScroll] = useCustomScroll(
+    scrollContent,
+    {
+      distance: 100,
+      duration: 2000,
+      timing: [0, 0, 0.2, 1]
+    },
+    {
+      limitMod: {
+        bottom() {
+          return location.pathname === "/contact"
+            ? 0
+            : innerWidth <= 480 || (landscape && innerWidth <= 823)
+            ? innerHeight
+            : innerHeight / 2;
+        }
+      },
+      withRouter: true
     }
-  });
+  );
 
   return (
-    <SubscriberContext.Provider value={[subscribe, unsubscribe]}>
+    <ScrollContext.Provider
+      value={{ subscriber: [subscribe, unsubscribe], manualScroll }}
+    >
       <main>
         <VerticalNav show={true} />
         <div className="scroll-content-wrapper" {...scroll}>
@@ -85,7 +94,7 @@ const App = (): JSX.Element => {
       <ArrowButton />
       <Intro />
       <Loader />
-    </SubscriberContext.Provider>
+    </ScrollContext.Provider>
   );
 };
 

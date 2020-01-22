@@ -2,16 +2,18 @@ import React from "react";
 import { mount } from "enzyme";
 import { Scroll } from "../Scroll";
 import { Cursor } from "modules/cursor/types";
-import { SubscriberContext } from "../../../App";
+import { ScrollContext } from "../../../App";
 
 describe("scroll cursor", (): void => {
-  const values = [jest.fn(), jest.fn()];
+  const values = {
+    subscriber: [jest.fn(), jest.fn()]
+  };
 
   it("has correct class", (): void => {
     const cursor = mount(
-      <SubscriberContext.Provider value={values}>
+      <ScrollContext.Provider value={values}>
         <Scroll menuToggled={false} currentCursor={Cursor.SCROLL} />
-      </SubscriberContext.Provider>
+      </ScrollContext.Provider>
     );
 
     expect(cursor.find(".scroll-cursor").hasClass("-show")).toBe(true);
