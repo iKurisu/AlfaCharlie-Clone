@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { connect } from "react-redux";
 import { Switch, Route } from "react-router-dom";
+import { AppState } from "store";
 import RoutedLink from "./vertical_nav/RoutedLink";
 import SocialLink from "./vertical_nav/SocialLink";
 import ClickLink from "./vertical_nav/ClickLink";
 import { workActions } from "modules/work";
 import { WorkActionTypes, Filters } from "modules/work/types";
+import { AgencyState } from "modules/agency/types";
+import { ScrollContext } from "../App";
 import "./VerticalNav.scss";
+
+interface MappedState {
+  position: AgencyState;
+}
 
 interface MappedActions {
   setFilter: (filter: Filters) => WorkActionTypes;
@@ -18,7 +25,7 @@ interface OwnProps {
   delay?: number;
 }
 
-type Props = MappedActions & OwnProps;
+type Props = MappedState & MappedActions & OwnProps;
 
 enum AgencyLinks {
   EXPERTISE = "agency/EXPERTISE",
@@ -36,11 +43,14 @@ export const VerticalNav = ({
   menu,
   show,
   delay = 0,
+  position,
   setFilter
 }: Props): JSX.Element => {
   const [activeLink, setActiveLink] = useState<AgencyLinks | WorkLinks>(
     WorkLinks.ALL
   );
+
+  const { manualScroll } = useContext(ScrollContext);
 
   const renderMenuLinks = (): JSX.Element => (
     <React.Fragment>
@@ -73,55 +83,62 @@ export const VerticalNav = ({
     };
   }
 
-  const clickWithScroll = click((scroll: number) =>
-    window.scrollTo({ top: scroll })
-  );
+  const d = 50;
+
+  const sectionPosition = {
+    [AgencyLinks.EXPERTISE]: position.expertise - d,
+    [AgencyLinks.TEAM]: position.team - d,
+    [AgencyLinks.CLIENTS]: position.clients - d
+  };
+
+  const scrollTransition = {
+    duration: 2000,
+    timing: [0.07, 0.4, 0.07, 1]
+  };
+
+  const scrollTo = (link: AgencyLinks): (() => void) => () => {
+    setActiveLink(link);
+    manualScroll({ to: sectionPosition[link], ...scrollTransition });
+  };
 
   const clickWithDispath = click((filter: Filters) => {
     setFilter(filter);
     window.scrollTo({ top: 0 });
   });
 
-  const renderAgencyLinks = (): JSX.Element => (
-    <React.Fragment>
-      <li key={0}>
-        <ClickLink
-          link="Expertise"
-          click={clickWithScroll(
-            AgencyLinks.EXPERTISE,
-            window.innerHeight + 100
-          )}
-          show={show}
-          isActive={activeLink === AgencyLinks.EXPERTISE}
-          options={{ order: 0 }}
-        />
-      </li>
-      <li key={1}>
-        <ClickLink
-          link="Team"
-          click={clickWithScroll(
-            AgencyLinks.TEAM,
-            2 * window.innerHeight + 100
-          )}
-          show={show}
-          isActive={activeLink === AgencyLinks.TEAM}
-          options={{ order: 1 }}
-        />
-      </li>
-      <li key={2}>
-        <ClickLink
-          link="Clients"
-          click={clickWithScroll(
-            AgencyLinks.CLIENTS,
-            3 * window.innerHeight + 700
-          )}
-          show={show}
-          isActive={activeLink === AgencyLinks.CLIENTS}
-          options={{ order: 2 }}
-        />
-      </li>
-    </React.Fragment>
-  );
+  const renderAgencyLinks = (): JSX.Element => {
+    return (
+      <React.Fragment>
+        <li key={0}>
+          <ClickLink
+            link="Expertise"
+            click={scrollTo(AgencyLinks.EXPERTISE)}
+            show={show}
+            isActive={activeLink === AgencyLinks.EXPERTISE}
+            options={{ order: 0 }}
+          />
+        </li>
+        <li key={1}>
+          <ClickLink
+            link="Team"
+            click={scrollTo(AgencyLinks.TEAM)}
+            show={show}
+            isActive={activeLink === AgencyLinks.TEAM}
+            options={{ order: 1 }}
+          />
+        </li>
+        <li key={2}>
+          <ClickLink
+            link="Clients"
+            click={scrollTo(AgencyLinks.CLIENTS)}
+            show={show}
+            isActive={activeLink === AgencyLinks.CLIENTS}
+            options={{ order: 2 }}
+          />
+        </li>
+      </React.Fragment>
+    );
+  };
 
   const renderWorkLinks = (): JSX.Element => (
     <React.Fragment>
@@ -187,8 +204,12 @@ export const VerticalNav = ({
   );
 };
 
+const mapState = ({ agency }: AppState): MappedState => ({
+  position: agency
+});
+
 const mapDispatch = {
   setFilter: workActions.setVisibilityFilter
 };
 
-export default connect(null, mapDispatch)(VerticalNav);
+export default connect(mapState, mapDispatch)(VerticalNav);

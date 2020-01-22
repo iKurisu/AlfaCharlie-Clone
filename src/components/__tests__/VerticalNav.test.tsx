@@ -4,15 +4,23 @@ import { Provider } from "react-redux";
 import { mount, ReactWrapper } from "enzyme";
 import store from "store";
 import { VerticalNav } from "../VerticalNav";
+import { ScrollContext } from "../../App";
 
 describe("VerticalNav", () => {
   const setFilter = jest.fn();
+  const position = {
+    expertise: 0,
+    team: 1000,
+    clients: 2000
+  };
 
   const mountAt = (route: string): ReactWrapper =>
     mount(
       <Provider store={store}>
         <MemoryRouter initialEntries={[route]}>
-          <VerticalNav setFilter={setFilter} />
+          <ScrollContext.Provider value={{ manualScroll: jest.fn() }}>
+            <VerticalNav position={position} setFilter={setFilter} />
+          </ScrollContext.Provider>
         </MemoryRouter>
       </Provider>
     );
@@ -26,7 +34,9 @@ describe("VerticalNav", () => {
     const wrapper = mount(
       <Provider store={store}>
         <BrowserRouter>
-          <VerticalNav menu setFilter={setFilter} />
+          <ScrollContext.Provider value={{ manualScroll: jest.fn() }}>
+            <VerticalNav menu position={position} setFilter={setFilter} />
+          </ScrollContext.Provider>
         </BrowserRouter>
       </Provider>
     );
