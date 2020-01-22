@@ -1,13 +1,19 @@
-import React from "react";
+import React, { RefObject } from "react";
 import LoaderLink from "components/LoaderLink";
 
 interface Props {
   projectTitle: string;
   title: string[];
   img: string;
+  coverRef: RefObject<HTMLDivElement>;
 }
 
-const Project = ({ projectTitle, title, img }: Props): JSX.Element => {
+const Project = ({
+  projectTitle,
+  title,
+  img,
+  coverRef
+}: Props): JSX.Element => {
   const formattedTitle = projectTitle.replace(/ /g, "-").toLowerCase();
   const url = `projects/${formattedTitle}`;
 
@@ -48,6 +54,9 @@ const Project = ({ projectTitle, title, img }: Props): JSX.Element => {
             </span>
           ))}
         </h2>
+      </div>
+      <div className="project-cover-wrapper">
+        <div className="project-cover" ref={coverRef} />
       </div>
     </article>
   );
