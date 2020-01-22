@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, RefObject } from "react";
 import { connect } from "react-redux";
 import Brief from "./agency/Brief";
 import Info from "./shared/Info";
@@ -7,19 +7,50 @@ import Clients from "./agency/Clients";
 import Testimonials from "./shared/Testimonials";
 import FooterArt from "components/FooterArt";
 import { introActions } from "modules/intro";
-import { IntroActionTypes } from "modules/intro/types";
+import { agencyActions } from "modules/agency";
+
+interface AgencyRefs {
+  expertise: RefObject<HTMLDivElement>;
+  team: RefObject<HTMLDivElement>;
+  clients: RefObject<HTMLDivElement>;
+}
 
 interface MappedActions {
-  toggleIntro: () => IntroActionTypes;
+  toggleIntro: () => void;
+  calculateDistanceFromTop: (element: AgencyRefs) => void;
 }
 
 type Props = MappedActions;
 
-const Agency = ({ toggleIntro }: Props): JSX.Element => {
-  useEffect((): void => {
+const Agency = ({
+  toggleIntro,
+  calculateDistanceFromTop
+}: Props): JSX.Element => {
+  const expertise = useRef(null);
+  const team = useRef(null);
+  const clients = useRef(null);
+
+  const recalculateDistance = (): void => {
+    console.log("c");
+    calculateDistanceFromTop({
+      expertise,
+      team,
+      clients
+    });
+  };
+
+  useEffect((): (() => void) => {
+    calculateDistanceFromTop({ expertise, team, clients });
     toggleIntro();
+
     document.title =
       "Branding, Web Design and Graphic Design | Alpha Charlie | What We Do";
+
+    window.addEventListener("resize", recalculateDistance);
+
+    return () => {
+      window.removeEventListener("resize", recalculateDistance);
+    };
   }, []);
 
   return (
@@ -28,7 +59,7 @@ const Agency = ({ toggleIntro }: Props): JSX.Element => {
         <Brief />
       </div>
       <div className="separator" />
-      <div className="row">
+      <div className="row" ref={expertise}>
         <Info
           header="what we do"
           image={
@@ -42,16 +73,15 @@ const Agency = ({ toggleIntro }: Props): JSX.Element => {
             "allows your brand to emerge defined, not decorated — " +
             "strengthening the relationship between client and customer."
           }
-          link={false}
           align={"left"}
         />
       </div>
       <div className="separator -big" />
-      <div className="row">
+      <div className="row" ref={team}>
         <Team />
       </div>
       <div className="separator -big" />
-      <div className="row">
+      <div className="row" ref={clients}>
         <Clients />
       </div>
       <div className="separator -big" />
@@ -64,7 +94,8 @@ const Agency = ({ toggleIntro }: Props): JSX.Element => {
 };
 
 const mapDispatch: MappedActions = {
-  toggleIntro: introActions.toggleIntro
+  toggleIntro: introActions.toggleIntro,
+  calculateDistanceFromTop: agencyActions.calculateDistanceFromTop
 };
 
 export default connect(null, mapDispatch)(Agency);
