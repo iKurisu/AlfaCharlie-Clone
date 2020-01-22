@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { connect } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import { AppState } from "store";
@@ -50,7 +50,34 @@ export const VerticalNav = ({
     WorkLinks.ALL
   );
 
-  const { manualScroll } = useContext(ScrollContext);
+  const {
+    subscriber: [subscribe, unsubscribe],
+    manualScroll
+  } = useContext(ScrollContext);
+
+  const d = 50;
+
+  const sectionPosition = {
+    [AgencyLinks.CLIENTS]: position.clients - d,
+    [AgencyLinks.TEAM]: position.team - d,
+    [AgencyLinks.EXPERTISE]: position.expertise - d
+  };
+
+  const updateActiveLink = (scroll: number): void => {
+    const keys = Object.keys(sectionPosition) as AgencyLinks[];
+
+    const link = keys.find(key => {
+      return -scroll > sectionPosition[key] - window.innerHeight;
+    });
+
+    setActiveLink(link);
+  };
+
+  useEffect((): (() => void) => {
+    subscribe(updateActiveLink);
+
+    return () => unsubscribe(updateActiveLink);
+  }, [position.expertise]);
 
   const renderMenuLinks = (): JSX.Element => (
     <React.Fragment>
@@ -82,14 +109,6 @@ export const VerticalNav = ({
       cb(arg);
     };
   }
-
-  const d = 50;
-
-  const sectionPosition = {
-    [AgencyLinks.EXPERTISE]: position.expertise - d,
-    [AgencyLinks.TEAM]: position.team - d,
-    [AgencyLinks.CLIENTS]: position.clients - d
-  };
 
   const scrollTransition = {
     duration: 2000,
