@@ -1,13 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import Arrow from "./Arrow";
-import { SubscriberContext } from "../App";
+import { ScrollContext } from "../App";
 import { classList } from "utils/class";
 import { isLandscape, isMobile } from "utils/responsive";
 import "./ArrowButton.scss";
 
 const ArrowButton = (): JSX.Element => {
   const [isVisible, toggle] = useState(false);
-  const [subscribe, unsubscribe] = useContext(SubscriberContext);
+  const {
+    subscriber: [subscribe, unsubscribe]
+  } = useContext(ScrollContext);
 
   const percentage = isLandscape() ? 0.98 : 0.95;
 

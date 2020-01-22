@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { AppState } from "store";
 import Outline from "./Outline";
 import Progress from "./Progress";
-import { SubscriberContext } from "../../App";
+import { ScrollContext } from "../../App";
 import { Cursor } from "modules/cursor/types";
 import { classList } from "utils/class";
 
@@ -16,7 +16,9 @@ type Props = MappedState;
 
 export const Scroll = ({ menuToggled, currentCursor }: Props): JSX.Element => {
   const progress = useRef(null);
-  const [subscribe, unsubscribe] = useContext(SubscriberContext);
+  const {
+    subscriber: [subscribe, unsubscribe]
+  } = useContext(ScrollContext);
 
   const fillProgress = (scroll: number, max: number): void => {
     progress.current.style.strokeDashoffset = (scroll * -200) / max + 200;

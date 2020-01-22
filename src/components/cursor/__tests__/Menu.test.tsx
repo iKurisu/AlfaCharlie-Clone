@@ -2,14 +2,14 @@ import React from "react";
 import { mount } from "enzyme";
 import { Menu, mapSlide } from "../Menu";
 import { Cursor, HoverableElement } from "modules/cursor/types";
-import { SubscriberContext } from "../../../App";
+import { ScrollContext } from "../../../App";
 
 describe("menu cursor", (): void => {
   it("has correct class", (): void => {
     const cursor = mount(
-      <SubscriberContext.Provider value={jest.fn()}>
+      <ScrollContext.Provider value={jest.fn()}>
         <Menu menuToggled={false} currentCursor={Cursor.SCROLL} slide={0} />
-      </SubscriberContext.Provider>
+      </ScrollContext.Provider>
     );
 
     expect(cursor.find(".menu-cursor").hasClass("-show")).toBe(false);
