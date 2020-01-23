@@ -6,6 +6,10 @@
   flex-wrap: wrap;
 }
 
+.-no-pe .project {
+  pointer-events: none;
+}
+
 .project {
   flex: 0 0 calc(50% - 88px);
   margin: 0 44px 88px;

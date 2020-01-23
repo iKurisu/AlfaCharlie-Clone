@@ -11,8 +11,8 @@ import { ACProject } from "data/types";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import { easeInOut } from "utils/timings";
+import { classList } from "utils/class";
 import "./Work.scss";
-import { access } from "fs";
 
 interface MappedState {
   filter: Filters;
@@ -27,6 +27,7 @@ type Props = MappedState & MappedActions;
 const Work = ({ filter, toggleIntro }: Props): JSX.Element => {
   const [visibleProjects, setVisibleProjects] = useState(projects);
   const filteredTitles = useRef([]);
+  const [pointerEvents, setPointerEvents] = useState(true);
   const projectRefs = projects.map(project => ({
     title: project.title,
     ref: useRef(null)
@@ -86,6 +87,8 @@ const Work = ({ filter, toggleIntro }: Props): JSX.Element => {
         ? hideAnimations.map(({ animation }) => animation())
         : hideAnimations.reduce(reduceToPromises, []);
 
+    setPointerEvents(false);
+
     Promise.all(promises).then(() => {
       const nextProjects =
         filter === "ALL"
@@ -95,11 +98,9 @@ const Work = ({ filter, toggleIntro }: Props): JSX.Element => {
       setVisibleProjects(nextProjects);
       filterTitles(nextProjects as ACProject[]);
 
-      showAnimations.forEach(({ title, animation }) => {
-        if (filteredTitles.current.includes(title)) {
-          animation();
-        }
-      });
+      const promises = showAnimations.reduce(reduceToPromises, []);
+
+      Promise.all(promises).then(() => setPointerEvents(true));
     });
   }, [filter]);
 
@@ -112,7 +113,9 @@ const Work = ({ filter, toggleIntro }: Props): JSX.Element => {
 
   return (
     <React.Fragment>
-      <div className="work">{visibleProjects.map(mapProject)}</div>
+      <div className={classList(["work", { "-no-pe": !pointerEvents }])}>
+        {visibleProjects.map(mapProject)}
+      </div>
       <FooterArt />
     </React.Fragment>
   );
