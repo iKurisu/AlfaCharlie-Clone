@@ -2,6 +2,7 @@ import React, { useContext, useRef, useEffect } from "react";
 import { ScrollContext } from "../App";
 import { ACProject } from "data/types";
 import "./Project.scss";
+import FooterArt from "components/FooterArt";
 
 interface Props {
   project: ACProject;
@@ -122,6 +123,7 @@ const Project = ({ project }: Props): JSX.Element => {
       <div className="row">
         <div className="project-lazy">{project.lazy.map(renderItems)}</div>
       </div>
+      <FooterArt />
     </React.Fragment>
   );
 };
