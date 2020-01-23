@@ -29,6 +29,14 @@
   z-index: 10;
 }
 
+.hero-cover.-left {
+  transform: translateX(-100%);
+}
+
+.hero-cover.-right {
+  transform: translateX(100%);
+}
+
 .hero-image-wrapper {
   position: relative;
   overflow: hidden;
