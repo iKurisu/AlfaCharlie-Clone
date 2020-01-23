@@ -56,7 +56,7 @@ const Work = ({ filter, toggleIntro }: Props): JSX.Element => {
       from: { transform: "translateY(0)" },
       to: { transform: "translateY(-100%)" },
       config: {
-        duration: 1000,
+        duration: 800,
         delay: Math.floor(Math.random() * 5) * 50,
         timing: easeInOut
       }
