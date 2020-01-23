@@ -123,36 +123,42 @@ const useCustomScroll = (
   }, [location.pathname]);
 
   /** Performs a scroll-like animation to the given position. */
-  const manualScroll = ({ to, duration, timing }: ManualScrollConfig): void => {
-    const from = limit(getValue(ref.current.style.transform));
-    const maxFrames = (duration / 1000) * 60;
-    const easing = BezierEasing(...timing);
-    const bottomLimit = calcBottomLimit();
+  const manualScroll = async ({
+    to,
+    duration,
+    timing
+  }: ManualScrollConfig): Promise<void> =>
+    new Promise(res => {
+      const from = limit(getValue(ref.current.style.transform));
+      const maxFrames = (duration / 1000) * 60;
+      const easing = BezierEasing(...timing);
+      const bottomLimit = calcBottomLimit();
 
-    setTarget(-to);
-    resetFrame();
+      setTarget(-to);
+      resetFrame();
 
-    const animation = (): void => {
-      const ease = maxFrames === 0 ? 1 : frame.current / maxFrames;
-      const value = limit(-(from + to) * easing(ease) + from);
+      const animation = (): void => {
+        const ease = maxFrames === 0 ? 1 : frame.current / maxFrames;
+        const value = limit(-(from + to) * easing(ease) + from);
 
-      listeners.current.forEach((listener: Listener) => {
-        listener(value, -bottomLimit);
-      });
+        listeners.current.forEach((listener: Listener) => {
+          listener(value, -bottomLimit);
+        });
 
-      ref.current.style.transform = `translateY(${value}px)`;
+        ref.current.style.transform = `translateY(${value}px)`;
 
-      if (frame.current === maxFrames) {
-        resetFrame();
-        unsuscribeAnimation();
-      } else {
-        increaseFrame();
-        subscribeAnimation(animation);
-      }
-    };
+        if (frame.current === maxFrames) {
+          resetFrame();
+          unsuscribeAnimation();
+          res();
+        } else {
+          increaseFrame();
+          subscribeAnimation(animation);
+        }
+      };
 
-    animation();
-  };
+      animation();
+    });
 
   const easing = BezierEasing(...timing);
   const maxFrames = (duration / 1000) * 60;
