@@ -23,10 +23,18 @@
 .hero-cover {
   background: $background;
   position: absolute;
-  top: 0;
-  height: 100%;
+  top: -5%;
+  height: 110%;
   width: 10.5%;
   z-index: 10;
+}
+
+.hero-cover.-left {
+  transform: translateX(-100%);
+}
+
+.hero-cover.-right {
+  transform: translateX(100%);
 }
 
 .hero-image-wrapper {
@@ -151,12 +159,6 @@
 .project-quote .author-position:before {
   content: "•";
   margin: 0 6px;
-}
-
-@media (max-width: 1920px) {
-  .project-intro-description {
-    width: 70%;
-  }
 }
 
 @media (max-width: 1600px) {

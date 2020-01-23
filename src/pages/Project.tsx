@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext, useRef, useEffect } from "react";
+import { ScrollContext } from "../App";
 import { ACProject } from "data/types";
 import "./Project.scss";
+import FooterArt from "components/FooterArt";
 
 interface Props {
   project: ACProject;
@@ -9,6 +11,28 @@ interface Props {
 const isVideo = (src: string): boolean => src.match(/\.mp4$/g) !== null;
 
 const Project = ({ project }: Props): JSX.Element => {
+  const leftCover = useRef(null);
+  const rightCover = useRef(null);
+
+  const {
+    subscriber: [subscribe, unsubscribe]
+  } = useContext(ScrollContext);
+
+  const coverHero = (scroll: number): void => {
+    const max = 350;
+    if (scroll < -max) return;
+
+    leftCover.current.style.transform = `translateX(${(-100 / max) * scroll -
+      100}%)`;
+    rightCover.current.style.transform = `translateX(${(100 / max) * scroll +
+      100}%)`;
+  };
+
+  useEffect((): (() => void) => {
+    subscribe(coverHero);
+    return () => unsubscribe(coverHero);
+  }, []);
+
   const renderItems = (item: string | string[], id: number): JSX.Element =>
     typeof item === "object" ? (
       <div className={`project-double`} key={id}>
@@ -35,8 +59,8 @@ const Project = ({ project }: Props): JSX.Element => {
         </div>
       </div>
       <div className="project-hero">
-        <div className="hero-cover -left" />
-        <div className="hero-cover -right" />
+        <div className="hero-cover -left" ref={leftCover} />
+        <div className="hero-cover -right" ref={rightCover} />
         <div className="hero-image-wrapper">
           <img src={project.hero} />
         </div>
@@ -99,6 +123,7 @@ const Project = ({ project }: Props): JSX.Element => {
       <div className="row">
         <div className="project-lazy">{project.lazy.map(renderItems)}</div>
       </div>
+      <FooterArt />
     </React.Fragment>
   );
 };
