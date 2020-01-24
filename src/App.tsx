@@ -10,6 +10,7 @@ import Cursor from "components/Cursor";
 import ArrowButton from "components/ArrowButton";
 import Intro from "components/Intro";
 import Loader from "components/Loader";
+import FooterLoader from "components/FooterLoader";
 import Home from "pages/Home";
 import Agency from "pages/Agency";
 import Work from "pages/Work";
@@ -111,6 +112,7 @@ const App = (): JSX.Element => {
       <ArrowButton />
       <Intro />
       <Loader />
+      <FooterLoader />
     </ScrollContext.Provider>
   );
 };
