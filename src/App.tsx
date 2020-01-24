@@ -19,6 +19,7 @@ import Contact from "pages/Contact";
 import useCustomScroll from "hooks/useCustomScroll";
 import projects from "data/projects.json";
 import { ACProject } from "data/types";
+import { projectTitleToPath } from "utils/string";
 import "./styles.scss";
 
 export const ScrollContext = createContext(null);
@@ -73,9 +74,7 @@ const App = (): JSX.Element => {
                 {projects.map((project: ACProject, id: number) => (
                   <Route
                     exact
-                    path={`/projects/${project.title
-                      .toLowerCase()
-                      .replace(/ /g, "-")}`}
+                    path={projectTitleToPath(project.title)}
                     render={() => <Project project={project} />}
                     key={id}
                   />
@@ -95,6 +94,14 @@ const App = (): JSX.Element => {
               "/projects/:project"
             ]}
             component={Footer}
+          />
+          <Route
+            path={["/projects/:project"]}
+            render={({
+              match: {
+                params: { project }
+              }
+            }) => <Footer currentProject={project} />}
           />
         </div>
       </main>
