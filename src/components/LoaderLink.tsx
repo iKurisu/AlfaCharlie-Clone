@@ -54,7 +54,7 @@ const mapState = ({ menu }: AppState): MappedState => ({
 });
 
 const mapDispatch: MappedActions = {
-  toggleLoader: loaderActions.toggleLoader,
+  toggleLoader: loaderActions.toggleMainLoader,
   toggleMenu: menuActions.toggleMenu
 };
 
