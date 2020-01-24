@@ -1,8 +1,8 @@
-import React from "react";
-import LoaderLink from "components/LoaderLink";
+import React, { useRef } from "react";
 import FooterText from "./FooterText";
 import { capitalize, projectTitleToPath } from "utils/string";
 import projects from "data/projects.json";
+import FooterLink from "./footer/Link";
 import "./Footer.scss";
 
 interface Props {
@@ -10,9 +10,11 @@ interface Props {
 }
 
 const Footer = ({ currentProject }: Props): JSX.Element => {
+  const footer = useRef(null);
+
   const contact = (
     <React.Fragment>
-      <LoaderLink to="/contact" />
+      <FooterLink to="/contact" footerRef={footer} />
       <h3>Let’s work together.</h3>
       <span>GET IN TOUCH</span>
     </React.Fragment>
@@ -31,7 +33,10 @@ const Footer = ({ currentProject }: Props): JSX.Element => {
 
     return (
       <React.Fragment>
-        <LoaderLink to={projectTitleToPath(nextProjectTitle)} />
+        <FooterLink
+          to={projectTitleToPath(nextProjectTitle)}
+          footerRef={footer}
+        />
         <h3>{nextProjectTitle}</h3>
         <span>VIEW NEXT PROJECT</span>
       </React.Fragment>
@@ -39,7 +44,7 @@ const Footer = ({ currentProject }: Props): JSX.Element => {
   };
 
   return (
-    <footer className="footer">
+    <footer className="footer" ref={footer}>
       <div className="footer-content">
         <div className="footer-contact">
           <div className="footer-contact-inner">{renderInnerContent()}</div>
