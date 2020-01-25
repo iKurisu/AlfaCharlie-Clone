@@ -8,8 +8,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 5%;
 }
 
 .footer-loader:not(.-show) {
   visibility: hidden;
+}
+
+.footer-loader h3 {
+  margin-bottom: 0px;
+  text-align: center;
 }
