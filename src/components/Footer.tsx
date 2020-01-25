@@ -3,6 +3,10 @@ import FooterText from "./FooterText";
 import { capitalize, projectTitleToPath } from "utils/string";
 import projects from "data/projects.json";
 import FooterLink from "./footer/Link";
+import useTransition, { TransitionProps } from "hooks/useTransition";
+import useBoundingClientRect from "hooks/useBoundingClientRect";
+import { ease, easeOut2 } from "utils/timings";
+import { fadeOut } from "utils/transitions";
 import "./Footer.scss";
 
 interface Props {
@@ -11,14 +15,64 @@ interface Props {
 
 const Footer = ({ currentProject }: Props): JSX.Element => {
   const footer = useRef(null);
+  const background = useRef(null);
+  const cta = useRef(null);
+  const heading = useRef(null);
+  const subHeading = useRef(null);
+  const textLeft = useRef(null);
+  const textCenter = useRef(null);
+  const textRight = useRef(null);
+
+  const headingRect = useBoundingClientRect(heading) || { top: 0, height: 0 };
+
+  const createFadeOut = (delay: number = 0): TransitionProps => ({
+    ...fadeOut,
+    config: {
+      delay,
+      duration: 350,
+      timing: ease
+    }
+  });
+
+  const fadeOutSubHeading = useTransition(subHeading, createFadeOut());
+  const fadeOutLeft = useTransition(textLeft, createFadeOut());
+  const fadeOutCenter = useTransition(textCenter, createFadeOut(400));
+  const fadeOutRight = useTransition(textRight, createFadeOut(800));
+
+  const slideContact = useTransition(cta, {
+    from: { transform: "translateY(0)" },
+    to: {
+      transform: `translateY(-${headingRect.top -
+        (window.innerHeight - headingRect.height) / 2}px)`
+    },
+    config: {
+      delay: 900,
+      duration: 900,
+      timing: easeOut2
+    }
+  });
+
+  const fadeOutText = (): void => {
+    fadeOutSubHeading();
+    fadeOutLeft();
+    fadeOutCenter();
+    fadeOutRight();
+    slideContact();
+  };
 
   const contact = (
     <React.Fragment>
-      <FooterLink to="/contact" footerRef={footer} />
-      <h3>Let’s work together.</h3>
-      <span>GET IN TOUCH</span>
+      <FooterLink
+        to="/contact"
+        footerRef={footer}
+        backgroundRef={background}
+        fadeOutText={fadeOutText}
+      />
+      <h3 ref={heading}>Let’s work together.</h3>
+      <span ref={subHeading}>GET IN TOUCH</span>
     </React.Fragment>
   );
+
   const renderInnerContent = (): JSX.Element => {
     if (!currentProject) return contact;
 
@@ -36,20 +90,23 @@ const Footer = ({ currentProject }: Props): JSX.Element => {
         <FooterLink
           to={projectTitleToPath(nextProjectTitle)}
           footerRef={footer}
+          backgroundRef={background}
+          fadeOutText={fadeOutText}
         />
         <h3>{nextProjectTitle}</h3>
-        <span>VIEW NEXT PROJECT</span>
+        <span ref={subHeading}>VIEW NEXT PROJECT</span>
       </React.Fragment>
     );
   };
 
   return (
     <footer className="footer" ref={footer}>
+      <div className="footer-background" ref={background} />
       <div className="footer-content">
-        <div className="footer-contact">
+        <div className="footer-contact" ref={cta}>
           <div className="footer-contact-inner">{renderInnerContent()}</div>
         </div>
-        <FooterText />
+        <FooterText left={textLeft} center={textCenter} right={textRight} />
       </div>
     </footer>
   );
