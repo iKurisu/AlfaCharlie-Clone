@@ -5,7 +5,7 @@ import projects from "data/projects.json";
 import FooterLink from "./footer/Link";
 import useTransition, { TransitionProps } from "hooks/useTransition";
 import useBoundingClientRect from "hooks/useBoundingClientRect";
-import { ease, easeOut2 } from "utils/timings";
+import { ease, easeOut2, easeInOut } from "utils/timings";
 import { fadeOut } from "utils/transitions";
 import "./Footer.scss";
 
@@ -24,6 +24,24 @@ const Footer = ({ currentProject }: Props): JSX.Element => {
   const textRight = useRef(null);
 
   const headingRect = useBoundingClientRect(heading) || { top: 0, height: 0 };
+
+  const bringToFront = useTransition(footer, {
+    from: { zIndex: 200 },
+    to: { zIndex: 200 },
+    config: {
+      duration: 0
+    }
+  });
+
+  const expandBackground = useTransition(background, {
+    from: { height: "50%" },
+    to: { height: "100%" },
+    config: {
+      duration: 1000,
+      delay: 500,
+      timing: easeInOut
+    }
+  });
 
   const createFadeOut = (delay: number = 0): TransitionProps => ({
     ...fadeOut,
@@ -57,17 +75,18 @@ const Footer = ({ currentProject }: Props): JSX.Element => {
     fadeOutLeft();
     fadeOutCenter();
     fadeOutRight();
-    slideContact();
+  };
+
+  const hideFooter = async (): Promise<void> => {
+    bringToFront();
+    expandBackground();
+    fadeOutText();
+    return await slideContact();
   };
 
   const contact = (
     <React.Fragment>
-      <FooterLink
-        to="/contact"
-        footerRef={footer}
-        backgroundRef={background}
-        fadeOutText={fadeOutText}
-      />
+      <FooterLink to="/contact" hideFooter={hideFooter} />
       <h3 ref={heading}>Let’s work together.</h3>
       <span ref={subHeading}>GET IN TOUCH</span>
     </React.Fragment>
@@ -89,9 +108,7 @@ const Footer = ({ currentProject }: Props): JSX.Element => {
       <React.Fragment>
         <FooterLink
           to={projectTitleToPath(nextProjectTitle)}
-          footerRef={footer}
-          backgroundRef={background}
-          fadeOutText={fadeOutText}
+          hideFooter={hideFooter}
         />
         <h3>{nextProjectTitle}</h3>
         <span ref={subHeading}>VIEW NEXT PROJECT</span>
