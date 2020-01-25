@@ -27,3 +27,8 @@ export const slideToRight = {
   from: { transform: "translateX(0)" },
   to: { transform: "translateX(100%)" }
 };
+
+export const slideToTop = {
+  from: { transform: "translateY(0)" },
+  to: { transform: "translateY(-100%)" }
+};
