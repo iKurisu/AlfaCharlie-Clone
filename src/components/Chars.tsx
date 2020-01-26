@@ -1,6 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import useTransition from "hooks/useTransition";
-import { fadeOut } from "utils/transitions";
+import useDidUpdateEffect from "hooks/useDidUpdateEffect";
+import { fadeOut, fadeIn } from "utils/transitions";
 import { ease } from "utils/timings";
 
 interface CharProps {
@@ -11,19 +12,25 @@ interface CharProps {
 const Char = ({ char, toggled }: CharProps): JSX.Element => {
   const c = useRef(null);
 
-  const delay = (char.charCodeAt(0) % 12) * 50;
+  const delay = (char.charCodeAt(0) % 7) * 50 + 250;
 
   const fadeOutChar = useTransition(c, {
     ...fadeOut,
     config: {
       delay,
-      duration: 700,
+      duration: 800,
       timing: ease
     }
   });
 
-  useEffect(() => {
+  const reset = useTransition(c, {
+    ...fadeIn,
+    config: { duration: 0 }
+  });
+
+  useDidUpdateEffect(() => {
     if (toggled) fadeOutChar();
+    else reset();
   }, [toggled]);
 
   return <span ref={c}>{char}</span>;

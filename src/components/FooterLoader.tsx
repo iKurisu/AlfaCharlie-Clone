@@ -1,33 +1,45 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { connect } from "react-redux";
 import { AppState } from "store";
-import { classList } from "utils/class";
-import "./FooterLoader.scss";
-import useTransition from "hooks/useTransition";
-import { slideToTop } from "utils/transitions";
-import { easeInOut } from "utils/timings";
 import Chars from "./Chars";
+import useTransition from "hooks/useTransition";
+import useDidUpdateEffect from "hooks/useDidUpdateEffect";
+import { classList } from "utils/class";
+import { slideToTop, slideFromTop } from "utils/transitions";
+import { easeInOut } from "utils/timings";
+import "./FooterLoader.scss";
+import { loaderActions } from "modules/loader";
 
 interface MappedState {
   toggled: boolean;
 }
 
-type Props = MappedState;
+interface MappedActions {
+  toggle: () => void;
+}
 
-const FooterLoader = ({ toggled }: Props): JSX.Element => {
+type Props = MappedState & MappedActions;
+
+const FooterLoader = ({ toggled, toggle }: Props): JSX.Element => {
   const loader = useRef(null);
 
   const slideOut = useTransition(loader, {
     ...slideToTop,
     config: {
-      duration: 1000,
-      delay: 1000,
+      duration: 800,
+      delay: 1300,
       timing: easeInOut
     }
   });
 
-  useEffect((): void => {
-    if (toggled) slideOut();
+  const reset = useTransition(loader, {
+    ...slideFromTop,
+    config: { duration: 0 }
+  });
+
+  useDidUpdateEffect((): void => {
+    if (toggled) slideOut().then(toggle);
+    else reset();
   }, [toggled]);
 
   return (
@@ -46,4 +58,8 @@ const mapState = ({ loader }: AppState): MappedState => ({
   toggled: loader.footer
 });
 
-export default connect(mapState)(FooterLoader);
+const mapDispatch: MappedActions = {
+  toggle: loaderActions.toggleFooterLoader
+};
+
+export default connect(mapState, mapDispatch)(FooterLoader);
