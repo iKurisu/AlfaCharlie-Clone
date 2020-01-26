@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import Chars from "./Chars";
@@ -9,6 +9,8 @@ import { slideToTop, slideFromTop } from "utils/transitions";
 import { easeInOut } from "utils/timings";
 import "./FooterLoader.scss";
 import { loaderActions } from "modules/loader";
+import { useRouteMatch } from "react-router-dom";
+import { findNextTitle } from "utils/projects";
 
 interface MappedState {
   toggled: boolean;
@@ -20,8 +22,16 @@ interface MappedActions {
 
 type Props = MappedState & MappedActions;
 
+interface Params {
+  project: string;
+}
+
 const FooterLoader = ({ toggled, toggle }: Props): JSX.Element => {
   const loader = useRef(null);
+  const match = useRouteMatch<Params>("/projects/:project");
+  const [text, setText] = useState(
+    match ? findNextTitle(match.params.project) : "Let’s work together."
+  );
 
   const slideOut = useTransition(loader, {
     ...slideToTop,
@@ -38,9 +48,20 @@ const FooterLoader = ({ toggled, toggle }: Props): JSX.Element => {
   });
 
   useDidUpdateEffect((): void => {
-    if (toggled) slideOut().then(toggle);
-    else reset();
+    if (toggled) {
+      slideOut().then(toggle);
+    } else {
+      reset().then(() => {
+        setText(
+          match ? findNextTitle(match.params.project) : "Let’s work together."
+        );
+      });
+    }
   }, [toggled]);
+
+  useDidUpdateEffect((): void => {
+    if (!match) setText("Let’s work together.");
+  }, [match]);
 
   return (
     <div
@@ -48,7 +69,7 @@ const FooterLoader = ({ toggled, toggle }: Props): JSX.Element => {
       ref={loader}
     >
       <h3>
-        <Chars text="Let’s work together." toggled={toggled} />
+        <Chars text={text} toggled={toggled} />
       </h3>
     </div>
   );

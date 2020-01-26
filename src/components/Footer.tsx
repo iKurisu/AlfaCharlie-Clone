@@ -1,19 +1,22 @@
 import React, { useRef } from "react";
+import { useParams } from "react-router-dom";
 import FooterText from "./FooterText";
-import { capitalize, projectTitleToPath } from "utils/string";
-import projects from "data/projects.json";
 import FooterLink from "./footer/Link";
 import useTransition, { TransitionProps } from "hooks/useTransition";
 import useBoundingClientRect from "hooks/useBoundingClientRect";
+import { projectTitleToPath } from "utils/string";
 import { ease, easeOut2, easeInOut } from "utils/timings";
-import { fadeOut } from "utils/transitions";
+import { fadeOut, fadeIn } from "utils/transitions";
+import { findNextTitle } from "utils/projects";
 import "./Footer.scss";
 
-interface Props {
-  currentProject?: string;
+interface Params {
+  project: string;
 }
 
-const Footer = ({ currentProject }: Props): JSX.Element => {
+const Footer = (): JSX.Element => {
+  const params = useParams<Params>();
+
   const footer = useRef(null);
   const background = useRef(null);
   const cta = useRef(null);
@@ -33,6 +36,12 @@ const Footer = ({ currentProject }: Props): JSX.Element => {
     }
   });
 
+  const bringToBack = useTransition(footer, {
+    from: { zIndex: 200 },
+    to: { zIndex: 0 },
+    config: { duration: 0 }
+  });
+
   const expandBackground = useTransition(background, {
     from: { height: "50%" },
     to: { height: "100%" },
@@ -41,6 +50,12 @@ const Footer = ({ currentProject }: Props): JSX.Element => {
       delay: 500,
       timing: easeInOut
     }
+  });
+
+  const resetBackground = useTransition(background, {
+    from: { height: "100%" },
+    to: { height: "50%" },
+    config: { duration: 0 }
   });
 
   const createFadeOut = (delay: number = 0): TransitionProps => ({
@@ -57,16 +72,31 @@ const Footer = ({ currentProject }: Props): JSX.Element => {
   const fadeOutCenter = useTransition(textCenter, createFadeOut(400));
   const fadeOutRight = useTransition(textRight, createFadeOut(800));
 
+  const resetSubHeading = useTransition(subHeading, {
+    ...fadeIn,
+    config: { duration: 0 }
+  });
+
+  const transform = `translateY(-${headingRect.top -
+    (window.innerHeight - headingRect.height) / 2}px)`;
+
   const slideContact = useTransition(cta, {
     from: { transform: "translateY(0)" },
     to: {
-      transform: `translateY(-${headingRect.top -
-        (window.innerHeight - headingRect.height) / 2}px)`
+      transform
     },
     config: {
       delay: 900,
       duration: 900,
       timing: easeOut2
+    }
+  });
+
+  const resetContact = useTransition(cta, {
+    from: { transform },
+    to: { transform: "translateY(0)" },
+    config: {
+      duration: 0
     }
   });
 
@@ -77,11 +107,20 @@ const Footer = ({ currentProject }: Props): JSX.Element => {
     fadeOutRight();
   };
 
+  const resetFooter = (): void => {
+    bringToBack();
+    resetBackground();
+    resetContact();
+    resetSubHeading();
+  };
+
   const hideFooter = async (): Promise<void> => {
     bringToFront();
     expandBackground();
     fadeOutText();
-    return await slideContact();
+    return await slideContact().then(() => {
+      if (params.project) resetFooter();
+    });
   };
 
   const contact = (
@@ -93,16 +132,9 @@ const Footer = ({ currentProject }: Props): JSX.Element => {
   );
 
   const renderInnerContent = (): JSX.Element => {
-    if (!currentProject) return contact;
+    if (!params.project) return contact;
 
-    const projectTitle = currentProject
-      .split("-")
-      .map(capitalize)
-      .join(" ");
-
-    const index = projects.findIndex(({ title }) => projectTitle === title);
-    const nextIndex = index === projects.length - 1 ? 0 : index + 1;
-    const nextProjectTitle = projects[nextIndex].title;
+    const nextProjectTitle = findNextTitle(params.project);
 
     return (
       <React.Fragment>
@@ -110,7 +142,7 @@ const Footer = ({ currentProject }: Props): JSX.Element => {
           to={projectTitleToPath(nextProjectTitle)}
           hideFooter={hideFooter}
         />
-        <h3>{nextProjectTitle}</h3>
+        <h3 ref={heading}>{nextProjectTitle}</h3>
         <span ref={subHeading}>VIEW NEXT PROJECT</span>
       </React.Fragment>
     );
