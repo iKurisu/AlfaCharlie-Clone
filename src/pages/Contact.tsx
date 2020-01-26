@@ -228,7 +228,7 @@ const Contact = (): JSX.Element => {
         handleInput={updateForm}
         show={activeForm === Forms.SAY_HELLO}
       />
-      <FooterText />
+      <FooterText contact />
     </div>
   );
 };
