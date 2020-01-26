@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ScrollContext } from "../App";
 import FooterText from "./FooterText";
 import FooterLink from "./footer/Link";
 import useTransition, { TransitionProps } from "hooks/useTransition";
@@ -9,6 +10,7 @@ import { ease, easeOut2, easeInOut } from "utils/timings";
 import { fadeOut, fadeIn } from "utils/transitions";
 import { findNextTitle } from "utils/projects";
 import "./Footer.scss";
+import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 
 interface Params {
   project: string;
@@ -27,6 +29,10 @@ const Footer = (): JSX.Element => {
   const textRight = useRef(null);
 
   const headingRect = useBoundingClientRect(heading) || { top: 0, height: 0 };
+
+  const {
+    subscriber: [subscribe, unsubscribe]
+  } = useContext(ScrollContext);
 
   const bringToFront = useTransition(footer, {
     from: { zIndex: 200 },
@@ -122,6 +128,62 @@ const Footer = (): JSX.Element => {
       if (params.project) resetFooter();
     });
   };
+
+  const createTextFadeIn = (delay = 0): TransitionProps => ({
+    from: { opacity: 0, transform: "translateY(10px)" },
+    to: { opacity: 1, transform: "translateY(0)" },
+    config: {
+      delay,
+      duration: 500,
+      timing: ease
+    }
+  });
+
+  const createTextFadeOut = (delay = 0): TransitionProps => ({
+    from: { opacity: 1, transform: "translateY(0)" },
+    to: { opacity: 0, transform: "translateY(10px)" },
+    config: {
+      delay,
+      duration: 350,
+      timing: ease
+    }
+  });
+
+  const fadeInTextLeft = useTransition(textLeft, createTextFadeIn());
+  const fadeInTextCenter = useTransition(textCenter, createTextFadeIn(400));
+  const fadeInTextRight = useTransition(textRight, createTextFadeIn(800));
+
+  const fadeInFooterText = (): void => {
+    fadeInTextLeft();
+    fadeInTextCenter();
+    fadeInTextRight();
+  };
+
+  const fadeOutTextLeft = useTransition(textLeft, createTextFadeOut());
+  const fadeOutTextCenter = useTransition(textCenter, createTextFadeOut(200));
+  const fadeOutTextRight = useTransition(textRight, createTextFadeOut(400));
+
+  const fadeOutFooterText = (): void => {
+    fadeOutTextLeft();
+    fadeOutTextCenter();
+    fadeOutTextRight();
+  };
+
+  const [footerTextToggled, setFooterTextToggled] = useState(false);
+
+  const toggleFooterText = (scroll: number, max: number): void => {
+    setFooterTextToggled(scroll < max + window.innerHeight * 0.2);
+  };
+
+  useDidUpdateEffect((): void => {
+    footerTextToggled ? fadeInFooterText() : fadeOutFooterText();
+  }, [footerTextToggled]);
+
+  useEffect((): (() => void) => {
+    subscribe(toggleFooterText);
+
+    return () => unsubscribe(toggleFooterText);
+  }, []);
 
   const contact = (
     <React.Fragment>
