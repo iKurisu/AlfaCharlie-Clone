@@ -96,14 +96,6 @@ const App = (): JSX.Element => {
             ]}
             component={Footer}
           />
-          <Route
-            path={["/projects/:project"]}
-            render={({
-              match: {
-                params: { project }
-              }
-            }) => <Footer currentProject={project} />}
-          />
         </div>
       </main>
       <Cursor />
