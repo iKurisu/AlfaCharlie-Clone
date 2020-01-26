@@ -12,6 +12,7 @@ export interface Properties {
   marginLeft?: string;
   marginBottom?: string;
   strokeDashoffset?: number;
+  zIndex?: number;
 }
 
 export interface MappedProperty {
@@ -35,4 +36,5 @@ export interface MappedProperties {
   marginRight?: MappedProperty;
   marginBottom?: MappedProperty;
   strokeDashoffset?: MappedProperty;
+  zIndex?: MappedProperty;
 }

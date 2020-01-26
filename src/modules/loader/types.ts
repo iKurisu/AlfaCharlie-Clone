@@ -1,13 +1,19 @@
 export enum Types {
-  TOGGLE_LOADER = "loader/TOGGLE"
+  TOGGLE_MAIN_LOADER = "loader/main/TOGGLE",
+  TOGGLE_FOOTER_LOADER = "loader/footer/TOGGLE"
 }
 
 export interface LoaderState {
-  toggled: boolean;
+  main: boolean;
+  footer: boolean;
 }
 
-interface ToggleLoader {
-  type: Types.TOGGLE_LOADER;
+interface ToggleMainLoader {
+  type: Types.TOGGLE_MAIN_LOADER;
 }
 
-export type LoaderActionTypes = ToggleLoader;
+interface ToggleFooterLoader {
+  type: Types.TOGGLE_FOOTER_LOADER;
+}
+
+export type LoaderActionTypes = ToggleMainLoader | ToggleFooterLoader;

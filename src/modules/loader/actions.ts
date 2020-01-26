@@ -1,9 +1,14 @@
 import { LoaderActionTypes, Types } from "./types";
 
-const toggleLoader = (): LoaderActionTypes => ({
-  type: Types.TOGGLE_LOADER
+const toggleMainLoader = (): LoaderActionTypes => ({
+  type: Types.TOGGLE_MAIN_LOADER
+});
+
+const toggleFooterLoader = (): LoaderActionTypes => ({
+  type: Types.TOGGLE_FOOTER_LOADER
 });
 
 export default {
-  toggleLoader
+  toggleMainLoader,
+  toggleFooterLoader
 };

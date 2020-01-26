@@ -188,11 +188,11 @@ const Loader = ({ toggled, toggle }: Props): JSX.Element => {
 };
 
 const mapState = ({ loader }: AppState): MappedState => ({
-  toggled: loader.toggled
+  toggled: loader.main
 });
 
 const mapDispatch: MappedActions = {
-  toggle: loaderActions.toggleLoader
+  toggle: loaderActions.toggleMainLoader
 };
 
 export default connect(mapState, mapDispatch)(Loader);

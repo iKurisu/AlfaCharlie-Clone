@@ -2,10 +2,19 @@
 
 .footer {
   position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.footer-background {
+  background: #fff;
+  position: absolute;
   bottom: 0;
   width: 100%;
   height: 50%;
-  background: #fff;
 }
 
 .footer-content,
@@ -17,7 +26,8 @@
 }
 
 .footer-content {
-  height: 100%;
+  width: 100%;
+  height: 50%;
 }
 
 .footer-contact {
@@ -39,7 +49,8 @@
   left: 0;
 }
 
-.footer-contact h3 {
+.footer-contact h3,
+.footer-loader h3 {
   font-size: 85px;
   line-height: 1;
   margin-bottom: 33px;
@@ -87,7 +98,8 @@
 }
 
 @media (max-width: 1600px) {
-  .footer-contact h3 {
+  .footer-contact h3,
+  .footer-loader h3 {
     font-size: 60px;
     margin-bottom: 34px;
   }
@@ -99,7 +111,8 @@
 }
 
 @media (max-width: 1366px) {
-  .footer-contact h3 {
+  .footer-contact h3,
+  .footer-loader h3 {
     font-size: 56px;
     margin-bottom: 33px;
   }
@@ -111,7 +124,8 @@
 }
 
 @media (max-width: 1024px) {
-  .footer-contact h3 {
+  .footer-contact h3,
+  .footer-loader h3 {
     font-size: 60px;
     margin-bottom: 34px;
   }
@@ -122,13 +136,15 @@
 }
 
 @media (max-width: 768px) {
-  .footer-contact h3 {
+  .footer-contact h3,
+  .footer-loader h3 {
     font-size: 75px;
   }
 }
 
 @media (max-width: 480px), (max-width: 823px) and (orientation: landscape) {
-  .footer {
+  .footer-background,
+  .footer-content {
     height: 100%;
   }
 
@@ -136,7 +152,8 @@
     padding-top: 80px;
   }
 
-  .footer-contact h3 {
+  .footer-contact h3,
+  .footer-loader h3 {
     font-size: 45px;
     letter-spacing: 0.06em;
     margin-bottom: 21px;

@@ -10,6 +10,7 @@ import Cursor from "components/Cursor";
 import ArrowButton from "components/ArrowButton";
 import Intro from "components/Intro";
 import Loader from "components/Loader";
+import FooterLoader from "components/FooterLoader";
 import Home from "pages/Home";
 import Agency from "pages/Agency";
 import Work from "pages/Work";
@@ -19,6 +20,7 @@ import Contact from "pages/Contact";
 import useCustomScroll from "hooks/useCustomScroll";
 import projects from "data/projects.json";
 import { ACProject } from "data/types";
+import { projectTitleToPath } from "utils/string";
 import "./styles.scss";
 
 export const ScrollContext = createContext(null);
@@ -73,9 +75,7 @@ const App = (): JSX.Element => {
                 {projects.map((project: ACProject, id: number) => (
                   <Route
                     exact
-                    path={`/projects/${project.title
-                      .toLowerCase()
-                      .replace(/ /g, "-")}`}
+                    path={projectTitleToPath(project.title)}
                     render={() => <Project project={project} />}
                     key={id}
                   />
@@ -104,6 +104,7 @@ const App = (): JSX.Element => {
       <ArrowButton />
       <Intro />
       <Loader />
+      <FooterLoader />
     </ScrollContext.Provider>
   );
 };
