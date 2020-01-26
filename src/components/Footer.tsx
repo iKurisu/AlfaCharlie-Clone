@@ -77,7 +77,7 @@ const Footer = (): JSX.Element => {
     config: { duration: 0 }
   });
 
-  const transform = `translateY(-${headingRect.top -
+  const transform = `translateY(${-headingRect.top +
     (window.innerHeight - headingRect.height) / 2}px)`;
 
   const slideContact = useTransition(cta, {
