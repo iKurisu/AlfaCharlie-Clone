@@ -12,7 +12,7 @@ interface CharProps {
 const Char = ({ char, toggled }: CharProps): JSX.Element => {
   const c = useRef(null);
 
-  const delay = (char.charCodeAt(0) % 7) * 50 + 250;
+  const delay = (char.charCodeAt(0) % 8) * 50 + 250;
 
   const fadeOutChar = useTransition(c, {
     ...fadeOut,
@@ -33,7 +33,11 @@ const Char = ({ char, toggled }: CharProps): JSX.Element => {
     else reset();
   }, [toggled]);
 
-  return <span ref={c}>{char}</span>;
+  return (
+    <span ref={c} style={{ opacity: 1 }}>
+      {char}
+    </span>
+  );
 };
 
 interface CharsProps {
