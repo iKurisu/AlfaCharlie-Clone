@@ -1,7 +1,7 @@
 @import "sass/_variables.scss";
 
 .work {
-  padding: 155px calc(20.5vw - 88px) 0;
+  padding: 155px calc(20.5vw - 88px) 40px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -164,7 +164,7 @@
 
 @media (max-width: 1600px) {
   .work {
-    padding: 137px calc(20.5vw - 78px) 0;
+    padding: 137px calc(20.5vw - 78px) 50px;
   }
 
   .project {
@@ -189,7 +189,7 @@
 
 @media (max-width: 1366px) {
   .work {
-    padding: 127px calc(20.5vw - 72.8px) 0;
+    padding: 127px calc(20.5vw - 72.8px) 40px;
   }
 
   .project {
@@ -204,7 +204,7 @@
 
 @media (max-width: 1024px) {
   .work {
-    padding: 137px calc(20.5vw - 78px) 0;
+    padding: 137px calc(20.5vw - 78px) 32px;
   }
 
   .project {
@@ -225,9 +225,9 @@
   }
 }
 
-@media (max-width: 768px), (max-width: 823px) and (orientation: ladscape) {
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
   .work {
-    padding: 137px calc(15.5vw - 78px) 0;
+    padding: 137px calc(15.5vw - 78px) 102px;
   }
 
   .project-title h2 {
@@ -243,6 +243,12 @@
   }
 }
 
+@media (max-width: 823px) and (orientation: landscape) {
+  .work {
+    padding-bottom: 138px;
+  }
+}
+
 @media (max-width: 460px) {
   .work {
     display: block;
@@ -251,5 +257,9 @@
 
   .project {
     margin: 0 0 30px;
+  }
+
+  .project:last-child {
+    margin-bottom: 0;
   }
 }
