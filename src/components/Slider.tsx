@@ -1,18 +1,19 @@
-import React, { useRef, MouseEventHandler, RefObject } from "react";
+import React, { useRef, MouseEventHandler, RefObject, useEffect } from "react";
 import { Dispatch, AnyAction } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import { menuActions } from "modules/menu";
 import { heroActions } from "modules/hero";
 import { testimonialsActions } from "modules/testimonials";
+import { cursorActions } from "modules/cursor";
+import { HoverableElement } from "modules/cursor/types";
 import Mask from "./slider/Mask";
 import Slide from "./slider/Slide";
 import useDrag, { Handler } from "hooks/useDrag";
+import useTransition from "hooks/useTransition";
 import { getDistance, getDuration } from "utils/slider";
 import { setTransform, setTransition } from "utils/refs";
 import "./Slider.scss";
-import { cursorActions } from "modules/cursor";
-import { HoverableElement } from "modules/cursor/types";
 
 interface MappedState {
   isOpen: boolean;
@@ -167,14 +168,31 @@ export const Slider = ({
     max: maxLength
   });
 
+  const swiper = useRef(null);
+
+  const resizeWrapper = useTransition(swiper, {
+    from: { transform: "scaleX(1.1) translateX(33px)" },
+    to: { transform: "scaleX(1) translateX(0)" },
+    config: {
+      duration: 850,
+      timing: [0.17, 0.5, 0.48, 1]
+    }
+  });
+
+  useEffect((): void => {
+    if (isOpen) resizeWrapper();
+  }, [isOpen]);
+
   return (
-    <React.Fragment>
+    <div className="slider-container">
       <Mask isOpen={isOpen} options={{ fadeDirection, delay }} />
       <div
         className="slider-swiper"
         {...dragProps}
         onMouseEnter={mouseEnter}
         onMouseLeave={mouseLeave}
+        style={{ transform: "scaleX(0.6) translateX(33px)" }}
+        ref={swiper}
       >
         <div
           className="slider-wrapper"
@@ -197,7 +215,7 @@ export const Slider = ({
           )}
         </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
