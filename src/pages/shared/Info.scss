@@ -24,6 +24,11 @@
   margin: auto;
   display: inline-block;
   margin-bottom: -1.5%;
+  overflow: hidden;
+}
+
+.info-image .image-wrapper {
+  transform-origin: 0px 0px;
 }
 
 .info-image img {

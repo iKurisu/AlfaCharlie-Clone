@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import SectionHeader from "./SectionHeader";
 import List from "../shared/info/List";
 import Link from "../shared/Link";
 import "./Info.scss";
+import useIntersection from "hooks/useIntersection";
+import Mask from "components/slider/Mask";
+import useTransition from "hooks/useTransition";
+import { ease } from "utils/timings";
+import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 
 interface Props {
   header: string;
@@ -21,12 +26,47 @@ const Info = ({
   link,
   align = "right"
 }: Props): JSX.Element => {
+  const [revealSection, setRevealSection] = useState(false);
+
+  const section = useRef(null);
+  const infoImage = useRef(null);
+
+  const [isIntersectingSection, disconnect] = useIntersection(section, {
+    threshold: 0.2
+  });
+
+  const slideImageToLeft = useTransition(infoImage, {
+    from: { transform: "translateX(10px) scaleX(1.1)" },
+    to: { transform: "translateX(0) scaleX(1)" },
+    config: {
+      duration: 850,
+      timing: ease
+    }
+  });
+
+  useDidUpdateEffect((): void => {
+    slideImageToLeft();
+    disconnect();
+  }, [revealSection]);
+
+  useEffect((): void => {
+    if (isIntersectingSection) setRevealSection(true);
+  }, [isIntersectingSection]);
+
   return (
-    <section className={`info -align-${align}`}>
-      <SectionHeader text={header} />
+    <section className={`info -align-${align}`} ref={section}>
+      <SectionHeader text={header} show={revealSection} />
       <div className="info-image-wrapper">
+        <Mask
+          isOpen={revealSection}
+          options={{ fadeDirection: "left", delay: 0 }}
+        />
         <div className="info-image">
-          <div className="image-wrapper">
+          <div
+            className="image-wrapper"
+            ref={infoImage}
+            style={{ transform: "translateX(10px) scaleX(1.1)" }}
+          >
             <img src={image} />
           </div>
         </div>
