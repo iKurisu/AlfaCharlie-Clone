@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import useTransition from "hooks/useTransition";
-import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 
 interface MaskOptions {
   fadeDirection: "left" | "right";
@@ -9,10 +8,11 @@ interface MaskOptions {
 
 interface Props {
   isOpen: boolean;
+  canHide?: boolean;
   options: MaskOptions;
 }
 
-const Mask = ({ isOpen, options }: Props): JSX.Element => {
+const Mask = ({ isOpen, canHide = false, options }: Props): JSX.Element => {
   const mask = useRef(null);
 
   const revealSlider = useTransition(mask, {
@@ -43,17 +43,8 @@ const Mask = ({ isOpen, options }: Props): JSX.Element => {
   });
 
   useEffect((): void => {
-    if (isOpen) {
-      revealSlider();
-    }
-  }, []);
-
-  useDidUpdateEffect((): void => {
-    if (isOpen) {
-      revealSlider();
-    } else {
-      hideSlider();
-    }
+    if (isOpen) revealSlider();
+    else if (canHide) hideSlider();
   }, [isOpen]);
 
   return (

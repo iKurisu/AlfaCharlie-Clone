@@ -51,6 +51,7 @@ const Images = ({ isOpen }: Props): JSX.Element => {
       <div className="menu-slider">
         <MenuSlider
           imageUrls={imageUrls}
+          canHide
           options={{
             fadeDirection: "right",
             width: {

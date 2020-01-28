@@ -31,7 +31,7 @@ const imageUrls = [
 ];
 
 interface MappedState {
-  introToggled: boolean;
+  toggled: boolean;
   currentSlideID: number;
   previousSlideID: number;
 }
@@ -43,7 +43,7 @@ interface MappedActions {
 export type Props = MappedState & MappedActions;
 
 export const Hero = ({
-  introToggled,
+  toggled,
   currentSlideID,
   previousSlideID,
   swipeSlide
@@ -91,8 +91,8 @@ export const Hero = ({
   };
 
   useEffect((): void => {
-    if (!introToggled) fadeInContent();
-  }, [introToggled]);
+    if (!toggled) fadeInContent();
+  }, [toggled]);
 
   const rotateWithScroll = (scroll: number): void => {
     symbol.current.style.transform = `rotate(${scroll * 0.125}deg)`;
@@ -188,9 +188,9 @@ export const Hero = ({
   );
 };
 
-const mapState = ({ hero, intro }: AppState): MappedState => ({
+const mapState = ({ hero, intro, loader }: AppState): MappedState => ({
   ...hero,
-  introToggled: intro.toggled
+  toggled: intro.toggled || loader.main
 });
 
 const mapDispatch = (dispatch: Dispatch): MappedActions => ({

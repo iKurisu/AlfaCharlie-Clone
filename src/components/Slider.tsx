@@ -39,6 +39,7 @@ interface SliderOptions {
 
 interface OwnProps {
   imageUrls: string[];
+  canHide?: boolean;
   options: SliderOptions;
 }
 
@@ -56,6 +57,7 @@ enum MouseDirection {
 
 export const Slider = ({
   imageUrls,
+  canHide,
   options: { fadeDirection, delay = 0, width, maxLength = 3000 },
   isOpen,
   currentSlideID,
@@ -180,12 +182,19 @@ export const Slider = ({
   });
 
   useEffect((): void => {
-    if (isOpen) resizeWrapper();
+    if (isOpen) {
+      console.log("resizing");
+      resizeWrapper();
+    }
   }, [isOpen]);
 
   return (
     <div className="slider-container">
-      <Mask isOpen={isOpen} options={{ fadeDirection, delay }} />
+      <Mask
+        isOpen={isOpen}
+        canHide={canHide}
+        options={{ fadeDirection, delay }}
+      />
       <div
         className="slider-swiper"
         {...dragProps}
@@ -261,8 +270,8 @@ const mapMenuDispatch = (dispatch: Dispatch): MappedActions => ({
 
 export const MenuSlider = connect(mapMenuState, mapMenuDispatch)(Slider);
 
-const mapHeroState = ({ hero, intro }: AppState): MappedState => ({
-  isOpen: !intro.toggled,
+const mapHeroState = ({ hero, intro, loader }: AppState): MappedState => ({
+  isOpen: !intro.toggled && !loader.main,
   currentSlideID: hero.currentSlideID,
   previousSlideID: hero.previousSlideID
 });
