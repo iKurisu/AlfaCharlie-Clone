@@ -9,7 +9,7 @@ interface CharProps {
   toggled: boolean;
 }
 
-const Char = ({ char, toggled }: CharProps): JSX.Element => {
+const FooterChar = ({ char, toggled }: CharProps): JSX.Element => {
   const c = useRef(null);
 
   const delay = (char.charCodeAt(0) % 8) * 50 + 250;
@@ -40,16 +40,48 @@ const Char = ({ char, toggled }: CharProps): JSX.Element => {
   );
 };
 
+const HeadingChar = ({ char, toggled }: CharProps): JSX.Element => {
+  const c = useRef(null);
+
+  const delay = Math.floor(Math.random() * 6) * 75;
+
+  const fadeInChar = useTransition(c, {
+    ...fadeIn,
+    config: {
+      delay,
+      duration: 700,
+      timing: ease
+    }
+  });
+
+  useDidUpdateEffect(() => {
+    if (toggled) fadeInChar();
+  }, [toggled]);
+
+  return (
+    <span ref={c} style={{ opacity: 0 }}>
+      {char}
+    </span>
+  );
+};
+
 interface CharsProps {
   text: string;
   toggled: boolean;
+  footer?: boolean;
 }
 
-const Chars = ({ text, toggled }: CharsProps): JSX.Element => (
+const Chars = ({ text, toggled, footer = false }: CharsProps): JSX.Element => (
   <>
-    {text.split("").map((char, key) => (
-      <Char char={char} toggled={toggled} key={key} />
-    ))}
+    {text
+      .split("")
+      .map((char, key) =>
+        footer ? (
+          <FooterChar char={char} toggled={toggled} key={key} />
+        ) : (
+          <HeadingChar char={char} toggled={toggled} />
+        )
+      )}
   </>
 );
 
