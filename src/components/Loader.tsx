@@ -159,7 +159,7 @@ const Loader = ({ toggled, toggle }: Props): JSX.Element => {
     await firstRotation();
 
     secondRotation();
-    toggle();
+    setTimeout(toggle, 500);
 
     await slideOutBackground();
 
