@@ -18,7 +18,7 @@ export const Menu = ({ isOpen }: Props): JSX.Element => (
   <div className={`menu ${isOpen ? "show" : "hide"}`}>
     <Navigation isOpen={isOpen} />
     <Images isOpen={isOpen} />
-    <VerticalNav menu={true} show={isOpen} delay={1200} />
+    <VerticalNav menu delay={1200} />
     <White isOpen={isOpen} />
     <Gray isOpen={isOpen} />
   </div>

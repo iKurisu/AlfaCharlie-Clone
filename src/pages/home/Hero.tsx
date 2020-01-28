@@ -19,6 +19,7 @@ import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import useTransition from "hooks/useTransition";
 import useMediaQuery from "hooks/useMediaQuery";
 import { getDuration } from "utils/slider";
+import { ease } from "utils/timings";
 import "./Hero.scss";
 
 const imageUrls = [
@@ -30,6 +31,7 @@ const imageUrls = [
 ];
 
 interface MappedState {
+  toggled: boolean;
   currentSlideID: number;
   previousSlideID: number;
 }
@@ -41,6 +43,7 @@ interface MappedActions {
 export type Props = MappedState & MappedActions;
 
 export const Hero = ({
+  toggled,
   currentSlideID,
   previousSlideID,
   swipeSlide
@@ -71,15 +74,15 @@ export const Hero = ({
       from: { transform: `translateX(40px)`, opacity: 0 },
       to: { transform: `translateX(0)`, opacity: 1 },
       config: {
-        duration: 450,
-        timing: [0.17, 0.5, 0.48, 1],
+        duration: 500,
+        timing: ease,
         delay
       }
     });
 
   const fadeInTitle = fadeIn(title);
-  const fadeInText = fadeIn(text, 250);
-  const fadeInLink = fadeIn(link, 400);
+  const fadeInText = fadeIn(text, 200);
+  const fadeInLink = fadeIn(link, 350);
 
   const fadeInContent = (): void => {
     fadeInTitle();
@@ -87,12 +90,15 @@ export const Hero = ({
     fadeInLink();
   };
 
+  useEffect((): void => {
+    if (!toggled) fadeInContent();
+  }, [toggled]);
+
   const rotateWithScroll = (scroll: number): void => {
     symbol.current.style.transform = `rotate(${scroll * 0.125}deg)`;
   };
 
   useEffect((): (() => void) => {
-    fadeInContent();
     subscribe(rotateWithScroll);
 
     return () => unsubscribe(rotateWithScroll);
@@ -182,7 +188,10 @@ export const Hero = ({
   );
 };
 
-const mapState = ({ hero }: AppState): MappedState => ({ ...hero });
+const mapState = ({ hero, intro, loader }: AppState): MappedState => ({
+  ...hero,
+  toggled: intro.toggled || loader.main
+});
 
 const mapDispatch = (dispatch: Dispatch): MappedActions => ({
   swipeSlide: (slideID: number, delay: number): MouseEventHandler => () => {

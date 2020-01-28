@@ -1,18 +1,19 @@
-import React, { useRef, MouseEventHandler, RefObject } from "react";
+import React, { useRef, MouseEventHandler, RefObject, useEffect } from "react";
 import { Dispatch, AnyAction } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import { menuActions } from "modules/menu";
 import { heroActions } from "modules/hero";
 import { testimonialsActions } from "modules/testimonials";
+import { cursorActions } from "modules/cursor";
+import { HoverableElement } from "modules/cursor/types";
 import Mask from "./slider/Mask";
 import Slide from "./slider/Slide";
 import useDrag, { Handler } from "hooks/useDrag";
+import useTransition from "hooks/useTransition";
 import { getDistance, getDuration } from "utils/slider";
 import { setTransform, setTransition } from "utils/refs";
 import "./Slider.scss";
-import { cursorActions } from "modules/cursor";
-import { HoverableElement } from "modules/cursor/types";
 
 interface MappedState {
   isOpen: boolean;
@@ -38,6 +39,7 @@ interface SliderOptions {
 
 interface OwnProps {
   imageUrls: string[];
+  canHide?: boolean;
   options: SliderOptions;
 }
 
@@ -55,6 +57,7 @@ enum MouseDirection {
 
 export const Slider = ({
   imageUrls,
+  canHide,
   options: { fadeDirection, delay = 0, width, maxLength = 3000 },
   isOpen,
   currentSlideID,
@@ -167,14 +170,38 @@ export const Slider = ({
     max: maxLength
   });
 
+  const swiper = useRef(null);
+
+  const resizeWrapper = useTransition(swiper, {
+    from: { transform: "scaleX(1.1) translateX(33px)" },
+    to: { transform: "scaleX(1) translateX(0)" },
+    config: {
+      duration: 850,
+      timing: [0.17, 0.5, 0.48, 1]
+    }
+  });
+
+  useEffect((): void => {
+    if (isOpen) {
+      console.log("resizing");
+      resizeWrapper();
+    }
+  }, [isOpen]);
+
   return (
-    <React.Fragment>
-      <Mask isOpen={isOpen} options={{ fadeDirection, delay }} />
+    <div className="slider-container">
+      <Mask
+        isOpen={isOpen}
+        canHide={canHide}
+        options={{ fadeDirection, delay }}
+      />
       <div
         className="slider-swiper"
         {...dragProps}
         onMouseEnter={mouseEnter}
         onMouseLeave={mouseLeave}
+        style={{ transform: "scaleX(0.6) translateX(33px)" }}
+        ref={swiper}
       >
         <div
           className="slider-wrapper"
@@ -197,7 +224,7 @@ export const Slider = ({
           )}
         </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
@@ -243,8 +270,8 @@ const mapMenuDispatch = (dispatch: Dispatch): MappedActions => ({
 
 export const MenuSlider = connect(mapMenuState, mapMenuDispatch)(Slider);
 
-const mapHeroState = ({ hero, intro }: AppState): MappedState => ({
-  isOpen: !intro.toggled,
+const mapHeroState = ({ hero, intro, loader }: AppState): MappedState => ({
+  isOpen: !intro.toggled && !loader.main,
   currentSlideID: hero.currentSlideID,
   previousSlideID: hero.previousSlideID
 });

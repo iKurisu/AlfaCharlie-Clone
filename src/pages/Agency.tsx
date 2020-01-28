@@ -6,7 +6,6 @@ import Team from "./agency/Team";
 import Clients from "./agency/Clients";
 import Testimonials from "./shared/Testimonials";
 import FooterArt from "components/FooterArt";
-import { introActions } from "modules/intro";
 import { agencyActions } from "modules/agency";
 
 interface AgencyRefs {
@@ -16,22 +15,17 @@ interface AgencyRefs {
 }
 
 interface MappedActions {
-  toggleIntro: () => void;
   calculateDistanceFromTop: (element: AgencyRefs) => void;
 }
 
 type Props = MappedActions;
 
-const Agency = ({
-  toggleIntro,
-  calculateDistanceFromTop
-}: Props): JSX.Element => {
+const Agency = ({ calculateDistanceFromTop }: Props): JSX.Element => {
   const expertise = useRef(null);
   const team = useRef(null);
   const clients = useRef(null);
 
   const recalculateDistance = (): void => {
-    console.log("c");
     calculateDistanceFromTop({
       expertise,
       team,
@@ -41,7 +35,6 @@ const Agency = ({
 
   useEffect((): (() => void) => {
     calculateDistanceFromTop({ expertise, team, clients });
-    toggleIntro();
 
     document.title =
       "Branding, Web Design and Graphic Design | Alpha Charlie | What We Do";
@@ -94,7 +87,6 @@ const Agency = ({
 };
 
 const mapDispatch: MappedActions = {
-  toggleIntro: introActions.toggleIntro,
   calculateDistanceFromTop: agencyActions.calculateDistanceFromTop
 };
 
