@@ -57,7 +57,7 @@ const App = (): JSX.Element => {
       value={{ subscriber: [subscribe, unsubscribe], manualScroll }}
     >
       <main>
-        <VerticalNav show={true} />
+        <VerticalNav />
         <div className="scroll-content-wrapper" {...scroll}>
           <div
             className="scroll-content"
