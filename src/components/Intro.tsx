@@ -1,6 +1,9 @@
 import React, { useRef, useEffect } from "react";
+import { connect } from "react-redux";
 import Symbol from "./Symbol";
 import Title from "./intro/Title";
+import Inverted from "./Inverted";
+import { introActions } from "modules/intro";
 import useTransition, { TransitionProps } from "hooks/useTransition";
 import { linear, ease, easeInOut, easeOut, easeOut2 } from "utils/timings";
 import {
@@ -12,7 +15,6 @@ import {
   slideToRight
 } from "utils/transitions";
 import "./Intro.scss";
-import Inverted from "./Inverted";
 
 const generateDrawLineProps = (delay: number = 0): TransitionProps => ({
   from: { strokeDashoffset: 140 },
@@ -39,7 +41,13 @@ const hideTopLineProps = generateHideLineProps();
 const drawBottomLineProps = generateDrawLineProps();
 const hideBottomLineProps = generateHideLineProps(350);
 
-const Intro = (): JSX.Element => {
+interface MappedActions {
+  toggleIntro: () => void;
+}
+
+type Props = MappedActions;
+
+const Intro = ({ toggleIntro }: Props): JSX.Element => {
   const mainBackground = useRef(null);
   const symbol = useRef(null);
   const topLine = useRef(null);
@@ -279,7 +287,10 @@ const Intro = (): JSX.Element => {
       rotateBothSymbols().then(() => {
         rotateInvertedSymbol().then(() => {
           fadeInTitle();
-          scaleTitle().then(hideIntro);
+          scaleTitle().then(() => {
+            setTimeout(toggleIntro, 400);
+            hideIntro();
+          });
         });
         hideInvertedSymbol();
       });
@@ -323,4 +334,8 @@ const Intro = (): JSX.Element => {
   );
 };
 
-export default Intro;
+const mapDispatch: MappedActions = {
+  toggleIntro: introActions.toggleIntro
+};
+
+export default connect(null, mapDispatch)(Intro);
