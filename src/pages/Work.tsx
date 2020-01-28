@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { AppState } from "store";
 import Project from "./work/Project";
 import FooterArt from "components/FooterArt";
-import { introActions } from "modules/intro";
-import { IntroActionTypes } from "modules/intro/types";
 import { Filters } from "modules/work/types";
 import projects from "data/projects.json";
 import { ACProject } from "data/types";
@@ -18,13 +16,9 @@ interface MappedState {
   filter: Filters;
 }
 
-interface MappedActions {
-  toggleIntro: () => IntroActionTypes;
-}
+type Props = MappedState;
 
-type Props = MappedState & MappedActions;
-
-const Work = ({ filter, toggleIntro }: Props): JSX.Element => {
+const Work = ({ filter }: Props): JSX.Element => {
   const [visibleProjects, setVisibleProjects] = useState(projects);
   const filteredTitles = useRef([]);
   const [pointerEvents, setPointerEvents] = useState(true);
@@ -105,7 +99,6 @@ const Work = ({ filter, toggleIntro }: Props): JSX.Element => {
   }, [filter]);
 
   useEffect((): void => {
-    toggleIntro();
     document.title =
       "Brand Identity, Web Design and Design Case Studies | " +
       "Alfa Charlie | Work";
@@ -125,8 +118,4 @@ const mapState = (state: AppState): MappedState => ({
   filter: state.work.visibilityFilter
 });
 
-const mapDispatch: MappedActions = {
-  toggleIntro: introActions.toggleIntro
-};
-
-export default connect(mapState, mapDispatch)(Work);
+export default connect(mapState)(Work);
