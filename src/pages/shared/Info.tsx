@@ -32,7 +32,7 @@ const Info = ({
   const infoImage = useRef(null);
 
   const [isIntersectingSection, disconnect] = useIntersection(section, {
-    threshold: 0.2
+    threshold: window.innerHeight <= 1024 ? 0.01 : 0.2
   });
 
   const slideImageToLeft = useTransition(infoImage, {
