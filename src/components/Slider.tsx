@@ -40,6 +40,7 @@ interface SliderOptions {
 interface OwnProps {
   imageUrls: string[];
   canHide?: boolean;
+  show?: boolean;
   options: SliderOptions;
 }
 
@@ -283,11 +284,11 @@ const mapHeroDispatch = (dispatch: Dispatch): MappedActions => ({
 
 export const HeroSlider = connect(mapHeroState, mapHeroDispatch)(Slider);
 
-const mapTestimonialsState = ({
-  intro,
-  testimonials
-}: AppState): MappedState => ({
-  isOpen: !intro.toggled,
+const mapTestimonialsState = (
+  { testimonials }: AppState,
+  props: OwnProps
+): MappedState => ({
+  isOpen: props.show,
   currentSlideID: testimonials.currentSlideID,
   previousSlideID: testimonials.previousSlideID
 });
