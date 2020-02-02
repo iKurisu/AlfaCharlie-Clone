@@ -7,13 +7,6 @@ import { VerticalNav } from "../VerticalNav";
 import { ScrollContext } from "../../App";
 
 describe("VerticalNav", () => {
-  const setFilter = jest.fn();
-  const position = {
-    expertise: 0,
-    team: 1000,
-    clients: 2000
-  };
-
   const mountAt = (route: string): ReactWrapper =>
     mount(
       <Provider store={store}>
@@ -24,7 +17,11 @@ describe("VerticalNav", () => {
               manualScroll: jest.fn()
             }}
           >
-            <VerticalNav position={position} setFilter={setFilter} />
+            <VerticalNav
+              introToggled={false}
+              loaderToggled={false}
+              menuToggled={false}
+            />
           </ScrollContext.Provider>
         </MemoryRouter>
       </Provider>
@@ -45,7 +42,12 @@ describe("VerticalNav", () => {
               manualScroll: jest.fn()
             }}
           >
-            <VerticalNav menu position={position} setFilter={setFilter} />
+            <VerticalNav
+              menu
+              introToggled={false}
+              loaderToggled={false}
+              menuToggled={false}
+            />
           </ScrollContext.Provider>
         </BrowserRouter>
       </Provider>
@@ -66,19 +68,5 @@ describe("VerticalNav", () => {
 
   it("renders correct links at '/work'", () => {
     expectLinksToBe(mountAt("/work"), ["All", "Branding", "Digital"]);
-  });
-
-  it("calls 'setFilter'", () => {
-    const wrapper = mountAt("/work");
-
-    // suppress 'Not implemented' error.
-    window.scrollTo = () => {};
-
-    wrapper
-      .find(".link-wrapper")
-      .at(1)
-      .simulate("click");
-
-    expect(setFilter).toHaveBeenCalledWith("BRANDING");
   });
 });
