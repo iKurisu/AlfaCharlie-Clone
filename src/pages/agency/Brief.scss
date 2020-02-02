@@ -15,6 +15,10 @@
   z-index: 10;
 }
 
+.brief-animation {
+  opacity: 0;
+}
+
 .brief-title,
 .brief-text {
   width: 85%;
@@ -36,11 +40,14 @@
 
 .brief-image {
   width: 82%;
+  position: relative;
+  overflow: hidden;
 }
 
 .brief-image img {
   width: 100%;
   height: auto;
+  transform-origin: 0px 0px;
 }
 
 @media (max-width: 1600px) {

@@ -1,13 +1,13 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef } from "react";
 import SectionHeader from "./SectionHeader";
 import List from "../shared/info/List";
 import Link from "../shared/Link";
-import "./Info.scss";
-import useIntersection from "hooks/useIntersection";
 import Mask from "components/slider/Mask";
 import useTransition from "hooks/useTransition";
 import { ease } from "utils/timings";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
+import useRevealSection from "hooks/useRevealSection";
+import "./Info.scss";
 
 interface Props {
   header: string;
@@ -26,14 +26,10 @@ const Info = ({
   link,
   align = "right"
 }: Props): JSX.Element => {
-  const [revealSection, setRevealSection] = useState(false);
-
   const section = useRef(null);
   const infoImage = useRef(null);
 
-  const [isIntersectingSection, disconnect] = useIntersection(section, {
-    threshold: 0.2
-  });
+  const revealSection = useRevealSection(section);
 
   const slideImageToLeft = useTransition(infoImage, {
     from: { transform: "translateX(10px) scaleX(1.1)" },
@@ -46,12 +42,7 @@ const Info = ({
 
   useDidUpdateEffect((): void => {
     slideImageToLeft();
-    disconnect();
   }, [revealSection]);
-
-  useEffect((): void => {
-    if (isIntersectingSection) setRevealSection(true);
-  }, [isIntersectingSection]);
 
   return (
     <section className={`info -align-${align}`} ref={section}>

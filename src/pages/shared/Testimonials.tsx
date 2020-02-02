@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, useRef } from "react";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
@@ -10,6 +10,7 @@ import Arrows from "./Arrows";
 import SliderNav from "./SliderNav";
 import useMediaQuery from "hooks/useMediaQuery";
 import "./Testimonials.scss";
+import useRevealSection from "hooks/useRevealSection";
 
 const imageUrls = [
   "2019/04/classic-journeys-editorial-2.jpg",
@@ -34,6 +35,9 @@ interface OwnProps {
 type Props = MappedState & MappedActions & OwnProps;
 
 const Testimonials = (props: Props): JSX.Element => {
+  const section = useRef(null);
+  const revealSection = useRevealSection(section);
+
   const wrapperWidth = useMediaQuery([
     "(maxWidth: 420px) => 85.61vw",
     "(maxWidth: 823px) and (orientatin: landscape) => 79.01vw",
@@ -52,11 +56,12 @@ const Testimonials = (props: Props): JSX.Element => {
   ]);
 
   return (
-    <section className="testimonials">
-      <SectionHeader text={props.title} />
+    <section className="testimonials" ref={section}>
+      <SectionHeader text={props.title} show={revealSection} />
       <div className="testimonials-image-wrapper">
         <div className="testimonials-slider">
           <TestimonialsSlider
+            show={revealSection}
             imageUrls={imageUrls}
             options={{
               fadeDirection: "left",

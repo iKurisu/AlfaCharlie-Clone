@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, RefObject } from "react";
+import Mask from "components/slider/Mask";
 import { classList } from "utils/class";
 import useTransition from "hooks/useTransition";
 import "./Member.scss";
@@ -8,9 +9,18 @@ interface Props {
   name: string;
   position: string;
   about: string;
+  show: boolean;
+  imgRef: RefObject<HTMLImageElement>;
 }
 
-const Member = ({ img, name, position, about }: Props): JSX.Element => {
+const Member = ({
+  img,
+  name,
+  position,
+  about,
+  show,
+  imgRef
+}: Props): JSX.Element => {
   const [isActive, setIsActive] = useState(false);
   const aboutRef = useRef(null);
 
@@ -65,7 +75,8 @@ const Member = ({ img, name, position, about }: Props): JSX.Element => {
     <div className={classList(["member", { active: isActive }])}>
       <div className="member-image-wrapper">
         <div className="member-image">
-          <img src={img} />
+          <Mask isOpen={show} options={{ fadeDirection: "left", delay: 0 }} />
+          <img src={img} ref={imgRef} />
         </div>
       </div>
       <div className="member-info">
