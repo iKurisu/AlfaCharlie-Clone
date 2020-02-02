@@ -79,7 +79,7 @@ const Chars = ({ text, toggled, footer = false }: CharsProps): JSX.Element => (
         footer ? (
           <FooterChar char={char} toggled={toggled} key={key} />
         ) : (
-          <HeadingChar char={char} toggled={toggled} />
+          <HeadingChar char={char} toggled={toggled} key={key} />
         )
       )}
   </>
