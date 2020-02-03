@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import Chars from "./Chars";
@@ -47,15 +47,18 @@ const FooterLoader = ({ toggled, toggle }: Props): JSX.Element => {
     config: { duration: 0 }
   });
 
+  useEffect((): (() => void) => {
+    return (): void =>
+      setText(
+        match ? findNextTitle(match.params.project) : "Let’s work together."
+      );
+  }, [match]);
+
   useDidUpdateEffect((): void => {
     if (toggled) {
       slideOut().then(toggle);
     } else {
-      reset().then(() => {
-        setText(
-          match ? findNextTitle(match.params.project) : "Let’s work together."
-        );
-      });
+      reset();
     }
   }, [toggled]);
 
@@ -69,7 +72,7 @@ const FooterLoader = ({ toggled, toggle }: Props): JSX.Element => {
       ref={loader}
     >
       <h3>
-        <Chars text={text} toggled={toggled} />
+        <Chars footer text={text} toggled={toggled} />
       </h3>
     </div>
   );

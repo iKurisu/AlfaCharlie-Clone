@@ -60,13 +60,12 @@ const useTransition = (
         const ease = easing(getProgress(currentFrame, frames));
         const maxEase = easing(getProgress(Math.ceil(frames), frames));
 
-        Object.assign(
-          element.current.style,
-          stringifyProperties(
-            mappedProperties,
-            maxEase > 1 ? ease / maxEase : ease
-          )
-        );
+        if (element.current) {
+          const stage = maxEase > 1 ? ease / maxEase : ease;
+          const styles = stringifyProperties(mappedProperties, stage);
+
+          Object.assign(element.current.style, styles);
+        }
 
         if (currentFrame >= frames) {
           resetFrame();
