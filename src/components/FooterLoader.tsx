@@ -69,7 +69,7 @@ const FooterLoader = ({ toggled, toggle }: Props): JSX.Element => {
       ref={loader}
     >
       <h3>
-        <Chars text={text} toggled={toggled} />
+        <Chars footer text={text} toggled={toggled} />
       </h3>
     </div>
   );
