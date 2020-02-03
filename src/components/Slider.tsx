@@ -183,10 +183,7 @@ export const Slider = ({
   });
 
   useEffect((): void => {
-    if (isOpen) {
-      console.log("resizing");
-      resizeWrapper();
-    }
+    if (isOpen) resizeWrapper();
   }, [isOpen]);
 
   return (
