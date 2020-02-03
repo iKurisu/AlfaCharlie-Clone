@@ -46,7 +46,11 @@ const Project = ({ project }: Props): JSX.Element => {
       </div>
     ) : (
       <div className="project-item" key={id}>
-        {isVideo(item) ? <video src={item} /> : <img src={item} />}
+        {isVideo(item) ? (
+          <video src={item} loop muted autoPlay />
+        ) : (
+          <img src={item} />
+        )}
       </div>
     );
 
