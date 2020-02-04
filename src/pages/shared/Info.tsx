@@ -8,6 +8,7 @@ import { ease } from "utils/timings";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import useRevealSection from "hooks/useRevealSection";
 import "./Info.scss";
+import useParallax from "hooks/useParallax";
 
 interface Props {
   header: string;
@@ -28,8 +29,11 @@ const Info = ({
 }: Props): JSX.Element => {
   const section = useRef(null);
   const infoImage = useRef(null);
+  const parallaxItem = useRef(null);
 
   const revealSection = useRevealSection(section);
+
+  useParallax(parallaxItem, { min: -4, max: 2 });
 
   const slideImageToLeft = useTransition(infoImage, {
     from: { transform: "translateX(10px) scaleX(1.1)" },
@@ -48,17 +52,19 @@ const Info = ({
     <section className={`info -align-${align}`} ref={section}>
       <SectionHeader text={header} show={revealSection} />
       <div className="info-image-wrapper">
-        <Mask
-          isOpen={revealSection}
-          options={{ fadeDirection: "left", delay: 0 }}
-        />
-        <div className="info-image">
-          <div
-            className="image-wrapper"
-            ref={infoImage}
-            style={{ transform: "translateX(10px) scaleX(1.1)" }}
-          >
-            <img src={image} />
+        <div className="parallax-item">
+          <Mask
+            isOpen={revealSection}
+            options={{ fadeDirection: "left", delay: 0 }}
+          />
+          <div className="info-image" ref={parallaxItem}>
+            <div
+              className="image-wrapper"
+              ref={infoImage}
+              style={{ transform: "translateX(10px) scaleX(1.1)" }}
+            >
+              <img src={image} />
+            </div>
           </div>
         </div>
       </div>
