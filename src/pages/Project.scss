@@ -95,6 +95,15 @@
 .project-item {
   margin-bottom: 8.3vw;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.project-item .slider-mask {
+  background: $background;
+}
+
+.project-item img {
+  transform-origin: 100% 0;
 }
 
 .project-double .project-item-wrapper {
