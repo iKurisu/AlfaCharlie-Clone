@@ -8,6 +8,10 @@ const useBoundingClientRect = (element: RefObject<HTMLElement>): DOMRect => {
     setBoundingClientRect(element.current.getBoundingClientRect());
   };
 
+  useEffect(() => {
+    updateBoundingClientRect();
+  }, [element]);
+
   useEffect((): (() => void) => {
     updateBoundingClientRect();
     window.addEventListener("resize", updateBoundingClientRect);

@@ -26,11 +26,15 @@
   margin-bottom: 29.9px;
 }
 
-.hero-slider {
+.hero-slider-wrapper {
   width: 65%;
   height: 70vh;
   margin-left: -8%;
   position: relative;
+}
+
+.hero-slider {
+  overflow: hidden;
 }
 
 .hero .slider-nav {
@@ -64,7 +68,7 @@
     margin-bottom: 26.5px;
   }
 
-  .hero-slider {
+  .hero-slider-wrapper {
     width: 70%;
     margin-left: -16%;
   }
@@ -100,7 +104,7 @@
     margin-bottom: 27px;
   }
 
-  .hero-slider {
+  .hero-slider-wrapper {
     margin-left: -16%;
     width: 70%;
   }
@@ -131,12 +135,12 @@
     margin-bottom: 27.5px;
   }
 
-  .hero-slider {
+  .hero-slider-wrapper {
     flex: 1;
     height: 79vw;
   }
 
-  .hero-slider {
+  .hero-slider-wrapper {
     width: 100%;
     margin-left: 0;
   }

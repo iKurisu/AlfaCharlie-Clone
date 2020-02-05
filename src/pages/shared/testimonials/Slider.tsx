@@ -4,6 +4,7 @@ import { AppState } from "store";
 import Link from "../Link";
 import { classList } from "utils/class";
 import "./Slider.scss";
+import useParallax from "hooks/useParallax";
 
 export interface Author {
   name: string;
@@ -122,8 +123,15 @@ export const Slider = ({ activeSlide }: MappedState): JSX.Element => {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
+  const sliderParallax = useRef(null);
+  useParallax(sliderParallax, { min: 35, max: -21, unit: "px" });
+
   return (
-    <div className="testimonials-slider" style={{ height: `${height}px` }}>
+    <div
+      className="testimonials-slider"
+      style={{ height: `${height}px`, transform: "translateY(35px)" }}
+      ref={sliderParallax}
+    >
       {testimonials.map(({ paragraphs, author, link }, id) => (
         <div
           className={classList([
