@@ -28,13 +28,15 @@ const Info = ({
   align = "right"
 }: Props): JSX.Element => {
   const section = useRef(null);
-  const infoImage = useRef(null);
-  const parallaxItem = useRef(null);
-
   const revealSection = useRevealSection(section);
 
-  useParallax(parallaxItem, { min: -4, max: 2 });
+  const imageParallax = useRef(null);
+  useParallax(imageParallax, { min: -4, max: 2 });
 
+  const contentParallax = useRef(null);
+  useParallax(contentParallax, { min: 2, max: -1 });
+
+  const infoImage = useRef(null);
   const slideImageToLeft = useTransition(infoImage, {
     from: { transform: "translateX(10px) scaleX(1.1)" },
     to: { transform: "translateX(0) scaleX(1)" },
@@ -57,7 +59,7 @@ const Info = ({
             isOpen={revealSection}
             options={{ fadeDirection: "left", delay: 0 }}
           />
-          <div className="info-image" ref={parallaxItem}>
+          <div className="info-image" ref={imageParallax}>
             <div
               className="image-wrapper"
               ref={infoImage}
@@ -69,7 +71,7 @@ const Info = ({
         </div>
       </div>
       <div className="info-content-wrapper">
-        <div className="info-content">
+        <div className="info-content" ref={contentParallax}>
           <div>
             <h3 className="info-title">{title}</h3>
           </div>

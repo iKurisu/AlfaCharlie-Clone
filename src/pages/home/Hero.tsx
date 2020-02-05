@@ -21,6 +21,7 @@ import useMediaQuery from "hooks/useMediaQuery";
 import { getDuration } from "utils/slider";
 import { ease } from "utils/timings";
 import "./Hero.scss";
+import useParallax from "hooks/useParallax";
 
 const imageUrls = [
   "2019/05/Lion-House-Logo.jpg",
@@ -123,6 +124,9 @@ export const Hero = ({
     "(minWidth: 1601px) => 46.99vw"
   ]);
 
+  const heroParallax = useRef(null);
+  useParallax(heroParallax, { min: 0, max: 3 });
+
   return (
     <section className="hero">
       <div className="hero-content">
@@ -153,14 +157,18 @@ export const Hero = ({
           <Link content="View our work" to="/work" />
         </div>
       </div>
-      <div className="hero-slider">
-        <HeroSlider
-          imageUrls={imageUrls}
-          options={{
-            fadeDirection: "left",
-            width: { wrapper: wrapperWidth, image: imageWidth }
-          }}
-        />
+      <div className="hero-slider-wrapper">
+        <div className="hero-slider">
+          <div className="hero-slider-parallax" ref={heroParallax}>
+            <HeroSlider
+              imageUrls={imageUrls}
+              options={{
+                fadeDirection: "left",
+                width: { wrapper: wrapperWidth, image: imageWidth }
+              }}
+            />
+          </div>
+        </div>
         <SliderNav
           slides={imageUrls}
           currentSlideID={currentSlideID}

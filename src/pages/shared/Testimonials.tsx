@@ -11,6 +11,7 @@ import SliderNav from "./SliderNav";
 import useMediaQuery from "hooks/useMediaQuery";
 import "./Testimonials.scss";
 import useRevealSection from "hooks/useRevealSection";
+import useParallax from "hooks/useParallax";
 
 const imageUrls = [
   "2019/04/classic-journeys-editorial-2.jpg",
@@ -55,11 +56,14 @@ const Testimonials = (props: Props): JSX.Element => {
     "(minWidth: 1601px) => 31.90vw"
   ]);
 
+  const testimonialsParallax = useRef(null);
+  useParallax(testimonialsParallax, { min: -5, max: 3 });
+
   return (
     <section className="testimonials" ref={section}>
       <SectionHeader text={props.title} show={revealSection} />
       <div className="testimonials-image-wrapper">
-        <div className="testimonials-slider">
+        <div className="testimonials-slider" ref={testimonialsParallax}>
           <TestimonialsSlider
             show={revealSection}
             imageUrls={imageUrls}
