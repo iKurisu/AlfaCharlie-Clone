@@ -3,6 +3,7 @@ import Mask from "components/slider/Mask";
 import { classList } from "utils/class";
 import useTransition from "hooks/useTransition";
 import "./Member.scss";
+import useParallax from "hooks/useParallax";
 
 interface Props {
   img: string;
@@ -71,10 +72,13 @@ const Member = ({
     setIsActive(!isActive);
   };
 
+  const imageParallax = useRef(null);
+  useParallax(imageParallax, { min: -5, max: 3.5 });
+
   return (
     <div className={classList(["member", { active: isActive }])}>
       <div className="member-image-wrapper">
-        <div className="member-image">
+        <div className="member-image" ref={imageParallax}>
           <Mask isOpen={show} options={{ fadeDirection: "left", delay: 0 }} />
           <img src={img} ref={imgRef} />
         </div>

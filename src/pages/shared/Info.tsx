@@ -31,7 +31,8 @@ const Info = ({
   const revealSection = useRevealSection(section);
 
   const imageParallax = useRef(null);
-  useParallax(imageParallax, { min: -4, max: 2 });
+  const bounds = align === "left" ? { min: -7, max: 4 } : { min: -4, max: 2 };
+  useParallax(imageParallax, bounds);
 
   const contentParallax = useRef(null);
   useParallax(contentParallax, { min: 2, max: -1 });
