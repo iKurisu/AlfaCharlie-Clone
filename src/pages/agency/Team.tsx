@@ -6,6 +6,7 @@ import useTransition from "hooks/useTransition";
 import useIntersection from "hooks/useIntersection";
 import { ease } from "utils/timings";
 import "./Team.scss";
+import useParallax from "hooks/useParallax";
 
 const Team = (): JSX.Element => {
   const section = useRef(null);
@@ -45,6 +46,9 @@ const Team = (): JSX.Element => {
     }
   }, [isIntersectingRightImage]);
 
+  const contentParallax = useRef(null);
+  useParallax(contentParallax, { min: 15, max: -3 });
+
   return (
     <div className="team" ref={section}>
       <SectionHeader text="who we are" show={reveal} />
@@ -65,7 +69,11 @@ const Team = (): JSX.Element => {
           />
         </div>
         <div className="team-right">
-          <div className="team-content">
+          <div
+            className="team-content"
+            ref={contentParallax}
+            style={{ transform: "translateY(15%)" }}
+          >
             <h3 className="team-title">
               We are a team of two with a network of many.
             </h3>

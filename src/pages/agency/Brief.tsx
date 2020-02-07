@@ -6,6 +6,7 @@ import Mask from "components/slider/Mask";
 import "./Brief.scss";
 import useTransition from "hooks/useTransition";
 import { ease } from "utils/timings";
+import useParallax from "hooks/useParallax";
 
 interface MappedState {
   reveal: boolean;
@@ -56,6 +57,9 @@ const Brief = ({ reveal }: Props): JSX.Element => {
     }
   }, [reveal]);
 
+  const imageParallax = useRef(null);
+  useParallax(imageParallax, { min: -0.7, max: 1.5 });
+
   return (
     <section className="brief">
       <div className="brief-content">
@@ -76,7 +80,7 @@ const Brief = ({ reveal }: Props): JSX.Element => {
         </div>
       </div>
       <div className="brief-image-wrapper">
-        <div className="brief-image">
+        <div className="brief-image" ref={imageParallax}>
           <Mask isOpen={reveal} options={{ fadeDirection: "left", delay: 0 }} />
           <img
             src="https://alfacharlie.b-cdn.net/wp-content/uploads/2019/05/Alfa-Charlie-Creative-Agency-6.jpg"

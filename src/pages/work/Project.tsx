@@ -1,5 +1,6 @@
-import React, { RefObject } from "react";
+import React, { RefObject, useRef } from "react";
 import LoaderLink from "components/LoaderLink";
+import useParallax from "hooks/useParallax";
 
 interface Props {
   projectTitle: string;
@@ -17,6 +18,9 @@ const Project = ({
   const formattedTitle = projectTitle.replace(/ /g, "-").toLowerCase();
   const url = `projects/${formattedTitle}`;
 
+  const imageParallax = useRef(null);
+  useParallax(imageParallax, { min: -2, max: 1.5 });
+
   return (
     <article className="project">
       <LoaderLink to={url} />
@@ -27,7 +31,11 @@ const Project = ({
           <div className="project-crop" />
           <div className="project-crop" />
         </div>
-        <div className="project-image">
+        <div
+          className="project-image"
+          ref={imageParallax}
+          style={{ transform: "translateY(-2%)" }}
+        >
           <img src={img} />
         </div>
       </div>

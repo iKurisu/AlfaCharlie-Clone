@@ -7,6 +7,8 @@ import useIntersection from "hooks/useIntersection";
 import useTransition from "hooks/useTransition";
 import { ease } from "utils/timings";
 import "./Project.scss";
+import useParallax from "hooks/useParallax";
+import ParallaxImage from "./project/ParallaxImage";
 
 interface Props {
   project: ACProject;
@@ -59,6 +61,9 @@ const Project = ({ project }: Props): JSX.Element => {
     return () => unsubscribe(coverHero);
   }, []);
 
+  const heroParallax = useRef(null);
+  useParallax(heroParallax, { min: 0, max: 11 });
+
   const renderItems = (item: string | string[], id: number): JSX.Element =>
     typeof item === "object" ? (
       <div className={`project-double`} key={id} ref={double}>
@@ -79,7 +84,7 @@ const Project = ({ project }: Props): JSX.Element => {
         {isVideo(item) ? (
           <video src={item} loop muted autoPlay />
         ) : (
-          <img src={item} />
+          <ParallaxImage src={item} min={-5} max={5} />
         )}
       </div>
     );
@@ -96,7 +101,7 @@ const Project = ({ project }: Props): JSX.Element => {
         <div className="hero-cover -left" ref={leftCover} />
         <div className="hero-cover -right" ref={rightCover} />
         <div className="hero-image-wrapper">
-          <img src={project.hero} />
+          <img src={project.hero} ref={heroParallax} />
         </div>
       </div>
       <div className="row">

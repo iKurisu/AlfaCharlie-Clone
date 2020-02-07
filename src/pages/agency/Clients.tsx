@@ -6,6 +6,7 @@ import "./Clients.scss";
 import useTransition from "hooks/useTransition";
 import { ease } from "utils/timings";
 import Mask from "components/slider/Mask";
+import useParallax from "hooks/useParallax";
 
 const Clients = (): JSX.Element => {
   const image = useRef(null);
@@ -25,12 +26,18 @@ const Clients = (): JSX.Element => {
     if (reveal) slideImageToRight();
   }, [reveal]);
 
+  const imageParallax = useRef(null);
+  useParallax(imageParallax, { min: -5, max: 2 });
+
+  const contentParallax = useRef(null);
+  useParallax(contentParallax, { min: 20, max: -3.5 });
+
   return (
     <section className="clients" ref={section}>
       <SectionHeader text="our clients" show={reveal} />
       <div className="clients-top">
         <div className="clients-image-wrapper">
-          <div className="clients-image">
+          <div className="clients-image" ref={imageParallax}>
             <Mask
               isOpen={reveal}
               options={{ fadeDirection: "left", delay: 0 }}
@@ -44,7 +51,11 @@ const Clients = (): JSX.Element => {
             />
           </div>
         </div>
-        <div className="clients-content">
+        <div
+          className="clients-content"
+          ref={contentParallax}
+          style={{ transform: "translateY(20%)" }}
+        >
           <h3 className="clients-title">
             Strong partnerships make bold brands.
           </h3>
