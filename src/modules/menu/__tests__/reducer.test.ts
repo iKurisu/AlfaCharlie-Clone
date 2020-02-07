@@ -54,15 +54,18 @@ describe("menu reducer", (): void => {
       type: Types.UPDATE_PREVIOUS_ELEMENT
     };
 
-    const initialState = {
+    const commonState = {
       toggled: false,
-      hoveringElementID: 2,
+      hoveringElementID: 2
+    };
+
+    const initialState = {
+      ...commonState,
       previousElementID: 0
     };
 
     const newState = {
-      toggled: false,
-      hoveringElementID: 2,
+      ...commonState,
       previousElementID: 2
     };
 

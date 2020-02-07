@@ -10,7 +10,7 @@ const reducer = (
 ): IntroState => {
   switch (action.type) {
     case Types.TOGGLE_INTRO:
-      return { ...state, toggled: !state.toggled };
+      return { ...state, toggled: false };
     default:
       return state;
   }

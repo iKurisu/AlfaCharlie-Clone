@@ -1,0 +1,412 @@
+@import "sass/_variables.scss";
+
+.project-intro {
+  padding-top: 39.6vh;
+  margin-bottom: 85px;
+}
+
+.project-intro-title {
+  margin-bottom: 36px;
+}
+
+.project-intro-description {
+  width: 59%;
+  font-size: 51px;
+  letter-spacing: 0.05em;
+  line-height: 1.12;
+}
+
+.project-hero {
+  position: relative;
+}
+
+.hero-cover {
+  background: $background;
+  position: absolute;
+  top: -5%;
+  height: 110%;
+  width: 10.5%;
+  z-index: 10;
+}
+
+.hero-cover.-left {
+  transform: translateX(-100%);
+}
+
+.hero-cover.-right {
+  transform: translateX(100%);
+}
+
+.hero-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 30vw;
+}
+
+.hero-image-wrapper img {
+  position: absolute;
+  bottom: 0;
+}
+
+.project-info {
+  display: flex;
+  padding: 102px 0;
+}
+
+.project-info-left {
+  flex: 0 66%;
+  padding: 0 121.5px;
+}
+
+.project-info-text p {
+  color: $grey;
+  letter-spacing: 0.034em;
+  line-height: 1.7;
+}
+
+.project-info-right {
+  flex: 0 34%;
+  padding: 0 34px 0;
+}
+
+.project-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.project-meta li {
+  display: flex;
+}
+
+.project-meta-title {
+  flex: 1 40%;
+}
+
+.project-meta-description {
+  flex: 1 60%;
+}
+
+.project-meta h5 {
+  line-height: 1.75;
+}
+
+.project-item {
+  margin-bottom: 8.3vw;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.project-item .slider-mask {
+  background: $background;
+}
+
+.project-item img {
+  transform-origin: 100% 0;
+}
+
+.project-double .project-item-wrapper {
+  display: inline-block;
+  width: 40%;
+  margin: 0 5%;
+}
+
+.project-quote {
+  margin: 0 8.3vw 8.3vw 33.8vw;
+}
+
+.project-quote .quotemark {
+  color: #fff;
+  font-family: "benton-modern-display";
+  font-size: 128px;
+  line-height: 0.8;
+}
+
+.project-quote .quote {
+  margin-bottom: 30px;
+}
+
+.project-quote .quote p {
+  color: $black;
+  font-family: "benton-modern-display";
+  font-size: 25.4px;
+  letter-spacing: 0.073em;
+  line-height: 1.3;
+}
+
+.project-quote .quote-author {
+  text-transform: uppercase;
+}
+
+.project-quote .quote-author {
+  color: #d43246;
+  position: relative;
+  padding: 13px 0 16px 35px;
+}
+
+.project-quote .quote-line {
+  content: "";
+  width: 23px;
+  height: 1px;
+  background-color: currentColor;
+  position: absolute;
+  top: 21px;
+  left: 0;
+}
+
+.project-quote .author-name,
+.project-quote .author-position {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+}
+
+.project-quote .author-name {
+  padding-left: 15px;
+}
+
+.project-quote .author-position:before {
+  content: "•";
+  margin: 0 6px;
+}
+
+@media (max-width: 1600px) {
+  .project-intro {
+    padding-top: 45.1vh;
+    margin-bottom: 75px;
+  }
+
+  .project-intro-title {
+    margin-bottom: 32px;
+  }
+
+  .project-intro-description {
+    font-size: 45px;
+    width: 65%;
+  }
+
+  .project-info {
+    padding: 90px 0;
+  }
+
+  .project-info-left {
+    padding: 0 8%;
+  }
+
+  .project-info-text p {
+    line-height: 1.75;
+    letter-spacing: 0.037em;
+  }
+
+  .project-meta h5 {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    line-height: 1.6;
+  }
+
+  .project-info-right {
+    padding: 0 30px;
+  }
+
+  .project-quote .quotemark {
+    font-size: 112px;
+  }
+
+  .project-quote .quote p {
+    font-size: 20px;
+    line-height: 1.45;
+    letter-spacing: 0.068em;
+  }
+
+  .project-quote .quote-author {
+    padding-top: 15px;
+  }
+
+  .project-quote .author-name,
+  .project-quote .author-position {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .project-intro {
+    padding-top: 46vh;
+    margin-bottom: 70px;
+  }
+
+  .project-intro-title {
+    margin-bottom: 30px;
+  }
+
+  .project-intro-description {
+    font-size: 42px;
+    width: 75%;
+  }
+
+  .project-info {
+    padding: 84px 0;
+  }
+
+  .project-info-right {
+    padding: 0 28px;
+  }
+
+  .project-meta h5 {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    line-height: 1.7;
+  }
+
+  .project-quote .quotemark {
+    font-size: 104px;
+  }
+
+  .project-quote .quote p {
+    font-size: 18px;
+    letter-spacing: 0.085em;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 1024px) {
+  .project-intro {
+    padding-top: 47vh;
+    margin-bottom: 74px;
+  }
+
+  .project-intro-title {
+    margin-bottom: 32px;
+  }
+
+  .project-intro-description {
+    font-size: 45px;
+  }
+
+  .project-info {
+    padding: 90px 0;
+  }
+
+  .project-info-left {
+    flex: 0 60%;
+    padding-left: 0;
+  }
+
+  .project-info-text p {
+    letter-spacing: 0.04em;
+  }
+
+  .project-meta h5 {
+    font-size: 9.5px;
+    letter-spacing: 0.295em;
+  }
+
+  .project-info-right {
+    flex: 0 40%;
+    padding-left: 30px;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-intro-description {
+    width: 100%;
+  }
+
+  .hero-image-wrapper {
+    height: 40vw;
+  }
+
+  .hero-image-wrapper img {
+    height: 120%;
+    object-fit: cover;
+  }
+
+  .project-info-text p {
+    font-size: 14.5px;
+    letter-spacing: 0.037em;
+  }
+
+  .project-quote {
+    margin-left: 0;
+  }
+
+  .project-quote .quotemark {
+    font-size: 112px;
+  }
+
+  .project-quote .quote p {
+    font-size: 20px;
+    letter-spacing: 0.069em;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-intro {
+    padding-top: 35vh;
+    margin-bottom: 45px;
+  }
+
+  .project-intro-description {
+    font-size: 38px;
+    letter-spacing: 0.045em;
+    line-height: 1.05;
+  }
+
+  .project-hero {
+    padding: 0 30px;
+  }
+
+  .hero-cover {
+    display: none;
+  }
+
+  .hero-image-wrapper {
+    height: 50vw;
+  }
+
+  .project-info {
+    padding: 60px 22.5px;
+    flex-direction: column-reverse;
+  }
+
+  .project-info-right {
+    padding: 0;
+  }
+
+  .project-meta > li {
+    margin-bottom: 22.5px;
+  }
+
+  .project-info-left {
+    margin-top: 22.5px;
+    padding: 0;
+  }
+
+  .project-quote {
+    padding: 0 22.5px;
+    margin: 74px 0 45px;
+  }
+
+  .project-quote .quotemark {
+    line-height: 0.55;
+  }
+
+  .project-quote .quote {
+    margin-bottom: 14px;
+  }
+
+  .project-quote .author-name {
+    padding-left: 0;
+  }
+
+  .project-item {
+    margin-bottom: 30px;
+  }
+
+  .project-double .project-item-wrapper {
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+}

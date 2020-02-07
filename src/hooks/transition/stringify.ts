@@ -1,72 +1,112 @@
 import { Properties, MappedProperties, MappedProperty } from "./types";
-import { getCurrentValue } from "utils/transition";
+import { applyEase } from "./utils";
 
-const stringify = (fn: string, value: number, unit: string): string | number =>
-  fn ? `${fn}(${value}${unit || ""})` : unit ? `${value}${unit}` : value;
+/**
+ * Converts the parameters of a `MappedProperty` into a string;
+ *
+ * @param fn The property's function.
+ * @param value The property's value.
+ * @param unit The property's unit.
+ *
+ * @returns The property as a string.
+ */
+const stringify = (fn: string, value: number, unit: string): string =>
+  fn ? `${fn}(${value}${unit || ""})` : `${value}${unit || ""}`;
 
-const at = (moment: "end" | "start", ease: number): boolean =>
+const at = (moment: "end" | "start") => (ease: number): boolean =>
   ease === (moment === "end" ? 1 : 0);
 
-const getStringifiedValueAtTime = (
-  ease: number,
-  { function: fn, initialValue, targetValue, unit }: MappedProperty
-): string | number => {
-  if (initialValue === null && !at("end", ease)) {
+const atEnd = at("end");
+
+/**
+ * Provides the correct value of a `MappedProperty` at a certain point of
+ * the transition.
+ *
+ * @param property A `MappedProperty`.
+ * @param ease The transition's progress.
+ */
+const validValue = (
+  { initialValue, targetValue }: MappedProperty,
+  ease: number
+): number => {
+  if (initialValue === null && !atEnd(ease)) {
     return null;
   }
 
   const value =
-    initialValue === null && at("end", ease)
+    initialValue === null && atEnd(ease)
       ? targetValue
       : targetValue === null
       ? initialValue
-      : getCurrentValue({ initialValue, targetValue }, ease);
+      : applyEase({ initialValue, targetValue }, ease);
 
-  return stringify(fn, value, unit);
+  return value;
 };
 
-const stringifyTransformProperties = (
+/**
+ * Stringifies a `MappedProperty`.
+ *
+ * @param ease The transition's progress.
+ * @param property A `MappedProperty`.
+ */
+const stringifyProperty = (
+  ease: number,
+  { function: fn, initialValue, targetValue, unit }: MappedProperty
+): string => {
+  const value = validValue({ initialValue, targetValue }, ease);
+
+  return value !== null ? stringify(fn, value, unit) : null;
+};
+
+/**
+ * Stringifies an array of `transform` properties.
+ *
+ * @param mappedProperty A `transform` property.
+ * @param ease The transition's progress.
+ */
+const stringifyTransform = (
   mappedProperty: MappedProperty[],
   ease: number
 ): string =>
   mappedProperty
-    .reduce(
-      (stringifiedProperties: string[], property: MappedProperty): string[] => {
-        const value = getStringifiedValueAtTime(ease, property) as string;
+    .reduce((properties: string[], property: MappedProperty): string[] => {
+      const stringified = stringifyProperty(ease, property);
 
-        return value !== null
-          ? [...stringifiedProperties, value]
-          : stringifiedProperties;
-      },
-      []
-    )
+      return stringified !== null ? [...properties, stringified] : properties;
+    }, [])
     .join(" ");
 
+/**
+ * Stringifies the given `MappedProperties`.
+ * @param mappedProperties An object of `MappedProperty`.
+ * @param ease The transition's progres.
+ */
 const stringifyProperties = (
   mappedProperties: MappedProperties,
   ease: number
 ): Properties =>
   Object.keys(mappedProperties).reduce(
     (properties: Properties, key: keyof Properties): Properties => {
-      if (key === "transform" && Array.isArray(mappedProperties[key])) {
-        return {
-          ...properties,
-          ...{
-            transform: stringifyTransformProperties(
-              mappedProperties[key] as MappedProperty[],
-              ease
-            )
-          }
-        };
+      switch (key) {
+        case "transform":
+          return {
+            ...properties,
+            ...{
+              transform: stringifyTransform(mappedProperties.transform, ease)
+            }
+          };
+        case "opacity":
+          return {
+            ...properties,
+            ...{ opacity: validValue(mappedProperties.opacity, ease) }
+          };
+        default:
+          const value = stringifyProperty(ease, mappedProperties[key]);
+
+          return value !== null
+            ? { ...properties, ...{ [key]: value } }
+            : properties;
       }
-
-      const value = getStringifiedValueAtTime(ease, mappedProperties[
-        key
-      ] as MappedProperty);
-
-      return value !== null
-        ? { ...properties, ...{ [key]: value } }
-        : properties;
     },
     {}
   );

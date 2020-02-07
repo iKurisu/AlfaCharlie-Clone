@@ -17,7 +17,9 @@ module.exports = {
   devtool: "eval",
   devServer: {
     contentBase: "./dist",
-    hot: true
+    hot: true,
+    historyApiFallback: true,
+    host: "0.0.0.0"
   },
   output: {
     filename: "main.js",
@@ -55,6 +57,7 @@ module.exports = {
     alias: {
       assets: path.resolve(__dirname, "src/assets"),
       components: path.resolve(__dirname, "src/components"),
+      data: path.resolve(__dirname, "src/data"),
       hooks: path.resolve(__dirname, "src/hooks"),
       modules: path.resolve(__dirname, "src/modules"),
       pages: path.resolve(__dirname, "src/pages"),

@@ -3,27 +3,62 @@ import { connect } from "react-redux";
 import { AppState } from "store";
 import Outline from "./Outline";
 import Progress from "./Progress";
+import { Cursor, HoverableElement } from "modules/cursor/types";
+import { classList } from "utils/class";
 
 interface MappedState {
   menuToggled: boolean;
-  hoveringElementID: number;
+  currentCursor: Cursor;
+  slide: number;
 }
 
 type Props = MappedState;
 
 export const Menu = ({
   menuToggled,
-  hoveringElementID
+  slide,
+  currentCursor
 }: Props): JSX.Element => (
-  <div className="menu-cursor" style={{ opacity: menuToggled ? 1 : 0 }}>
+  <div
+    className={classList([
+      "menu-cursor",
+      { "-show": menuToggled || currentCursor === Cursor.SLIDER }
+    ])}
+  >
     <Outline />
-    <Progress progress={hoveringElementID / 4} />
+    <Progress progress={slide / 4} />
   </div>
 );
 
-const mapState = ({ menu }: AppState): MappedState => ({
-  menuToggled: menu.toggled,
-  hoveringElementID: menu.hoveringElementID
+interface Slides {
+  [k: string]: number;
+}
+
+export const mapSlide = (
+  hovering: HoverableElement,
+  { heroSlide, menuSlide, testimonialSlide }: Slides
+): number => {
+  switch (hovering) {
+    case HoverableElement.HERO:
+      return heroSlide;
+    case HoverableElement.MENU:
+      return menuSlide;
+    case HoverableElement.TESTIMONIALS:
+      return testimonialSlide;
+    default:
+      return 0;
+  }
+};
+
+const mapState = ({
+  cursor,
+  menu: { toggled: menuToggled, hoveringElementID: menuSlide },
+  hero: { currentSlideID: heroSlide },
+  testimonials: { currentSlideID: testimonialSlide }
+}: AppState): MappedState => ({
+  ...cursor,
+  menuToggled,
+  slide: mapSlide(cursor.hovering, { heroSlide, menuSlide, testimonialSlide })
 });
 
 export default connect(mapState)(Menu);

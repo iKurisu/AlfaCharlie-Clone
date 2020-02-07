@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import LoaderLink from "components/LoaderLink";
 import Symbol from "components/Symbol";
 import useTransition from "hooks/useTransition";
 import useDidUpdateEffect from "hooks/useDidUpdateEffect";
@@ -39,13 +40,14 @@ const Home = ({ isOpen }: Props): JSX.Element => {
   }, [isOpen]);
 
   return (
-    <a
+    <LoaderLink
       className="menu-home-link"
+      to="/"
       ref={home}
       style={{ opacity: 0, transform: "rotate(45deg)" }}
     >
       <Symbol />
-    </a>
+    </LoaderLink>
   );
 };
 

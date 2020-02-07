@@ -1,0 +1,84 @@
+.footer-art {
+  width: 100%;
+  height: 50vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-art-cover {
+  background: #fff;
+  position: absolute;
+  bottom: -2%;
+  width: 100%;
+  height: 22%;
+  transform-origin: 50% 100%;
+}
+
+.footer-m,
+.footer-rows {
+  position: absolute;
+}
+
+.footer-m {
+  left: 18%;
+  bottom: 1.75vw;
+}
+
+.footer-m::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 1.76vw;
+  background: #fff;
+}
+
+.footer-rows {
+  right: 18%;
+  bottom: 0;
+}
+
+.footer-m-left,
+.footer-m-right {
+  display: inline-block;
+  border-top: 10.5vw solid transparent;
+}
+
+.footer-m-left {
+  border-left: 13.5vw solid #fff;
+}
+
+.footer-m-right {
+  border-right: 13.5vw solid #fff;
+}
+
+.footer-rows-left,
+.footer-rows-center,
+.footer-rows-right {
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 5.4vw;
+  height: 12.25vw;
+  margin-left: 100px;
+}
+
+.footer-rows-right {
+  right: 0;
+}
+
+.footer-rows-center {
+  right: 10.8vw;
+}
+
+.footer-rows-left {
+  right: 21.6vw;
+}
+
+@media (max-width: 480px), (max-width: 823px) and (orientation: landscape) {
+  .footer-art {
+    height: 15vmax;
+    visibility: hidden;
+  }
+}

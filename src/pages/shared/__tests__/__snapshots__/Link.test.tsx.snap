@@ -1,5 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Link renders correct span when a string is passed 1`] = `ShallowWrapper {}`;
+exports[`Link renders correct span when a string is passed 1`] = `
+<Connect(Component)
+  className="main-link"
+  to="/"
+>
+  <span
+    className="link-line"
+  />
+  <svg
+    version="1.1"
+    viewBox="0 0 157.34 51.71"
+    x="0px"
+    xmlSpace="preserve"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    y="0px"
+  >
+    <polyline
+      points="128.65,45.62 148.36,25.91 128.47,6.02 "
+    />
+    <line
+      x1="8.46"
+      x2="147.73"
+      y1="25.91"
+      y2="25.91"
+    />
+  </svg>
+  <span
+    className="link-text-wrapper"
+  >
+    <span
+      className="link-text"
+    />
+  </span>
+</Connect(Component)>
+`;
 
-exports[`Link renders correct spans when an author is passed 1`] = `ShallowWrapper {}`;
+exports[`Link renders correct spans when an author is passed 1`] = `
+<a
+  className="main-link"
+  href="https:..."
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <span
+    className="link-line"
+  />
+  <svg
+    version="1.1"
+    viewBox="0 0 157.34 51.71"
+    x="0px"
+    xmlSpace="preserve"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    y="0px"
+  >
+    <polyline
+      points="128.65,45.62 148.36,25.91 128.47,6.02 "
+    />
+    <line
+      x1="8.46"
+      x2="147.73"
+      y1="25.91"
+      y2="25.91"
+    />
+  </svg>
+  <span
+    className="link-text-wrapper"
+  >
+    <span
+      className="link-author"
+    />
+    <span
+      className="link-position"
+    />
+  </span>
+</a>
+`;

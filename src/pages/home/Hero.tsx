@@ -1,10 +1,15 @@
-import React, { useState, useEffect, useRef, MouseEventHandler } from "react";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useRef,
+  MouseEventHandler
+} from "react";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
+import { ScrollContext } from "../../App";
 import { heroActions } from "modules/hero";
-import { introActions } from "modules/intro";
-import { IntroActionTypes } from "modules/intro/types";
 import { HeroSlider } from "components/Slider";
 import SliderNav from "../shared/SliderNav";
 import Arrows from "../shared/Arrows";
@@ -14,7 +19,9 @@ import useDidUpdateEffect from "hooks/useDidUpdateEffect";
 import useTransition from "hooks/useTransition";
 import useMediaQuery from "hooks/useMediaQuery";
 import { getDuration } from "utils/slider";
+import { ease } from "utils/timings";
 import "./Hero.scss";
+import useParallax from "hooks/useParallax";
 
 const imageUrls = [
   "2019/05/Lion-House-Logo.jpg",
@@ -25,21 +32,21 @@ const imageUrls = [
 ];
 
 interface MappedState {
+  toggled: boolean;
   currentSlideID: number;
   previousSlideID: number;
 }
 
 interface MappedActions {
-  toggleIntro: () => IntroActionTypes;
   swipeSlide: (slideID: number, delay: number) => MouseEventHandler;
 }
 
 export type Props = MappedState & MappedActions;
 
 export const Hero = ({
+  toggled,
   currentSlideID,
   previousSlideID,
-  toggleIntro,
   swipeSlide
 }: Props): JSX.Element => {
   const [symbolRotation, rotateSymbol] = useState(0);
@@ -50,6 +57,11 @@ export const Hero = ({
         prevRotation + (currentSlideID > previousSlideID ? -90 : 90)
     );
   }, [currentSlideID]);
+
+  const symbol = useRef(null);
+  const {
+    subscriber: [subscribe, unsubscribe]
+  } = useContext(ScrollContext);
 
   const title = useRef(null);
   const text = useRef(null);
@@ -63,15 +75,15 @@ export const Hero = ({
       from: { transform: `translateX(40px)`, opacity: 0 },
       to: { transform: `translateX(0)`, opacity: 1 },
       config: {
-        duration: 450,
-        timing: [0.17, 0.5, 0.48, 1],
+        duration: 500,
+        timing: ease,
         delay
       }
     });
 
   const fadeInTitle = fadeIn(title);
-  const fadeInText = fadeIn(text, 250);
-  const fadeInLink = fadeIn(link, 400);
+  const fadeInText = fadeIn(text, 200);
+  const fadeInLink = fadeIn(link, 350);
 
   const fadeInContent = (): void => {
     fadeInTitle();
@@ -80,9 +92,17 @@ export const Hero = ({
   };
 
   useEffect((): void => {
-    toggleIntro();
+    if (!toggled) fadeInContent();
+  }, [toggled]);
 
-    fadeInContent();
+  const rotateWithScroll = (scroll: number): void => {
+    symbol.current.style.transform = `rotate(${scroll * 0.125}deg)`;
+  };
+
+  useEffect((): (() => void) => {
+    subscribe(rotateWithScroll);
+
+    return () => unsubscribe(rotateWithScroll);
   }, []);
 
   const wrapperWidth = useMediaQuery([
@@ -103,6 +123,9 @@ export const Hero = ({
     "(maxWidth: 1600px) => 47.11vw",
     "(minWidth: 1601px) => 46.99vw"
   ]);
+
+  const heroParallax = useRef(null);
+  useParallax(heroParallax, { min: 0, max: 3 });
 
   return (
     <section className="hero">
@@ -131,19 +154,23 @@ export const Hero = ({
           ref={link}
           style={{ transform: "translateX(40px)", opacity: 0 }}
         >
-          <Link content="View our work" />
+          <Link content="View our work" to="/work" />
         </div>
       </div>
-      <div className="hero-slider">
-        <HeroSlider
-          imageUrls={imageUrls}
-          options={{
-            fadeDirection: "left",
-            width: { wrapper: wrapperWidth, image: imageWidth }
-          }}
-        />
+      <div className="hero-slider-wrapper">
+        <div className="hero-slider">
+          <div className="hero-slider-parallax" ref={heroParallax}>
+            <HeroSlider
+              imageUrls={imageUrls}
+              options={{
+                fadeDirection: "left",
+                width: { wrapper: wrapperWidth, image: imageWidth }
+              }}
+            />
+          </div>
+        </div>
         <SliderNav
-          imageUrls={imageUrls}
+          slides={imageUrls}
           currentSlideID={currentSlideID}
           swipeSlide={swipeSlide}
         />
@@ -162,24 +189,23 @@ export const Hero = ({
             })}ms`
           }}
         >
-          <Symbol />
+          <Symbol symbol={symbol} />
         </div>
       </div>
     </section>
   );
 };
 
-const mapState = ({ hero }: AppState): MappedState => ({ ...hero });
+const mapState = ({ hero, intro, loader }: AppState): MappedState => ({
+  ...hero,
+  toggled: intro.toggled || loader.main
+});
 
 const mapDispatch = (dispatch: Dispatch): MappedActions => ({
-  toggleIntro: () => dispatch(introActions.toggleIntro()),
   swipeSlide: (slideID: number, delay: number): MouseEventHandler => () => {
     dispatch(heroActions.setSlide(slideID));
     setTimeout(() => dispatch(heroActions.updatePreviousSlide()), delay);
   }
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Hero);
+export default connect(mapState, mapDispatch)(Hero);

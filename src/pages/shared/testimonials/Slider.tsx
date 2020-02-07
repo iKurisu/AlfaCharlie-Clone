@@ -4,6 +4,7 @@ import { AppState } from "store";
 import Link from "../Link";
 import { classList } from "utils/class";
 import "./Slider.scss";
+import useParallax from "hooks/useParallax";
 
 export interface Author {
   name: string;
@@ -13,6 +14,7 @@ export interface Author {
 interface Testimonial {
   paragraphs: string[];
   author: Author;
+  link: string;
 }
 
 const testimonials: Testimonial[] = [
@@ -28,7 +30,8 @@ const testimonials: Testimonial[] = [
     author: {
       name: "Edward Piegza",
       position: "Founder, Classic Journeys"
-    }
+    },
+    link: "https://www.classicjourneys.com/"
   },
   {
     paragraphs: [
@@ -42,7 +45,8 @@ const testimonials: Testimonial[] = [
     author: {
       name: "Teal Cooper",
       position: "Founder, Vendibean"
-    }
+    },
+    link: "https://vendibean.com/"
   },
   {
     paragraphs: [
@@ -55,7 +59,8 @@ const testimonials: Testimonial[] = [
     author: {
       name: "Kristina Doherty",
       position: "Founder, Kristina Kay Photography"
-    }
+    },
+    link: "https://www.kristinakayphotography.com/"
   },
   {
     paragraphs: [
@@ -68,7 +73,8 @@ const testimonials: Testimonial[] = [
     author: {
       name: "Charles Chamberlayne",
       position: "Principal, Chamberlaynepr"
-    }
+    },
+    link: "http://chamberlaynepr.com/"
   },
   {
     paragraphs: [
@@ -82,7 +88,8 @@ const testimonials: Testimonial[] = [
     author: {
       name: "Jono Green",
       position: "Founder, GRX Baseball"
-    }
+    },
+    link: "https://grxbaseball.com/"
   }
 ];
 
@@ -116,14 +123,21 @@ export const Slider = ({ activeSlide }: MappedState): JSX.Element => {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
+  const sliderParallax = useRef(null);
+  useParallax(sliderParallax, { min: 35, max: -21, unit: "px" });
+
   return (
-    <div className="testimonials-slider" style={{ height: `${height}px` }}>
-      {testimonials.map(({ paragraphs, author }, id) => (
+    <div
+      className="testimonials-slider"
+      style={{ height: `${height}px`, transform: "translateY(35px)" }}
+      ref={sliderParallax}
+    >
+      {testimonials.map(({ paragraphs, author, link }, id) => (
         <div
-          className={classList({
-            ["testimonials-slide"]: true,
-            active: id === activeSlide
-          })}
+          className={classList([
+            "testimonials-slide",
+            { active: id === activeSlide }
+          ])}
           ref={refs[id]}
           key={id}
         >
@@ -133,7 +147,7 @@ export const Slider = ({ activeSlide }: MappedState): JSX.Element => {
             ))}
           </div>
           <div className="testimonial-author">
-            <Link content={author} />
+            <Link content={author} to={link} />
           </div>
         </div>
       ))}

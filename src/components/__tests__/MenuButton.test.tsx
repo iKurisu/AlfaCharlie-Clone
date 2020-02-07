@@ -1,18 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { shallow } from "enzyme";
+import { act } from "react-dom/test-utils";
+import { shallow, mount } from "enzyme";
 import { MenuButton } from "../MenuButton";
 
+jest.useFakeTimers();
+
 describe("menu button", (): void => {
-  it("renders correctly", (): void => {
-    const toggle = jest.fn();
-    const button = renderer.create(
-      <MenuButton toggled={false} toggle={toggle} />
-    );
-
-    expect(button).toMatchSnapshot();
-  });
-
   it("calls the event handler", (): void => {
     const toggle = jest.fn();
     const button = shallow(<MenuButton toggled={false} toggle={toggle} />);
@@ -24,12 +17,23 @@ describe("menu button", (): void => {
 
   it("has correct class", (): void => {
     const toggle = jest.fn();
-    const button = shallow(<MenuButton toggled={false} toggle={toggle} />);
+    const button = mount(<MenuButton toggled={false} toggle={toggle} />);
 
     expect(button.find(".menu-button").hasClass("open")).toBe(false);
+    expect(button.find(".menu-button").hasClass("disabled")).toBe(false);
 
     button.setProps({ toggled: true });
+    button.update();
 
     expect(button.find(".menu-button").hasClass("open")).toBe(true);
+    expect(button.find(".menu-button").hasClass("disabled")).toBe(true);
+
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    button.update();
+
+    expect(button.find(".menu-button").hasClass("disabled")).toBe(false);
   });
 });

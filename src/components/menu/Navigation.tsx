@@ -30,12 +30,6 @@ export const Navigation = ({
   swipeSlide
 }: Props): JSX.Element => {
   const links = ["agency", "work", "journal", "contact"];
-  const fadeInOrder = [
-    [1, 4, 2, 2, 1, 3],
-    [2, 3, 3, 3],
-    [4, 1, 3, 4, 3, 4, 2],
-    [2, 2, 4, 4, 4, 2, 2]
-  ];
 
   const nav = useRef(null);
 
@@ -82,7 +76,6 @@ export const Navigation = ({
           (link: string, id: number): JSX.Element => (
             <Link
               link={link}
-              fadeInOrder={fadeInOrder[id]}
               isOpen={isOpen}
               swipeSlide={swipeSlide(
                 id + 1,
@@ -112,7 +105,4 @@ const mapDispatch = (dispatch: Dispatch): MappedActions => ({
   }
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Navigation);
+export default connect(mapState, mapDispatch)(Navigation);

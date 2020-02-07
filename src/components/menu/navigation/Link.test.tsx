@@ -1,6 +1,8 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { shallow } from "enzyme";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "store";
+import { mount } from "enzyme";
 import Link from "./Link";
 
 describe("navigation link", (): void => {
@@ -13,16 +15,19 @@ describe("navigation link", (): void => {
     swipeSlide
   };
 
-  it("renders correctly", (): void => {
-    const component = renderer.create(<Link {...props} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
   it("calls event handler", (): void => {
-    const link = shallow(<Link {...props} />);
+    const link = mount(
+      <Provider store={store}>
+        <Router>
+          <Link {...props} />
+        </Router>
+      </Provider>
+    );
 
-    link.find(".menu-nav-link").simulate("mouseenter");
+    link
+      .find(".menu-nav-link")
+      .hostNodes()
+      .simulate("mouseenter");
 
     expect(swipeSlide.mock.calls.length).toBe(1);
   });

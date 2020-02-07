@@ -1,0 +1,15 @@
+.info-list {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.info-list-left,
+.info-list-right {
+  flex: 1 50%;
+}
+
+@media (max-width: 480px) {
+  .info-list {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,33 @@
+.label-arrow line,
+.label-arrow polyline {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 4;
+  transition: stroke-dashoffset 0.5s;
+}
+
+.contact-label-left svg {
+  transform: scaleX(-1);
+}
+
+.label-arrow svg {
+  width: 68px;
+  vertical-align: middle;
+  transition: transform 0.4s;
+}
+
+.label-arrow polyline {
+  stroke-dasharray: 55;
+}
+
+.label-arrow line {
+  stroke-dasharray: 140;
+}
+
+.label-arrow.-hide polyline {
+  stroke-dashoffset: 55px;
+}
+
+.label-arrow.-hide line {
+  stroke-dashoffset: 140px;
+}

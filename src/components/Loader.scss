@@ -1,0 +1,34 @@
+.loader {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 110;
+  pointer-events: none;
+}
+
+.loader .inverted-background {
+  pointer-events: all;
+}
+
+.loader .inverted-symbol {
+  opacity: 0;
+}
+
+.loader .symbol-mask {
+  transform: none;
+}
+
+.loader .symbol {
+  transform: rotate(30deg);
+  opacity: 0.6;
+}
+
+.loader line {
+  stroke-dashoffset: 141;
+}
+
+.loader path {
+  opacity: 0;
+}

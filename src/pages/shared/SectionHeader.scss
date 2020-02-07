@@ -1,0 +1,47 @@
+@import "sass/_variables.scss";
+
+.section-header-wrapper {
+  position: relative;
+  z-index: 20;
+  margin-bottom: 68px;
+}
+
+.section-header {
+  text-align: center;
+}
+
+@media (max-width: 1600px) {
+  .section-header-wrapper {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .section-header-wrapper {
+    margin-bottom: 56px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .section-header-wrapper {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  .section-header-wrapper {
+    width: 70%;
+    margin-bottom: 60px;
+  }
+
+  .section-header {
+    text-align: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header-wrapper {
+    width: 225px;
+    margin: 0;
+  }
+}

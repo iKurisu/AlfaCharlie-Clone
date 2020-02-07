@@ -1,0 +1,116 @@
+@import "sass/_variables.scss";
+
+.team {
+  padding: 0 5%;
+}
+
+.team .section-header-wrapper {
+  margin: 0;
+}
+
+.team-inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.team-left,
+.team-right {
+  flex: 1 50%;
+}
+
+.team-left {
+  padding-right: 10%;
+  margin-top: -5vh;
+}
+
+.team-right {
+  padding-left: 1%;
+  padding-right: 9%;
+  margin-top: 85px;
+}
+
+.team-title {
+  margin-bottom: 30px;
+  line-height: 1;
+}
+
+.team-text {
+  margin-bottom: 68px;
+  color: $grey;
+}
+
+@media (max-width: 1600px) {
+  .team-right {
+    margin-top: 74px;
+  }
+
+  .team-title {
+    margin-bottom: 26px;
+  }
+
+  .team-text {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .team-right {
+    margin-top: 70px;
+  }
+
+  .team-title {
+    font-size: 35px;
+    margin-bottom: 24px;
+  }
+
+  .team-text {
+    margin-bottom: 56px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .team-right {
+    margin-top: 75px;
+  }
+
+  .team-title {
+    font-size: 37.5px;
+    margin-bottom: 26.5px;
+  }
+
+  .team-text {
+    margin-bottom: 26.4px;
+  }
+}
+
+@media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  .team-left,
+  .team-right {
+    flex: 1 100%;
+    padding: 0;
+  }
+
+  .team-left {
+    margin-top: -8%;
+  }
+
+  .team-right {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 22.5px;
+  }
+
+  .team-content {
+    margin-top: 46px;
+  }
+
+  .team-title {
+    font-size: 30px;
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+
+  .team-text {
+    margin-bottom: 10px;
+  }
+}

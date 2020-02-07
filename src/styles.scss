@@ -38,41 +38,85 @@
   font-display: auto;
 }
 
+@font-face {
+  font-family: "benton-modern-display";
+  src: url("https://use.typekit.net/af/b62aba/00000000000000003b9af2ce/27/l?subset_id=2&fvd=i4&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/b62aba/00000000000000003b9af2ce/27/d?subset_id=2&fvd=i4&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/b62aba/00000000000000003b9af2ce/27/a?subset_id=2&fvd=i4&v=3")
+      format("opentype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: auto;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scrollbar-width: none; // Remove once custom scroll is implemented
 }
 
 body {
   font-family: "benton-sans", sans-serif;
   -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
 }
 
-::-webkit-scrollbar {
-  display: none;
+.scroll-content-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .scroll-content {
-  // Commented out until custom scroll is implemented
-  // position: fixed;
-  width: 100vw;
-  // height: 100vh;
-  // overflow: hidden;
+  touch-action: none;
   background-color: $background;
+  position: relative;
+  z-index: 11;
 }
 
 ul {
   list-style: none;
 }
 
-h3 {
-  color: $black;
-  font-size: 51px;
+h2,
+h3,
+h4,
+h6 {
   font-family: "benton-modern-display";
   font-weight: 400;
+}
+
+h5 {
+  color: $grey;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.27em;
+}
+
+h2 {
+  color: #fff;
+  font-size: 127.5px;
   letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+h3,
+h4 {
+  color: $black;
+}
+
+h3 {
+  font-size: 51px;
+  letter-spacing: 0.06em;
+}
+
+h6 {
+  color: $grey;
+  font-style: italic;
 }
 
 p {
@@ -81,7 +125,30 @@ p {
   line-height: 1.6;
 }
 
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+.-left {
+  left: 0;
+}
+
+.-right {
+  right: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
 @media (max-width: 1600px) {
+  h2 {
+    font-size: 102px;
+    letter-spacing: 0.06em;
+  }
+
   h3 {
     font-size: 45px;
   }
@@ -94,6 +161,11 @@ p {
 }
 
 @media (max-width: 1366px) {
+  h2 {
+    font-size: 86.5px;
+    letter-spacing: 0.061em;
+  }
+
   h3 {
     font-size: 42px;
   }
@@ -106,6 +178,11 @@ p {
 }
 
 @media (max-width: 1024px) {
+  h2 {
+    font-size: 93px;
+    letter-spacing: 0.06em;
+  }
+
   h3 {
     font-size: 45px;
   }
@@ -117,6 +194,11 @@ p {
 }
 
 @media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
+  h2 {
+    font-size: 93px;
+    line-height: 0.8;
+  }
+
   p {
     font-size: 15px;
     letter-spacing: 0.02em;
@@ -125,6 +207,10 @@ p {
 }
 
 @media (max-width: 480px) {
+  h2 {
+    font-size: 75px;
+  }
+
   h3 {
     font-size: 35px;
     letter-spacing: 0.054em;

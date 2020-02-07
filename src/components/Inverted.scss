@@ -1,0 +1,24 @@
+@import "sass/_variables.scss";
+
+.inverted-background {
+  background: $black;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transform: translateX(-100%);
+}
+
+.inverted-symbol .symbol {
+  transform: translateY(100%);
+}
+
+.inverted-symbol path {
+  fill: $light;
+}
+
+.inverted-symbol line {
+  stroke-dasharray: 141;
+  stroke-dashoffset: 0;
+  stroke: $light;
+}

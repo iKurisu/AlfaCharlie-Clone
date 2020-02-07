@@ -2,7 +2,7 @@ import { useRef, RefObject } from "react";
 import BezierEasing from "bezier-easing";
 import mapProperties from "./transition/mapProperties";
 import stringifyProperties from "./transition/stringify";
-import { getEasingTime, getTotalFrames } from "utils/transition";
+import { getProgress, toFrames } from "./transition/utils";
 import { Properties } from "./transition/types";
 
 interface Config {
@@ -11,15 +11,25 @@ interface Config {
   delay?: number;
 }
 
-interface Props {
+export interface TransitionProps {
   from: Properties;
   to: Properties;
   config: Config;
 }
 
+/**
+ * Generates a function that will perform a transition from A to B on a ref
+ * object.
+ *
+ * @param element A ref object.
+ * @param props The transition's properties: `from`, `to` and `config`.
+ *
+ * @returns A function that will perform the transition when called and resolves
+ * a promise once the transition completes.
+ */
 const useTransition = (
   element: RefObject<HTMLElement>,
-  props: Props
+  props: TransitionProps
 ): (() => Promise<void>) => {
   const animationId = useRef<number>(null);
   const frame = useRef<number>(0);
@@ -42,23 +52,22 @@ const useTransition = (
 
       const easing = BezierEasing(...timing);
       const mappedProperties = mapProperties(from, to);
-      const totalFrames = getTotalFrames(duration);
+      const frames = toFrames(duration);
 
       const animation = (): void => {
         const { current: currentFrame } = frame;
 
-        const ease = easing(getEasingTime(currentFrame, duration));
-        const maxEase = easing(getEasingTime(Math.ceil(totalFrames), duration));
+        const ease = easing(getProgress(currentFrame, frames));
+        const maxEase = easing(getProgress(Math.ceil(frames), frames));
 
-        Object.assign(
-          element.current.style,
-          stringifyProperties(
-            mappedProperties,
-            maxEase > 1 ? ease / maxEase : ease
-          )
-        );
+        if (element.current) {
+          const stage = maxEase > 1 ? ease / maxEase : ease;
+          const styles = stringifyProperties(mappedProperties, stage);
 
-        if (currentFrame >= totalFrames) {
+          Object.assign(element.current.style, styles);
+        }
+
+        if (currentFrame >= frames) {
           resetFrame();
           cancelAnimationFrame(animationId.current);
           resolve();

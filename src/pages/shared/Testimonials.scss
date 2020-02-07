@@ -12,7 +12,7 @@
   width: 50%;
   height: 25vw;
   position: absolute;
-  top: 10.5%;
+  top: 13%;
   padding-right: 2.5%;
 }
 
@@ -83,6 +83,10 @@
 }
 
 @media (max-width: 480px) {
+  .testimonials .section-header-wrapper {
+    width: 280px;
+  }
+
   .testimonials-content {
     margin-top: 46px;
   }

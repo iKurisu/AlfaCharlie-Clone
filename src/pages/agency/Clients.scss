@@ -1,0 +1,174 @@
+@import "sass/_variables.scss";
+
+.clients {
+  display: flex;
+  flex-direction: column;
+  padding: 0 5%;
+}
+
+.clients .section-header-wrapper {
+  margin: 0;
+}
+
+.clients-top {
+  position: relative;
+  margin-bottom: 119px;
+}
+
+.clients-image-wrapper {
+  width: 50%;
+  height: 100%;
+  padding-top: 38%;
+  position: absolute;
+  top: -10%;
+  overflow: hidden;
+}
+
+.clients-image-wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform-origin: 0px 0px;
+}
+
+.clients-image {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.clients-content {
+  padding-left: 55%;
+  padding-right: 10%;
+  margin-top: 15%;
+}
+
+.clients-title {
+  margin-bottom: 29.9px;
+  line-height: 1;
+}
+
+.clients-text {
+  color: $grey;
+  letter-spacing: 0.035em;
+  margin-bottom: 29.9px;
+}
+
+.clients-list {
+  display: flex;
+  margin-bottom: 25.5px;
+}
+
+.clients-list-left {
+  flex: 1 40%;
+}
+
+.clients-list-center,
+.clients-list-right {
+  flex: 1 30%;
+}
+
+@media (max-width: 1600px) {
+  .clients-top {
+    margin-bottom: 101.6px;
+  }
+
+  .clients-content {
+    padding-right: 1%;
+  }
+
+  .clients-title {
+    margin-bottom: 26.4px;
+  }
+
+  .clients-text {
+    letter-spacing: 0.038em;
+  }
+}
+
+@media (max-width: 1366px) {
+  .clients-top {
+    margin-bottom: 98px;
+  }
+  .clients-title {
+    font-size: 35px;
+  }
+
+  .clients-title,
+  .clients-text {
+    margin-bottom: 24.8px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .clients-top {
+    margin-bottom: 106px;
+  }
+
+  .clients-title {
+    font-size: 37.5px;
+  }
+
+  .clients-title,
+  .clients-text {
+    margin-bottom: 26px;
+  }
+}
+
+@media (max-width: 768px) {
+  .clients-top {
+    margin: 0;
+  }
+
+  .clients-image-wrapper,
+  .clients-image,
+  .clients-image img {
+    position: static;
+  }
+
+  .clients-image-wrapper {
+    width: 100%;
+    position: static;
+    margin-top: -7%;
+    padding: 0;
+  }
+
+  .clients-image img {
+    height: auto;
+  }
+
+  .clients-content {
+    margin: 30px 0;
+    padding: 0;
+  }
+
+  .clients-text {
+    letter-spacing: 0.02em;
+  }
+
+  .clients-list {
+    flex-wrap: wrap;
+  }
+
+  .clients-list-left,
+  .clients-list-right {
+    flex: 1 50%;
+  }
+}
+
+@media (max-width: 460px) {
+  .clients-title {
+    font-size: 30px;
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+
+  .clients-text {
+    margin-bottom: 10px;
+  }
+
+  .clients-list {
+    display: block;
+  }
+}

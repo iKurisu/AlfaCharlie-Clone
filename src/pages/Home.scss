@@ -5,11 +5,11 @@
 }
 
 .separator {
-  height: 221px;
+  height: 170px;
 }
 
 .separator.-big {
-  height: 271px;
+  height: 272px;
 }
 
 section .slider-mask {
@@ -18,7 +18,7 @@ section .slider-mask {
 
 @media (max-width: 1600px) {
   .separator {
-    height: 196px;
+    height: 150px;
   }
 
   .separator.-big {
@@ -28,7 +28,7 @@ section .slider-mask {
 
 @media (max-width: 1366px) {
   .separator {
-    height: 182px;
+    height: 140px;
   }
 
   .separator.-big {
@@ -38,7 +38,7 @@ section .slider-mask {
 
 @media (max-width: 1024px) {
   .separator {
-    height: 196px;
+    height: 150px;
   }
 
   .separator.-big {
@@ -47,10 +47,7 @@ section .slider-mask {
 }
 
 @media (max-width: 768px), (max-width: 823px) and (orientation: landscape) {
-  .separator {
-    height: 121px;
-  }
-
+  .separator,
   .separator.-big {
     height: 75px;
   }
@@ -61,10 +58,7 @@ section .slider-mask {
     padding: 0 30px;
   }
 
-  .separator {
-    height: 76px;
-  }
-
+  .separator,
   .separator.-big {
     height: 75px;
   }

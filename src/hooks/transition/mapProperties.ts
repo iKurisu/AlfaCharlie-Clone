@@ -1,86 +1,65 @@
-import { getPropFunction, getValue, getUnit } from "utils/transition";
+import { getFunction, getValue, getUnit } from "./utils";
 import { mergeWithoutDupicates } from "utils/array";
 import { Properties, MappedProperty, MappedProperties } from "./types";
 
-const getOpacityProperties = (
-  { from, to }: { from: Properties; to: Properties },
-  key: keyof Properties
+/** Matches the unit of the first property that has a valid unit. */
+const unitFrom = (...props: (string | number)[]): string => {
+  return getUnit(props.find(prop => Boolean(getUnit(prop))));
+};
+
+/** Matches the function of the first property that has a valid function. */
+const functionFrom = (...props: (string | number)[]): string => {
+  return getFunction(props.find(prop => Boolean(getFunction(prop))));
+};
+
+/**
+ * Maps properties.
+ * @param from The initial properties.
+ * @param to The target properties.
+ */
+const mapProps = (
+  from: string | number,
+  to: string | number
 ): MappedProperty => ({
-  function: getPropFunction(from[key] || to[key]) as string,
-  initialValue: from.hasOwnProperty(key) ? getValue(from[key]) : null,
-  targetValue: to.hasOwnProperty(key) ? getValue(to[key]) : null,
-  unit: getUnit(from[key]) || getUnit(to[key])
+  function: functionFrom(from, to),
+  initialValue: getValue(from),
+  targetValue: getValue(to),
+  unit: unitFrom(from, to)
 });
 
-const getIndexOfFunc = (fn: string, properties: string[]): number =>
-  properties.findIndex((property: string): boolean => {
-    const regex = new RegExp(fn, "g");
-    return property.match(regex) !== null;
+const notEmpty = <T>(arr1: T[], arr2: T[]): T[] => (arr1.length ? arr1 : arr2);
+
+/**
+ * Maps `transform` properties into a `MappedProperty`.
+ * @param from The initial properties.
+ * @param to The target properties.
+ */
+const mapTransformProperties = (
+  from: Properties,
+  to: Properties
+): MappedProperty[] => {
+  const fromProps = "transform" in from ? from.transform.split(" ") : [];
+  const toProps = "transform" in to ? to.transform.split(" ") : [];
+
+  return notEmpty(fromProps, toProps).map((_, id) => {
+    return mapProps(fromProps[id], toProps[id]);
   });
-
-const getProperty = <T>(
-  cb: (prop: string | number) => T
-): ((fn: string, properties: string[]) => T) => (fn, properties): T => {
-  const indexofFunc = getIndexOfFunc(fn, properties);
-  return indexofFunc !== -1 ? cb(properties[indexofFunc]) : null;
 };
 
-const getPropertyValue = getProperty(getValue);
-const getPropertyUnit = getProperty(getUnit);
-
-const getMappedTransformProperty = (
-  fn: string,
-  {
-    initialProperties,
-    targetProperties
-  }: { initialProperties: string[]; targetProperties: string[] }
-): MappedProperty => ({
-  function: fn,
-  initialValue: getPropertyValue(fn, initialProperties),
-  targetValue: getPropertyValue(fn, targetProperties),
-  unit:
-    getPropertyUnit(fn, initialProperties) ||
-    getPropertyUnit(fn, targetProperties)
-});
-
-const getTransformProperties = (
-  { from, to }: { from: Properties; to: Properties },
-  key: "transform"
-): MappedProperty | MappedProperty[] => {
-  const functions = mergeWithoutDupicates(
-    (getPropFunction(from[key], true) as string[]) || [],
-    (getPropFunction(to[key], true) as string[]) || []
-  );
-
-  if (functions.length === 0) {
-    throw Error("Invalid 'transform' value.");
-  }
-
-  const properties = {
-    initialProperties: from.hasOwnProperty(key) ? from[key].split(" ") : [],
-    targetProperties: to.hasOwnProperty(key) ? to[key].split(" ") : []
-  };
-
-  return functions.length > 1
-    ? functions.map(
-        (fn: string): MappedProperty =>
-          getMappedTransformProperty(fn, properties)
-      )
-    : getMappedTransformProperty(functions[0], properties);
-};
-
+/**
+ * Maps transition properties into a `MappedProperties` object.
+ * @param from The initial properties.
+ * @param to The target properties.
+ */
 const mapProperties = (from: Properties, to: Properties): MappedProperties => {
-  const properties = mergeWithoutDupicates(
-    Object.keys(from),
-    Object.keys(to)
-  ) as (keyof Properties)[];
+  const properties = mergeWithoutDupicates(Object.keys(from), Object.keys(to));
 
   return properties.reduce(
     (prev: MappedProperties, curr: keyof Properties): MappedProperties => {
       const properties =
         curr === "transform"
-          ? getTransformProperties({ from, to }, curr)
-          : getOpacityProperties({ from, to }, curr);
+          ? mapTransformProperties(from, to)
+          : mapProps(from[curr], to[curr]);
 
       return { ...prev, ...{ [curr]: properties } };
     },

@@ -1,15 +1,17 @@
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, useRef } from "react";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { AppState } from "store";
 import { testimonialsActions } from "modules/testimonials";
-import SectionHeader from "../home/shared/SectionHeader";
+import SectionHeader from "./SectionHeader";
 import { TestimonialsSlider } from "components/Slider";
 import Slider from "./testimonials/Slider";
 import Arrows from "./Arrows";
 import SliderNav from "./SliderNav";
 import useMediaQuery from "hooks/useMediaQuery";
 import "./Testimonials.scss";
+import useRevealSection from "hooks/useRevealSection";
+import useParallax from "hooks/useParallax";
 
 const imageUrls = [
   "2019/04/classic-journeys-editorial-2.jpg",
@@ -27,9 +29,16 @@ interface MappedActions {
   swipeSlide: (slideID: number, delay: number) => MouseEventHandler;
 }
 
-type Props = MappedState & MappedActions;
+interface OwnProps {
+  title: string;
+}
+
+type Props = MappedState & MappedActions & OwnProps;
 
 const Testimonials = (props: Props): JSX.Element => {
+  const section = useRef(null);
+  const revealSection = useRevealSection(section);
+
   const wrapperWidth = useMediaQuery([
     "(maxWidth: 420px) => 85.61vw",
     "(maxWidth: 823px) and (orientatin: landscape) => 79.01vw",
@@ -47,12 +56,16 @@ const Testimonials = (props: Props): JSX.Element => {
     "(minWidth: 1601px) => 31.90vw"
   ]);
 
+  const testimonialsParallax = useRef(null);
+  useParallax(testimonialsParallax, { min: -5, max: 3 });
+
   return (
-    <section className="testimonials">
-      <SectionHeader text="brilliant clients" />
+    <section className="testimonials" ref={section}>
+      <SectionHeader text={props.title} show={revealSection} />
       <div className="testimonials-image-wrapper">
-        <div className="testimonials-slider">
+        <div className="testimonials-slider" ref={testimonialsParallax}>
           <TestimonialsSlider
+            show={revealSection}
             imageUrls={imageUrls}
             options={{
               fadeDirection: "left",
@@ -60,7 +73,7 @@ const Testimonials = (props: Props): JSX.Element => {
             }}
           />
         </div>
-        <SliderNav imageUrls={imageUrls} {...props} />
+        <SliderNav slides={imageUrls} {...props} />
         <Arrows maxSwipes={imageUrls.length - 1} {...props} />
       </div>
       <div className="testimonials-content">
@@ -85,7 +98,4 @@ const mapDispatch = (dispatch: Dispatch): MappedActions => ({
   }
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Testimonials);
+export default connect(mapState, mapDispatch)(Testimonials);

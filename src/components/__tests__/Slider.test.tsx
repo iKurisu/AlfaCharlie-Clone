@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { shallow } from "enzyme";
 import { Slider, Props } from "../Slider";
 
@@ -27,11 +26,6 @@ describe("slider", (): void => {
       maxLength: 2000
     }
   };
-
-  it("renders correctly", (): void => {
-    const component = renderer.create(<Slider {...props} />);
-    expect(component).toMatchSnapshot();
-  });
 
   it("has correct style", (): void => {
     const slider = shallow(<Slider {...props} />);
