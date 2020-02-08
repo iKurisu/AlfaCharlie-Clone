@@ -4,8 +4,9 @@
   "description": "",
   "private": true,
   "scripts": {
+    "build": "webpack --config webpack.prod.js",
     "test": "jest --runInBand --watchAll",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --config webpack.dev.js"
   },
   "author": "",
   "license": "ISC",
@@ -55,7 +56,8 @@
     "typescript": "^3.7.4",
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1"
+    "webpack-dev-server": "^3.10.1",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "react": "^16.12.0",
