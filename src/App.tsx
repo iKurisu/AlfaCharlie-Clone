@@ -1,5 +1,6 @@
 import React, { useRef, createContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import loadable from "@loadable/component";
 import Logo from "components/Logo";
 import Header from "components/Header";
 import VerticalNav from "components/VerticalNav";
@@ -11,17 +12,18 @@ import ArrowButton from "components/ArrowButton";
 import Intro from "components/Intro";
 import Loader from "components/Loader";
 import FooterLoader from "components/FooterLoader";
-import Home from "pages/Home";
-import Agency from "pages/Agency";
-import Work from "pages/Work";
-import Privacy from "pages/Privacy";
 import Project from "pages/Project";
-import Contact from "pages/Contact";
 import useCustomScroll from "hooks/useCustomScroll";
 import projects from "data/projects.json";
 import { ACProject } from "data/types";
 import { projectTitleToPath } from "utils/string";
 import "./styles.scss";
+
+const Home = loadable(() => import("pages/Home"));
+const Agency = loadable(() => import("pages/Agency"));
+const Work = loadable(() => import("pages/Work"));
+const Privacy = loadable(() => import("pages/Privacy"));
+const Contact = loadable(() => import("pages/Contact"));
 
 export const ScrollContext = createContext(null);
 

@@ -1,13 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Switch, Route } from "react-router-dom";
+import loadable from "@loadable/component";
 import { AppState } from "store";
-import HomeLinks from "./vertical_nav/HomeLinks";
-import MenuLinks from "./vertical_nav/MenuLinks";
-import AgencyLinks from "./vertical_nav/AgencyLinks";
-import WorkLinks from "./vertical_nav/WorkLinks";
-import ProjectLinks from "./vertical_nav/ProjectLinks";
 import "./VerticalNav.scss";
+
+const HomeLinks = loadable(() => import("./vertical_nav/HomeLinks"));
+const MenuLinks = loadable(() => import("./vertical_nav/MenuLinks"));
+const AgencyLinks = loadable(() => import("./vertical_nav/AgencyLinks"));
+const WorkLinks = loadable(() => import("./vertical_nav/WorkLinks"));
+const ProjectLinks = loadable(() => import("./vertical_nav/ProjectLinks"));
 
 interface MappedState {
   introToggled: boolean;

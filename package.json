@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "test": "jest --runInBand --watchAll",
-    "start": "webpack-dev-server --config webpack.dev.js"
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "serve": "webpack --config webpack.prod.js && node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^24.0.24",
     "@types/jsdom": "^12.2.4",
+    "@types/loadable__component": "^5.10.0",
     "@types/node": "^12.12.22",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
@@ -60,6 +62,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "@loadable/component": "^5.12.0",
     "express": "^4.17.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
