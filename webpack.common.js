@@ -1,30 +1,21 @@
-/*  eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
-const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.tsx",
+  entry: {
+    app: "./src/index.tsx"
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html"
     }),
-    new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new CleanWebpackPlugin()
   ],
-  devtool: "eval",
-  devServer: {
-    contentBase: "./dist",
-    hot: true,
-    historyApiFallback: true,
-    host: "0.0.0.0"
-  },
   output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "/"
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist")
   },
   optimization: {
     splitChunks: {
